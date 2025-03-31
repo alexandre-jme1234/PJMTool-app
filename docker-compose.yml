@@ -1,0 +1,35 @@
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: PJMTool-db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - spring-mariadb
+  backend:
+    build: backend
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/PJMTool-db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - mariadb
+    networks:
+      - spring-mariadb
+
+volumes:
+  mariadb_data:
+secrets:
+  db-password:
+    file: db/password.txt
+networks:
+  spring-mariadb:
