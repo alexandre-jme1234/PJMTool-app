@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                git 'https://github.com/alexandre-jme1234/PJMTool-app.git'
+                git 'https://github.com/alexandre-jme1234/PJMTool-app'
             }
         }
         stage('Build') {
