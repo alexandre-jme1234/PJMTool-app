@@ -5,12 +5,12 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                git 'https://github.com/alexandre-jme1234/PJMTool-app'
+                git 'https://github.com/alexandre-jme1234/PJMTool-app.git'
             }
         }
         stage('Build') {
             steps {
-                sh 'mvn clean install' // Use 'mvn clean install' if using Maven
+                sh 'mvn -B -DskipTests clean package' // Use 'mvn clean install' if using Maven
             }
         }
         stage('Test') {
