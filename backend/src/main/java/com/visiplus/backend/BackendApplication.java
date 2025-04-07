@@ -11,7 +11,7 @@ public class BackendApplication {
 
 	@RequestMapping("/")
 	public String home() {
-		return "Hello World!";
+		return "Hellos World!";
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
