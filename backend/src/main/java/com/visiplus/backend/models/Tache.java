@@ -15,8 +15,11 @@ public class Tache {
 
     private String nom;
 
+    @OneToOne(mappedBy = "tache_proprietaire")
     private Utilisateur proprietaire;
 
+    @ManyToOne
+    @JoinColumn(name = "destinataire_id", referencedColumnName = "id")
     private Utilisateur destinataire;
 
     private String description;
@@ -27,6 +30,25 @@ public class Tache {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date_fin;
 
+    @ManyToOne
+    @JoinColumn(name="tache_id", nullable=true)
+    private Projet projet;
+
+    public Utilisateur getDestinataire() {
+        return destinataire;
+    }
+
+    public void setDestinataire(Utilisateur destinataire) {
+        this.destinataire = destinataire;
+    }
+
+    public Projet getProjet() {
+        return projet;
+    }
+
+    public void setProjet(Projet projet) {
+        this.projet = projet;
+    }
 
     public int getId() {
         return id;
@@ -51,15 +73,6 @@ public class Tache {
     public void setProprietaire(Utilisateur proprietaire) {
         this.proprietaire = proprietaire;
     }
-
-    public Utilisateur getDestinataire() {
-        return destinataire;
-    }
-
-    public void setDestinataire(Utilisateur destinataire) {
-        this.destinataire = destinataire;
-    }
-
     public String getDescription() {
         return description;
     }

@@ -2,6 +2,8 @@ package com.visiplus.backend.models;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Table(name = "Utilisateur")
 @Entity
 public class Utilisateur {
@@ -24,11 +26,38 @@ public class Utilisateur {
 
     private String img_profil;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tache_proprietaire_id", referencedColumnName = "id")
+    private Tache tache_proprietaire;
+
+    @OneToMany(mappedBy = "destinataire")
+    private Set<Tache> taches_destinataire;
+
+    @OneToMany(mappedBy = "createur")
+    private Set<Projet> projets;
+
     @Version
     private Integer version;
 
+    public Tache getTache_proprietaire() {
+        return tache_proprietaire;
+    }
+
+    public void setTache_proprietaire(Tache tache_proprietaire) {
+        this.tache_proprietaire = tache_proprietaire;
+    }
+
+
     public Integer getVersion() {
         return version;
+    }
+
+    public Set<Tache> getTaches_destinataire() {
+        return taches_destinataire;
+    }
+
+    public void setTaches_destinataire(Set<Tache> taches_destinataire) {
+        this.taches_destinataire = taches_destinataire;
     }
 
     public void setVersion(Integer version) {
