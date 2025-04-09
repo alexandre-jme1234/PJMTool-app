@@ -12,4 +12,5 @@ public interface UtilisateurService {
 
     public Utilisateur findById(int id);
 
+    public Utilisateur findByNom(String nom);
 }

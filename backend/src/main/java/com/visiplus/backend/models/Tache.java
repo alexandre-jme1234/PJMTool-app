@@ -15,7 +15,10 @@ public class Tache {
 
     private String nom;
 
-    @OneToOne(mappedBy = "tache_proprietaire")
+    private boolean est_termine;
+
+    @ManyToOne
+    @JoinColumn(name = "proprietaire_id", referencedColumnName = "id")
     private Utilisateur proprietaire;
 
     @ManyToOne
@@ -31,8 +34,16 @@ public class Tache {
     private Date date_fin;
 
     @ManyToOne
-    @JoinColumn(name="tache_id", nullable=true)
+    @JoinColumn(name="projet_id", referencedColumnName = "id")
     private Projet projet;
+
+    public boolean isEst_termine() {
+        return est_termine;
+    }
+
+    public void setEst_termine(boolean est_termine) {
+        this.est_termine = est_termine;
+    }
 
     public Utilisateur getDestinataire() {
         return destinataire;

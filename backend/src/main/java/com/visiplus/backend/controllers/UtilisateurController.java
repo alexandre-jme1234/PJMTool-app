@@ -31,4 +31,9 @@ public class UtilisateurController {
     public int CreateUtilisateur(@RequestBody Utilisateur utilisateur){
         return utilisateurService.create(utilisateur);
     };
+
+    @GetMapping("/{name}")
+    public Utilisateur findByNom(@PathVariable("name") String nom){
+        return utilisateurService.findByNom(nom);
+    }
 };

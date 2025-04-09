@@ -4,6 +4,7 @@ package com.visiplus.backend.models;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Table(name = "projet")
@@ -21,11 +22,16 @@ public class Projet {
     @Temporal(value = TemporalType.DATE)
     private Date date_echeance;
 
-    private boolean permission_admin;
+    @ManyToMany(mappedBy = "projets_utilisateur")
+    private Set<Utilisateur> utilisateurs_projet = new HashSet<>();
 
-    private boolean permission_observateur;
-
-    private boolean permission_membre;
+    @ManyToMany
+    @JoinTable(
+            name = "projet_tache",
+            joinColumns = @JoinColumn(name = "projet_id"),
+            inverseJoinColumns = @JoinColumn(name = "tache_id")
+    )
+    private HashSet<Tache> projet_taches = new HashSet<>();
 
     @OneToMany(mappedBy = "projet")
     private Set<Tache> taches;
@@ -33,6 +39,14 @@ public class Projet {
     @ManyToOne
     @JoinColumn(name = "createur_id", referencedColumnName = "id")
     private Utilisateur createur;
+
+    public HashSet<Tache> getProjet_taches() {
+        return projet_taches;
+    }
+
+    public void setProjet_taches(HashSet<Tache> projet_taches) {
+        this.projet_taches = projet_taches;
+    }
 
     public int getId() {
         return id;
@@ -66,28 +80,12 @@ public class Projet {
         this.date_echeance = date_echeance;
     }
 
-    public boolean isPermission_admin() {
-        return permission_admin;
+    public Set<Utilisateur> getUtilisateurs_projet() {
+        return utilisateurs_projet;
     }
 
-    public void setPermission_admin(boolean permission_admin) {
-        this.permission_admin = permission_admin;
-    }
-
-    public boolean isPermission_observateur() {
-        return permission_observateur;
-    }
-
-    public void setPermission_observateur(boolean permission_observateur) {
-        this.permission_observateur = permission_observateur;
-    }
-
-    public boolean isPermission_membre() {
-        return permission_membre;
-    }
-
-    public void setPermission_membre(boolean permission_membre) {
-        this.permission_membre = permission_membre;
+    public void setUtilisateurs_projet(Set<Utilisateur> utilisateurs_projet) {
+        this.utilisateurs_projet = utilisateurs_projet;
     }
 
     public Set<Tache> getTaches() {
@@ -96,5 +94,13 @@ public class Projet {
 
     public void setTaches(Set<Tache> taches) {
         this.taches = taches;
+    }
+
+    public Utilisateur getCreateur() {
+        return createur;
+    }
+
+    public void setCreateur(Utilisateur createur) {
+        this.createur = createur;
     }
 };

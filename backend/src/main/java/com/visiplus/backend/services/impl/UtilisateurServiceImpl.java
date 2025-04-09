@@ -44,7 +44,20 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         }
 
         return utilisateurRepository.findById(id).get();
-    };
+    }
+
+    @Override
+    public Utilisateur findByNom(String nom) {
+        Optional<Utilisateur> utilisateur = utilisateurRepository.findByNom(nom);
+
+        if(utilisateur.isEmpty()){
+            return null;
+        }
+
+        return utilisateur.get();
+    }
+
+    ;
 
 
 

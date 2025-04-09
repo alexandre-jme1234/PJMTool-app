@@ -2,9 +2,10 @@ package com.visiplus.backend.models;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
-@Table(name = "Utilisateur")
+@Table(name = "utilisateur")
 @Entity
 public class Utilisateur {
 
@@ -20,36 +21,41 @@ public class Utilisateur {
 
     private String etat_connexion;
 
-    private String role;
-
-    private String description;
-
-    private String img_profil;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tache_proprietaire_id", referencedColumnName = "id")
-    private Tache tache_proprietaire;
+    @OneToMany(mappedBy = "proprietaire")
+    private Set<Tache> tache_proprietaire;
 
     @OneToMany(mappedBy = "destinataire")
     private Set<Tache> taches_destinataire;
 
+
+    @ManyToMany
+    @JoinTable(
+            name = "utilisateur_projet",
+            joinColumns = @JoinColumn(name = "utilisateur_id"),
+            inverseJoinColumns = @JoinColumn(name = "projet_id")
+    )
+    private Set<Projet> projets_utilisateur = new HashSet<>();
+
     @OneToMany(mappedBy = "createur")
     private Set<Projet> projets;
 
-    @Version
-    private Integer version;
+    @ManyToMany(mappedBy = "utilisateur_roles_projet")
+    private Set<Role> taches_projet = new HashSet<>();
 
-    public Tache getTache_proprietaire() {
+    public Set<Tache> getTache_proprietaire() {
         return tache_proprietaire;
     }
 
-    public void setTache_proprietaire(Tache tache_proprietaire) {
+    public void setTache_proprietaire(Set<Tache> tache_proprietaire) {
         this.tache_proprietaire = tache_proprietaire;
     }
 
+    public Set<Projet> getProjets() {
+        return projets;
+    }
 
-    public Integer getVersion() {
-        return version;
+    public void setProjets(Set<Projet> projets) {
+        this.projets = projets;
     }
 
     public Set<Tache> getTaches_destinataire() {
@@ -60,8 +66,21 @@ public class Utilisateur {
         this.taches_destinataire = taches_destinataire;
     }
 
-    public void setVersion(Integer version) {
-        this.version = version;
+    public Set<Projet> getProjets_utilisateur() {
+        return projets_utilisateur;
+    }
+
+    public void setProjets_utilisateur(Set<Projet> projets_utilisateur) {
+        this.projets_utilisateur = projets_utilisateur;
+    }
+
+
+    public Set<Role> getTaches_projet() {
+        return taches_projet;
+    }
+
+    public void setTaches_projet(Set<Role> taches_projet) {
+        this.taches_projet = taches_projet;
     }
 
     public int getId() {
@@ -102,29 +121,5 @@ public class Utilisateur {
 
     public void setEtat_connexion(String etat_connexion) {
         this.etat_connexion = etat_connexion;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getImg_profil() {
-        return img_profil;
-    }
-
-    public void setImg_profil(String img_profil) {
-        this.img_profil = img_profil;
     }
 }
