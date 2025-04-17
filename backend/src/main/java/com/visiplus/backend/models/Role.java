@@ -1,5 +1,8 @@
 package com.visiplus.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -7,38 +10,33 @@ import java.util.Set;
 
 @Table(name = "role")
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String[] roles = {"ADMINISTRATEUR", "MEMBRE", "OBSERVATEUR"};
+    private String nom;
 
-    private boolean ajouter_membre;
+    private Boolean ajouter_membre;
 
-    private boolean creer_tache;
+    private Boolean creer_tache;
 
-    private boolean assigne_tache;
+    private Boolean assigne_tache;
 
-    private boolean maj_tache;
+    private Boolean maj_tache;
 
-    private boolean vue_tache;
+    private Boolean vue_tache;
 
-    private boolean vue_tableau_de_bord;
+    private Boolean vue_tableau_de_bord;
 
-    private boolean etre_notifie;
+    private Boolean etre_notifie;
 
-    private boolean vue_historique_modifications;
+    private Boolean vue_historique_modifications;
 
-    @ManyToMany
-    @JoinTable(
-            name = "utilisateur_role",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "utilisateur_id")
-    )
+    @ManyToMany(mappedBy = "roles_projet")
     private Set<Utilisateur> utilisateur_roles_projet = new HashSet<>();
-
 
     public int getId() {
         return id;
@@ -48,75 +46,75 @@ public class Role {
         this.id = id;
     }
 
-    public String[] getRoles() {
-        return roles;
+    public String getNom() {
+        return nom;
     }
 
-    public void setRoles(String[] roles) {
-        this.roles = roles;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public boolean isAjouter_membre() {
+    public Boolean getAjouter_membre() {
         return ajouter_membre;
     }
 
-    public void setAjouter_membre(boolean ajouter_membre) {
+    public void setAjouter_membre(Boolean ajouter_membre) {
         this.ajouter_membre = ajouter_membre;
     }
 
-    public boolean isCreer_tache() {
+    public Boolean getCreer_tache() {
         return creer_tache;
     }
 
-    public void setCreer_tache(boolean creer_tache) {
+    public void setCreer_tache(Boolean creer_tache) {
         this.creer_tache = creer_tache;
     }
 
-    public boolean isAssigne_tache() {
+    public Boolean getAssigne_tache() {
         return assigne_tache;
     }
 
-    public void setAssigne_tache(boolean assigne_tache) {
+    public void setAssigne_tache(Boolean assigne_tache) {
         this.assigne_tache = assigne_tache;
     }
 
-    public boolean isMaj_tache() {
+    public Boolean getMaj_tache() {
         return maj_tache;
     }
 
-    public void setMaj_tache(boolean maj_tache) {
+    public void setMaj_tache(Boolean maj_tache) {
         this.maj_tache = maj_tache;
     }
 
-    public boolean isVue_tache() {
+    public Boolean getVue_tache() {
         return vue_tache;
     }
 
-    public void setVue_tache(boolean vue_tache) {
+    public void setVue_tache(Boolean vue_tache) {
         this.vue_tache = vue_tache;
     }
 
-    public boolean isVue_tableau_de_bord() {
+    public Boolean getVue_tableau_de_bord() {
         return vue_tableau_de_bord;
     }
 
-    public void setVue_tableau_de_bord(boolean vue_tableau_de_bord) {
+    public void setVue_tableau_de_bord(Boolean vue_tableau_de_bord) {
         this.vue_tableau_de_bord = vue_tableau_de_bord;
     }
 
-    public boolean isEtre_notifie() {
+    public Boolean getEtre_notifie() {
         return etre_notifie;
     }
 
-    public void setEtre_notifie(boolean etre_notifie) {
+    public void setEtre_notifie(Boolean etre_notifie) {
         this.etre_notifie = etre_notifie;
     }
 
-    public boolean isVue_historique_modifications() {
+    public Boolean getVue_historique_modifications() {
         return vue_historique_modifications;
     }
 
-    public void setVue_historique_modifications(boolean vue_historique_modifications) {
+    public void setVue_historique_modifications(Boolean vue_historique_modifications) {
         this.vue_historique_modifications = vue_historique_modifications;
     }
 

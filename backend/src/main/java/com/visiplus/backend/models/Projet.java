@@ -1,14 +1,18 @@
 package com.visiplus.backend.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Table(name = "projet")
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Projet {
 
     @Id
@@ -22,6 +26,23 @@ public class Projet {
     @Temporal(value = TemporalType.DATE)
     private Date date_echeance;
 
+    @Temporal(value = TemporalType.DATE)
+    private Date date_creation;
+
+
+    public void setDate_creation(Date date_creation) {
+        this.date_creation = date_creation;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.date_creation = new Date();
+    }
+
+    public Date getDate_creation() {
+        return date_creation;
+    }
+
     @ManyToMany(mappedBy = "projets_utilisateur")
     private Set<Utilisateur> utilisateurs_projet = new HashSet<>();
 
@@ -31,20 +52,24 @@ public class Projet {
             joinColumns = @JoinColumn(name = "projet_id"),
             inverseJoinColumns = @JoinColumn(name = "tache_id")
     )
-    private HashSet<Tache> projet_taches = new HashSet<>();
+    private Set<Tache> projet_taches = new HashSet<>();
 
     @OneToMany(mappedBy = "projet")
     private Set<Tache> taches;
 
     @ManyToOne
     @JoinColumn(name = "createur_id", referencedColumnName = "id")
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id"
+    )
     private Utilisateur createur;
 
-    public HashSet<Tache> getProjet_taches() {
+    public Set<Tache> getProjet_taches() {
         return projet_taches;
     }
 
-    public void setProjet_taches(HashSet<Tache> projet_taches) {
+    public void setProjet_taches(Set<Tache> projet_taches) {
         this.projet_taches = projet_taches;
     }
 
@@ -103,4 +128,6 @@ public class Projet {
     public void setCreateur(Utilisateur createur) {
         this.createur = createur;
     }
+
+
 };

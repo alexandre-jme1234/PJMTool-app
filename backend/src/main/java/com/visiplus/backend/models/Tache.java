@@ -18,8 +18,8 @@ public class Tache {
     private boolean est_termine;
 
     @ManyToOne
-    @JoinColumn(name = "proprietaire_id", referencedColumnName = "id")
-    private Utilisateur proprietaire;
+    @JoinColumn(name = "commanditaire_id", referencedColumnName = "id")
+    private Utilisateur commanditaire;
 
     @ManyToOne
     @JoinColumn(name = "destinataire_id", referencedColumnName = "id")
@@ -77,13 +77,14 @@ public class Tache {
         this.nom = nom;
     }
 
-    public Utilisateur getProprietaire() {
-        return proprietaire;
+    public Utilisateur getCommanditaire() {
+        return commanditaire;
     }
 
-    public void setProprietaire(Utilisateur proprietaire) {
-        this.proprietaire = proprietaire;
+    public void setCommanditaire(Utilisateur commanditaire) {
+        this.commanditaire = commanditaire;
     }
+
     public String getDescription() {
         return description;
     }

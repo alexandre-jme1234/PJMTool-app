@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JetClientState">
+    <option name="draftsState">
+      <draftsState>
+        <option name="requests">
+          <list>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;jammee@gmail.com&quot;,&#10;  &quot;nom&quot;: &quot;alexanedre&quot;,&#10;  &quot;password&quot;: &quot;heleo&quot;,&#10;  &quot;etat_connexion&quot;: true&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="e6bbfa2a-b21d-4174-b41a-4f22bf78e2e6" />
+              <option name="method" value="GET" />
+              <option name="name" value="api/utilisateur/{id}" />
+              <option name="url" value="http://localhost:8080/api/utilisateur/1" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;alex&quot;,&#10;  &quot;nom&quot;: &quot;alex&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;  &quot;etat_connexion&quot;: true,&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="2c86a724-06d9-438c-94a8-656f617f879c" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/utilisateur/create" />
+              <option name="url" value="http://localhost:8080/api/utilisateur/create" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;arthur&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="93e261f0-a2de-4b2d-94e7-db4c25399c6c" />
+              <option name="method" value="PATCH" />
+              <option name="name" value="api/utilisateur/login" />
+              <option name="url" value="http://localhost:8080/api/utilisateur/login" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;claire&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="bcf4bc4f-a30e-41bf-b9bf-aa8417fa73ca" />
+              <option name="method" value="PATCH" />
+              <option name="name" value="api/utilisateur/logout" />
+              <option name="url" value="http://localhost:8080/api/utilisateur/logout" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;Construire Maison Orange&quot;,&#10;  &quot;createur&quot;: &quot;alex&quot;,&#10;  &quot;date_echeance&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="da67953c-5508-405b-9f58-8f65de95cea4" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/projet/create" />
+              <option name="url" value="http://localhost:8080/api/projet/create" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;Construire Maison Orange&quot;,&#10;  &quot;email_user&quot;: &quot;alex&quot;,&#10;  &quot;role_projet&quot;: &quot;OBSERVATEUR&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="69035c53-010d-4288-989c-e31827220304" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/projet/add-user" />
+              <option name="url" value="http://localhost:8080/api/projet/add-user" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;jammee@gmail.com&quot;,&#10;  &quot;nom&quot;: &quot;alexanedre&quot;,&#10;  &quot;password&quot;: &quot;heleo&quot;,&#10;  &quot;etat_connexion&quot;: true&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="e6d26ad1-cde0-4b2c-8c7c-3c5e2b307272" />
+              <option name="method" value="GET" />
+              <option name="name" value="api/projet/{nom}" />
+              <option name="url" value="http://localhost:8080/api/projet/Construire Maison Orange" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;jammee@gmail.com&quot;,&#10;  &quot;nom&quot;: &quot;alexanedre&quot;,&#10;  &quot;password&quot;: &quot;heleo&quot;,&#10;  &quot;etat_connexion&quot;: true&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="d1cbbbc5-37bf-4900-bb7d-8f9c98dfecd5" />
+              <option name="method" value="GET" />
+              <option name="name" value="api/projet/{nom} (1)" />
+              <option name="url" value="http://localhost:8080/api/projet/Projet ArthurS" />
+            </requestState>
+          </list>
+        </option>
+      </draftsState>
+    </option>
+    <option name="id" value="d9affb96-04ab-4976-b1a5-d58526cc7efd" />
+    <option name="version" value="6" />
+  </component>
+</project>

@@ -1,0 +1,14 @@
+com/visiplus/backend/dto/UtilisateurRoleDTO.class
+com/visiplus/backend/dto/UtilisateurLightDTO.class
+com/visiplus/backend/dao/RoleRepository.class
+com/visiplus/backend/dto/LoginRequest.class
+com/visiplus/backend/services/RoleService.class
+com/visiplus/backend/services/impl/RoleServiceImpl.class
+com/visiplus/backend/dto/RoleDTO.class
+com/visiplus/backend/dto/UtilisateurProjetDTO.class
+com/visiplus/backend/dto/UtilisateurProjetRoleDTO.class
+com/visiplus/backend/responses/ApiResponse.class
+com/visiplus/backend/dto/ProjetResponseDTO.class
+com/visiplus/backend/dto/ProjetRequest.class
+com/visiplus/backend/dto/ProjetRequest$RoleProject.class
+com/visiplus/backend/initializer/DataInitializer.class

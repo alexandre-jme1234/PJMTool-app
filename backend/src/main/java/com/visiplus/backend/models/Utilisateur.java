@@ -1,5 +1,9 @@
 package com.visiplus.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -7,6 +11,7 @@ import java.util.Set;
 
 @Table(name = "utilisateur")
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Utilisateur {
 
     @Id
@@ -15,18 +20,19 @@ public class Utilisateur {
 
     private String nom;
 
+    private String role_app;
+
     private String email;
 
     private String password;
 
-    private String etat_connexion;
+    private boolean etat_connexion;
 
-    @OneToMany(mappedBy = "proprietaire")
-    private Set<Tache> tache_proprietaire;
+    @OneToMany(mappedBy = "commanditaire")
+    private Set<Tache> tache_commanditaire;
 
     @OneToMany(mappedBy = "destinataire")
     private Set<Tache> taches_destinataire;
-
 
     @ManyToMany
     @JoinTable(
@@ -37,17 +43,34 @@ public class Utilisateur {
     private Set<Projet> projets_utilisateur = new HashSet<>();
 
     @OneToMany(mappedBy = "createur")
-    private Set<Projet> projets;
+    private Set<Projet> projets = new HashSet<>();
 
-    @ManyToMany(mappedBy = "utilisateur_roles_projet")
-    private Set<Role> taches_projet = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+            name = "utilisateur_role",
+            joinColumns = @JoinColumn(name = "utilisateur_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles_projet = new HashSet<>();
 
-    public Set<Tache> getTache_proprietaire() {
-        return tache_proprietaire;
+    public String getRole_app() {
+        return role_app;
     }
 
-    public void setTache_proprietaire(Set<Tache> tache_proprietaire) {
-        this.tache_proprietaire = tache_proprietaire;
+    public void setRole_app(String role_app) {
+        this.role_app = role_app;
+    }
+
+    public boolean isEtat_connexion() {
+        return etat_connexion;
+    }
+
+    public Set<Tache> getTache_commanditaire() {
+        return tache_commanditaire;
+    }
+
+    public void setTache_commanditaire(Set<Tache> tache_commanditaire) {
+        this.tache_commanditaire = tache_commanditaire;
     }
 
     public Set<Projet> getProjets() {
@@ -75,12 +98,12 @@ public class Utilisateur {
     }
 
 
-    public Set<Role> getTaches_projet() {
-        return taches_projet;
+    public Set<Role> getRoles_projet() {
+        return roles_projet;
     }
 
-    public void setTaches_projet(Set<Role> taches_projet) {
-        this.taches_projet = taches_projet;
+    public void setRoles_projet(Set<Role> roles_projet) {
+        this.roles_projet = roles_projet;
     }
 
     public int getId() {
@@ -115,11 +138,11 @@ public class Utilisateur {
         this.password = password;
     }
 
-    public String getEtat_connexion() {
+    public boolean getEtat_connexion() {
         return etat_connexion;
     }
 
-    public void setEtat_connexion(String etat_connexion) {
+    public void setEtat_connexion(boolean etat_connexion) {
         this.etat_connexion = etat_connexion;
     }
 }
