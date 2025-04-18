@@ -10,4 +10,6 @@ public interface ProjetRepository extends CrudRepository<Projet, Integer> {
     Projet save(Projet projet);
 
     Optional<Projet> findByNom(String nom);
+
+    Optional<Projet> findById(int id);
 };

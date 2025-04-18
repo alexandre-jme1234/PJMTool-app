@@ -10,6 +10,7 @@
 /app/src/main/java/com/visiplus/backend/dto/ProjetRequest.java
 /app/src/main/java/com/visiplus/backend/dto/ProjetResponseDTO.java
 /app/src/main/java/com/visiplus/backend/dto/RoleDTO.java
+/app/src/main/java/com/visiplus/backend/dto/TacheRequest.java
 /app/src/main/java/com/visiplus/backend/dto/UtilisateurLightDTO.java
 /app/src/main/java/com/visiplus/backend/dto/UtilisateurProjetDTO.java
 /app/src/main/java/com/visiplus/backend/dto/UtilisateurProjetRoleDTO.java

@@ -29,4 +29,9 @@ public class ProjetServiceImpl implements ProjetService {
 
         return projet.get();
     }
+
+    @Override
+    public Projet findById(int id) {
+        return projetRepository.findById(id);
+    }
 }

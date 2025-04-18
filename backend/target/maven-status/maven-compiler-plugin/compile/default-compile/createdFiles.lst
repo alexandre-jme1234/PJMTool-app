@@ -1,6 +1,7 @@
 com/visiplus/backend/dto/UtilisateurRoleDTO.class
 com/visiplus/backend/dto/UtilisateurLightDTO.class
 com/visiplus/backend/dao/RoleRepository.class
+com/visiplus/backend/dto/TacheRequest.class
 com/visiplus/backend/dto/LoginRequest.class
 com/visiplus/backend/services/RoleService.class
 com/visiplus/backend/services/impl/RoleServiceImpl.class

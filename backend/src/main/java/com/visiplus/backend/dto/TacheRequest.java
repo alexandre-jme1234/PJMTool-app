@@ -5,12 +5,21 @@ import com.visiplus.backend.models.Utilisateur;
 import java.util.Date;
 
 public class TacheRequest {
+    private int id;
     private String nom;
     private String destinataire;
     private String nom_projet;
     private String commanditaire;
     private Date date_debut;
     private Date date_fin;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNom() {
         return nom;

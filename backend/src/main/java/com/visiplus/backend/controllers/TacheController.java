@@ -11,10 +11,7 @@ import com.visiplus.backend.services.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -39,7 +36,7 @@ public class TacheController {
         Tache existTache = tacheService.findByNom(input.getNom());
 
         // VERIFY NOT RENSEIGNER
-        if(projet == null || commanditaire == null || existTache == null || destinataire == null){
+        if(projet == null || commanditaire == null || existTache != null || destinataire == null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, "Requette de Tache erronée", null));
         };
 
@@ -55,5 +52,37 @@ public class TacheController {
         tacheService.create(tache);
 
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, "Tache bien créé dans un projet", tache));
+    };
+
+    @GetMapping("/tache")
+    public ResponseEntity<?> getTache(@RequestBody String nom){
+        Tache tache = tacheService.findByNom(nom);
+        if(nom == null || tache == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, "Tache non trouvé, veuillez renseignez vos inputs.", null));
+        };
+            return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, "Tache bien trouvé dans un projet", tache));
+    };
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getTacheById(@RequestParam int id){
+        Tache tache = tacheService.findById(id);
+
+        if(tache == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, "Tache non trouvé, veuillez renseignez vos inputs.", null));
+        };
+
+        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, "Tache bien trouvé dans un projet", tache));
+    };
+
+    @PatchMapping("/update")
+    public ResponseEntity<?> patchTacheById(@RequestBody TacheRequest input){
+        Tache existTache = tacheService.findById(input.getId());
+        Tache updateTache = new Tache();
+
+        if(existTache == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse(false, "Tache non reconnu ou n'existe pas", null));
+        }
+
+
     };
 };

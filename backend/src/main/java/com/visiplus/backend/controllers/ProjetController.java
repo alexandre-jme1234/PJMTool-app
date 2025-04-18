@@ -32,9 +32,23 @@ public class ProjetController {
     @Autowired
     RoleService roleService;
 
+
     @GetMapping("/{nom}")
-    public ResponseEntity<?> getProjectById(@PathVariable String nom){
+    public ResponseEntity<?> getProjectByNom(@PathVariable String nom ){
         Projet projet = projetService.findByNom(nom);
+
+        if(projet == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(false, "Projet n'existe pas", null));
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new ApiResponse<>(true, "Projet a été trouvé", projet));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getProjectById(@PathVariable int id ){
+        Projet projet = projetService.findById(id);
 
         if(projet == null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(false, "Projet n'existe pas", null));
@@ -146,4 +160,7 @@ public class ProjetController {
 
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, "Un projet a été créé", responseData));
     };
+
+
+
 };

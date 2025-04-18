@@ -782,238 +782,6 @@
           <option name="workspaceId" value="drafts" />
         </requestHistoryState>
         <requestHistoryState>
-          <option name="dateTime" value="1744810783248" />
-          <option name="id" value="c58e82db-9963-4861-b4f2-efe38ee3a47e" />
-          <option name="request">
-            <requestState>
-              <option name="body">
-                <bodyState>
-                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;Projet ArthurS&quot;,&#10;  &quot;createur&quot;: &quot;alexandre&quot;,&#10;  &quot;date_echeance&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
-                  <option name="type" value="JSON" />
-                </bodyState>
-              </option>
-              <option name="id" value="da67953c-5508-405b-9f58-8f65de95cea4" />
-              <option name="method" value="POST" />
-              <option name="name" value="api/projet/create" />
-              <option name="url" value="http://localhost:8080/api/projet/create" />
-            </requestState>
-          </option>
-          <option name="response">
-            <responseState>
-              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjp0cnVlLCJtZXNzYWdlIjoiVW4gcHJvamV0IGEgw6l0w6kgY3LDqcOpIiwiZGF0YSI6eyJwcm9qZXQiOnsiaWQiOjEsIm5vbSI6IlByb2pldCBBcnRodXJTIiwiZGVzY3JpcHRpb24iOm51bGwsImRhdGVfZWNoZWFuY2UiOiIyMDI1LTA0LTE0VDE4OjU5OjExLjM4MyswMDowMCIsImRhdGVfY3JlYXRpb24iOiIyMDI1LTA0LTE2VDEzOjM5OjQzLjA4NCswMDowMCIsInV0aWxpc2F0ZXVyc19wcm9qZXQiOltdLCJwcm9qZXRfdGFjaGVzIjpbXSwidGFjaGVzIjpudWxsLCJjcmVhdGV1ciI6eyJpZCI6Miwibm9tIjoiYWxleGFuZHJlIiwicm9sZV9hcHAiOiJNRU1CUkUiLCJlbWFpbCI6ImFsZXhhbmRyZSIsInBhc3N3b3JkIjoiY2xhaXJlIiwiZXRhdF9jb25uZXhpb24iOnRydWUsInRhY2hlX3Byb3ByaWV0YWlyZSI6W10sInRhY2hlc19kZXN0aW5hdGFpcmUiOltdLCJwcm9qZXRzX3V0aWxpc2F0ZXVyIjpbXSwicHJvamV0cyI6WzFdLCJyb2xlc19wcm9qZXQiOlt7ImlkIjoxLCJub20iOiJBRE1JTklTVFJBVEVVUiIsImFqb3V0ZXJfbWVtYnJlIjp0cnVlLCJjcmVlcl90YWNoZSI6dHJ1ZSwiYXNzaWduZV90YWNoZSI6dHJ1ZSwibWFqX3RhY2hlIjp0cnVlLCJ2dWVfdGFjaGUiOnRydWUsInZ1ZV90YWJsZWF1X2RlX2JvcmQiOnRydWUsImV0cmVfbm90aWZpZSI6dHJ1ZSwidnVlX2hpc3RvcmlxdWVfbW9kaWZpY2F0aW9ucyI6dHJ1ZX1dfX0sInV0aWxpc2F0ZXVyX3JvbGVzIjpbeyJ1dGlsaXNhdGV1cl9pZCI6Miwicm9sZV9pZCI6MX1dLCJ1dGlsaXNhdGV1cnNfcHJvamV0IjpudWxsfX0=" />
-              <option name="bodyString" value="{&#10;  &quot;success&quot;: true,&#10;  &quot;message&quot;: &quot;Un projet a été créé&quot;,&#10;  &quot;data&quot;: {&#10;    &quot;projet&quot;: {&#10;      &quot;id&quot;: 1,&#10;      &quot;nom&quot;: &quot;Projet ArthurS&quot;,&#10;      &quot;description&quot;: null,&#10;      &quot;date_echeance&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;      &quot;date_creation&quot;: &quot;2025-04-16T13:39:43.084+00:00&quot;,&#10;      &quot;utilisateurs_projet&quot;: [],&#10;      &quot;projet_taches&quot;: [],&#10;      &quot;taches&quot;: null,&#10;      &quot;createur&quot;: {&#10;        &quot;id&quot;: 2,&#10;        &quot;nom&quot;: &quot;alexandre&quot;,&#10;        &quot;role_app&quot;: &quot;MEMBRE&quot;,&#10;        &quot;email&quot;: &quot;alexandre&quot;,&#10;        &quot;password&quot;: &quot;claire&quot;,&#10;        &quot;etat_connexion&quot;: true,&#10;        &quot;tache_proprietaire&quot;: [],&#10;        &quot;taches_destinataire&quot;: [],&#10;        &quot;projets_utilisateur&quot;: [],&#10;        &quot;projets&quot;: [&#10;          1&#10;        ],&#10;        &quot;roles_projet&quot;: [&#10;          {&#10;            &quot;id&quot;: 1,&#10;            &quot;nom&quot;: &quot;ADMINISTRATEUR&quot;,&#10;            &quot;ajouter_membre&quot;: true,&#10;            &quot;creer_tache&quot;: true,&#10;            &quot;assigne_tache&quot;: true,&#10;            &quot;maj_tache&quot;: true,&#10;            &quot;vue_tache&quot;: true,&#10;            &quot;vue_tableau_de_bord&quot;: true,&#10;            &quot;etre_notifie&quot;: true,&#10;            &quot;vue_historique_modifications&quot;: true&#10;          }&#10;        ]&#10;      }&#10;    },&#10;    &quot;utilisateur_roles&quot;: [&#10;      {&#10;        &quot;utilisateur_id&quot;: 2,&#10;        &quot;role_id&quot;: 1&#10;      }&#10;    ],&#10;    &quot;utilisateurs_projet&quot;: null&#10;  }&#10;}" />
-              <option name="code" value="200" />
-              <option name="connectionEstablishingTime" value="1" />
-              <option name="contentType" value="application/json" />
-              <option name="headers">
-                <list>
-                  <headerState>
-                    <option name="key" value="Content-Type" />
-                    <option name="value" value="application/json" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Transfer-Encoding" />
-                    <option name="value" value="chunked" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Date" />
-                    <option name="value" value="Wed, 16 Apr 2025 13:39:43 GMT" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Keep-Alive" />
-                    <option name="value" value="timeout=60" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Connection" />
-                    <option name="value" value="keep-alive" />
-                  </headerState>
-                </list>
-              </option>
-              <option name="id" value="c58e82db-9963-4861-b4f2-efe38ee3a47e" />
-              <option name="message" value="OK" />
-              <option name="prettyResponseType" value="JSON" />
-              <option name="rawBodyString" value="{&quot;success&quot;:true,&quot;message&quot;:&quot;Un projet a été créé&quot;,&quot;data&quot;:{&quot;projet&quot;:{&quot;id&quot;:1,&quot;nom&quot;:&quot;Projet ArthurS&quot;,&quot;description&quot;:null,&quot;date_echeance&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;date_creation&quot;:&quot;2025-04-16T13:39:43.084+00:00&quot;,&quot;utilisateurs_projet&quot;:[],&quot;projet_taches&quot;:[],&quot;taches&quot;:null,&quot;createur&quot;:{&quot;id&quot;:2,&quot;nom&quot;:&quot;alexandre&quot;,&quot;role_app&quot;:&quot;MEMBRE&quot;,&quot;email&quot;:&quot;alexandre&quot;,&quot;password&quot;:&quot;claire&quot;,&quot;etat_connexion&quot;:true,&quot;tache_proprietaire&quot;:[],&quot;taches_destinataire&quot;:[],&quot;projets_utilisateur&quot;:[],&quot;projets&quot;:[1],&quot;roles_projet&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;ADMINISTRATEUR&quot;,&quot;ajouter_membre&quot;:true,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:true,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true}]}},&quot;utilisateur_roles&quot;:[{&quot;utilisateur_id&quot;:2,&quot;role_id&quot;:1}],&quot;utilisateurs_projet&quot;:null}}" />
-              <option name="size" value="794" />
-              <option name="time" value="261" />
-            </responseState>
-          </option>
-          <option name="workspaceId" value="drafts" />
-        </requestHistoryState>
-        <requestHistoryState>
-          <option name="dateTime" value="1744811028175" />
-          <option name="id" value="8bde0695-21e9-4c5a-8b4e-eeebb7f7d997" />
-          <option name="request">
-            <requestState>
-              <option name="body">
-                <bodyState>
-                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;arthur&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;}" />
-                  <option name="type" value="JSON" />
-                </bodyState>
-              </option>
-              <option name="id" value="93e261f0-a2de-4b2d-94e7-db4c25399c6c" />
-              <option name="method" value="PATCH" />
-              <option name="name" value="api/utilisateur/login" />
-              <option name="url" value="http://localhost:8080/api/utilisateur/login" />
-            </requestState>
-          </option>
-          <option name="response">
-            <responseState>
-              <option name="bodyBytesBase64" value="eyJpZCI6Miwibm9tIjoiYXJ0aHVyIiwicm9sZV9hcHAiOiJNRU1CUkUiLCJlbWFpbCI6ImFydGh1ciIsInBhc3N3b3JkIjoiY2xhaXJlIiwiZXRhdF9jb25uZXhpb24iOnRydWUsInRhY2hlX3Byb3ByaWV0YWlyZSI6W10sInRhY2hlc19kZXN0aW5hdGFpcmUiOltdLCJwcm9qZXRzX3V0aWxpc2F0ZXVyIjpbXSwicHJvamV0cyI6W10sInJvbGVzX3Byb2pldCI6W3siaWQiOjIsIm5vbSI6Ik1FTUJSRSIsImFqb3V0ZXJfbWVtYnJlIjpmYWxzZSwiY3JlZXJfdGFjaGUiOnRydWUsImFzc2lnbmVfdGFjaGUiOmZhbHNlLCJtYWpfdGFjaGUiOnRydWUsInZ1ZV90YWNoZSI6dHJ1ZSwidnVlX3RhYmxlYXVfZGVfYm9yZCI6dHJ1ZSwiZXRyZV9ub3RpZmllIjp0cnVlLCJ2dWVfaGlzdG9yaXF1ZV9tb2RpZmljYXRpb25zIjp0cnVlfV19" />
-              <option name="bodyString" value="{&#10;  &quot;id&quot;: 2,&#10;  &quot;nom&quot;: &quot;arthur&quot;,&#10;  &quot;role_app&quot;: &quot;MEMBRE&quot;,&#10;  &quot;email&quot;: &quot;arthur&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;  &quot;etat_connexion&quot;: true,&#10;  &quot;tache_proprietaire&quot;: [],&#10;  &quot;taches_destinataire&quot;: [],&#10;  &quot;projets_utilisateur&quot;: [],&#10;  &quot;projets&quot;: [],&#10;  &quot;roles_projet&quot;: [&#10;    {&#10;      &quot;id&quot;: 2,&#10;      &quot;nom&quot;: &quot;MEMBRE&quot;,&#10;      &quot;ajouter_membre&quot;: false,&#10;      &quot;creer_tache&quot;: true,&#10;      &quot;assigne_tache&quot;: false,&#10;      &quot;maj_tache&quot;: true,&#10;      &quot;vue_tache&quot;: true,&#10;      &quot;vue_tableau_de_bord&quot;: true,&#10;      &quot;etre_notifie&quot;: true,&#10;      &quot;vue_historique_modifications&quot;: true&#10;    }&#10;  ]&#10;}" />
-              <option name="code" value="200" />
-              <option name="connectionEstablishingTime" value="1" />
-              <option name="contentType" value="application/json" />
-              <option name="headers">
-                <list>
-                  <headerState>
-                    <option name="key" value="Content-Type" />
-                    <option name="value" value="application/json" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Transfer-Encoding" />
-                    <option name="value" value="chunked" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Date" />
-                    <option name="value" value="Wed, 16 Apr 2025 13:43:48 GMT" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Keep-Alive" />
-                    <option name="value" value="timeout=60" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Connection" />
-                    <option name="value" value="keep-alive" />
-                  </headerState>
-                </list>
-              </option>
-              <option name="id" value="8bde0695-21e9-4c5a-8b4e-eeebb7f7d997" />
-              <option name="message" value="OK" />
-              <option name="prettyResponseType" value="JSON" />
-              <option name="rawBodyString" value="{&quot;id&quot;:2,&quot;nom&quot;:&quot;arthur&quot;,&quot;role_app&quot;:&quot;MEMBRE&quot;,&quot;email&quot;:&quot;arthur&quot;,&quot;password&quot;:&quot;claire&quot;,&quot;etat_connexion&quot;:true,&quot;tache_proprietaire&quot;:[],&quot;taches_destinataire&quot;:[],&quot;projets_utilisateur&quot;:[],&quot;projets&quot;:[],&quot;roles_projet&quot;:[{&quot;id&quot;:2,&quot;nom&quot;:&quot;MEMBRE&quot;,&quot;ajouter_membre&quot;:false,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:false,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true}]}" />
-              <option name="size" value="411" />
-              <option name="time" value="33" />
-            </responseState>
-          </option>
-          <option name="workspaceId" value="drafts" />
-        </requestHistoryState>
-        <requestHistoryState>
-          <option name="dateTime" value="1744811045543" />
-          <option name="id" value="b54fa837-f9ff-49b1-9a44-d64eb61d6477" />
-          <option name="request">
-            <requestState>
-              <option name="body">
-                <bodyState>
-                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;claire&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;}" />
-                  <option name="type" value="JSON" />
-                </bodyState>
-              </option>
-              <option name="id" value="93e261f0-a2de-4b2d-94e7-db4c25399c6c" />
-              <option name="method" value="PATCH" />
-              <option name="name" value="api/utilisateur/login" />
-              <option name="url" value="http://localhost:8080/api/utilisateur/login" />
-            </requestState>
-          </option>
-          <option name="response">
-            <responseState>
-              <option name="bodyBytesBase64" value="eyJpZCI6Mywibm9tIjoiY2xhaXJlIiwicm9sZV9hcHAiOiJNRU1CUkUiLCJlbWFpbCI6ImNsYWlyZSIsInBhc3N3b3JkIjoiY2xhaXJlIiwiZXRhdF9jb25uZXhpb24iOnRydWUsInRhY2hlX3Byb3ByaWV0YWlyZSI6W10sInRhY2hlc19kZXN0aW5hdGFpcmUiOltdLCJwcm9qZXRzX3V0aWxpc2F0ZXVyIjpbXSwicHJvamV0cyI6W10sInJvbGVzX3Byb2pldCI6W3siaWQiOjIsIm5vbSI6Ik1FTUJSRSIsImFqb3V0ZXJfbWVtYnJlIjpmYWxzZSwiY3JlZXJfdGFjaGUiOnRydWUsImFzc2lnbmVfdGFjaGUiOmZhbHNlLCJtYWpfdGFjaGUiOnRydWUsInZ1ZV90YWNoZSI6dHJ1ZSwidnVlX3RhYmxlYXVfZGVfYm9yZCI6dHJ1ZSwiZXRyZV9ub3RpZmllIjp0cnVlLCJ2dWVfaGlzdG9yaXF1ZV9tb2RpZmljYXRpb25zIjp0cnVlfV19" />
-              <option name="bodyString" value="{&#10;  &quot;id&quot;: 3,&#10;  &quot;nom&quot;: &quot;claire&quot;,&#10;  &quot;role_app&quot;: &quot;MEMBRE&quot;,&#10;  &quot;email&quot;: &quot;claire&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;  &quot;etat_connexion&quot;: true,&#10;  &quot;tache_proprietaire&quot;: [],&#10;  &quot;taches_destinataire&quot;: [],&#10;  &quot;projets_utilisateur&quot;: [],&#10;  &quot;projets&quot;: [],&#10;  &quot;roles_projet&quot;: [&#10;    {&#10;      &quot;id&quot;: 2,&#10;      &quot;nom&quot;: &quot;MEMBRE&quot;,&#10;      &quot;ajouter_membre&quot;: false,&#10;      &quot;creer_tache&quot;: true,&#10;      &quot;assigne_tache&quot;: false,&#10;      &quot;maj_tache&quot;: true,&#10;      &quot;vue_tache&quot;: true,&#10;      &quot;vue_tableau_de_bord&quot;: true,&#10;      &quot;etre_notifie&quot;: true,&#10;      &quot;vue_historique_modifications&quot;: true&#10;    }&#10;  ]&#10;}" />
-              <option name="code" value="200" />
-              <option name="connectionEstablishingTime" value="1" />
-              <option name="contentType" value="application/json" />
-              <option name="headers">
-                <list>
-                  <headerState>
-                    <option name="key" value="Content-Type" />
-                    <option name="value" value="application/json" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Transfer-Encoding" />
-                    <option name="value" value="chunked" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Date" />
-                    <option name="value" value="Wed, 16 Apr 2025 13:44:05 GMT" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Keep-Alive" />
-                    <option name="value" value="timeout=60" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Connection" />
-                    <option name="value" value="keep-alive" />
-                  </headerState>
-                </list>
-              </option>
-              <option name="id" value="b54fa837-f9ff-49b1-9a44-d64eb61d6477" />
-              <option name="message" value="OK" />
-              <option name="prettyResponseType" value="JSON" />
-              <option name="rawBodyString" value="{&quot;id&quot;:3,&quot;nom&quot;:&quot;claire&quot;,&quot;role_app&quot;:&quot;MEMBRE&quot;,&quot;email&quot;:&quot;claire&quot;,&quot;password&quot;:&quot;claire&quot;,&quot;etat_connexion&quot;:true,&quot;tache_proprietaire&quot;:[],&quot;taches_destinataire&quot;:[],&quot;projets_utilisateur&quot;:[],&quot;projets&quot;:[],&quot;roles_projet&quot;:[{&quot;id&quot;:2,&quot;nom&quot;:&quot;MEMBRE&quot;,&quot;ajouter_membre&quot;:false,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:false,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true}]}" />
-              <option name="size" value="411" />
-              <option name="time" value="30" />
-            </responseState>
-          </option>
-          <option name="workspaceId" value="drafts" />
-        </requestHistoryState>
-        <requestHistoryState>
-          <option name="dateTime" value="1744811065662" />
-          <option name="id" value="154e3737-17a0-492f-ab65-34265cb087b1" />
-          <option name="request">
-            <requestState>
-              <option name="body">
-                <bodyState>
-                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;Construire Maison&quot;,&#10;  &quot;createur&quot;: &quot;claire&quot;,&#10;  &quot;date_echeance&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
-                  <option name="type" value="JSON" />
-                </bodyState>
-              </option>
-              <option name="id" value="da67953c-5508-405b-9f58-8f65de95cea4" />
-              <option name="method" value="POST" />
-              <option name="name" value="api/projet/create" />
-              <option name="url" value="http://localhost:8080/api/projet/create" />
-            </requestState>
-          </option>
-          <option name="response">
-            <responseState>
-              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjp0cnVlLCJtZXNzYWdlIjoiVW4gcHJvamV0IGEgw6l0w6kgY3LDqcOpIiwiZGF0YSI6eyJwcm9qZXQiOnsiaWQiOjEsIm5vbSI6IkNvbnN0cnVpcmUgTWFpc29uIiwiZGVzY3JpcHRpb24iOm51bGwsImRhdGVfZWNoZWFuY2UiOiIyMDI1LTA0LTE0VDE4OjU5OjExLjM4MyswMDowMCIsImRhdGVfY3JlYXRpb24iOiIyMDI1LTA0LTE2VDEzOjQ0OjI1LjU3MiswMDowMCIsInV0aWxpc2F0ZXVyc19wcm9qZXQiOltdLCJwcm9qZXRfdGFjaGVzIjpbXSwidGFjaGVzIjpudWxsLCJjcmVhdGV1ciI6eyJpZCI6Mywibm9tIjoiY2xhaXJlIiwicm9sZV9hcHAiOiJNRU1CUkUiLCJlbWFpbCI6ImNsYWlyZSIsInBhc3N3b3JkIjoiY2xhaXJlIiwiZXRhdF9jb25uZXhpb24iOnRydWUsInRhY2hlX3Byb3ByaWV0YWlyZSI6W10sInRhY2hlc19kZXN0aW5hdGFpcmUiOltdLCJwcm9qZXRzX3V0aWxpc2F0ZXVyIjpbXSwicHJvamV0cyI6WzFdLCJyb2xlc19wcm9qZXQiOlt7ImlkIjoxLCJub20iOiJBRE1JTklTVFJBVEVVUiIsImFqb3V0ZXJfbWVtYnJlIjp0cnVlLCJjcmVlcl90YWNoZSI6dHJ1ZSwiYXNzaWduZV90YWNoZSI6dHJ1ZSwibWFqX3RhY2hlIjp0cnVlLCJ2dWVfdGFjaGUiOnRydWUsInZ1ZV90YWJsZWF1X2RlX2JvcmQiOnRydWUsImV0cmVfbm90aWZpZSI6dHJ1ZSwidnVlX2hpc3RvcmlxdWVfbW9kaWZpY2F0aW9ucyI6dHJ1ZX1dfX0sInV0aWxpc2F0ZXVyX3JvbGVzIjpbeyJ1dGlsaXNhdGV1cl9pZCI6Mywicm9sZV9pZCI6MX1dLCJ1dGlsaXNhdGV1cnNfcHJvamV0IjpudWxsfX0=" />
-              <option name="bodyString" value="{&#10;  &quot;success&quot;: true,&#10;  &quot;message&quot;: &quot;Un projet a été créé&quot;,&#10;  &quot;data&quot;: {&#10;    &quot;projet&quot;: {&#10;      &quot;id&quot;: 1,&#10;      &quot;nom&quot;: &quot;Construire Maison&quot;,&#10;      &quot;description&quot;: null,&#10;      &quot;date_echeance&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;      &quot;date_creation&quot;: &quot;2025-04-16T13:44:25.572+00:00&quot;,&#10;      &quot;utilisateurs_projet&quot;: [],&#10;      &quot;projet_taches&quot;: [],&#10;      &quot;taches&quot;: null,&#10;      &quot;createur&quot;: {&#10;        &quot;id&quot;: 3,&#10;        &quot;nom&quot;: &quot;claire&quot;,&#10;        &quot;role_app&quot;: &quot;MEMBRE&quot;,&#10;        &quot;email&quot;: &quot;claire&quot;,&#10;        &quot;password&quot;: &quot;claire&quot;,&#10;        &quot;etat_connexion&quot;: true,&#10;        &quot;tache_proprietaire&quot;: [],&#10;        &quot;taches_destinataire&quot;: [],&#10;        &quot;projets_utilisateur&quot;: [],&#10;        &quot;projets&quot;: [&#10;          1&#10;        ],&#10;        &quot;roles_projet&quot;: [&#10;          {&#10;            &quot;id&quot;: 1,&#10;            &quot;nom&quot;: &quot;ADMINISTRATEUR&quot;,&#10;            &quot;ajouter_membre&quot;: true,&#10;            &quot;creer_tache&quot;: true,&#10;            &quot;assigne_tache&quot;: true,&#10;            &quot;maj_tache&quot;: true,&#10;            &quot;vue_tache&quot;: true,&#10;            &quot;vue_tableau_de_bord&quot;: true,&#10;            &quot;etre_notifie&quot;: true,&#10;            &quot;vue_historique_modifications&quot;: true&#10;          }&#10;        ]&#10;      }&#10;    },&#10;    &quot;utilisateur_roles&quot;: [&#10;      {&#10;        &quot;utilisateur_id&quot;: 3,&#10;        &quot;role_id&quot;: 1&#10;      }&#10;    ],&#10;    &quot;utilisateurs_projet&quot;: null&#10;  }&#10;}" />
-              <option name="code" value="200" />
-              <option name="connectionEstablishingTime" value="2" />
-              <option name="contentType" value="application/json" />
-              <option name="headers">
-                <list>
-                  <headerState>
-                    <option name="key" value="Content-Type" />
-                    <option name="value" value="application/json" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Transfer-Encoding" />
-                    <option name="value" value="chunked" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Date" />
-                    <option name="value" value="Wed, 16 Apr 2025 13:44:25 GMT" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Keep-Alive" />
-                    <option name="value" value="timeout=60" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Connection" />
-                    <option name="value" value="keep-alive" />
-                  </headerState>
-                </list>
-              </option>
-              <option name="id" value="154e3737-17a0-492f-ab65-34265cb087b1" />
-              <option name="message" value="OK" />
-              <option name="prettyResponseType" value="JSON" />
-              <option name="rawBodyString" value="{&quot;success&quot;:true,&quot;message&quot;:&quot;Un projet a été créé&quot;,&quot;data&quot;:{&quot;projet&quot;:{&quot;id&quot;:1,&quot;nom&quot;:&quot;Construire Maison&quot;,&quot;description&quot;:null,&quot;date_echeance&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;date_creation&quot;:&quot;2025-04-16T13:44:25.572+00:00&quot;,&quot;utilisateurs_projet&quot;:[],&quot;projet_taches&quot;:[],&quot;taches&quot;:null,&quot;createur&quot;:{&quot;id&quot;:3,&quot;nom&quot;:&quot;claire&quot;,&quot;role_app&quot;:&quot;MEMBRE&quot;,&quot;email&quot;:&quot;claire&quot;,&quot;password&quot;:&quot;claire&quot;,&quot;etat_connexion&quot;:true,&quot;tache_proprietaire&quot;:[],&quot;taches_destinataire&quot;:[],&quot;projets_utilisateur&quot;:[],&quot;projets&quot;:[1],&quot;roles_projet&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;ADMINISTRATEUR&quot;,&quot;ajouter_membre&quot;:true,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:true,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true}]}},&quot;utilisateur_roles&quot;:[{&quot;utilisateur_id&quot;:3,&quot;role_id&quot;:1}],&quot;utilisateurs_projet&quot;:null}}" />
-              <option name="size" value="791" />
-              <option name="time" value="147" />
-            </responseState>
-          </option>
-          <option name="workspaceId" value="drafts" />
-        </requestHistoryState>
-        <requestHistoryState>
           <option name="dateTime" value="1744811773126" />
           <option name="id" value="520de75c-1f57-4b69-9f8f-91631ebb713b" />
           <option name="request">
@@ -1878,192 +1646,6 @@
               <option name="rawBodyString" value="{&quot;success&quot;:true,&quot;message&quot;:&quot;Projet a été trouvé&quot;,&quot;data&quot;:{&quot;id&quot;:1,&quot;nom&quot;:&quot;Construire Maison&quot;,&quot;description&quot;:null,&quot;date_echeance&quot;:&quot;2025-04-14&quot;,&quot;date_creation&quot;:&quot;2025-04-16&quot;,&quot;utilisateurs_projet&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;alexandre&quot;,&quot;role_app&quot;:&quot;MEMBRE&quot;,&quot;email&quot;:&quot;alexandre&quot;,&quot;password&quot;:&quot;claire&quot;,&quot;etat_connexion&quot;:true,&quot;tache_proprietaire&quot;:[],&quot;taches_destinataire&quot;:[],&quot;projets_utilisateur&quot;:[1],&quot;projets&quot;:[{&quot;id&quot;:3,&quot;nom&quot;:&quot;Construire Maison Orange&quot;,&quot;description&quot;:null,&quot;date_echeance&quot;:&quot;2025-04-14&quot;,&quot;date_creation&quot;:&quot;2025-04-16&quot;,&quot;utilisateurs_projet&quot;:[{&quot;id&quot;:2,&quot;nom&quot;:&quot;arthur&quot;,&quot;role_app&quot;:&quot;MEMBRE&quot;,&quot;email&quot;:&quot;arthur&quot;,&quot;password&quot;:&quot;claire&quot;,&quot;etat_connexion&quot;:true,&quot;tache_proprietaire&quot;:[],&quot;taches_destinataire&quot;:[],&quot;projets_utilisateur&quot;:[1,3],&quot;projets&quot;:[],&quot;roles_projet&quot;:[{&quot;id&quot;:2,&quot;nom&quot;:&quot;MEMBRE&quot;,&quot;ajouter_membre&quot;:false,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:false,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true}]}],&quot;projet_taches&quot;:[],&quot;taches&quot;:[],&quot;createur&quot;:1}],&quot;roles_projet&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;ADMINISTRATEUR&quot;,&quot;ajouter_membre&quot;:true,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:true,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true}]},2],&quot;projet_taches&quot;:[],&quot;taches&quot;:[],&quot;createur&quot;:{&quot;id&quot;:3,&quot;nom&quot;:&quot;claire&quot;,&quot;role_app&quot;:&quot;MEMBRE&quot;,&quot;email&quot;:&quot;claire&quot;,&quot;password&quot;:&quot;claire&quot;,&quot;etat_connexion&quot;:true,&quot;tache_proprietaire&quot;:[],&quot;taches_destinataire&quot;:[],&quot;projets_utilisateur&quot;:[],&quot;projets&quot;:[1,{&quot;id&quot;:2,&quot;nom&quot;:&quot;Construire Maison Albi&quot;,&quot;description&quot;:null,&quot;date_echeance&quot;:&quot;2025-04-14&quot;,&quot;date_creation&quot;:&quot;2025-04-16&quot;,&quot;utilisateurs_projet&quot;:[],&quot;projet_taches&quot;:[],&quot;taches&quot;:[],&quot;createur&quot;:3}],&quot;roles_projet&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;ADMINISTRATEUR&quot;,&quot;ajouter_membre&quot;:true,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:true,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true}]}}}" />
               <option name="size" value="1869" />
               <option name="time" value="208" />
-            </responseState>
-          </option>
-          <option name="workspaceId" value="drafts" />
-        </requestHistoryState>
-        <requestHistoryState>
-          <option name="dateTime" value="1744813687205" />
-          <option name="id" value="81bca715-fa39-40c6-b443-e05bd847d4c9" />
-          <option name="request">
-            <requestState>
-              <option name="body">
-                <bodyState>
-                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;arthur&quot;,&#10;  &quot;nom&quot;: &quot;arthur&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;  &quot;etat_connexion&quot;: false,&#10;}" />
-                  <option name="type" value="JSON" />
-                </bodyState>
-              </option>
-              <option name="id" value="2c86a724-06d9-438c-94a8-656f617f879c" />
-              <option name="method" value="POST" />
-              <option name="name" value="api/utilisateur/create" />
-              <option name="url" value="http://localhost:8080/api/utilisateur/create" />
-            </requestState>
-          </option>
-          <option name="response">
-            <responseState>
-              <option name="bodyBytesBase64" value="eyJ0aW1lc3RhbXAiOiIyMDI1LTA0LTE2VDE0OjI4OjA3LjIyMyswMDowMCIsInN0YXR1cyI6NDE1LCJlcnJvciI6IlVuc3VwcG9ydGVkIE1lZGlhIFR5cGUiLCJ0cmFjZSI6Im9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLkh0dHBNZWRpYVR5cGVOb3RTdXBwb3J0ZWRFeGNlcHRpb246IENvbnRlbnQtVHlwZSAnYXBwbGljYXRpb24vanNvbjtjaGFyc2V0PVVURi04JyBpcyBub3Qgc3VwcG9ydGVkXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQubXZjLm1ldGhvZC5hbm5vdGF0aW9uLkFic3RyYWN0TWVzc2FnZUNvbnZlcnRlck1ldGhvZEFyZ3VtZW50UmVzb2x2ZXIucmVhZFdpdGhNZXNzYWdlQ29udmVydGVycyhBYnN0cmFjdE1lc3NhZ2VDb252ZXJ0ZXJNZXRob2RBcmd1bWVudFJlc29sdmVyLmphdmE6MjM2KVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5zZXJ2bGV0Lm12Yy5tZXRob2QuYW5ub3RhdGlvbi5SZXF1ZXN0UmVzcG9uc2VCb2R5TWV0aG9kUHJvY2Vzc29yLnJlYWRXaXRoTWVzc2FnZUNvbnZlcnRlcnMoUmVxdWVzdFJlc3BvbnNlQm9keU1ldGhvZFByb2Nlc3Nvci5qYXZhOjE3Nilcblx0YXQgb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIuc2VydmxldC5tdmMubWV0aG9kLmFubm90YXRpb24uUmVxdWVzdFJlc3BvbnNlQm9keU1ldGhvZFByb2Nlc3Nvci5yZXNvbHZlQXJndW1lbnQoUmVxdWVzdFJlc3BvbnNlQm9keU1ldGhvZFByb2Nlc3Nvci5qYXZhOjE1MClcblx0YXQgb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIubWV0aG9kLnN1cHBvcnQuSGFuZGxlck1ldGhvZEFyZ3VtZW50UmVzb2x2ZXJDb21wb3NpdGUucmVzb2x2ZUFyZ3VtZW50KEhhbmRsZXJNZXRob2RBcmd1bWVudFJlc29sdmVyQ29tcG9zaXRlLmphdmE6MTIyKVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5tZXRob2Quc3VwcG9ydC5JbnZvY2FibGVIYW5kbGVyTWV0aG9kLmdldE1ldGhvZEFyZ3VtZW50VmFsdWVzKEludm9jYWJsZUhhbmRsZXJNZXRob2QuamF2YToyMjcpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLm1ldGhvZC5zdXBwb3J0Lkludm9jYWJsZUhhbmRsZXJNZXRob2QuaW52b2tlRm9yUmVxdWVzdChJbnZvY2FibGVIYW5kbGVyTWV0aG9kLmphdmE6MTgxKVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5zZXJ2bGV0Lm12Yy5tZXRob2QuYW5ub3RhdGlvbi5TZXJ2bGV0SW52b2NhYmxlSGFuZGxlck1ldGhvZC5pbnZva2VBbmRIYW5kbGUoU2VydmxldEludm9jYWJsZUhhbmRsZXJNZXRob2QuamF2YToxMTgpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQubXZjLm1ldGhvZC5hbm5vdGF0aW9uLlJlcXVlc3RNYXBwaW5nSGFuZGxlckFkYXB0ZXIuaW52b2tlSGFuZGxlck1ldGhvZChSZXF1ZXN0TWFwcGluZ0hhbmRsZXJBZGFwdGVyLmphdmE6OTg2KVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5zZXJ2bGV0Lm12Yy5tZXRob2QuYW5ub3RhdGlvbi5SZXF1ZXN0TWFwcGluZ0hhbmRsZXJBZGFwdGVyLmhhbmRsZUludGVybmFsKFJlcXVlc3RNYXBwaW5nSGFuZGxlckFkYXB0ZXIuamF2YTo4OTEpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQubXZjLm1ldGhvZC5BYnN0cmFjdEhhbmRsZXJNZXRob2RBZGFwdGVyLmhhbmRsZShBYnN0cmFjdEhhbmRsZXJNZXRob2RBZGFwdGVyLmphdmE6ODcpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQuRGlzcGF0Y2hlclNlcnZsZXQuZG9EaXNwYXRjaChEaXNwYXRjaGVyU2VydmxldC5qYXZhOjEwODkpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQuRGlzcGF0Y2hlclNlcnZsZXQuZG9TZXJ2aWNlKERpc3BhdGNoZXJTZXJ2bGV0LmphdmE6OTc5KVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5zZXJ2bGV0LkZyYW1ld29ya1NlcnZsZXQucHJvY2Vzc1JlcXVlc3QoRnJhbWV3b3JrU2VydmxldC5qYXZhOjEwMTQpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQuRnJhbWV3b3JrU2VydmxldC5kb1Bvc3QoRnJhbWV3b3JrU2VydmxldC5qYXZhOjkxNClcblx0YXQgamFrYXJ0YS5zZXJ2bGV0Lmh0dHAuSHR0cFNlcnZsZXQuc2VydmljZShIdHRwU2VydmxldC5qYXZhOjU5MClcblx0YXQgb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIuc2VydmxldC5GcmFtZXdvcmtTZXJ2bGV0LnNlcnZpY2UoRnJhbWV3b3JrU2VydmxldC5qYXZhOjg4NSlcblx0YXQgamFrYXJ0YS5zZXJ2bGV0Lmh0dHAuSHR0cFNlcnZsZXQuc2VydmljZShIdHRwU2VydmxldC5qYXZhOjY1OClcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLkFwcGxpY2F0aW9uRmlsdGVyQ2hhaW4uaW50ZXJuYWxEb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTk1KVxuXHRhdCBvcmcuYXBhY2hlLmNhdGFsaW5hLmNvcmUuQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5kb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTQwKVxuXHRhdCBvcmcuYXBhY2hlLnRvbWNhdC53ZWJzb2NrZXQuc2VydmVyLldzRmlsdGVyLmRvRmlsdGVyKFdzRmlsdGVyLmphdmE6NTEpXG5cdGF0IG9yZy5hcGFjaGUuY2F0YWxpbmEuY29yZS5BcHBsaWNhdGlvbkZpbHRlckNoYWluLmludGVybmFsRG9GaWx0ZXIoQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5qYXZhOjE2NClcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLkFwcGxpY2F0aW9uRmlsdGVyQ2hhaW4uZG9GaWx0ZXIoQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5qYXZhOjE0MClcblx0YXQgb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIuZmlsdGVyLlJlcXVlc3RDb250ZXh0RmlsdGVyLmRvRmlsdGVySW50ZXJuYWwoUmVxdWVzdENvbnRleHRGaWx0ZXIuamF2YToxMDApXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLmZpbHRlci5PbmNlUGVyUmVxdWVzdEZpbHRlci5kb0ZpbHRlcihPbmNlUGVyUmVxdWVzdEZpbHRlci5qYXZhOjExNilcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLkFwcGxpY2F0aW9uRmlsdGVyQ2hhaW4uaW50ZXJuYWxEb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTY0KVxuXHRhdCBvcmcuYXBhY2hlLmNhdGFsaW5hLmNvcmUuQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5kb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTQwKVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5maWx0ZXIuRm9ybUNvbnRlbnRGaWx0ZXIuZG9GaWx0ZXJJbnRlcm5hbChGb3JtQ29udGVudEZpbHRlci5qYXZhOjkzKVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5maWx0ZXIuT25jZVBlclJlcXVlc3RGaWx0ZXIuZG9GaWx0ZXIoT25jZVBlclJlcXVlc3RGaWx0ZXIuamF2YToxMTYpXG5cdGF0IG9yZy5hcGFjaGUuY2F0YWxpbmEuY29yZS5BcHBsaWNhdGlvbkZpbHRlckNoYWluLmludGVybmFsRG9GaWx0ZXIoQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5qYXZhOjE2NClcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLkFwcGxpY2F0aW9uRmlsdGVyQ2hhaW4uZG9GaWx0ZXIoQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5qYXZhOjE0MClcblx0YXQgb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIuZmlsdGVyLkNoYXJhY3RlckVuY29kaW5nRmlsdGVyLmRvRmlsdGVySW50ZXJuYWwoQ2hhcmFjdGVyRW5jb2RpbmdGaWx0ZXIuamF2YToyMDEpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLmZpbHRlci5PbmNlUGVyUmVxdWVzdEZpbHRlci5kb0ZpbHRlcihPbmNlUGVyUmVxdWVzdEZpbHRlci5qYXZhOjExNilcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLkFwcGxpY2F0aW9uRmlsdGVyQ2hhaW4uaW50ZXJuYWxEb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTY0KVxuXHRhdCBvcmcuYXBhY2hlLmNhdGFsaW5hLmNvcmUuQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5kb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTQwKVxuXHRhdCBvcmcuYXBhY2hlLmNhdGFsaW5hLmNvcmUuU3RhbmRhcmRXcmFwcGVyVmFsdmUuaW52b2tlKFN0YW5kYXJkV3JhcHBlclZhbHZlLmphdmE6MTY3KVxuXHRhdCBvcmcuYXBhY2hlLmNhdGFsaW5hLmNvcmUuU3RhbmRhcmRDb250ZXh0VmFsdmUuaW52b2tlKFN0YW5kYXJkQ29udGV4dFZhbHZlLmphdmE6OTApXG5cdGF0IG9yZy5hcGFjaGUuY2F0YWxpbmEuYXV0aGVudGljYXRvci5BdXRoZW50aWNhdG9yQmFzZS5pbnZva2UoQXV0aGVudGljYXRvckJhc2UuamF2YTo0ODMpXG5cdGF0IG9yZy5hcGFjaGUuY2F0YWxpbmEuY29yZS5TdGFuZGFyZEhvc3RWYWx2ZS5pbnZva2UoU3RhbmRhcmRIb3N0VmFsdmUuamF2YToxMTUpXG5cdGF0IG9yZy5hcGFjaGUuY2F0YWxpbmEudmFsdmVzLkVycm9yUmVwb3J0VmFsdmUuaW52b2tlKEVycm9yUmVwb3J0VmFsdmUuamF2YTo5Mylcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLlN0YW5kYXJkRW5naW5lVmFsdmUuaW52b2tlKFN0YW5kYXJkRW5naW5lVmFsdmUuamF2YTo3NClcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb25uZWN0b3IuQ295b3RlQWRhcHRlci5zZXJ2aWNlKENveW90ZUFkYXB0ZXIuamF2YTozNDQpXG5cdGF0IG9yZy5hcGFjaGUuY295b3RlLmh0dHAxMS5IdHRwMTFQcm9jZXNzb3Iuc2VydmljZShIdHRwMTFQcm9jZXNzb3IuamF2YTozOTcpXG5cdGF0IG9yZy5hcGFjaGUuY295b3RlLkFic3RyYWN0UHJvY2Vzc29yTGlnaHQucHJvY2VzcyhBYnN0cmFjdFByb2Nlc3NvckxpZ2h0LmphdmE6NjMpXG5cdGF0IG9yZy5hcGFjaGUuY295b3RlLkFic3RyYWN0UHJvdG9jb2wkQ29ubmVjdGlvbkhhbmRsZXIucHJvY2VzcyhBYnN0cmFjdFByb3RvY29sLmphdmE6OTA1KVxuXHRhdCBvcmcuYXBhY2hlLnRvbWNhdC51dGlsLm5ldC5OaW9FbmRwb2ludCRTb2NrZXRQcm9jZXNzb3IuZG9SdW4oTmlvRW5kcG9pbnQuamF2YToxNzQzKVxuXHRhdCBvcmcuYXBhY2hlLnRvbWNhdC51dGlsLm5ldC5Tb2NrZXRQcm9jZXNzb3JCYXNlLnJ1bihTb2NrZXRQcm9jZXNzb3JCYXNlLmphdmE6NTIpXG5cdGF0IG9yZy5hcGFjaGUudG9tY2F0LnV0aWwudGhyZWFkcy5UaHJlYWRQb29sRXhlY3V0b3IucnVuV29ya2VyKFRocmVhZFBvb2xFeGVjdXRvci5qYXZhOjExOTApXG5cdGF0IG9yZy5hcGFjaGUudG9tY2F0LnV0aWwudGhyZWFkcy5UaHJlYWRQb29sRXhlY3V0b3IkV29ya2VyLnJ1bihUaHJlYWRQb29sRXhlY3V0b3IuamF2YTo2NTkpXG5cdGF0IG9yZy5hcGFjaGUudG9tY2F0LnV0aWwudGhyZWFkcy5UYXNrVGhyZWFkJFdyYXBwaW5nUnVubmFibGUucnVuKFRhc2tUaHJlYWQuamF2YTo2Mylcblx0YXQgamF2YS5iYXNlL2phdmEubGFuZy5UaHJlYWQucnVuKFRocmVhZC5qYXZhOjg0MClcbiIsIm1lc3NhZ2UiOiJDb250ZW50LVR5cGUgJ2FwcGxpY2F0aW9uL2pzb247Y2hhcnNldD1VVEYtOCcgaXMgbm90IHN1cHBvcnRlZC4iLCJwYXRoIjoiL2FwaS91dGlsaXNhdGV1ci9jcmVhdGUifQ==" />
-              <option name="bodyString" value="{&#10;  &quot;timestamp&quot;: &quot;2025-04-16T14:28:07.223+00:00&quot;,&#10;  &quot;status&quot;: 415,&#10;  &quot;error&quot;: &quot;Unsupported Media Type&quot;,&#10;  &quot;trace&quot;: &quot;org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/json;charset=UTF-8' is not supported\n\tat org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:236)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:176)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:150)\n\tat org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:227)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:181)\n\tat org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)\n\tat org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)\n\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)\n\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)\n\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)\n\tat org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)\n\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)\n\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)\n\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)\n\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)\n\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)\n\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)\n\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)\n\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n&quot;,&#10;  &quot;message&quot;: &quot;Content-Type 'application/json;charset=UTF-8' is not supported.&quot;,&#10;  &quot;path&quot;: &quot;/api/utilisateur/create&quot;&#10;}" />
-              <option name="code" value="415" />
-              <option name="connectionEstablishingTime" value="1" />
-              <option name="contentType" value="application/json" />
-              <option name="headers">
-                <list>
-                  <headerState>
-                    <option name="key" value="Accept" />
-                    <option name="value" value="application/json, application/*+json" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Content-Type" />
-                    <option name="value" value="application/json" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Transfer-Encoding" />
-                    <option name="value" value="chunked" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Date" />
-                    <option name="value" value="Wed, 16 Apr 2025 14:28:07 GMT" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Keep-Alive" />
-                    <option name="value" value="timeout=60" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Connection" />
-                    <option name="value" value="keep-alive" />
-                  </headerState>
-                </list>
-              </option>
-              <option name="id" value="81bca715-fa39-40c6-b443-e05bd847d4c9" />
-              <option name="message" value="Unsupported Media Type" />
-              <option name="prettyResponseType" value="JSON" />
-              <option name="rawBodyString" value="{&quot;timestamp&quot;:&quot;2025-04-16T14:28:07.223+00:00&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Media Type&quot;,&quot;trace&quot;:&quot;org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/json;charset=UTF-8' is not supported\n\tat org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:236)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:176)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:150)\n\tat org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:227)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:181)\n\tat org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)\n\tat org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)\n\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)\n\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)\n\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)\n\tat org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)\n\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)\n\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)\n\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)\n\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)\n\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)\n\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)\n\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)\n\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n&quot;,&quot;message&quot;:&quot;Content-Type 'application/json;charset=UTF-8' is not supported.&quot;,&quot;path&quot;:&quot;/api/utilisateur/create&quot;}" />
-              <option name="size" value="5473" />
-              <option name="time" value="56" />
-            </responseState>
-          </option>
-          <option name="workspaceId" value="drafts" />
-        </requestHistoryState>
-        <requestHistoryState>
-          <option name="dateTime" value="1744813756421" />
-          <option name="id" value="42692f53-cbc2-496c-be2a-03bb828b44e1" />
-          <option name="request">
-            <requestState>
-              <option name="body">
-                <bodyState>
-                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;arthur&quot;,&#10;  &quot;nom&quot;: &quot;arthur&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;  &quot;etat_connexion&quot;: false,&#10;}" />
-                  <option name="type" value="JSON" />
-                </bodyState>
-              </option>
-              <option name="id" value="2c86a724-06d9-438c-94a8-656f617f879c" />
-              <option name="method" value="POST" />
-              <option name="name" value="api/utilisateur/create" />
-              <option name="url" value="http://localhost:8080/api/utilisateur/create" />
-            </requestState>
-          </option>
-          <option name="response">
-            <responseState>
-              <option name="bodyBytesBase64" value="eyJ0aW1lc3RhbXAiOiIyMDI1LTA0LTE2VDE0OjI5OjE2LjM5NyswMDowMCIsInN0YXR1cyI6NDE1LCJlcnJvciI6IlVuc3VwcG9ydGVkIE1lZGlhIFR5cGUiLCJ0cmFjZSI6Im9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLkh0dHBNZWRpYVR5cGVOb3RTdXBwb3J0ZWRFeGNlcHRpb246IENvbnRlbnQtVHlwZSAnYXBwbGljYXRpb24vanNvbjtjaGFyc2V0PVVURi04JyBpcyBub3Qgc3VwcG9ydGVkXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQubXZjLm1ldGhvZC5hbm5vdGF0aW9uLkFic3RyYWN0TWVzc2FnZUNvbnZlcnRlck1ldGhvZEFyZ3VtZW50UmVzb2x2ZXIucmVhZFdpdGhNZXNzYWdlQ29udmVydGVycyhBYnN0cmFjdE1lc3NhZ2VDb252ZXJ0ZXJNZXRob2RBcmd1bWVudFJlc29sdmVyLmphdmE6MjM2KVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5zZXJ2bGV0Lm12Yy5tZXRob2QuYW5ub3RhdGlvbi5SZXF1ZXN0UmVzcG9uc2VCb2R5TWV0aG9kUHJvY2Vzc29yLnJlYWRXaXRoTWVzc2FnZUNvbnZlcnRlcnMoUmVxdWVzdFJlc3BvbnNlQm9keU1ldGhvZFByb2Nlc3Nvci5qYXZhOjE3Nilcblx0YXQgb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIuc2VydmxldC5tdmMubWV0aG9kLmFubm90YXRpb24uUmVxdWVzdFJlc3BvbnNlQm9keU1ldGhvZFByb2Nlc3Nvci5yZXNvbHZlQXJndW1lbnQoUmVxdWVzdFJlc3BvbnNlQm9keU1ldGhvZFByb2Nlc3Nvci5qYXZhOjE1MClcblx0YXQgb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIubWV0aG9kLnN1cHBvcnQuSGFuZGxlck1ldGhvZEFyZ3VtZW50UmVzb2x2ZXJDb21wb3NpdGUucmVzb2x2ZUFyZ3VtZW50KEhhbmRsZXJNZXRob2RBcmd1bWVudFJlc29sdmVyQ29tcG9zaXRlLmphdmE6MTIyKVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5tZXRob2Quc3VwcG9ydC5JbnZvY2FibGVIYW5kbGVyTWV0aG9kLmdldE1ldGhvZEFyZ3VtZW50VmFsdWVzKEludm9jYWJsZUhhbmRsZXJNZXRob2QuamF2YToyMjcpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLm1ldGhvZC5zdXBwb3J0Lkludm9jYWJsZUhhbmRsZXJNZXRob2QuaW52b2tlRm9yUmVxdWVzdChJbnZvY2FibGVIYW5kbGVyTWV0aG9kLmphdmE6MTgxKVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5zZXJ2bGV0Lm12Yy5tZXRob2QuYW5ub3RhdGlvbi5TZXJ2bGV0SW52b2NhYmxlSGFuZGxlck1ldGhvZC5pbnZva2VBbmRIYW5kbGUoU2VydmxldEludm9jYWJsZUhhbmRsZXJNZXRob2QuamF2YToxMTgpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQubXZjLm1ldGhvZC5hbm5vdGF0aW9uLlJlcXVlc3RNYXBwaW5nSGFuZGxlckFkYXB0ZXIuaW52b2tlSGFuZGxlck1ldGhvZChSZXF1ZXN0TWFwcGluZ0hhbmRsZXJBZGFwdGVyLmphdmE6OTg2KVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5zZXJ2bGV0Lm12Yy5tZXRob2QuYW5ub3RhdGlvbi5SZXF1ZXN0TWFwcGluZ0hhbmRsZXJBZGFwdGVyLmhhbmRsZUludGVybmFsKFJlcXVlc3RNYXBwaW5nSGFuZGxlckFkYXB0ZXIuamF2YTo4OTEpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQubXZjLm1ldGhvZC5BYnN0cmFjdEhhbmRsZXJNZXRob2RBZGFwdGVyLmhhbmRsZShBYnN0cmFjdEhhbmRsZXJNZXRob2RBZGFwdGVyLmphdmE6ODcpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQuRGlzcGF0Y2hlclNlcnZsZXQuZG9EaXNwYXRjaChEaXNwYXRjaGVyU2VydmxldC5qYXZhOjEwODkpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQuRGlzcGF0Y2hlclNlcnZsZXQuZG9TZXJ2aWNlKERpc3BhdGNoZXJTZXJ2bGV0LmphdmE6OTc5KVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5zZXJ2bGV0LkZyYW1ld29ya1NlcnZsZXQucHJvY2Vzc1JlcXVlc3QoRnJhbWV3b3JrU2VydmxldC5qYXZhOjEwMTQpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQuRnJhbWV3b3JrU2VydmxldC5kb1Bvc3QoRnJhbWV3b3JrU2VydmxldC5qYXZhOjkxNClcblx0YXQgamFrYXJ0YS5zZXJ2bGV0Lmh0dHAuSHR0cFNlcnZsZXQuc2VydmljZShIdHRwU2VydmxldC5qYXZhOjU5MClcblx0YXQgb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIuc2VydmxldC5GcmFtZXdvcmtTZXJ2bGV0LnNlcnZpY2UoRnJhbWV3b3JrU2VydmxldC5qYXZhOjg4NSlcblx0YXQgamFrYXJ0YS5zZXJ2bGV0Lmh0dHAuSHR0cFNlcnZsZXQuc2VydmljZShIdHRwU2VydmxldC5qYXZhOjY1OClcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLkFwcGxpY2F0aW9uRmlsdGVyQ2hhaW4uaW50ZXJuYWxEb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTk1KVxuXHRhdCBvcmcuYXBhY2hlLmNhdGFsaW5hLmNvcmUuQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5kb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTQwKVxuXHRhdCBvcmcuYXBhY2hlLnRvbWNhdC53ZWJzb2NrZXQuc2VydmVyLldzRmlsdGVyLmRvRmlsdGVyKFdzRmlsdGVyLmphdmE6NTEpXG5cdGF0IG9yZy5hcGFjaGUuY2F0YWxpbmEuY29yZS5BcHBsaWNhdGlvbkZpbHRlckNoYWluLmludGVybmFsRG9GaWx0ZXIoQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5qYXZhOjE2NClcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLkFwcGxpY2F0aW9uRmlsdGVyQ2hhaW4uZG9GaWx0ZXIoQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5qYXZhOjE0MClcblx0YXQgb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIuZmlsdGVyLlJlcXVlc3RDb250ZXh0RmlsdGVyLmRvRmlsdGVySW50ZXJuYWwoUmVxdWVzdENvbnRleHRGaWx0ZXIuamF2YToxMDApXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLmZpbHRlci5PbmNlUGVyUmVxdWVzdEZpbHRlci5kb0ZpbHRlcihPbmNlUGVyUmVxdWVzdEZpbHRlci5qYXZhOjExNilcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLkFwcGxpY2F0aW9uRmlsdGVyQ2hhaW4uaW50ZXJuYWxEb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTY0KVxuXHRhdCBvcmcuYXBhY2hlLmNhdGFsaW5hLmNvcmUuQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5kb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTQwKVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5maWx0ZXIuRm9ybUNvbnRlbnRGaWx0ZXIuZG9GaWx0ZXJJbnRlcm5hbChGb3JtQ29udGVudEZpbHRlci5qYXZhOjkzKVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5maWx0ZXIuT25jZVBlclJlcXVlc3RGaWx0ZXIuZG9GaWx0ZXIoT25jZVBlclJlcXVlc3RGaWx0ZXIuamF2YToxMTYpXG5cdGF0IG9yZy5hcGFjaGUuY2F0YWxpbmEuY29yZS5BcHBsaWNhdGlvbkZpbHRlckNoYWluLmludGVybmFsRG9GaWx0ZXIoQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5qYXZhOjE2NClcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLkFwcGxpY2F0aW9uRmlsdGVyQ2hhaW4uZG9GaWx0ZXIoQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5qYXZhOjE0MClcblx0YXQgb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIuZmlsdGVyLkNoYXJhY3RlckVuY29kaW5nRmlsdGVyLmRvRmlsdGVySW50ZXJuYWwoQ2hhcmFjdGVyRW5jb2RpbmdGaWx0ZXIuamF2YToyMDEpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLmZpbHRlci5PbmNlUGVyUmVxdWVzdEZpbHRlci5kb0ZpbHRlcihPbmNlUGVyUmVxdWVzdEZpbHRlci5qYXZhOjExNilcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLkFwcGxpY2F0aW9uRmlsdGVyQ2hhaW4uaW50ZXJuYWxEb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTY0KVxuXHRhdCBvcmcuYXBhY2hlLmNhdGFsaW5hLmNvcmUuQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5kb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTQwKVxuXHRhdCBvcmcuYXBhY2hlLmNhdGFsaW5hLmNvcmUuU3RhbmRhcmRXcmFwcGVyVmFsdmUuaW52b2tlKFN0YW5kYXJkV3JhcHBlclZhbHZlLmphdmE6MTY3KVxuXHRhdCBvcmcuYXBhY2hlLmNhdGFsaW5hLmNvcmUuU3RhbmRhcmRDb250ZXh0VmFsdmUuaW52b2tlKFN0YW5kYXJkQ29udGV4dFZhbHZlLmphdmE6OTApXG5cdGF0IG9yZy5hcGFjaGUuY2F0YWxpbmEuYXV0aGVudGljYXRvci5BdXRoZW50aWNhdG9yQmFzZS5pbnZva2UoQXV0aGVudGljYXRvckJhc2UuamF2YTo0ODMpXG5cdGF0IG9yZy5hcGFjaGUuY2F0YWxpbmEuY29yZS5TdGFuZGFyZEhvc3RWYWx2ZS5pbnZva2UoU3RhbmRhcmRIb3N0VmFsdmUuamF2YToxMTUpXG5cdGF0IG9yZy5hcGFjaGUuY2F0YWxpbmEudmFsdmVzLkVycm9yUmVwb3J0VmFsdmUuaW52b2tlKEVycm9yUmVwb3J0VmFsdmUuamF2YTo5Mylcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLlN0YW5kYXJkRW5naW5lVmFsdmUuaW52b2tlKFN0YW5kYXJkRW5naW5lVmFsdmUuamF2YTo3NClcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb25uZWN0b3IuQ295b3RlQWRhcHRlci5zZXJ2aWNlKENveW90ZUFkYXB0ZXIuamF2YTozNDQpXG5cdGF0IG9yZy5hcGFjaGUuY295b3RlLmh0dHAxMS5IdHRwMTFQcm9jZXNzb3Iuc2VydmljZShIdHRwMTFQcm9jZXNzb3IuamF2YTozOTcpXG5cdGF0IG9yZy5hcGFjaGUuY295b3RlLkFic3RyYWN0UHJvY2Vzc29yTGlnaHQucHJvY2VzcyhBYnN0cmFjdFByb2Nlc3NvckxpZ2h0LmphdmE6NjMpXG5cdGF0IG9yZy5hcGFjaGUuY295b3RlLkFic3RyYWN0UHJvdG9jb2wkQ29ubmVjdGlvbkhhbmRsZXIucHJvY2VzcyhBYnN0cmFjdFByb3RvY29sLmphdmE6OTA1KVxuXHRhdCBvcmcuYXBhY2hlLnRvbWNhdC51dGlsLm5ldC5OaW9FbmRwb2ludCRTb2NrZXRQcm9jZXNzb3IuZG9SdW4oTmlvRW5kcG9pbnQuamF2YToxNzQzKVxuXHRhdCBvcmcuYXBhY2hlLnRvbWNhdC51dGlsLm5ldC5Tb2NrZXRQcm9jZXNzb3JCYXNlLnJ1bihTb2NrZXRQcm9jZXNzb3JCYXNlLmphdmE6NTIpXG5cdGF0IG9yZy5hcGFjaGUudG9tY2F0LnV0aWwudGhyZWFkcy5UaHJlYWRQb29sRXhlY3V0b3IucnVuV29ya2VyKFRocmVhZFBvb2xFeGVjdXRvci5qYXZhOjExOTApXG5cdGF0IG9yZy5hcGFjaGUudG9tY2F0LnV0aWwudGhyZWFkcy5UaHJlYWRQb29sRXhlY3V0b3IkV29ya2VyLnJ1bihUaHJlYWRQb29sRXhlY3V0b3IuamF2YTo2NTkpXG5cdGF0IG9yZy5hcGFjaGUudG9tY2F0LnV0aWwudGhyZWFkcy5UYXNrVGhyZWFkJFdyYXBwaW5nUnVubmFibGUucnVuKFRhc2tUaHJlYWQuamF2YTo2Mylcblx0YXQgamF2YS5iYXNlL2phdmEubGFuZy5UaHJlYWQucnVuKFRocmVhZC5qYXZhOjg0MClcbiIsIm1lc3NhZ2UiOiJDb250ZW50LVR5cGUgJ2FwcGxpY2F0aW9uL2pzb247Y2hhcnNldD1VVEYtOCcgaXMgbm90IHN1cHBvcnRlZC4iLCJwYXRoIjoiL2FwaS91dGlsaXNhdGV1ci9jcmVhdGUifQ==" />
-              <option name="bodyString" value="{&#10;  &quot;timestamp&quot;: &quot;2025-04-16T14:29:16.397+00:00&quot;,&#10;  &quot;status&quot;: 415,&#10;  &quot;error&quot;: &quot;Unsupported Media Type&quot;,&#10;  &quot;trace&quot;: &quot;org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/json;charset=UTF-8' is not supported\n\tat org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:236)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:176)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:150)\n\tat org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:227)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:181)\n\tat org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)\n\tat org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)\n\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)\n\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)\n\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)\n\tat org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)\n\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)\n\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)\n\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)\n\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)\n\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)\n\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)\n\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)\n\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n&quot;,&#10;  &quot;message&quot;: &quot;Content-Type 'application/json;charset=UTF-8' is not supported.&quot;,&#10;  &quot;path&quot;: &quot;/api/utilisateur/create&quot;&#10;}" />
-              <option name="code" value="415" />
-              <option name="connectionEstablishingTime" value="14" />
-              <option name="contentType" value="application/json" />
-              <option name="headers">
-                <list>
-                  <headerState>
-                    <option name="key" value="Accept" />
-                    <option name="value" value="application/json, application/*+json" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Content-Type" />
-                    <option name="value" value="application/json" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Transfer-Encoding" />
-                    <option name="value" value="chunked" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Date" />
-                    <option name="value" value="Wed, 16 Apr 2025 14:29:16 GMT" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Keep-Alive" />
-                    <option name="value" value="timeout=60" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Connection" />
-                    <option name="value" value="keep-alive" />
-                  </headerState>
-                </list>
-              </option>
-              <option name="id" value="42692f53-cbc2-496c-be2a-03bb828b44e1" />
-              <option name="message" value="Unsupported Media Type" />
-              <option name="prettyResponseType" value="JSON" />
-              <option name="rawBodyString" value="{&quot;timestamp&quot;:&quot;2025-04-16T14:29:16.397+00:00&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Media Type&quot;,&quot;trace&quot;:&quot;org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/json;charset=UTF-8' is not supported\n\tat org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:236)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:176)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:150)\n\tat org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:227)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:181)\n\tat org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)\n\tat org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)\n\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)\n\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)\n\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)\n\tat org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)\n\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)\n\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)\n\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)\n\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)\n\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)\n\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)\n\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)\n\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n&quot;,&quot;message&quot;:&quot;Content-Type 'application/json;charset=UTF-8' is not supported.&quot;,&quot;path&quot;:&quot;/api/utilisateur/create&quot;}" />
-              <option name="size" value="5473" />
-              <option name="time" value="92" />
-            </responseState>
-          </option>
-          <option name="workspaceId" value="drafts" />
-        </requestHistoryState>
-        <requestHistoryState>
-          <option name="dateTime" value="1744813757184" />
-          <option name="id" value="4f1b8c03-7d80-49d5-93e1-12ae720d1845" />
-          <option name="request">
-            <requestState>
-              <option name="body">
-                <bodyState>
-                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;arthur&quot;,&#10;  &quot;nom&quot;: &quot;arthur&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;  &quot;etat_connexion&quot;: false,&#10;}" />
-                  <option name="type" value="JSON" />
-                </bodyState>
-              </option>
-              <option name="id" value="2c86a724-06d9-438c-94a8-656f617f879c" />
-              <option name="method" value="POST" />
-              <option name="name" value="api/utilisateur/create" />
-              <option name="url" value="http://localhost:8080/api/utilisateur/create" />
-            </requestState>
-          </option>
-          <option name="response">
-            <responseState>
-              <option name="bodyBytesBase64" value="eyJ0aW1lc3RhbXAiOiIyMDI1LTA0LTE2VDE0OjI5OjE3LjE2MiswMDowMCIsInN0YXR1cyI6NDE1LCJlcnJvciI6IlVuc3VwcG9ydGVkIE1lZGlhIFR5cGUiLCJ0cmFjZSI6Im9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLkh0dHBNZWRpYVR5cGVOb3RTdXBwb3J0ZWRFeGNlcHRpb246IENvbnRlbnQtVHlwZSAnYXBwbGljYXRpb24vanNvbjtjaGFyc2V0PVVURi04JyBpcyBub3Qgc3VwcG9ydGVkXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQubXZjLm1ldGhvZC5hbm5vdGF0aW9uLkFic3RyYWN0TWVzc2FnZUNvbnZlcnRlck1ldGhvZEFyZ3VtZW50UmVzb2x2ZXIucmVhZFdpdGhNZXNzYWdlQ29udmVydGVycyhBYnN0cmFjdE1lc3NhZ2VDb252ZXJ0ZXJNZXRob2RBcmd1bWVudFJlc29sdmVyLmphdmE6MjM2KVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5zZXJ2bGV0Lm12Yy5tZXRob2QuYW5ub3RhdGlvbi5SZXF1ZXN0UmVzcG9uc2VCb2R5TWV0aG9kUHJvY2Vzc29yLnJlYWRXaXRoTWVzc2FnZUNvbnZlcnRlcnMoUmVxdWVzdFJlc3BvbnNlQm9keU1ldGhvZFByb2Nlc3Nvci5qYXZhOjE3Nilcblx0YXQgb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIuc2VydmxldC5tdmMubWV0aG9kLmFubm90YXRpb24uUmVxdWVzdFJlc3BvbnNlQm9keU1ldGhvZFByb2Nlc3Nvci5yZXNvbHZlQXJndW1lbnQoUmVxdWVzdFJlc3BvbnNlQm9keU1ldGhvZFByb2Nlc3Nvci5qYXZhOjE1MClcblx0YXQgb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIubWV0aG9kLnN1cHBvcnQuSGFuZGxlck1ldGhvZEFyZ3VtZW50UmVzb2x2ZXJDb21wb3NpdGUucmVzb2x2ZUFyZ3VtZW50KEhhbmRsZXJNZXRob2RBcmd1bWVudFJlc29sdmVyQ29tcG9zaXRlLmphdmE6MTIyKVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5tZXRob2Quc3VwcG9ydC5JbnZvY2FibGVIYW5kbGVyTWV0aG9kLmdldE1ldGhvZEFyZ3VtZW50VmFsdWVzKEludm9jYWJsZUhhbmRsZXJNZXRob2QuamF2YToyMjcpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLm1ldGhvZC5zdXBwb3J0Lkludm9jYWJsZUhhbmRsZXJNZXRob2QuaW52b2tlRm9yUmVxdWVzdChJbnZvY2FibGVIYW5kbGVyTWV0aG9kLmphdmE6MTgxKVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5zZXJ2bGV0Lm12Yy5tZXRob2QuYW5ub3RhdGlvbi5TZXJ2bGV0SW52b2NhYmxlSGFuZGxlck1ldGhvZC5pbnZva2VBbmRIYW5kbGUoU2VydmxldEludm9jYWJsZUhhbmRsZXJNZXRob2QuamF2YToxMTgpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQubXZjLm1ldGhvZC5hbm5vdGF0aW9uLlJlcXVlc3RNYXBwaW5nSGFuZGxlckFkYXB0ZXIuaW52b2tlSGFuZGxlck1ldGhvZChSZXF1ZXN0TWFwcGluZ0hhbmRsZXJBZGFwdGVyLmphdmE6OTg2KVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5zZXJ2bGV0Lm12Yy5tZXRob2QuYW5ub3RhdGlvbi5SZXF1ZXN0TWFwcGluZ0hhbmRsZXJBZGFwdGVyLmhhbmRsZUludGVybmFsKFJlcXVlc3RNYXBwaW5nSGFuZGxlckFkYXB0ZXIuamF2YTo4OTEpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQubXZjLm1ldGhvZC5BYnN0cmFjdEhhbmRsZXJNZXRob2RBZGFwdGVyLmhhbmRsZShBYnN0cmFjdEhhbmRsZXJNZXRob2RBZGFwdGVyLmphdmE6ODcpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQuRGlzcGF0Y2hlclNlcnZsZXQuZG9EaXNwYXRjaChEaXNwYXRjaGVyU2VydmxldC5qYXZhOjEwODkpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQuRGlzcGF0Y2hlclNlcnZsZXQuZG9TZXJ2aWNlKERpc3BhdGNoZXJTZXJ2bGV0LmphdmE6OTc5KVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5zZXJ2bGV0LkZyYW1ld29ya1NlcnZsZXQucHJvY2Vzc1JlcXVlc3QoRnJhbWV3b3JrU2VydmxldC5qYXZhOjEwMTQpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLnNlcnZsZXQuRnJhbWV3b3JrU2VydmxldC5kb1Bvc3QoRnJhbWV3b3JrU2VydmxldC5qYXZhOjkxNClcblx0YXQgamFrYXJ0YS5zZXJ2bGV0Lmh0dHAuSHR0cFNlcnZsZXQuc2VydmljZShIdHRwU2VydmxldC5qYXZhOjU5MClcblx0YXQgb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIuc2VydmxldC5GcmFtZXdvcmtTZXJ2bGV0LnNlcnZpY2UoRnJhbWV3b3JrU2VydmxldC5qYXZhOjg4NSlcblx0YXQgamFrYXJ0YS5zZXJ2bGV0Lmh0dHAuSHR0cFNlcnZsZXQuc2VydmljZShIdHRwU2VydmxldC5qYXZhOjY1OClcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLkFwcGxpY2F0aW9uRmlsdGVyQ2hhaW4uaW50ZXJuYWxEb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTk1KVxuXHRhdCBvcmcuYXBhY2hlLmNhdGFsaW5hLmNvcmUuQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5kb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTQwKVxuXHRhdCBvcmcuYXBhY2hlLnRvbWNhdC53ZWJzb2NrZXQuc2VydmVyLldzRmlsdGVyLmRvRmlsdGVyKFdzRmlsdGVyLmphdmE6NTEpXG5cdGF0IG9yZy5hcGFjaGUuY2F0YWxpbmEuY29yZS5BcHBsaWNhdGlvbkZpbHRlckNoYWluLmludGVybmFsRG9GaWx0ZXIoQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5qYXZhOjE2NClcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLkFwcGxpY2F0aW9uRmlsdGVyQ2hhaW4uZG9GaWx0ZXIoQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5qYXZhOjE0MClcblx0YXQgb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIuZmlsdGVyLlJlcXVlc3RDb250ZXh0RmlsdGVyLmRvRmlsdGVySW50ZXJuYWwoUmVxdWVzdENvbnRleHRGaWx0ZXIuamF2YToxMDApXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLmZpbHRlci5PbmNlUGVyUmVxdWVzdEZpbHRlci5kb0ZpbHRlcihPbmNlUGVyUmVxdWVzdEZpbHRlci5qYXZhOjExNilcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLkFwcGxpY2F0aW9uRmlsdGVyQ2hhaW4uaW50ZXJuYWxEb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTY0KVxuXHRhdCBvcmcuYXBhY2hlLmNhdGFsaW5hLmNvcmUuQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5kb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTQwKVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5maWx0ZXIuRm9ybUNvbnRlbnRGaWx0ZXIuZG9GaWx0ZXJJbnRlcm5hbChGb3JtQ29udGVudEZpbHRlci5qYXZhOjkzKVxuXHRhdCBvcmcuc3ByaW5nZnJhbWV3b3JrLndlYi5maWx0ZXIuT25jZVBlclJlcXVlc3RGaWx0ZXIuZG9GaWx0ZXIoT25jZVBlclJlcXVlc3RGaWx0ZXIuamF2YToxMTYpXG5cdGF0IG9yZy5hcGFjaGUuY2F0YWxpbmEuY29yZS5BcHBsaWNhdGlvbkZpbHRlckNoYWluLmludGVybmFsRG9GaWx0ZXIoQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5qYXZhOjE2NClcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLkFwcGxpY2F0aW9uRmlsdGVyQ2hhaW4uZG9GaWx0ZXIoQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5qYXZhOjE0MClcblx0YXQgb3JnLnNwcmluZ2ZyYW1ld29yay53ZWIuZmlsdGVyLkNoYXJhY3RlckVuY29kaW5nRmlsdGVyLmRvRmlsdGVySW50ZXJuYWwoQ2hhcmFjdGVyRW5jb2RpbmdGaWx0ZXIuamF2YToyMDEpXG5cdGF0IG9yZy5zcHJpbmdmcmFtZXdvcmsud2ViLmZpbHRlci5PbmNlUGVyUmVxdWVzdEZpbHRlci5kb0ZpbHRlcihPbmNlUGVyUmVxdWVzdEZpbHRlci5qYXZhOjExNilcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLkFwcGxpY2F0aW9uRmlsdGVyQ2hhaW4uaW50ZXJuYWxEb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTY0KVxuXHRhdCBvcmcuYXBhY2hlLmNhdGFsaW5hLmNvcmUuQXBwbGljYXRpb25GaWx0ZXJDaGFpbi5kb0ZpbHRlcihBcHBsaWNhdGlvbkZpbHRlckNoYWluLmphdmE6MTQwKVxuXHRhdCBvcmcuYXBhY2hlLmNhdGFsaW5hLmNvcmUuU3RhbmRhcmRXcmFwcGVyVmFsdmUuaW52b2tlKFN0YW5kYXJkV3JhcHBlclZhbHZlLmphdmE6MTY3KVxuXHRhdCBvcmcuYXBhY2hlLmNhdGFsaW5hLmNvcmUuU3RhbmRhcmRDb250ZXh0VmFsdmUuaW52b2tlKFN0YW5kYXJkQ29udGV4dFZhbHZlLmphdmE6OTApXG5cdGF0IG9yZy5hcGFjaGUuY2F0YWxpbmEuYXV0aGVudGljYXRvci5BdXRoZW50aWNhdG9yQmFzZS5pbnZva2UoQXV0aGVudGljYXRvckJhc2UuamF2YTo0ODMpXG5cdGF0IG9yZy5hcGFjaGUuY2F0YWxpbmEuY29yZS5TdGFuZGFyZEhvc3RWYWx2ZS5pbnZva2UoU3RhbmRhcmRIb3N0VmFsdmUuamF2YToxMTUpXG5cdGF0IG9yZy5hcGFjaGUuY2F0YWxpbmEudmFsdmVzLkVycm9yUmVwb3J0VmFsdmUuaW52b2tlKEVycm9yUmVwb3J0VmFsdmUuamF2YTo5Mylcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb3JlLlN0YW5kYXJkRW5naW5lVmFsdmUuaW52b2tlKFN0YW5kYXJkRW5naW5lVmFsdmUuamF2YTo3NClcblx0YXQgb3JnLmFwYWNoZS5jYXRhbGluYS5jb25uZWN0b3IuQ295b3RlQWRhcHRlci5zZXJ2aWNlKENveW90ZUFkYXB0ZXIuamF2YTozNDQpXG5cdGF0IG9yZy5hcGFjaGUuY295b3RlLmh0dHAxMS5IdHRwMTFQcm9jZXNzb3Iuc2VydmljZShIdHRwMTFQcm9jZXNzb3IuamF2YTozOTcpXG5cdGF0IG9yZy5hcGFjaGUuY295b3RlLkFic3RyYWN0UHJvY2Vzc29yTGlnaHQucHJvY2VzcyhBYnN0cmFjdFByb2Nlc3NvckxpZ2h0LmphdmE6NjMpXG5cdGF0IG9yZy5hcGFjaGUuY295b3RlLkFic3RyYWN0UHJvdG9jb2wkQ29ubmVjdGlvbkhhbmRsZXIucHJvY2VzcyhBYnN0cmFjdFByb3RvY29sLmphdmE6OTA1KVxuXHRhdCBvcmcuYXBhY2hlLnRvbWNhdC51dGlsLm5ldC5OaW9FbmRwb2ludCRTb2NrZXRQcm9jZXNzb3IuZG9SdW4oTmlvRW5kcG9pbnQuamF2YToxNzQzKVxuXHRhdCBvcmcuYXBhY2hlLnRvbWNhdC51dGlsLm5ldC5Tb2NrZXRQcm9jZXNzb3JCYXNlLnJ1bihTb2NrZXRQcm9jZXNzb3JCYXNlLmphdmE6NTIpXG5cdGF0IG9yZy5hcGFjaGUudG9tY2F0LnV0aWwudGhyZWFkcy5UaHJlYWRQb29sRXhlY3V0b3IucnVuV29ya2VyKFRocmVhZFBvb2xFeGVjdXRvci5qYXZhOjExOTApXG5cdGF0IG9yZy5hcGFjaGUudG9tY2F0LnV0aWwudGhyZWFkcy5UaHJlYWRQb29sRXhlY3V0b3IkV29ya2VyLnJ1bihUaHJlYWRQb29sRXhlY3V0b3IuamF2YTo2NTkpXG5cdGF0IG9yZy5hcGFjaGUudG9tY2F0LnV0aWwudGhyZWFkcy5UYXNrVGhyZWFkJFdyYXBwaW5nUnVubmFibGUucnVuKFRhc2tUaHJlYWQuamF2YTo2Mylcblx0YXQgamF2YS5iYXNlL2phdmEubGFuZy5UaHJlYWQucnVuKFRocmVhZC5qYXZhOjg0MClcbiIsIm1lc3NhZ2UiOiJDb250ZW50LVR5cGUgJ2FwcGxpY2F0aW9uL2pzb247Y2hhcnNldD1VVEYtOCcgaXMgbm90IHN1cHBvcnRlZC4iLCJwYXRoIjoiL2FwaS91dGlsaXNhdGV1ci9jcmVhdGUifQ==" />
-              <option name="bodyString" value="{&#10;  &quot;timestamp&quot;: &quot;2025-04-16T14:29:17.162+00:00&quot;,&#10;  &quot;status&quot;: 415,&#10;  &quot;error&quot;: &quot;Unsupported Media Type&quot;,&#10;  &quot;trace&quot;: &quot;org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/json;charset=UTF-8' is not supported\n\tat org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:236)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:176)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:150)\n\tat org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:227)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:181)\n\tat org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)\n\tat org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)\n\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)\n\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)\n\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)\n\tat org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)\n\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)\n\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)\n\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)\n\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)\n\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)\n\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)\n\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)\n\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n&quot;,&#10;  &quot;message&quot;: &quot;Content-Type 'application/json;charset=UTF-8' is not supported.&quot;,&#10;  &quot;path&quot;: &quot;/api/utilisateur/create&quot;&#10;}" />
-              <option name="code" value="415" />
-              <option name="connectionEstablishingTime" value="2" />
-              <option name="contentType" value="application/json" />
-              <option name="headers">
-                <list>
-                  <headerState>
-                    <option name="key" value="Accept" />
-                    <option name="value" value="application/json, application/*+json" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Content-Type" />
-                    <option name="value" value="application/json" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Transfer-Encoding" />
-                    <option name="value" value="chunked" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Date" />
-                    <option name="value" value="Wed, 16 Apr 2025 14:29:17 GMT" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Keep-Alive" />
-                    <option name="value" value="timeout=60" />
-                  </headerState>
-                  <headerState>
-                    <option name="key" value="Connection" />
-                    <option name="value" value="keep-alive" />
-                  </headerState>
-                </list>
-              </option>
-              <option name="id" value="4f1b8c03-7d80-49d5-93e1-12ae720d1845" />
-              <option name="message" value="Unsupported Media Type" />
-              <option name="prettyResponseType" value="JSON" />
-              <option name="rawBodyString" value="{&quot;timestamp&quot;:&quot;2025-04-16T14:29:17.162+00:00&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Media Type&quot;,&quot;trace&quot;:&quot;org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/json;charset=UTF-8' is not supported\n\tat org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:236)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:176)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:150)\n\tat org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:227)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:181)\n\tat org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)\n\tat org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)\n\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)\n\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)\n\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)\n\tat org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)\n\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)\n\tat jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)\n\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)\n\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)\n\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)\n\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)\n\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)\n\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)\n\tat org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)\n\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n&quot;,&quot;message&quot;:&quot;Content-Type 'application/json;charset=UTF-8' is not supported.&quot;,&quot;path&quot;:&quot;/api/utilisateur/create&quot;}" />
-              <option name="size" value="5473" />
-              <option name="time" value="55" />
             </responseState>
           </option>
           <option name="workspaceId" value="drafts" />
@@ -3691,6 +3273,959 @@
               <option name="rawBodyString" value="1" />
               <option name="size" value="1" />
               <option name="time" value="3571" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744984576191" />
+          <option name="id" value="a9795c38-b2ec-4bf2-a7c3-7a2fb91b5bfc" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;alex&quot;,&#10;  &quot;nom&quot;: &quot;alex&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;  &quot;etat_connexion&quot;: true,&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="2c86a724-06d9-438c-94a8-656f617f879c" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/utilisateur/create" />
+              <option name="url" value="http://localhost:8080/api/utilisateur/create" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="MQ==" />
+              <option name="bodyString" value="1" />
+              <option name="code" value="200" />
+              <option name="connectionEstablishingTime" value="4" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 13:56:16 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Keep-Alive" />
+                    <option name="value" value="timeout=60" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="keep-alive" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="a9795c38-b2ec-4bf2-a7c3-7a2fb91b5bfc" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="1" />
+              <option name="size" value="1" />
+              <option name="time" value="1544" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744984581778" />
+          <option name="id" value="9ce4980c-a0ab-4344-ad70-ab1d97418a17" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;arthur&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="93e261f0-a2de-4b2d-94e7-db4c25399c6c" />
+              <option name="method" value="PATCH" />
+              <option name="name" value="api/utilisateur/login" />
+              <option name="url" value="http://localhost:8080/api/utilisateur/login" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="amF2YS5sYW5nLk51bGxQb2ludGVyRXhjZXB0aW9uOiBDYW5ub3QgaW52b2tlICJjb20udmlzaXBsdXMuYmFja2VuZC5tb2RlbHMuVXRpbGlzYXRldXIuZ2V0UGFzc3dvcmQoKSIgYmVjYXVzZSAiZXhpc3RVc2VyIiBpcyBudWxs" />
+              <option name="bodyString" value="java.lang.NullPointerException: Cannot invoke &quot;com.visiplus.backend.models.Utilisateur.getPassword()&quot; because &quot;existUser&quot; is null" />
+              <option name="code" value="500" />
+              <option name="connectionEstablishingTime" value="3" />
+              <option name="contentType" value="text/plain; charset=UTF-8" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="text/plain;charset=UTF-8" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Content-Length" />
+                    <option name="value" value="129" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 13:56:21 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="close" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="9ce4980c-a0ab-4344-ad70-ab1d97418a17" />
+              <option name="message" value="Internal Server Error" />
+              <option name="prettyResponseType" value="TEXT" />
+              <option name="rawBodyString" value="java.lang.NullPointerException: Cannot invoke &quot;com.visiplus.backend.models.Utilisateur.getPassword()&quot; because &quot;existUser&quot; is null" />
+              <option name="size" value="129" />
+              <option name="time" value="188" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744984598358" />
+          <option name="id" value="81f33b07-6992-4c28-8f43-11751781a7a0" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;alex&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="93e261f0-a2de-4b2d-94e7-db4c25399c6c" />
+              <option name="method" value="PATCH" />
+              <option name="name" value="api/utilisateur/login" />
+              <option name="url" value="http://localhost:8080/api/utilisateur/login" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="eyJpZCI6MSwibm9tIjoiYWxleCIsInJvbGVfYXBwIjoiTUVNQlJFIiwiZW1haWwiOiJhbGV4IiwicGFzc3dvcmQiOiJjbGFpcmUiLCJldGF0X2Nvbm5leGlvbiI6dHJ1ZSwidGFjaGVfY29tbWFuZGl0YWlyZSI6W10sInRhY2hlc19kZXN0aW5hdGFpcmUiOltdLCJwcm9qZXRzX3V0aWxpc2F0ZXVyIjpbXSwicHJvamV0cyI6W10sInJvbGVzX3Byb2pldCI6W3siaWQiOjIsIm5vbSI6Ik1FTUJSRSIsImFqb3V0ZXJfbWVtYnJlIjpmYWxzZSwiY3JlZXJfdGFjaGUiOnRydWUsImFzc2lnbmVfdGFjaGUiOmZhbHNlLCJtYWpfdGFjaGUiOnRydWUsInZ1ZV90YWNoZSI6dHJ1ZSwidnVlX3RhYmxlYXVfZGVfYm9yZCI6dHJ1ZSwiZXRyZV9ub3RpZmllIjp0cnVlLCJ2dWVfaGlzdG9yaXF1ZV9tb2RpZmljYXRpb25zIjp0cnVlLCJ1dGlsaXNhdGV1cl9yb2xlc19wcm9qZXQiOlsxXX1dfQ==" />
+              <option name="bodyString" value="{&#10;  &quot;id&quot;: 1,&#10;  &quot;nom&quot;: &quot;alex&quot;,&#10;  &quot;role_app&quot;: &quot;MEMBRE&quot;,&#10;  &quot;email&quot;: &quot;alex&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;  &quot;etat_connexion&quot;: true,&#10;  &quot;tache_commanditaire&quot;: [],&#10;  &quot;taches_destinataire&quot;: [],&#10;  &quot;projets_utilisateur&quot;: [],&#10;  &quot;projets&quot;: [],&#10;  &quot;roles_projet&quot;: [&#10;    {&#10;      &quot;id&quot;: 2,&#10;      &quot;nom&quot;: &quot;MEMBRE&quot;,&#10;      &quot;ajouter_membre&quot;: false,&#10;      &quot;creer_tache&quot;: true,&#10;      &quot;assigne_tache&quot;: false,&#10;      &quot;maj_tache&quot;: true,&#10;      &quot;vue_tache&quot;: true,&#10;      &quot;vue_tableau_de_bord&quot;: true,&#10;      &quot;etre_notifie&quot;: true,&#10;      &quot;vue_historique_modifications&quot;: true,&#10;      &quot;utilisateur_roles_projet&quot;: [&#10;        1&#10;      ]&#10;    }&#10;  ]&#10;}" />
+              <option name="code" value="200" />
+              <option name="connectionEstablishingTime" value="10" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 13:56:38 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Keep-Alive" />
+                    <option name="value" value="timeout=60" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="keep-alive" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="81f33b07-6992-4c28-8f43-11751781a7a0" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex&quot;,&quot;role_app&quot;:&quot;MEMBRE&quot;,&quot;email&quot;:&quot;alex&quot;,&quot;password&quot;:&quot;claire&quot;,&quot;etat_connexion&quot;:true,&quot;tache_commanditaire&quot;:[],&quot;taches_destinataire&quot;:[],&quot;projets_utilisateur&quot;:[],&quot;projets&quot;:[],&quot;roles_projet&quot;:[{&quot;id&quot;:2,&quot;nom&quot;:&quot;MEMBRE&quot;,&quot;ajouter_membre&quot;:false,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:false,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true,&quot;utilisateur_roles_projet&quot;:[1]}]}" />
+              <option name="size" value="439" />
+              <option name="time" value="1535" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744984608210" />
+          <option name="id" value="08231117-bc55-4d84-ba48-5f7cfa8487c9" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;Construire Maison Orange&quot;,&#10;  &quot;createur&quot;: &quot;alex&quot;,&#10;  &quot;date_echeance&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="da67953c-5508-405b-9f58-8f65de95cea4" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/projet/create" />
+              <option name="url" value="http://localhost:8080/api/projet/create" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjp0cnVlLCJtZXNzYWdlIjoiVW4gcHJvamV0IGEgw6l0w6kgY3LDqcOpIiwiZGF0YSI6eyJwcm9qZXQiOnsiaWQiOjEsIm5vbSI6IkNvbnN0cnVpcmUgTWFpc29uIE9yYW5nZSIsImRlc2NyaXB0aW9uIjpudWxsLCJkYXRlX2VjaGVhbmNlIjoiMjAyNS0wNC0xNFQxODo1OToxMS4zODMrMDA6MDAiLCJkYXRlX2NyZWF0aW9uIjoiMjAyNS0wNC0xOFQxMzo1Njo0Ny40MjgrMDA6MDAiLCJ1dGlsaXNhdGV1cnNfcHJvamV0IjpbXSwicHJvamV0X3RhY2hlcyI6W10sInRhY2hlcyI6bnVsbCwiY3JlYXRldXIiOnsiaWQiOjEsIm5vbSI6ImFsZXgiLCJyb2xlX2FwcCI6Ik1FTUJSRSIsImVtYWlsIjoiYWxleCIsInBhc3N3b3JkIjoiY2xhaXJlIiwiZXRhdF9jb25uZXhpb24iOnRydWUsInRhY2hlX2NvbW1hbmRpdGFpcmUiOltdLCJ0YWNoZXNfZGVzdGluYXRhaXJlIjpbXSwicHJvamV0c191dGlsaXNhdGV1ciI6W10sInByb2pldHMiOlsxXSwicm9sZXNfcHJvamV0IjpbeyJpZCI6MSwibm9tIjoiQURNSU5JU1RSQVRFVVIiLCJham91dGVyX21lbWJyZSI6dHJ1ZSwiY3JlZXJfdGFjaGUiOnRydWUsImFzc2lnbmVfdGFjaGUiOnRydWUsIm1hal90YWNoZSI6dHJ1ZSwidnVlX3RhY2hlIjp0cnVlLCJ2dWVfdGFibGVhdV9kZV9ib3JkIjp0cnVlLCJldHJlX25vdGlmaWUiOnRydWUsInZ1ZV9oaXN0b3JpcXVlX21vZGlmaWNhdGlvbnMiOnRydWUsInV0aWxpc2F0ZXVyX3JvbGVzX3Byb2pldCI6WzFdfV19fSwidXRpbGlzYXRldXJfcm9sZXMiOlt7InV0aWxpc2F0ZXVyX2lkIjoxLCJyb2xlX2lkIjoxfV0sInV0aWxpc2F0ZXVyc19wcm9qZXQiOm51bGx9fQ==" />
+              <option name="bodyString" value="{&#10;  &quot;success&quot;: true,&#10;  &quot;message&quot;: &quot;Un projet a été créé&quot;,&#10;  &quot;data&quot;: {&#10;    &quot;projet&quot;: {&#10;      &quot;id&quot;: 1,&#10;      &quot;nom&quot;: &quot;Construire Maison Orange&quot;,&#10;      &quot;description&quot;: null,&#10;      &quot;date_echeance&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;      &quot;date_creation&quot;: &quot;2025-04-18T13:56:47.428+00:00&quot;,&#10;      &quot;utilisateurs_projet&quot;: [],&#10;      &quot;projet_taches&quot;: [],&#10;      &quot;taches&quot;: null,&#10;      &quot;createur&quot;: {&#10;        &quot;id&quot;: 1,&#10;        &quot;nom&quot;: &quot;alex&quot;,&#10;        &quot;role_app&quot;: &quot;MEMBRE&quot;,&#10;        &quot;email&quot;: &quot;alex&quot;,&#10;        &quot;password&quot;: &quot;claire&quot;,&#10;        &quot;etat_connexion&quot;: true,&#10;        &quot;tache_commanditaire&quot;: [],&#10;        &quot;taches_destinataire&quot;: [],&#10;        &quot;projets_utilisateur&quot;: [],&#10;        &quot;projets&quot;: [&#10;          1&#10;        ],&#10;        &quot;roles_projet&quot;: [&#10;          {&#10;            &quot;id&quot;: 1,&#10;            &quot;nom&quot;: &quot;ADMINISTRATEUR&quot;,&#10;            &quot;ajouter_membre&quot;: true,&#10;            &quot;creer_tache&quot;: true,&#10;            &quot;assigne_tache&quot;: true,&#10;            &quot;maj_tache&quot;: true,&#10;            &quot;vue_tache&quot;: true,&#10;            &quot;vue_tableau_de_bord&quot;: true,&#10;            &quot;etre_notifie&quot;: true,&#10;            &quot;vue_historique_modifications&quot;: true,&#10;            &quot;utilisateur_roles_projet&quot;: [&#10;              1&#10;            ]&#10;          }&#10;        ]&#10;      }&#10;    },&#10;    &quot;utilisateur_roles&quot;: [&#10;      {&#10;        &quot;utilisateur_id&quot;: 1,&#10;        &quot;role_id&quot;: 1&#10;      }&#10;    ],&#10;    &quot;utilisateurs_projet&quot;: null&#10;  }&#10;}" />
+              <option name="code" value="200" />
+              <option name="connectionEstablishingTime" value="2" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 13:56:48 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Keep-Alive" />
+                    <option name="value" value="timeout=60" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="keep-alive" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="08231117-bc55-4d84-ba48-5f7cfa8487c9" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="{&quot;success&quot;:true,&quot;message&quot;:&quot;Un projet a été créé&quot;,&quot;data&quot;:{&quot;projet&quot;:{&quot;id&quot;:1,&quot;nom&quot;:&quot;Construire Maison Orange&quot;,&quot;description&quot;:null,&quot;date_echeance&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;date_creation&quot;:&quot;2025-04-18T13:56:47.428+00:00&quot;,&quot;utilisateurs_projet&quot;:[],&quot;projet_taches&quot;:[],&quot;taches&quot;:null,&quot;createur&quot;:{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex&quot;,&quot;role_app&quot;:&quot;MEMBRE&quot;,&quot;email&quot;:&quot;alex&quot;,&quot;password&quot;:&quot;claire&quot;,&quot;etat_connexion&quot;:true,&quot;tache_commanditaire&quot;:[],&quot;taches_destinataire&quot;:[],&quot;projets_utilisateur&quot;:[],&quot;projets&quot;:[1],&quot;roles_projet&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;ADMINISTRATEUR&quot;,&quot;ajouter_membre&quot;:true,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:true,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true,&quot;utilisateur_roles_projet&quot;:[1]}]}},&quot;utilisateur_roles&quot;:[{&quot;utilisateur_id&quot;:1,&quot;role_id&quot;:1}],&quot;utilisateurs_projet&quot;:null}}" />
+              <option name="size" value="826" />
+              <option name="time" value="2219" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744984832099" />
+          <option name="id" value="2515d6f4-39dc-4147-b38c-60e0710c1ab5" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;alex dev&quot;,&#10;  &quot;destinataire&quot;: &quot;alex&quot;,&#10;  &quot;commanditaire&quot;: &quot;alex&quot;,&#10;  &quot;nom_projet&quot;: &quot;Construire Maison Orange&quot;,&#10;  &quot;date_debut&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;  &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="b63d2b25-403d-4f8f-800f-4b0f49887ed7" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/tache/create" />
+              <option name="url" value="http://localhost:8080/api/projet/create" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjpmYWxzZSwibWVzc2FnZSI6IlV0aWxpc2F0ZXVyIG4nZXN0IHBhcyBjb25udSBvdSBsIGlkIG4nZXN0IHBhcyBsZSBib24iLCJkYXRhIjpudWxsfQ==" />
+              <option name="bodyString" value="{&#10;  &quot;success&quot;: false,&#10;  &quot;message&quot;: &quot;Utilisateur n'est pas connu ou l id n'est pas le bon&quot;,&#10;  &quot;data&quot;: null&#10;}" />
+              <option name="code" value="400" />
+              <option name="connectionEstablishingTime" value="25" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 14:00:32 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="close" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="2515d6f4-39dc-4147-b38c-60e0710c1ab5" />
+              <option name="message" value="Bad Request" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="{&quot;success&quot;:false,&quot;message&quot;:&quot;Utilisateur n'est pas connu ou l id n'est pas le bon&quot;,&quot;data&quot;:null}" />
+              <option name="size" value="94" />
+              <option name="time" value="957" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744984964298" />
+          <option name="id" value="12b5b8aa-87c0-44b8-93cc-bb0896c988de" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;alex dev&quot;,&#10;  &quot;destinataire&quot;: &quot;alex&quot;,&#10;  &quot;commanditaire&quot;: &quot;alex&quot;,&#10;  &quot;nom_projet&quot;: &quot;Construire Maison Orange&quot;,&#10;  &quot;date_debut&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;  &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="b63d2b25-403d-4f8f-800f-4b0f49887ed7" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/tache/create" />
+              <option name="url" value="http://localhost:8080/api/tache/create" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjpmYWxzZSwibWVzc2FnZSI6IlJlcXVldHRlIGRlIFRhY2hlIGVycm9uw6llIiwiZGF0YSI6bnVsbH0=" />
+              <option name="bodyString" value="{&#10;  &quot;success&quot;: false,&#10;  &quot;message&quot;: &quot;Requette de Tache erronée&quot;,&#10;  &quot;data&quot;: null&#10;}" />
+              <option name="code" value="400" />
+              <option name="connectionEstablishingTime" value="6" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 14:02:44 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="close" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="12b5b8aa-87c0-44b8-93cc-bb0896c988de" />
+              <option name="message" value="Bad Request" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="{&quot;success&quot;:false,&quot;message&quot;:&quot;Requette de Tache erronée&quot;,&quot;data&quot;:null}" />
+              <option name="size" value="68" />
+              <option name="time" value="623" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744985243255" />
+          <option name="id" value="2ffa44be-619a-4aa6-afe9-d341880ba7d3" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;alex&quot;,&#10;  &quot;nom&quot;: &quot;alex&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;  &quot;etat_connexion&quot;: true,&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="2c86a724-06d9-438c-94a8-656f617f879c" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/utilisateur/create" />
+              <option name="url" value="http://localhost:8080/api/utilisateur/create" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="MQ==" />
+              <option name="bodyString" value="1" />
+              <option name="code" value="200" />
+              <option name="connectionEstablishingTime" value="14" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 14:07:23 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Keep-Alive" />
+                    <option name="value" value="timeout=60" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="keep-alive" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="2ffa44be-619a-4aa6-afe9-d341880ba7d3" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="1" />
+              <option name="size" value="1" />
+              <option name="time" value="1031" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744985258582" />
+          <option name="id" value="64b87e88-b191-4379-8fd8-1b4b0aeb6807" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;Construire Maison Orange&quot;,&#10;  &quot;createur&quot;: &quot;alex&quot;,&#10;  &quot;date_echeance&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="da67953c-5508-405b-9f58-8f65de95cea4" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/projet/create" />
+              <option name="url" value="http://localhost:8080/api/projet/create" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjp0cnVlLCJtZXNzYWdlIjoiVW4gcHJvamV0IGEgw6l0w6kgY3LDqcOpIiwiZGF0YSI6eyJwcm9qZXQiOnsiaWQiOjEsIm5vbSI6IkNvbnN0cnVpcmUgTWFpc29uIE9yYW5nZSIsImRlc2NyaXB0aW9uIjpudWxsLCJkYXRlX2VjaGVhbmNlIjoiMjAyNS0wNC0xNFQxODo1OToxMS4zODMrMDA6MDAiLCJkYXRlX2NyZWF0aW9uIjoiMjAyNS0wNC0xOFQxNDowNzozOC4yODArMDA6MDAiLCJ1dGlsaXNhdGV1cnNfcHJvamV0IjpbXSwicHJvamV0X3RhY2hlcyI6W10sInRhY2hlcyI6bnVsbCwiY3JlYXRldXIiOnsiaWQiOjEsIm5vbSI6ImFsZXgiLCJyb2xlX2FwcCI6Ik1FTUJSRSIsImVtYWlsIjoiYWxleCIsInBhc3N3b3JkIjoiY2xhaXJlIiwiZXRhdF9jb25uZXhpb24iOnRydWUsInRhY2hlX2NvbW1hbmRpdGFpcmUiOltdLCJ0YWNoZXNfZGVzdGluYXRhaXJlIjpbXSwicHJvamV0c191dGlsaXNhdGV1ciI6W10sInByb2pldHMiOlsxXSwicm9sZXNfcHJvamV0IjpbeyJpZCI6MSwibm9tIjoiQURNSU5JU1RSQVRFVVIiLCJham91dGVyX21lbWJyZSI6dHJ1ZSwiY3JlZXJfdGFjaGUiOnRydWUsImFzc2lnbmVfdGFjaGUiOnRydWUsIm1hal90YWNoZSI6dHJ1ZSwidnVlX3RhY2hlIjp0cnVlLCJ2dWVfdGFibGVhdV9kZV9ib3JkIjp0cnVlLCJldHJlX25vdGlmaWUiOnRydWUsInZ1ZV9oaXN0b3JpcXVlX21vZGlmaWNhdGlvbnMiOnRydWUsInV0aWxpc2F0ZXVyX3JvbGVzX3Byb2pldCI6WzFdfV19fSwidXRpbGlzYXRldXJfcm9sZXMiOlt7InV0aWxpc2F0ZXVyX2lkIjoxLCJyb2xlX2lkIjoxfV0sInV0aWxpc2F0ZXVyc19wcm9qZXQiOm51bGx9fQ==" />
+              <option name="bodyString" value="{&#10;  &quot;success&quot;: true,&#10;  &quot;message&quot;: &quot;Un projet a été créé&quot;,&#10;  &quot;data&quot;: {&#10;    &quot;projet&quot;: {&#10;      &quot;id&quot;: 1,&#10;      &quot;nom&quot;: &quot;Construire Maison Orange&quot;,&#10;      &quot;description&quot;: null,&#10;      &quot;date_echeance&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;      &quot;date_creation&quot;: &quot;2025-04-18T14:07:38.280+00:00&quot;,&#10;      &quot;utilisateurs_projet&quot;: [],&#10;      &quot;projet_taches&quot;: [],&#10;      &quot;taches&quot;: null,&#10;      &quot;createur&quot;: {&#10;        &quot;id&quot;: 1,&#10;        &quot;nom&quot;: &quot;alex&quot;,&#10;        &quot;role_app&quot;: &quot;MEMBRE&quot;,&#10;        &quot;email&quot;: &quot;alex&quot;,&#10;        &quot;password&quot;: &quot;claire&quot;,&#10;        &quot;etat_connexion&quot;: true,&#10;        &quot;tache_commanditaire&quot;: [],&#10;        &quot;taches_destinataire&quot;: [],&#10;        &quot;projets_utilisateur&quot;: [],&#10;        &quot;projets&quot;: [&#10;          1&#10;        ],&#10;        &quot;roles_projet&quot;: [&#10;          {&#10;            &quot;id&quot;: 1,&#10;            &quot;nom&quot;: &quot;ADMINISTRATEUR&quot;,&#10;            &quot;ajouter_membre&quot;: true,&#10;            &quot;creer_tache&quot;: true,&#10;            &quot;assigne_tache&quot;: true,&#10;            &quot;maj_tache&quot;: true,&#10;            &quot;vue_tache&quot;: true,&#10;            &quot;vue_tableau_de_bord&quot;: true,&#10;            &quot;etre_notifie&quot;: true,&#10;            &quot;vue_historique_modifications&quot;: true,&#10;            &quot;utilisateur_roles_projet&quot;: [&#10;              1&#10;            ]&#10;          }&#10;        ]&#10;      }&#10;    },&#10;    &quot;utilisateur_roles&quot;: [&#10;      {&#10;        &quot;utilisateur_id&quot;: 1,&#10;        &quot;role_id&quot;: 1&#10;      }&#10;    ],&#10;    &quot;utilisateurs_projet&quot;: null&#10;  }&#10;}" />
+              <option name="code" value="200" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 14:07:38 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Keep-Alive" />
+                    <option name="value" value="timeout=60" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="keep-alive" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="64b87e88-b191-4379-8fd8-1b4b0aeb6807" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="{&quot;success&quot;:true,&quot;message&quot;:&quot;Un projet a été créé&quot;,&quot;data&quot;:{&quot;projet&quot;:{&quot;id&quot;:1,&quot;nom&quot;:&quot;Construire Maison Orange&quot;,&quot;description&quot;:null,&quot;date_echeance&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;date_creation&quot;:&quot;2025-04-18T14:07:38.280+00:00&quot;,&quot;utilisateurs_projet&quot;:[],&quot;projet_taches&quot;:[],&quot;taches&quot;:null,&quot;createur&quot;:{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex&quot;,&quot;role_app&quot;:&quot;MEMBRE&quot;,&quot;email&quot;:&quot;alex&quot;,&quot;password&quot;:&quot;claire&quot;,&quot;etat_connexion&quot;:true,&quot;tache_commanditaire&quot;:[],&quot;taches_destinataire&quot;:[],&quot;projets_utilisateur&quot;:[],&quot;projets&quot;:[1],&quot;roles_projet&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;ADMINISTRATEUR&quot;,&quot;ajouter_membre&quot;:true,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:true,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true,&quot;utilisateur_roles_projet&quot;:[1]}]}},&quot;utilisateur_roles&quot;:[{&quot;utilisateur_id&quot;:1,&quot;role_id&quot;:1}],&quot;utilisateurs_projet&quot;:null}}" />
+              <option name="size" value="826" />
+              <option name="time" value="510" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744985265562" />
+          <option name="id" value="f28a9018-7aee-4e5b-9497-380b19196268" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;alex dev&quot;,&#10;  &quot;destinataire&quot;: &quot;alex&quot;,&#10;  &quot;commanditaire&quot;: &quot;alex&quot;,&#10;  &quot;nom_projet&quot;: &quot;Construire Maison Orange&quot;,&#10;  &quot;date_debut&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;  &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="b63d2b25-403d-4f8f-800f-4b0f49887ed7" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/tache/create" />
+              <option name="url" value="http://localhost:8080/api/tache/create" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjp0cnVlLCJtZXNzYWdlIjoiVGFjaGUgYmllbiBjcsOpw6kgZGFucyB1biBwcm9qZXQiLCJkYXRhIjp7ImlkIjoxLCJub20iOiJhbGV4IGRldiIsImVzdF90ZXJtaW5lIjpmYWxzZSwiY29tbWFuZGl0YWlyZSI6eyJpZCI6MSwibm9tIjoiYWxleCIsInJvbGVfYXBwIjoiTUVNQlJFIiwiZW1haWwiOiJhbGV4IiwicGFzc3dvcmQiOiJjbGFpcmUiLCJldGF0X2Nvbm5leGlvbiI6dHJ1ZSwidGFjaGVfY29tbWFuZGl0YWlyZSI6W3siaWQiOjEsIm5vbSI6ImFsZXggZGV2IiwiZXN0X3Rlcm1pbmUiOmZhbHNlLCJjb21tYW5kaXRhaXJlIjoxLCJkZXN0aW5hdGFpcmUiOjEsImRlc2NyaXB0aW9uIjoiYWxleCIsImRhdGVfZGVidXQiOiIyMDI1LTA0LTE4VDE0OjA3OjQ1LjI0MSswMDowMCIsImRhdGVfZmluIjoiMjAyNS0wNC0xNFQxODo1OToxMS4zODMrMDA6MDAiLCJwcm9qZXQiOnsiaWQiOjEsIm5vbSI6IkNvbnN0cnVpcmUgTWFpc29uIE9yYW5nZSIsImRlc2NyaXB0aW9uIjpudWxsLCJkYXRlX2VjaGVhbmNlIjoiMjAyNS0wNC0xNCIsImRhdGVfY3JlYXRpb24iOiIyMDI1LTA0LTE4IiwidXRpbGlzYXRldXJzX3Byb2pldCI6W10sInByb2pldF90YWNoZXMiOltdLCJ0YWNoZXMiOlt7ImlkIjoxLCJub20iOiJhbGV4IGRldiIsImVzdF90ZXJtaW5lIjpmYWxzZSwiY29tbWFuZGl0YWlyZSI6MSwiZGVzdGluYXRhaXJlIjoxLCJkZXNjcmlwdGlvbiI6ImFsZXgiLCJkYXRlX2RlYnV0IjoiMjAyNS0wNC0xOFQxNDowNzo0NS4yNDErMDA6MDAiLCJkYXRlX2ZpbiI6IjIwMjUtMDQtMTRUMTg6NTk6MTEuMzgzKzAwOjAwIiwicHJvamV0IjoxfV0sImNyZWF0ZXVyIjoxfX1dLCJ0YWNoZXNfZGVzdGluYXRhaXJlIjpbeyJpZCI6MSwibm9tIjoiYWxleCBkZXYiLCJlc3RfdGVybWluZSI6ZmFsc2UsImNvbW1hbmRpdGFpcmUiOjEsImRlc3RpbmF0YWlyZSI6MSwiZGVzY3JpcHRpb24iOiJhbGV4IiwiZGF0ZV9kZWJ1dCI6IjIwMjUtMDQtMThUMTQ6MDc6NDUuMjQxKzAwOjAwIiwiZGF0ZV9maW4iOiIyMDI1LTA0LTE0VDE4OjU5OjExLjM4MyswMDowMCIsInByb2pldCI6MX1dLCJwcm9qZXRzX3V0aWxpc2F0ZXVyIjpbXSwicHJvamV0cyI6WzFdLCJyb2xlc19wcm9qZXQiOlt7ImlkIjoxLCJub20iOiJBRE1JTklTVFJBVEVVUiIsImFqb3V0ZXJfbWVtYnJlIjp0cnVlLCJjcmVlcl90YWNoZSI6dHJ1ZSwiYXNzaWduZV90YWNoZSI6dHJ1ZSwibWFqX3RhY2hlIjp0cnVlLCJ2dWVfdGFjaGUiOnRydWUsInZ1ZV90YWJsZWF1X2RlX2JvcmQiOnRydWUsImV0cmVfbm90aWZpZSI6dHJ1ZSwidnVlX2hpc3RvcmlxdWVfbW9kaWZpY2F0aW9ucyI6dHJ1ZSwidXRpbGlzYXRldXJfcm9sZXNfcHJvamV0IjpbMV19XX0sImRlc3RpbmF0YWlyZSI6MSwiZGVzY3JpcHRpb24iOiJhbGV4IiwiZGF0ZV9kZWJ1dCI6IjIwMjUtMDQtMThUMTQ6MDc6NDUuMjQxKzAwOjAwIiwiZGF0ZV9maW4iOiIyMDI1LTA0LTE0VDE4OjU5OjExLjM4MyswMDowMCIsInByb2pldCI6MX19" />
+              <option name="bodyString" value="{&#10;  &quot;success&quot;: true,&#10;  &quot;message&quot;: &quot;Tache bien créé dans un projet&quot;,&#10;  &quot;data&quot;: {&#10;    &quot;id&quot;: 1,&#10;    &quot;nom&quot;: &quot;alex dev&quot;,&#10;    &quot;est_termine&quot;: false,&#10;    &quot;commanditaire&quot;: {&#10;      &quot;id&quot;: 1,&#10;      &quot;nom&quot;: &quot;alex&quot;,&#10;      &quot;role_app&quot;: &quot;MEMBRE&quot;,&#10;      &quot;email&quot;: &quot;alex&quot;,&#10;      &quot;password&quot;: &quot;claire&quot;,&#10;      &quot;etat_connexion&quot;: true,&#10;      &quot;tache_commanditaire&quot;: [&#10;        {&#10;          &quot;id&quot;: 1,&#10;          &quot;nom&quot;: &quot;alex dev&quot;,&#10;          &quot;est_termine&quot;: false,&#10;          &quot;commanditaire&quot;: 1,&#10;          &quot;destinataire&quot;: 1,&#10;          &quot;description&quot;: &quot;alex&quot;,&#10;          &quot;date_debut&quot;: &quot;2025-04-18T14:07:45.241+00:00&quot;,&#10;          &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;          &quot;projet&quot;: {&#10;            &quot;id&quot;: 1,&#10;            &quot;nom&quot;: &quot;Construire Maison Orange&quot;,&#10;            &quot;description&quot;: null,&#10;            &quot;date_echeance&quot;: &quot;2025-04-14&quot;,&#10;            &quot;date_creation&quot;: &quot;2025-04-18&quot;,&#10;            &quot;utilisateurs_projet&quot;: [],&#10;            &quot;projet_taches&quot;: [],&#10;            &quot;taches&quot;: [&#10;              {&#10;                &quot;id&quot;: 1,&#10;                &quot;nom&quot;: &quot;alex dev&quot;,&#10;                &quot;est_termine&quot;: false,&#10;                &quot;commanditaire&quot;: 1,&#10;                &quot;destinataire&quot;: 1,&#10;                &quot;description&quot;: &quot;alex&quot;,&#10;                &quot;date_debut&quot;: &quot;2025-04-18T14:07:45.241+00:00&quot;,&#10;                &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;                &quot;projet&quot;: 1&#10;              }&#10;            ],&#10;            &quot;createur&quot;: 1&#10;          }&#10;        }&#10;      ],&#10;      &quot;taches_destinataire&quot;: [&#10;        {&#10;          &quot;id&quot;: 1,&#10;          &quot;nom&quot;: &quot;alex dev&quot;,&#10;          &quot;est_termine&quot;: false,&#10;          &quot;commanditaire&quot;: 1,&#10;          &quot;destinataire&quot;: 1,&#10;          &quot;description&quot;: &quot;alex&quot;,&#10;          &quot;date_debut&quot;: &quot;2025-04-18T14:07:45.241+00:00&quot;,&#10;          &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;          &quot;projet&quot;: 1&#10;        }&#10;      ],&#10;      &quot;projets_utilisateur&quot;: [],&#10;      &quot;projets&quot;: [&#10;        1&#10;      ],&#10;      &quot;roles_projet&quot;: [&#10;        {&#10;          &quot;id&quot;: 1,&#10;          &quot;nom&quot;: &quot;ADMINISTRATEUR&quot;,&#10;          &quot;ajouter_membre&quot;: true,&#10;          &quot;creer_tache&quot;: true,&#10;          &quot;assigne_tache&quot;: true,&#10;          &quot;maj_tache&quot;: true,&#10;          &quot;vue_tache&quot;: true,&#10;          &quot;vue_tableau_de_bord&quot;: true,&#10;          &quot;etre_notifie&quot;: true,&#10;          &quot;vue_historique_modifications&quot;: true,&#10;          &quot;utilisateur_roles_projet&quot;: [&#10;            1&#10;          ]&#10;        }&#10;      ]&#10;    },&#10;    &quot;destinataire&quot;: 1,&#10;    &quot;description&quot;: &quot;alex&quot;,&#10;    &quot;date_debut&quot;: &quot;2025-04-18T14:07:45.241+00:00&quot;,&#10;    &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;    &quot;projet&quot;: 1&#10;  }&#10;}" />
+              <option name="code" value="200" />
+              <option name="connectionEstablishingTime" value="3" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 14:07:45 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Keep-Alive" />
+                    <option name="value" value="timeout=60" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="keep-alive" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="f28a9018-7aee-4e5b-9497-380b19196268" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="{&quot;success&quot;:true,&quot;message&quot;:&quot;Tache bien créé dans un projet&quot;,&quot;data&quot;:{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex&quot;,&quot;role_app&quot;:&quot;MEMBRE&quot;,&quot;email&quot;:&quot;alex&quot;,&quot;password&quot;:&quot;claire&quot;,&quot;etat_connexion&quot;:true,&quot;tache_commanditaire&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:1,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:07:45.241+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:{&quot;id&quot;:1,&quot;nom&quot;:&quot;Construire Maison Orange&quot;,&quot;description&quot;:null,&quot;date_echeance&quot;:&quot;2025-04-14&quot;,&quot;date_creation&quot;:&quot;2025-04-18&quot;,&quot;utilisateurs_projet&quot;:[],&quot;projet_taches&quot;:[],&quot;taches&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:1,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:07:45.241+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1}],&quot;createur&quot;:1}}],&quot;taches_destinataire&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:1,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:07:45.241+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1}],&quot;projets_utilisateur&quot;:[],&quot;projets&quot;:[1],&quot;roles_projet&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;ADMINISTRATEUR&quot;,&quot;ajouter_membre&quot;:true,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:true,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true,&quot;utilisateur_roles_projet&quot;:[1]}]},&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:07:45.241+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1}}" />
+              <option name="size" value="1500" />
+              <option name="time" value="431" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744985377589" />
+          <option name="id" value="b11b7b61-6e5b-48a2-bae9-ec78b1f7e7d0" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;arthur&quot;,&#10;  &quot;nom&quot;: &quot;arthur&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;  &quot;etat_connexion&quot;: true,&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="2c86a724-06d9-438c-94a8-656f617f879c" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/utilisateur/create" />
+              <option name="url" value="http://localhost:8080/api/utilisateur/create" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="Mg==" />
+              <option name="bodyString" value="2" />
+              <option name="code" value="200" />
+              <option name="connectionEstablishingTime" value="10" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 14:09:37 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Keep-Alive" />
+                    <option name="value" value="timeout=60" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="keep-alive" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="b11b7b61-6e5b-48a2-bae9-ec78b1f7e7d0" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="2" />
+              <option name="size" value="1" />
+              <option name="time" value="107" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744985394729" />
+          <option name="id" value="d34b3d21-02a1-4d20-8473-e1e9a1695fdd" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;arthur dev&quot;,&#10;  &quot;destinataire&quot;: &quot;alex&quot;,&#10;  &quot;commanditaire&quot;: &quot;arthur&quot;,&#10;  &quot;nom_projet&quot;: &quot;Construire Maison Orange&quot;,&#10;  &quot;date_debut&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;  &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="b63d2b25-403d-4f8f-800f-4b0f49887ed7" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/tache/create" />
+              <option name="url" value="http://localhost:8080/api/tache/create" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjp0cnVlLCJtZXNzYWdlIjoiVGFjaGUgYmllbiBjcsOpw6kgZGFucyB1biBwcm9qZXQiLCJkYXRhIjp7ImlkIjoyLCJub20iOiJhcnRodXIgZGV2IiwiZXN0X3Rlcm1pbmUiOmZhbHNlLCJjb21tYW5kaXRhaXJlIjp7ImlkIjoyLCJub20iOiJhcnRodXIiLCJyb2xlX2FwcCI6Ik1FTUJSRSIsImVtYWlsIjoiYXJ0aHVyIiwicGFzc3dvcmQiOiJjbGFpcmUiLCJldGF0X2Nvbm5leGlvbiI6dHJ1ZSwidGFjaGVfY29tbWFuZGl0YWlyZSI6W3siaWQiOjIsIm5vbSI6ImFydGh1ciBkZXYiLCJlc3RfdGVybWluZSI6ZmFsc2UsImNvbW1hbmRpdGFpcmUiOjIsImRlc3RpbmF0YWlyZSI6eyJpZCI6MSwibm9tIjoiYWxleCIsInJvbGVfYXBwIjoiTUVNQlJFIiwiZW1haWwiOiJhbGV4IiwicGFzc3dvcmQiOiJjbGFpcmUiLCJldGF0X2Nvbm5leGlvbiI6dHJ1ZSwidGFjaGVfY29tbWFuZGl0YWlyZSI6W3siaWQiOjEsIm5vbSI6ImFsZXggZGV2IiwiZXN0X3Rlcm1pbmUiOmZhbHNlLCJjb21tYW5kaXRhaXJlIjoxLCJkZXN0aW5hdGFpcmUiOjEsImRlc2NyaXB0aW9uIjoiYWxleCIsImRhdGVfZGVidXQiOiIyMDI1LTA0LTE4VDE0OjA3OjQ1LjI0MSswMDowMCIsImRhdGVfZmluIjoiMjAyNS0wNC0xNFQxODo1OToxMS4zODMrMDA6MDAiLCJwcm9qZXQiOnsiaWQiOjEsIm5vbSI6IkNvbnN0cnVpcmUgTWFpc29uIE9yYW5nZSIsImRlc2NyaXB0aW9uIjpudWxsLCJkYXRlX2VjaGVhbmNlIjoiMjAyNS0wNC0xNCIsImRhdGVfY3JlYXRpb24iOiIyMDI1LTA0LTE4IiwidXRpbGlzYXRldXJzX3Byb2pldCI6W10sInByb2pldF90YWNoZXMiOltdLCJ0YWNoZXMiOlt7ImlkIjoxLCJub20iOiJhbGV4IGRldiIsImVzdF90ZXJtaW5lIjpmYWxzZSwiY29tbWFuZGl0YWlyZSI6MSwiZGVzdGluYXRhaXJlIjoxLCJkZXNjcmlwdGlvbiI6ImFsZXgiLCJkYXRlX2RlYnV0IjoiMjAyNS0wNC0xOFQxNDowNzo0NS4yNDErMDA6MDAiLCJkYXRlX2ZpbiI6IjIwMjUtMDQtMTRUMTg6NTk6MTEuMzgzKzAwOjAwIiwicHJvamV0IjoxfSx7ImlkIjoyLCJub20iOiJhcnRodXIgZGV2IiwiZXN0X3Rlcm1pbmUiOmZhbHNlLCJjb21tYW5kaXRhaXJlIjoyLCJkZXN0aW5hdGFpcmUiOjEsImRlc2NyaXB0aW9uIjoiYWxleCIsImRhdGVfZGVidXQiOiIyMDI1LTA0LTE4VDE0OjA5OjU0LjQ1OCswMDowMCIsImRhdGVfZmluIjoiMjAyNS0wNC0xNFQxODo1OToxMS4zODMrMDA6MDAiLCJwcm9qZXQiOjF9XSwiY3JlYXRldXIiOjF9fV0sInRhY2hlc19kZXN0aW5hdGFpcmUiOlt7ImlkIjoxLCJub20iOiJhbGV4IGRldiIsImVzdF90ZXJtaW5lIjpmYWxzZSwiY29tbWFuZGl0YWlyZSI6MSwiZGVzdGluYXRhaXJlIjoxLCJkZXNjcmlwdGlvbiI6ImFsZXgiLCJkYXRlX2RlYnV0IjoiMjAyNS0wNC0xOFQxNDowNzo0NS4yNDErMDA6MDAiLCJkYXRlX2ZpbiI6IjIwMjUtMDQtMTRUMTg6NTk6MTEuMzgzKzAwOjAwIiwicHJvamV0IjoxfSx7ImlkIjoyLCJub20iOiJhcnRodXIgZGV2IiwiZXN0X3Rlcm1pbmUiOmZhbHNlLCJjb21tYW5kaXRhaXJlIjoyLCJkZXN0aW5hdGFpcmUiOjEsImRlc2NyaXB0aW9uIjoiYWxleCIsImRhdGVfZGVidXQiOiIyMDI1LTA0LTE4VDE0OjA5OjU0LjQ1OCswMDowMCIsImRhdGVfZmluIjoiMjAyNS0wNC0xNFQxODo1OToxMS4zODMrMDA6MDAiLCJwcm9qZXQiOjF9XSwicHJvamV0c191dGlsaXNhdGV1ciI6W10sInByb2pldHMiOlsxXSwicm9sZXNfcHJvamV0IjpbeyJpZCI6MSwibm9tIjoiQURNSU5JU1RSQVRFVVIiLCJham91dGVyX21lbWJyZSI6dHJ1ZSwiY3JlZXJfdGFjaGUiOnRydWUsImFzc2lnbmVfdGFjaGUiOnRydWUsIm1hal90YWNoZSI6dHJ1ZSwidnVlX3RhY2hlIjp0cnVlLCJ2dWVfdGFibGVhdV9kZV9ib3JkIjp0cnVlLCJldHJlX25vdGlmaWUiOnRydWUsInZ1ZV9oaXN0b3JpcXVlX21vZGlmaWNhdGlvbnMiOnRydWUsInV0aWxpc2F0ZXVyX3JvbGVzX3Byb2pldCI6WzFdfV19LCJkZXNjcmlwdGlvbiI6ImFsZXgiLCJkYXRlX2RlYnV0IjoiMjAyNS0wNC0xOFQxNDowOTo1NC40NTgrMDA6MDAiLCJkYXRlX2ZpbiI6IjIwMjUtMDQtMTRUMTg6NTk6MTEuMzgzKzAwOjAwIiwicHJvamV0IjoxfV0sInRhY2hlc19kZXN0aW5hdGFpcmUiOltdLCJwcm9qZXRzX3V0aWxpc2F0ZXVyIjpbXSwicHJvamV0cyI6W10sInJvbGVzX3Byb2pldCI6W3siaWQiOjIsIm5vbSI6Ik1FTUJSRSIsImFqb3V0ZXJfbWVtYnJlIjpmYWxzZSwiY3JlZXJfdGFjaGUiOnRydWUsImFzc2lnbmVfdGFjaGUiOmZhbHNlLCJtYWpfdGFjaGUiOnRydWUsInZ1ZV90YWNoZSI6dHJ1ZSwidnVlX3RhYmxlYXVfZGVfYm9yZCI6dHJ1ZSwiZXRyZV9ub3RpZmllIjp0cnVlLCJ2dWVfaGlzdG9yaXF1ZV9tb2RpZmljYXRpb25zIjp0cnVlLCJ1dGlsaXNhdGV1cl9yb2xlc19wcm9qZXQiOlsyXX1dfSwiZGVzdGluYXRhaXJlIjoxLCJkZXNjcmlwdGlvbiI6ImFsZXgiLCJkYXRlX2RlYnV0IjoiMjAyNS0wNC0xOFQxNDowOTo1NC40NTgrMDA6MDAiLCJkYXRlX2ZpbiI6IjIwMjUtMDQtMTRUMTg6NTk6MTEuMzgzKzAwOjAwIiwicHJvamV0IjoxfX0=" />
+              <option name="bodyString" value="{&#10;  &quot;success&quot;: true,&#10;  &quot;message&quot;: &quot;Tache bien créé dans un projet&quot;,&#10;  &quot;data&quot;: {&#10;    &quot;id&quot;: 2,&#10;    &quot;nom&quot;: &quot;arthur dev&quot;,&#10;    &quot;est_termine&quot;: false,&#10;    &quot;commanditaire&quot;: {&#10;      &quot;id&quot;: 2,&#10;      &quot;nom&quot;: &quot;arthur&quot;,&#10;      &quot;role_app&quot;: &quot;MEMBRE&quot;,&#10;      &quot;email&quot;: &quot;arthur&quot;,&#10;      &quot;password&quot;: &quot;claire&quot;,&#10;      &quot;etat_connexion&quot;: true,&#10;      &quot;tache_commanditaire&quot;: [&#10;        {&#10;          &quot;id&quot;: 2,&#10;          &quot;nom&quot;: &quot;arthur dev&quot;,&#10;          &quot;est_termine&quot;: false,&#10;          &quot;commanditaire&quot;: 2,&#10;          &quot;destinataire&quot;: {&#10;            &quot;id&quot;: 1,&#10;            &quot;nom&quot;: &quot;alex&quot;,&#10;            &quot;role_app&quot;: &quot;MEMBRE&quot;,&#10;            &quot;email&quot;: &quot;alex&quot;,&#10;            &quot;password&quot;: &quot;claire&quot;,&#10;            &quot;etat_connexion&quot;: true,&#10;            &quot;tache_commanditaire&quot;: [&#10;              {&#10;                &quot;id&quot;: 1,&#10;                &quot;nom&quot;: &quot;alex dev&quot;,&#10;                &quot;est_termine&quot;: false,&#10;                &quot;commanditaire&quot;: 1,&#10;                &quot;destinataire&quot;: 1,&#10;                &quot;description&quot;: &quot;alex&quot;,&#10;                &quot;date_debut&quot;: &quot;2025-04-18T14:07:45.241+00:00&quot;,&#10;                &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;                &quot;projet&quot;: {&#10;                  &quot;id&quot;: 1,&#10;                  &quot;nom&quot;: &quot;Construire Maison Orange&quot;,&#10;                  &quot;description&quot;: null,&#10;                  &quot;date_echeance&quot;: &quot;2025-04-14&quot;,&#10;                  &quot;date_creation&quot;: &quot;2025-04-18&quot;,&#10;                  &quot;utilisateurs_projet&quot;: [],&#10;                  &quot;projet_taches&quot;: [],&#10;                  &quot;taches&quot;: [&#10;                    {&#10;                      &quot;id&quot;: 1,&#10;                      &quot;nom&quot;: &quot;alex dev&quot;,&#10;                      &quot;est_termine&quot;: false,&#10;                      &quot;commanditaire&quot;: 1,&#10;                      &quot;destinataire&quot;: 1,&#10;                      &quot;description&quot;: &quot;alex&quot;,&#10;                      &quot;date_debut&quot;: &quot;2025-04-18T14:07:45.241+00:00&quot;,&#10;                      &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;                      &quot;projet&quot;: 1&#10;                    },&#10;                    {&#10;                      &quot;id&quot;: 2,&#10;                      &quot;nom&quot;: &quot;arthur dev&quot;,&#10;                      &quot;est_termine&quot;: false,&#10;                      &quot;commanditaire&quot;: 2,&#10;                      &quot;destinataire&quot;: 1,&#10;                      &quot;description&quot;: &quot;alex&quot;,&#10;                      &quot;date_debut&quot;: &quot;2025-04-18T14:09:54.458+00:00&quot;,&#10;                      &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;                      &quot;projet&quot;: 1&#10;                    }&#10;                  ],&#10;                  &quot;createur&quot;: 1&#10;                }&#10;              }&#10;            ],&#10;            &quot;taches_destinataire&quot;: [&#10;              {&#10;                &quot;id&quot;: 1,&#10;                &quot;nom&quot;: &quot;alex dev&quot;,&#10;                &quot;est_termine&quot;: false,&#10;                &quot;commanditaire&quot;: 1,&#10;                &quot;destinataire&quot;: 1,&#10;                &quot;description&quot;: &quot;alex&quot;,&#10;                &quot;date_debut&quot;: &quot;2025-04-18T14:07:45.241+00:00&quot;,&#10;                &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;                &quot;projet&quot;: 1&#10;              },&#10;              {&#10;                &quot;id&quot;: 2,&#10;                &quot;nom&quot;: &quot;arthur dev&quot;,&#10;                &quot;est_termine&quot;: false,&#10;                &quot;commanditaire&quot;: 2,&#10;                &quot;destinataire&quot;: 1,&#10;                &quot;description&quot;: &quot;alex&quot;,&#10;                &quot;date_debut&quot;: &quot;2025-04-18T14:09:54.458+00:00&quot;,&#10;                &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;                &quot;projet&quot;: 1&#10;              }&#10;            ],&#10;            &quot;projets_utilisateur&quot;: [],&#10;            &quot;projets&quot;: [&#10;              1&#10;            ],&#10;            &quot;roles_projet&quot;: [&#10;              {&#10;                &quot;id&quot;: 1,&#10;                &quot;nom&quot;: &quot;ADMINISTRATEUR&quot;,&#10;                &quot;ajouter_membre&quot;: true,&#10;                &quot;creer_tache&quot;: true,&#10;                &quot;assigne_tache&quot;: true,&#10;                &quot;maj_tache&quot;: true,&#10;                &quot;vue_tache&quot;: true,&#10;                &quot;vue_tableau_de_bord&quot;: true,&#10;                &quot;etre_notifie&quot;: true,&#10;                &quot;vue_historique_modifications&quot;: true,&#10;                &quot;utilisateur_roles_projet&quot;: [&#10;                  1&#10;                ]&#10;              }&#10;            ]&#10;          },&#10;          &quot;description&quot;: &quot;alex&quot;,&#10;          &quot;date_debut&quot;: &quot;2025-04-18T14:09:54.458+00:00&quot;,&#10;          &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;          &quot;projet&quot;: 1&#10;        }&#10;      ],&#10;      &quot;taches_destinataire&quot;: [],&#10;      &quot;projets_utilisateur&quot;: [],&#10;      &quot;projets&quot;: [],&#10;      &quot;roles_projet&quot;: [&#10;        {&#10;          &quot;id&quot;: 2,&#10;          &quot;nom&quot;: &quot;MEMBRE&quot;,&#10;          &quot;ajouter_membre&quot;: false,&#10;          &quot;creer_tache&quot;: true,&#10;          &quot;assigne_tache&quot;: false,&#10;          &quot;maj_tache&quot;: true,&#10;          &quot;vue_tache&quot;: true,&#10;          &quot;vue_tableau_de_bord&quot;: true,&#10;          &quot;etre_notifie&quot;: true,&#10;          &quot;vue_historique_modifications&quot;: true,&#10;          &quot;utilisateur_roles_projet&quot;: [&#10;            2&#10;          ]&#10;        }&#10;      ]&#10;    },&#10;    &quot;destinataire&quot;: 1,&#10;    &quot;description&quot;: &quot;alex&quot;,&#10;    &quot;date_debut&quot;: &quot;2025-04-18T14:09:54.458+00:00&quot;,&#10;    &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;    &quot;projet&quot;: 1&#10;  }&#10;}" />
+              <option name="code" value="200" />
+              <option name="connectionEstablishingTime" value="3" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 14:09:54 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Keep-Alive" />
+                    <option name="value" value="timeout=60" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="keep-alive" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="d34b3d21-02a1-4d20-8473-e1e9a1695fdd" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="{&quot;success&quot;:true,&quot;message&quot;:&quot;Tache bien créé dans un projet&quot;,&quot;data&quot;:{&quot;id&quot;:2,&quot;nom&quot;:&quot;arthur dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:{&quot;id&quot;:2,&quot;nom&quot;:&quot;arthur&quot;,&quot;role_app&quot;:&quot;MEMBRE&quot;,&quot;email&quot;:&quot;arthur&quot;,&quot;password&quot;:&quot;claire&quot;,&quot;etat_connexion&quot;:true,&quot;tache_commanditaire&quot;:[{&quot;id&quot;:2,&quot;nom&quot;:&quot;arthur dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:2,&quot;destinataire&quot;:{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex&quot;,&quot;role_app&quot;:&quot;MEMBRE&quot;,&quot;email&quot;:&quot;alex&quot;,&quot;password&quot;:&quot;claire&quot;,&quot;etat_connexion&quot;:true,&quot;tache_commanditaire&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:1,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:07:45.241+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:{&quot;id&quot;:1,&quot;nom&quot;:&quot;Construire Maison Orange&quot;,&quot;description&quot;:null,&quot;date_echeance&quot;:&quot;2025-04-14&quot;,&quot;date_creation&quot;:&quot;2025-04-18&quot;,&quot;utilisateurs_projet&quot;:[],&quot;projet_taches&quot;:[],&quot;taches&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:1,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:07:45.241+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1},{&quot;id&quot;:2,&quot;nom&quot;:&quot;arthur dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:2,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:09:54.458+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1}],&quot;createur&quot;:1}}],&quot;taches_destinataire&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:1,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:07:45.241+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1},{&quot;id&quot;:2,&quot;nom&quot;:&quot;arthur dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:2,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:09:54.458+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1}],&quot;projets_utilisateur&quot;:[],&quot;projets&quot;:[1],&quot;roles_projet&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;ADMINISTRATEUR&quot;,&quot;ajouter_membre&quot;:true,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:true,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true,&quot;utilisateur_roles_projet&quot;:[1]}]},&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:09:54.458+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1}],&quot;taches_destinataire&quot;:[],&quot;projets_utilisateur&quot;:[],&quot;projets&quot;:[],&quot;roles_projet&quot;:[{&quot;id&quot;:2,&quot;nom&quot;:&quot;MEMBRE&quot;,&quot;ajouter_membre&quot;:false,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:false,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true,&quot;utilisateur_roles_projet&quot;:[2]}]},&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:09:54.458+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1}}" />
+              <option name="size" value="2552" />
+              <option name="time" value="271" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744985503585" />
+          <option name="id" value="fe4a214a-4589-4d20-acda-57cadec2eddf" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;arthur dev&quot;,&#10;  &quot;destinataire&quot;: &quot;alex&quot;,&#10;  &quot;commanditaire&quot;: &quot;arthur&quot;,&#10;  &quot;nom_projet&quot;: &quot;Construire Maison Orange&quot;,&#10;  &quot;date_debut&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;  &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="b63d2b25-403d-4f8f-800f-4b0f49887ed7" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/tache/create" />
+              <option name="url" value="http://localhost:8080/api/tache/create" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjpmYWxzZSwibWVzc2FnZSI6IlJlcXVldHRlIGRlIFRhY2hlIGVycm9uw6llIiwiZGF0YSI6bnVsbH0=" />
+              <option name="bodyString" value="{&#10;  &quot;success&quot;: false,&#10;  &quot;message&quot;: &quot;Requette de Tache erronée&quot;,&#10;  &quot;data&quot;: null&#10;}" />
+              <option name="code" value="400" />
+              <option name="connectionEstablishingTime" value="15" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 14:11:43 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="close" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="fe4a214a-4589-4d20-acda-57cadec2eddf" />
+              <option name="message" value="Bad Request" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="{&quot;success&quot;:false,&quot;message&quot;:&quot;Requette de Tache erronée&quot;,&quot;data&quot;:null}" />
+              <option name="size" value="68" />
+              <option name="time" value="243" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744985514569" />
+          <option name="id" value="63ec5707-0ff1-4e9f-8066-ec2c4bb7c35e" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;arthur dev&quot;,&#10;  &quot;destinataire&quot;: &quot;alex&quot;,&#10;  &quot;commanditaire&quot;: &quot;arthur&quot;,&#10;  &quot;nom_projet&quot;: &quot;Construire Maison Orane&quot;,&#10;  &quot;date_debut&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;  &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="b63d2b25-403d-4f8f-800f-4b0f49887ed7" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/tache/create" />
+              <option name="url" value="http://localhost:8080/api/tache/create" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjpmYWxzZSwibWVzc2FnZSI6IlJlcXVldHRlIGRlIFRhY2hlIGVycm9uw6llIiwiZGF0YSI6bnVsbH0=" />
+              <option name="bodyString" value="{&#10;  &quot;success&quot;: false,&#10;  &quot;message&quot;: &quot;Requette de Tache erronée&quot;,&#10;  &quot;data&quot;: null&#10;}" />
+              <option name="code" value="400" />
+              <option name="connectionEstablishingTime" value="6" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 14:11:54 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="close" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="63ec5707-0ff1-4e9f-8066-ec2c4bb7c35e" />
+              <option name="message" value="Bad Request" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="{&quot;success&quot;:false,&quot;message&quot;:&quot;Requette de Tache erronée&quot;,&quot;data&quot;:null}" />
+              <option name="size" value="68" />
+              <option name="time" value="72" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744985519885" />
+          <option name="id" value="4929927c-98e7-4cb2-944f-9e9779816cdd" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;arthur dev&quot;,&#10;  &quot;destinataire&quot;: &quot;alex&quot;,&#10;  &quot;commanditaire&quot;: &quot;arhur&quot;,&#10;  &quot;nom_projet&quot;: &quot;Construire Maison Orange&quot;,&#10;  &quot;date_debut&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;  &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="b63d2b25-403d-4f8f-800f-4b0f49887ed7" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/tache/create" />
+              <option name="url" value="http://localhost:8080/api/tache/create" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjpmYWxzZSwibWVzc2FnZSI6IlJlcXVldHRlIGRlIFRhY2hlIGVycm9uw6llIiwiZGF0YSI6bnVsbH0=" />
+              <option name="bodyString" value="{&#10;  &quot;success&quot;: false,&#10;  &quot;message&quot;: &quot;Requette de Tache erronée&quot;,&#10;  &quot;data&quot;: null&#10;}" />
+              <option name="code" value="400" />
+              <option name="connectionEstablishingTime" value="7" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 14:11:59 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="close" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="4929927c-98e7-4cb2-944f-9e9779816cdd" />
+              <option name="message" value="Bad Request" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="{&quot;success&quot;:false,&quot;message&quot;:&quot;Requette de Tache erronée&quot;,&quot;data&quot;:null}" />
+              <option name="size" value="68" />
+              <option name="time" value="85" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744985524958" />
+          <option name="id" value="43241d19-11d7-420c-b30c-0fec58c88f35" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;arthur dv&quot;,&#10;  &quot;destinataire&quot;: &quot;alex&quot;,&#10;  &quot;commanditaire&quot;: &quot;arthur&quot;,&#10;  &quot;nom_projet&quot;: &quot;Construire Maison Orange&quot;,&#10;  &quot;date_debut&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;  &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="b63d2b25-403d-4f8f-800f-4b0f49887ed7" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/tache/create" />
+              <option name="url" value="http://localhost:8080/api/tache/create" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjp0cnVlLCJtZXNzYWdlIjoiVGFjaGUgYmllbiBjcsOpw6kgZGFucyB1biBwcm9qZXQiLCJkYXRhIjp7ImlkIjozLCJub20iOiJhcnRodXIgZHYiLCJlc3RfdGVybWluZSI6ZmFsc2UsImNvbW1hbmRpdGFpcmUiOnsiaWQiOjIsIm5vbSI6ImFydGh1ciIsInJvbGVfYXBwIjoiTUVNQlJFIiwiZW1haWwiOiJhcnRodXIiLCJwYXNzd29yZCI6ImNsYWlyZSIsImV0YXRfY29ubmV4aW9uIjp0cnVlLCJ0YWNoZV9jb21tYW5kaXRhaXJlIjpbeyJpZCI6Miwibm9tIjoiYXJ0aHVyIGRldiIsImVzdF90ZXJtaW5lIjpmYWxzZSwiY29tbWFuZGl0YWlyZSI6MiwiZGVzdGluYXRhaXJlIjp7ImlkIjoxLCJub20iOiJhbGV4Iiwicm9sZV9hcHAiOiJNRU1CUkUiLCJlbWFpbCI6ImFsZXgiLCJwYXNzd29yZCI6ImNsYWlyZSIsImV0YXRfY29ubmV4aW9uIjp0cnVlLCJ0YWNoZV9jb21tYW5kaXRhaXJlIjpbeyJpZCI6MSwibm9tIjoiYWxleCBkZXYiLCJlc3RfdGVybWluZSI6ZmFsc2UsImNvbW1hbmRpdGFpcmUiOjEsImRlc3RpbmF0YWlyZSI6MSwiZGVzY3JpcHRpb24iOiJhbGV4IiwiZGF0ZV9kZWJ1dCI6IjIwMjUtMDQtMThUMTQ6MDc6NDUuMjQxKzAwOjAwIiwiZGF0ZV9maW4iOiIyMDI1LTA0LTE0VDE4OjU5OjExLjM4MyswMDowMCIsInByb2pldCI6eyJpZCI6MSwibm9tIjoiQ29uc3RydWlyZSBNYWlzb24gT3JhbmdlIiwiZGVzY3JpcHRpb24iOm51bGwsImRhdGVfZWNoZWFuY2UiOiIyMDI1LTA0LTE0IiwiZGF0ZV9jcmVhdGlvbiI6IjIwMjUtMDQtMTgiLCJ1dGlsaXNhdGV1cnNfcHJvamV0IjpbXSwicHJvamV0X3RhY2hlcyI6W10sInRhY2hlcyI6W3siaWQiOjIsIm5vbSI6ImFydGh1ciBkZXYiLCJlc3RfdGVybWluZSI6ZmFsc2UsImNvbW1hbmRpdGFpcmUiOjIsImRlc3RpbmF0YWlyZSI6MSwiZGVzY3JpcHRpb24iOiJhbGV4IiwiZGF0ZV9kZWJ1dCI6IjIwMjUtMDQtMThUMTQ6MDk6NTQuNDU4KzAwOjAwIiwiZGF0ZV9maW4iOiIyMDI1LTA0LTE0VDE4OjU5OjExLjM4MyswMDowMCIsInByb2pldCI6MX0seyJpZCI6MSwibm9tIjoiYWxleCBkZXYiLCJlc3RfdGVybWluZSI6ZmFsc2UsImNvbW1hbmRpdGFpcmUiOjEsImRlc3RpbmF0YWlyZSI6MSwiZGVzY3JpcHRpb24iOiJhbGV4IiwiZGF0ZV9kZWJ1dCI6IjIwMjUtMDQtMThUMTQ6MDc6NDUuMjQxKzAwOjAwIiwiZGF0ZV9maW4iOiIyMDI1LTA0LTE0VDE4OjU5OjExLjM4MyswMDowMCIsInByb2pldCI6MX0seyJpZCI6Mywibm9tIjoiYXJ0aHVyIGR2IiwiZXN0X3Rlcm1pbmUiOmZhbHNlLCJjb21tYW5kaXRhaXJlIjoyLCJkZXN0aW5hdGFpcmUiOjEsImRlc2NyaXB0aW9uIjoiYWxleCIsImRhdGVfZGVidXQiOiIyMDI1LTA0LTE4VDE0OjEyOjA0LjkwNCswMDowMCIsImRhdGVfZmluIjoiMjAyNS0wNC0xNFQxODo1OToxMS4zODMrMDA6MDAiLCJwcm9qZXQiOjF9XSwiY3JlYXRldXIiOjF9fV0sInRhY2hlc19kZXN0aW5hdGFpcmUiOlt7ImlkIjoyLCJub20iOiJhcnRodXIgZGV2IiwiZXN0X3Rlcm1pbmUiOmZhbHNlLCJjb21tYW5kaXRhaXJlIjoyLCJkZXN0aW5hdGFpcmUiOjEsImRlc2NyaXB0aW9uIjoiYWxleCIsImRhdGVfZGVidXQiOiIyMDI1LTA0LTE4VDE0OjA5OjU0LjQ1OCswMDowMCIsImRhdGVfZmluIjoiMjAyNS0wNC0xNFQxODo1OToxMS4zODMrMDA6MDAiLCJwcm9qZXQiOjF9LHsiaWQiOjEsIm5vbSI6ImFsZXggZGV2IiwiZXN0X3Rlcm1pbmUiOmZhbHNlLCJjb21tYW5kaXRhaXJlIjoxLCJkZXN0aW5hdGFpcmUiOjEsImRlc2NyaXB0aW9uIjoiYWxleCIsImRhdGVfZGVidXQiOiIyMDI1LTA0LTE4VDE0OjA3OjQ1LjI0MSswMDowMCIsImRhdGVfZmluIjoiMjAyNS0wNC0xNFQxODo1OToxMS4zODMrMDA6MDAiLCJwcm9qZXQiOjF9LHsiaWQiOjMsIm5vbSI6ImFydGh1ciBkdiIsImVzdF90ZXJtaW5lIjpmYWxzZSwiY29tbWFuZGl0YWlyZSI6MiwiZGVzdGluYXRhaXJlIjoxLCJkZXNjcmlwdGlvbiI6ImFsZXgiLCJkYXRlX2RlYnV0IjoiMjAyNS0wNC0xOFQxNDoxMjowNC45MDQrMDA6MDAiLCJkYXRlX2ZpbiI6IjIwMjUtMDQtMTRUMTg6NTk6MTEuMzgzKzAwOjAwIiwicHJvamV0IjoxfV0sInByb2pldHNfdXRpbGlzYXRldXIiOltdLCJwcm9qZXRzIjpbMV0sInJvbGVzX3Byb2pldCI6W3siaWQiOjEsIm5vbSI6IkFETUlOSVNUUkFURVVSIiwiYWpvdXRlcl9tZW1icmUiOnRydWUsImNyZWVyX3RhY2hlIjp0cnVlLCJhc3NpZ25lX3RhY2hlIjp0cnVlLCJtYWpfdGFjaGUiOnRydWUsInZ1ZV90YWNoZSI6dHJ1ZSwidnVlX3RhYmxlYXVfZGVfYm9yZCI6dHJ1ZSwiZXRyZV9ub3RpZmllIjp0cnVlLCJ2dWVfaGlzdG9yaXF1ZV9tb2RpZmljYXRpb25zIjp0cnVlLCJ1dGlsaXNhdGV1cl9yb2xlc19wcm9qZXQiOlsxXX1dfSwiZGVzY3JpcHRpb24iOiJhbGV4IiwiZGF0ZV9kZWJ1dCI6IjIwMjUtMDQtMThUMTQ6MDk6NTQuNDU4KzAwOjAwIiwiZGF0ZV9maW4iOiIyMDI1LTA0LTE0VDE4OjU5OjExLjM4MyswMDowMCIsInByb2pldCI6MX0seyJpZCI6Mywibm9tIjoiYXJ0aHVyIGR2IiwiZXN0X3Rlcm1pbmUiOmZhbHNlLCJjb21tYW5kaXRhaXJlIjoyLCJkZXN0aW5hdGFpcmUiOjEsImRlc2NyaXB0aW9uIjoiYWxleCIsImRhdGVfZGVidXQiOiIyMDI1LTA0LTE4VDE0OjEyOjA0LjkwNCswMDowMCIsImRhdGVfZmluIjoiMjAyNS0wNC0xNFQxODo1OToxMS4zODMrMDA6MDAiLCJwcm9qZXQiOjF9XSwidGFjaGVzX2Rlc3RpbmF0YWlyZSI6W10sInByb2pldHNfdXRpbGlzYXRldXIiOltdLCJwcm9qZXRzIjpbXSwicm9sZXNfcHJvamV0IjpbeyJpZCI6Miwibm9tIjoiTUVNQlJFIiwiYWpvdXRlcl9tZW1icmUiOmZhbHNlLCJjcmVlcl90YWNoZSI6dHJ1ZSwiYXNzaWduZV90YWNoZSI6ZmFsc2UsIm1hal90YWNoZSI6dHJ1ZSwidnVlX3RhY2hlIjp0cnVlLCJ2dWVfdGFibGVhdV9kZV9ib3JkIjp0cnVlLCJldHJlX25vdGlmaWUiOnRydWUsInZ1ZV9oaXN0b3JpcXVlX21vZGlmaWNhdGlvbnMiOnRydWUsInV0aWxpc2F0ZXVyX3JvbGVzX3Byb2pldCI6WzJdfV19LCJkZXN0aW5hdGFpcmUiOjEsImRlc2NyaXB0aW9uIjoiYWxleCIsImRhdGVfZGVidXQiOiIyMDI1LTA0LTE4VDE0OjEyOjA0LjkwNCswMDowMCIsImRhdGVfZmluIjoiMjAyNS0wNC0xNFQxODo1OToxMS4zODMrMDA6MDAiLCJwcm9qZXQiOjF9fQ==" />
+              <option name="bodyString" value="{&#10;  &quot;success&quot;: true,&#10;  &quot;message&quot;: &quot;Tache bien créé dans un projet&quot;,&#10;  &quot;data&quot;: {&#10;    &quot;id&quot;: 3,&#10;    &quot;nom&quot;: &quot;arthur dv&quot;,&#10;    &quot;est_termine&quot;: false,&#10;    &quot;commanditaire&quot;: {&#10;      &quot;id&quot;: 2,&#10;      &quot;nom&quot;: &quot;arthur&quot;,&#10;      &quot;role_app&quot;: &quot;MEMBRE&quot;,&#10;      &quot;email&quot;: &quot;arthur&quot;,&#10;      &quot;password&quot;: &quot;claire&quot;,&#10;      &quot;etat_connexion&quot;: true,&#10;      &quot;tache_commanditaire&quot;: [&#10;        {&#10;          &quot;id&quot;: 2,&#10;          &quot;nom&quot;: &quot;arthur dev&quot;,&#10;          &quot;est_termine&quot;: false,&#10;          &quot;commanditaire&quot;: 2,&#10;          &quot;destinataire&quot;: {&#10;            &quot;id&quot;: 1,&#10;            &quot;nom&quot;: &quot;alex&quot;,&#10;            &quot;role_app&quot;: &quot;MEMBRE&quot;,&#10;            &quot;email&quot;: &quot;alex&quot;,&#10;            &quot;password&quot;: &quot;claire&quot;,&#10;            &quot;etat_connexion&quot;: true,&#10;            &quot;tache_commanditaire&quot;: [&#10;              {&#10;                &quot;id&quot;: 1,&#10;                &quot;nom&quot;: &quot;alex dev&quot;,&#10;                &quot;est_termine&quot;: false,&#10;                &quot;commanditaire&quot;: 1,&#10;                &quot;destinataire&quot;: 1,&#10;                &quot;description&quot;: &quot;alex&quot;,&#10;                &quot;date_debut&quot;: &quot;2025-04-18T14:07:45.241+00:00&quot;,&#10;                &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;                &quot;projet&quot;: {&#10;                  &quot;id&quot;: 1,&#10;                  &quot;nom&quot;: &quot;Construire Maison Orange&quot;,&#10;                  &quot;description&quot;: null,&#10;                  &quot;date_echeance&quot;: &quot;2025-04-14&quot;,&#10;                  &quot;date_creation&quot;: &quot;2025-04-18&quot;,&#10;                  &quot;utilisateurs_projet&quot;: [],&#10;                  &quot;projet_taches&quot;: [],&#10;                  &quot;taches&quot;: [&#10;                    {&#10;                      &quot;id&quot;: 2,&#10;                      &quot;nom&quot;: &quot;arthur dev&quot;,&#10;                      &quot;est_termine&quot;: false,&#10;                      &quot;commanditaire&quot;: 2,&#10;                      &quot;destinataire&quot;: 1,&#10;                      &quot;description&quot;: &quot;alex&quot;,&#10;                      &quot;date_debut&quot;: &quot;2025-04-18T14:09:54.458+00:00&quot;,&#10;                      &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;                      &quot;projet&quot;: 1&#10;                    },&#10;                    {&#10;                      &quot;id&quot;: 1,&#10;                      &quot;nom&quot;: &quot;alex dev&quot;,&#10;                      &quot;est_termine&quot;: false,&#10;                      &quot;commanditaire&quot;: 1,&#10;                      &quot;destinataire&quot;: 1,&#10;                      &quot;description&quot;: &quot;alex&quot;,&#10;                      &quot;date_debut&quot;: &quot;2025-04-18T14:07:45.241+00:00&quot;,&#10;                      &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;                      &quot;projet&quot;: 1&#10;                    },&#10;                    {&#10;                      &quot;id&quot;: 3,&#10;                      &quot;nom&quot;: &quot;arthur dv&quot;,&#10;                      &quot;est_termine&quot;: false,&#10;                      &quot;commanditaire&quot;: 2,&#10;                      &quot;destinataire&quot;: 1,&#10;                      &quot;description&quot;: &quot;alex&quot;,&#10;                      &quot;date_debut&quot;: &quot;2025-04-18T14:12:04.904+00:00&quot;,&#10;                      &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;                      &quot;projet&quot;: 1&#10;                    }&#10;                  ],&#10;                  &quot;createur&quot;: 1&#10;                }&#10;              }&#10;            ],&#10;            &quot;taches_destinataire&quot;: [&#10;              {&#10;                &quot;id&quot;: 2,&#10;                &quot;nom&quot;: &quot;arthur dev&quot;,&#10;                &quot;est_termine&quot;: false,&#10;                &quot;commanditaire&quot;: 2,&#10;                &quot;destinataire&quot;: 1,&#10;                &quot;description&quot;: &quot;alex&quot;,&#10;                &quot;date_debut&quot;: &quot;2025-04-18T14:09:54.458+00:00&quot;,&#10;                &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;                &quot;projet&quot;: 1&#10;              },&#10;              {&#10;                &quot;id&quot;: 1,&#10;                &quot;nom&quot;: &quot;alex dev&quot;,&#10;                &quot;est_termine&quot;: false,&#10;                &quot;commanditaire&quot;: 1,&#10;                &quot;destinataire&quot;: 1,&#10;                &quot;description&quot;: &quot;alex&quot;,&#10;                &quot;date_debut&quot;: &quot;2025-04-18T14:07:45.241+00:00&quot;,&#10;                &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;                &quot;projet&quot;: 1&#10;              },&#10;              {&#10;                &quot;id&quot;: 3,&#10;                &quot;nom&quot;: &quot;arthur dv&quot;,&#10;                &quot;est_termine&quot;: false,&#10;                &quot;commanditaire&quot;: 2,&#10;                &quot;destinataire&quot;: 1,&#10;                &quot;description&quot;: &quot;alex&quot;,&#10;                &quot;date_debut&quot;: &quot;2025-04-18T14:12:04.904+00:00&quot;,&#10;                &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;                &quot;projet&quot;: 1&#10;              }&#10;            ],&#10;            &quot;projets_utilisateur&quot;: [],&#10;            &quot;projets&quot;: [&#10;              1&#10;            ],&#10;            &quot;roles_projet&quot;: [&#10;              {&#10;                &quot;id&quot;: 1,&#10;                &quot;nom&quot;: &quot;ADMINISTRATEUR&quot;,&#10;                &quot;ajouter_membre&quot;: true,&#10;                &quot;creer_tache&quot;: true,&#10;                &quot;assigne_tache&quot;: true,&#10;                &quot;maj_tache&quot;: true,&#10;                &quot;vue_tache&quot;: true,&#10;                &quot;vue_tableau_de_bord&quot;: true,&#10;                &quot;etre_notifie&quot;: true,&#10;                &quot;vue_historique_modifications&quot;: true,&#10;                &quot;utilisateur_roles_projet&quot;: [&#10;                  1&#10;                ]&#10;              }&#10;            ]&#10;          },&#10;          &quot;description&quot;: &quot;alex&quot;,&#10;          &quot;date_debut&quot;: &quot;2025-04-18T14:09:54.458+00:00&quot;,&#10;          &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;          &quot;projet&quot;: 1&#10;        },&#10;        {&#10;          &quot;id&quot;: 3,&#10;          &quot;nom&quot;: &quot;arthur dv&quot;,&#10;          &quot;est_termine&quot;: false,&#10;          &quot;commanditaire&quot;: 2,&#10;          &quot;destinataire&quot;: 1,&#10;          &quot;description&quot;: &quot;alex&quot;,&#10;          &quot;date_debut&quot;: &quot;2025-04-18T14:12:04.904+00:00&quot;,&#10;          &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;          &quot;projet&quot;: 1&#10;        }&#10;      ],&#10;      &quot;taches_destinataire&quot;: [],&#10;      &quot;projets_utilisateur&quot;: [],&#10;      &quot;projets&quot;: [],&#10;      &quot;roles_projet&quot;: [&#10;        {&#10;          &quot;id&quot;: 2,&#10;          &quot;nom&quot;: &quot;MEMBRE&quot;,&#10;          &quot;ajouter_membre&quot;: false,&#10;          &quot;creer_tache&quot;: true,&#10;          &quot;assigne_tache&quot;: false,&#10;          &quot;maj_tache&quot;: true,&#10;          &quot;vue_tache&quot;: true,&#10;          &quot;vue_tableau_de_bord&quot;: true,&#10;          &quot;etre_notifie&quot;: true,&#10;          &quot;vue_historique_modifications&quot;: true,&#10;          &quot;utilisateur_roles_projet&quot;: [&#10;            2&#10;          ]&#10;        }&#10;      ]&#10;    },&#10;    &quot;destinataire&quot;: 1,&#10;    &quot;description&quot;: &quot;alex&quot;,&#10;    &quot;date_debut&quot;: &quot;2025-04-18T14:12:04.904+00:00&quot;,&#10;    &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;    &quot;projet&quot;: 1&#10;  }&#10;}" />
+              <option name="code" value="200" />
+              <option name="connectionEstablishingTime" value="9" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 14:12:05 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Keep-Alive" />
+                    <option name="value" value="timeout=60" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="keep-alive" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="43241d19-11d7-420c-b30c-0fec58c88f35" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="{&quot;success&quot;:true,&quot;message&quot;:&quot;Tache bien créé dans un projet&quot;,&quot;data&quot;:{&quot;id&quot;:3,&quot;nom&quot;:&quot;arthur dv&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:{&quot;id&quot;:2,&quot;nom&quot;:&quot;arthur&quot;,&quot;role_app&quot;:&quot;MEMBRE&quot;,&quot;email&quot;:&quot;arthur&quot;,&quot;password&quot;:&quot;claire&quot;,&quot;etat_connexion&quot;:true,&quot;tache_commanditaire&quot;:[{&quot;id&quot;:2,&quot;nom&quot;:&quot;arthur dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:2,&quot;destinataire&quot;:{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex&quot;,&quot;role_app&quot;:&quot;MEMBRE&quot;,&quot;email&quot;:&quot;alex&quot;,&quot;password&quot;:&quot;claire&quot;,&quot;etat_connexion&quot;:true,&quot;tache_commanditaire&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:1,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:07:45.241+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:{&quot;id&quot;:1,&quot;nom&quot;:&quot;Construire Maison Orange&quot;,&quot;description&quot;:null,&quot;date_echeance&quot;:&quot;2025-04-14&quot;,&quot;date_creation&quot;:&quot;2025-04-18&quot;,&quot;utilisateurs_projet&quot;:[],&quot;projet_taches&quot;:[],&quot;taches&quot;:[{&quot;id&quot;:2,&quot;nom&quot;:&quot;arthur dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:2,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:09:54.458+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1},{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:1,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:07:45.241+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1},{&quot;id&quot;:3,&quot;nom&quot;:&quot;arthur dv&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:2,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:12:04.904+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1}],&quot;createur&quot;:1}}],&quot;taches_destinataire&quot;:[{&quot;id&quot;:2,&quot;nom&quot;:&quot;arthur dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:2,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:09:54.458+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1},{&quot;id&quot;:1,&quot;nom&quot;:&quot;alex dev&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:1,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:07:45.241+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1},{&quot;id&quot;:3,&quot;nom&quot;:&quot;arthur dv&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:2,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:12:04.904+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1}],&quot;projets_utilisateur&quot;:[],&quot;projets&quot;:[1],&quot;roles_projet&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;ADMINISTRATEUR&quot;,&quot;ajouter_membre&quot;:true,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:true,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true,&quot;utilisateur_roles_projet&quot;:[1]}]},&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:09:54.458+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1},{&quot;id&quot;:3,&quot;nom&quot;:&quot;arthur dv&quot;,&quot;est_termine&quot;:false,&quot;commanditaire&quot;:2,&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:12:04.904+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1}],&quot;taches_destinataire&quot;:[],&quot;projets_utilisateur&quot;:[],&quot;projets&quot;:[],&quot;roles_projet&quot;:[{&quot;id&quot;:2,&quot;nom&quot;:&quot;MEMBRE&quot;,&quot;ajouter_membre&quot;:false,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:false,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true,&quot;utilisateur_roles_projet&quot;:[2]}]},&quot;destinataire&quot;:1,&quot;description&quot;:&quot;alex&quot;,&quot;date_debut&quot;:&quot;2025-04-18T14:12:04.904+00:00&quot;,&quot;date_fin&quot;:&quot;2025-04-14T18:59:11.383+00:00&quot;,&quot;projet&quot;:1}}" />
+              <option name="size" value="3157" />
+              <option name="time" value="181" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744985532322" />
+          <option name="id" value="8e36178b-2261-4043-b3b3-5d89aa48df93" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;arthur dv&quot;,&#10;  &quot;destinataire&quot;: &quot;aex&quot;,&#10;  &quot;commanditaire&quot;: &quot;arthur&quot;,&#10;  &quot;nom_projet&quot;: &quot;Construire Maison Orange&quot;,&#10;  &quot;date_debut&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;  &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="b63d2b25-403d-4f8f-800f-4b0f49887ed7" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/tache/create" />
+              <option name="url" value="http://localhost:8080/api/tache/create" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjpmYWxzZSwibWVzc2FnZSI6IlJlcXVldHRlIGRlIFRhY2hlIGVycm9uw6llIiwiZGF0YSI6bnVsbH0=" />
+              <option name="bodyString" value="{&#10;  &quot;success&quot;: false,&#10;  &quot;message&quot;: &quot;Requette de Tache erronée&quot;,&#10;  &quot;data&quot;: null&#10;}" />
+              <option name="code" value="400" />
+              <option name="connectionEstablishingTime" value="3" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 14:12:12 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="close" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="8e36178b-2261-4043-b3b3-5d89aa48df93" />
+              <option name="message" value="Bad Request" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="{&quot;success&quot;:false,&quot;message&quot;:&quot;Requette de Tache erronée&quot;,&quot;data&quot;:null}" />
+              <option name="size" value="68" />
+              <option name="time" value="65" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1744985536085" />
+          <option name="id" value="b5e1b040-6d62-4e56-9579-6e7a3005ff20" />
+          <option name="request">
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;arthur v&quot;,&#10;  &quot;destinataire&quot;: &quot;aex&quot;,&#10;  &quot;commanditaire&quot;: &quot;arthur&quot;,&#10;  &quot;nom_projet&quot;: &quot;Construire Maison Orange&quot;,&#10;  &quot;date_debut&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;  &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="b63d2b25-403d-4f8f-800f-4b0f49887ed7" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/tache/create" />
+              <option name="url" value="http://localhost:8080/api/tache/create" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjpmYWxzZSwibWVzc2FnZSI6IlJlcXVldHRlIGRlIFRhY2hlIGVycm9uw6llIiwiZGF0YSI6bnVsbH0=" />
+              <option name="bodyString" value="{&#10;  &quot;success&quot;: false,&#10;  &quot;message&quot;: &quot;Requette de Tache erronée&quot;,&#10;  &quot;data&quot;: null&#10;}" />
+              <option name="code" value="400" />
+              <option name="connectionEstablishingTime" value="12" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Fri, 18 Apr 2025 14:12:16 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="close" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="b5e1b040-6d62-4e56-9579-6e7a3005ff20" />
+              <option name="message" value="Bad Request" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="{&quot;success&quot;:false,&quot;message&quot;:&quot;Requette de Tache erronée&quot;,&quot;data&quot;:null}" />
+              <option name="size" value="68" />
+              <option name="time" value="86" />
             </responseState>
           </option>
           <option name="workspaceId" value="drafts" />

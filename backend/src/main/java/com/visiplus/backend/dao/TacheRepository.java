@@ -10,4 +10,6 @@ public interface TacheRepository extends CrudRepository<Tache, Integer> {
     Optional<Tache> findByNom(String nom);
 
     Tache save(Tache tache);
+
+    Tache findById(int id);
 };

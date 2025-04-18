@@ -10,4 +10,6 @@ public interface ProjetService {
 
     Projet findByNom(String nom);
 
+    Projet findById(int id);
+
 };

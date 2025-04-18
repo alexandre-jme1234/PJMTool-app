@@ -20,7 +20,7 @@
             <requestState>
               <option name="body">
                 <bodyState>
-                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;alex&quot;,&#10;  &quot;nom&quot;: &quot;alex&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;  &quot;etat_connexion&quot;: true,&#10;}" />
+                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;arthur&quot;,&#10;  &quot;nom&quot;: &quot;arthur&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;  &quot;etat_connexion&quot;: true,&#10;}" />
                   <option name="type" value="JSON" />
                 </bodyState>
               </option>
@@ -32,7 +32,7 @@
             <requestState>
               <option name="body">
                 <bodyState>
-                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;arthur&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;}" />
+                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;alex&quot;,&#10;  &quot;password&quot;: &quot;claire&quot;,&#10;}" />
                   <option name="type" value="JSON" />
                 </bodyState>
               </option>
@@ -100,6 +100,18 @@
               <option name="method" value="GET" />
               <option name="name" value="api/projet/{nom} (1)" />
               <option name="url" value="http://localhost:8080/api/projet/Projet ArthurS" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;nom&quot;: &quot;arthur v&quot;,&#10;  &quot;destinataire&quot;: &quot;aex&quot;,&#10;  &quot;commanditaire&quot;: &quot;arthur&quot;,&#10;  &quot;nom_projet&quot;: &quot;Construire Maison Orange&quot;,&#10;  &quot;date_debut&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;,&#10;  &quot;date_fin&quot;: &quot;2025-04-14T18:59:11.383+00:00&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="id" value="b63d2b25-403d-4f8f-800f-4b0f49887ed7" />
+              <option name="method" value="POST" />
+              <option name="name" value="api/tache/create" />
+              <option name="url" value="http://localhost:8080/api/tache/create" />
             </requestState>
           </list>
         </option>
