@@ -1,5 +1,6 @@
 package com.visiplus.backend.dto;
 
+import com.visiplus.backend.models.Projet;
 import com.visiplus.backend.models.Utilisateur;
 
 import java.util.Date;
@@ -7,11 +8,21 @@ import java.util.Date;
 public class TacheRequest {
     private int id;
     private String nom;
-    private String destinataire;
-    private String nom_projet;
-    private String commanditaire;
+    private Integer destinataire_id;
+    private Integer projet_id;
+    private Integer commanditaire_id;
     private Date date_debut;
     private Date date_fin;
+    private String priorite;
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public int getId() {
         return id;
@@ -29,28 +40,28 @@ public class TacheRequest {
         this.nom = nom;
     }
 
-    public String getDestinataire() {
-        return destinataire;
+    public Integer getDestinataire_id() {
+        return destinataire_id;
     }
 
-    public void setDestinataire(String destinataire) {
-        this.destinataire = destinataire;
+    public void setDestinataire_id(Integer destinataire_id) {
+        this.destinataire_id = destinataire_id;
     }
 
-    public String getNom_projet() {
-        return nom_projet;
+    public Integer getProjet_id() {
+        return projet_id;
     }
 
-    public void setNom_projet(String nom_projet) {
-        this.nom_projet = nom_projet;
+    public void setProjet_id(Integer projet_id) {
+        this.projet_id = projet_id;
     }
 
-    public String getCommanditaire() {
-        return commanditaire;
+    public Integer getCommanditaire_id() {
+        return commanditaire_id;
     }
 
-    public void setCommanditaire(String commanditaire) {
-        this.commanditaire = commanditaire;
+    public void setCommanditaire_id(Integer commanditaire_id) {
+        this.commanditaire_id = commanditaire_id;
     }
 
     public Date getDate_debut() {
@@ -67,5 +78,13 @@ public class TacheRequest {
 
     public void setDate_fin(Date date_fin) {
         this.date_fin = date_fin;
+    }
+
+    public String getPriorite() {
+        return priorite;
+    }
+
+    public void setPriorite(String priorite) {
+        this.priorite = priorite;
     }
 }

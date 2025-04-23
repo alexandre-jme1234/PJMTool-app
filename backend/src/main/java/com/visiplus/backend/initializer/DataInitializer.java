@@ -1,7 +1,10 @@
 package com.visiplus.backend.initializer;
 
+import com.visiplus.backend.dao.PrioriteRepository;
 import com.visiplus.backend.dao.UtilisateurRepository;
+import com.visiplus.backend.models.Priorite;
 import com.visiplus.backend.models.Role;
+import com.visiplus.backend.services.PrioriteService;
 import com.visiplus.backend.services.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,11 +24,17 @@ public class DataInitializer {
     @Autowired
     private UtilisateurRepository utilisateurRepository;
 
+    @Autowired
+    private PrioriteService prioriteService;
+
     @Bean
     CommandLineRunner initDatabase() {
         // logger.info("Initialisation des rôles dans la base de données...");
         return args -> {
             // Insertion des rôles
+            insertPriorite("HAUTE");
+            insertPriorite("MOYENNE");
+            insertPriorite("FAIBLE");
             insertRole("ADMINISTRATEUR", true, true, true, true, true, true, true, true);
             insertRole("MEMBRE", false, true, false, true, true, true, true, true);
             insertRole("OBSERVATEUR", false, false, false, false, true, true, true, true);
@@ -47,6 +56,14 @@ public class DataInitializer {
             role.setEtre_notifie(canBeNotified);
             role.setVue_historique_modifications(canViewModificationHistory);
             roleService.save(role);
+        }
+    }
+
+    private void insertPriorite(String nom){
+        if(prioriteService.findByNom(nom) == null){
+            Priorite priorite = new Priorite();
+            priorite.setNom(nom);
+            prioriteService.create(priorite);
         }
     }
 }

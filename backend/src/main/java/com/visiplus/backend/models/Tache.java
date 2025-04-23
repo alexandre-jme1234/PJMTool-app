@@ -37,6 +37,18 @@ public class Tache {
     @JoinColumn(name="projet_id", referencedColumnName = "id")
     private Projet projet;
 
+    @ManyToOne
+    @JoinColumn(name = "priorite_id", referencedColumnName = "id")
+    private Priorite priorite;
+
+    public Priorite getPriorite() {
+        return priorite;
+    }
+
+    public void setPriorite(Priorite priorite) {
+        this.priorite = priorite;
+    }
+
     public boolean isEst_termine() {
         return est_termine;
     }

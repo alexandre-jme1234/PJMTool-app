@@ -11,5 +11,5 @@ public interface ProjetRepository extends CrudRepository<Projet, Integer> {
 
     Optional<Projet> findByNom(String nom);
 
-    Optional<Projet> findById(int id);
+    Projet findById(int id);
 };

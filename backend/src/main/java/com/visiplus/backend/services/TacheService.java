@@ -10,5 +10,7 @@ public interface TacheService {
 
     public Tache findById(int id);
 
-    public Tache upatePartial(int id, Tache oldTache, Tache newTache);
+    public Tache updatePartial(int id, Tache oldTache, Tache newTache);
+
+    public Tache save(Tache tache);
 };

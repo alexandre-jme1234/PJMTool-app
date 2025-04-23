@@ -37,7 +37,7 @@ public class TacheServiceImpl implements TacheService {
     }
 
     @Override
-    public Tache upatePartial(int id, Tache tache, Tache updateTache) {
+    public Tache updatePartial(int id, Tache tache, Tache updateTache) {
 
         if(!Objects.equals(tache.getNom(), updateTache.getNom())){
             tache.setNom(updateTache.getNom());
@@ -47,8 +47,27 @@ public class TacheServiceImpl implements TacheService {
             tache.setDescription(updateTache.getDescription());
         }
 
-        // MAJ AVEC DATE FIN, DESTINATAIRE, DESTINATAIRE
+        if(!Objects.equals(tache.getDestinataire(), updateTache.getDestinataire())){
+            tache.setDestinataire(updateTache.getDestinataire());
+        }
 
+        if(!Objects.equals(tache.getCommanditaire(), updateTache.getCommanditaire())){
+            tache.setCommanditaire(updateTache.getCommanditaire());
+        }
+
+        if(!Objects.equals(tache.getDate_fin(), updateTache.getDate_fin())){
+            tache.setDate_fin(updateTache.getDate_fin());
+        }
+
+        if(!Objects.equals(tache.getDate_debut(), updateTache.getDate_debut())){
+            tache.setDate_debut(updateTache.getDate_debut());
+        }
+
+        return tacheRepository.save(tache);
+    }
+
+    @Override
+    public Tache save(Tache tache) {
         return tacheRepository.save(tache);
     }
 }

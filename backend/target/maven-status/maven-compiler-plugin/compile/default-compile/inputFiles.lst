@@ -2,6 +2,7 @@
 /app/src/main/java/com/visiplus/backend/controllers/ProjetController.java
 /app/src/main/java/com/visiplus/backend/controllers/TacheController.java
 /app/src/main/java/com/visiplus/backend/controllers/UtilisateurController.java
+/app/src/main/java/com/visiplus/backend/dao/PrioriteRepository.java
 /app/src/main/java/com/visiplus/backend/dao/ProjetRepository.java
 /app/src/main/java/com/visiplus/backend/dao/RoleRepository.java
 /app/src/main/java/com/visiplus/backend/dao/TacheRepository.java
@@ -16,15 +17,18 @@
 /app/src/main/java/com/visiplus/backend/dto/UtilisateurProjetRoleDTO.java
 /app/src/main/java/com/visiplus/backend/dto/UtilisateurRoleDTO.java
 /app/src/main/java/com/visiplus/backend/initializer/DataInitializer.java
+/app/src/main/java/com/visiplus/backend/models/Priorite.java
 /app/src/main/java/com/visiplus/backend/models/Projet.java
 /app/src/main/java/com/visiplus/backend/models/Role.java
 /app/src/main/java/com/visiplus/backend/models/Tache.java
 /app/src/main/java/com/visiplus/backend/models/Utilisateur.java
 /app/src/main/java/com/visiplus/backend/responses/ApiResponse.java
+/app/src/main/java/com/visiplus/backend/services/PrioriteService.java
 /app/src/main/java/com/visiplus/backend/services/ProjetService.java
 /app/src/main/java/com/visiplus/backend/services/RoleService.java
 /app/src/main/java/com/visiplus/backend/services/TacheService.java
 /app/src/main/java/com/visiplus/backend/services/UtilisateurService.java
+/app/src/main/java/com/visiplus/backend/services/impl/PrioriteServiceImpl.java
 /app/src/main/java/com/visiplus/backend/services/impl/ProjetServiceImpl.java
 /app/src/main/java/com/visiplus/backend/services/impl/RoleServiceImpl.java
 /app/src/main/java/com/visiplus/backend/services/impl/TacheServiceImpl.java

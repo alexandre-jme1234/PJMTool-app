@@ -13,10 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RequestMapping("/api/projet")
@@ -33,7 +30,7 @@ public class ProjetController {
     RoleService roleService;
 
 
-    @GetMapping("/{nom}")
+    @GetMapping("/nom/{nom}")
     public ResponseEntity<?> getProjectByNom(@PathVariable String nom ){
         Projet projet = projetService.findByNom(nom);
 
@@ -46,7 +43,7 @@ public class ProjetController {
                 .body(new ApiResponse<>(true, "Projet a été trouvé", projet));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<?> getProjectById(@PathVariable int id ){
         Projet projet = projetService.findById(id);
 
