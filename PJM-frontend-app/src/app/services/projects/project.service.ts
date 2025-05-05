@@ -17,4 +17,9 @@ export class ProjectService {
   }
 
   constructor() { }
+
+  getProjectById(id: number): Observable<Project> {
+    const project = this.mockProjects.find(p => p.id === id);
+    return of(project!);
+  }
 }
