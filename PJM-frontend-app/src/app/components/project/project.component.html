@@ -1,15 +1,69 @@
-<div class="flex flex-col flex-wrap border rounded-sm p-6 m-6 bg-gray-50">
-    <div class="flex flex-row space-x-6 text-gray-500 font-medium">
-      <div class="w-1/3">Nom</div>
-      <div class="w-1/3">Créateur</div>
-      <div class="w-1/3">Description</div>
-      <div class="w-1/3">Date Échéance</div>
-    </div>
-
-    <div class="flex flex-row space-x-6 font-medium">
-      <div class="w-1/3">{{ projet?.nom }}</div>
-      <div class="w-1/3">{{ projet?.createur }}</div>
-      <div class="w-1/3">{{ projet?.description }}</div>
-      <div class="w-1/3">{{ projet?.date_echeance }}</div>
-    </div>
+<div class="p-6">
+  <!-- En tête -->
+  <div class="flex items-center gap-2 mt-2">
+    <img
+      src="assets\images\logo_accueil.png"
+      alt="logo"
+      (click)="goMainPage()"
+      class="w-auto h-10 rounded"
+    />
+    <h1 class="text-4xl font-bold">Projets</h1>
   </div>
+</div>
+
+<div class="flex flex-col flex-wrap border rounded-sm p-6 mx-6 bg-gray-50">
+
+  <!-- En tête -->
+  <div class="flex flex-row space-x-6 text-gray-500 font-medium">
+    <div class="w-1/3">Nom</div>
+    <div class="w-1/3">Créateur</div>
+    <div class="w-1/3">Description</div>
+    <div class="w-1/3">Date Échéance</div>
+  </div>
+
+  <!-- Projet via Input Child -->
+  <div class="flex flex-row space-x-6 font-medium">
+    <div class="w-1/3">{{ projet?.nom }}</div>
+    <div class="w-1/3">{{ projet?.createur }}</div>
+    <div class="w-1/3">{{ projet?.description }}</div>
+    <div class="w-1/3">{{ projet?.date_echeance }}</div>
+  </div>
+</div>
+
+<!-- séparateur -->
+<div class="bg-gray-200 w-auto h-0.5 mx-6 my-3"></div>
+
+<div class="flex flex-col p-6 m-6 space-y-2" *ngIf="taches.length; else noTaches">
+  <!-- En-tête -->
+  <div class="flex text-gray-500 font-medium">
+    <div class="w-1/4">Nom</div>
+    <div class="w-1/4">Destinataire</div>
+    <div class="w-1/6">Début</div>
+    <div class="w-1/6">Fin</div>
+    <div class="w-1/6">Priorité</div>
+  </div>
+<ul class="space-y-2">
+  <li *ngFor="let tache of taches">
+    <div let class="flex flex-row space-x-6 font-medium">
+
+      <!-- Tache -->
+      <div class="w-1/4">{{ tache?.nom }}</div>
+      <div class="w-1/6">{{ tache?.description | truncate : 130 }}</div>
+      <div class="w-1/6">{{ tache?.date_debut }}</div>
+      <div class="w-1/6">{{ tache?.date_fin }}</div>
+      <div class="w-1/6">{{ tache?.priorite }}</div>
+      
+    </div>
+  </li>
+</ul>
+</div>
+
+<!-- SI AUCUNE TACHES DS [] -->
+  <ng-template #noTaches>
+    <div class="flex flex-col gap-5 w-full min-h-64 items-center justify-center">
+      <p class="text-gray-500">Aucune Tâche trouvée.</p>
+      <button
+          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >✏️ Créer une tache</button>
+    </div>
+  </ng-template>

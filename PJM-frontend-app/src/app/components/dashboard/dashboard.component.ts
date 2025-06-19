@@ -2,74 +2,94 @@ import { Component, NgModule, numberAttribute, OnInit } from '@angular/core';
 import { Project } from '../../services/projects/project.model';
 import { ProjectService } from '../../services/projects/project.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; 
-import { Task } from '../../services/task/task.model';
-import { TaskService } from '../../services/task/task.service';
+import { FormsModule } from '@angular/forms';
 import { ProjectComponent } from '../project/project.component';
 import { Router } from '@angular/router';
+import { TruncatePipe } from '../../shared/truncate.pipe';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule, ProjectComponent],
+  imports: [CommonModule, FormsModule, TruncatePipe],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
-
   projects: Project[] = [];
-  selectedProjectId: number | null = null;
-  tasks: Task[] = [];
-
-  showModal = false;
-  
+  showModal = false
   projetSelectionne: Project | null = null;
-  
   newProject: Partial<Project> = {
-    nom: '',
-    createur: '',
-    description: '',
-    date_echeance: ''
-  };
-  
-  constructor(private projetService: ProjectService, private taskService: TaskService, private router: Router){}
+  id: 0,
+  nom: '',
+  createur: '',
+  description: '',
+  date_echeance: '',
+};
 
+  // CONSTRUCTOR
+  constructor(
+    private projetService: ProjectService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.projetService.getProjects().subscribe((projects) => {
+    this.projetService.projects$.subscribe((projects) => {
       this.projects = projects;
     });
   }
 
+
+  // METHODES
   onAddProjectClick() {
     this.showModal = true;
   }
 
   onCancel() {
     this.showModal = false;
-  }
-
-  onCreateProject() {
-    const createdProject: Project = {
-      ...this.newProject,
-      id: Date.now(),
-    } as Project;
-
-    this.projects.push(createdProject);
-    this.newProject = { nom: '', createur: '', description: '', date_echeance: '' };
-    this.showModal = false;
-  }
-
-  onSelectProject(projectId: number) {
-    this.selectedProjectId = projectId;
-    this.taskService.getTasksByProject(projectId).subscribe((data) => {
-      this.tasks = data;
-    });
+    this.resetForm();
   }
 
   getDetailProject(projet: Project) {
     this.projetSelectionne = projet;
-    this.router.navigate(['/project', projet.id]);
+    this.router.navigate(['/projet', projet.id]);
   }
 
+  onCreateProject() {
+
+    if(this.projetSelectionne) {
+      this.projetService.updateProject(this.newProject).subscribe(() => {
+        this.resetForm();
+      });
+    } else {
+      this.projetService.onCreateProject(this.newProject).subscribe(() => {
+        this.showModal = false;
+      });
+    } 
+  }
+
+  removeProject(projet: Project) {
+    this.projetService.onDeleteProject(projet).subscribe(() => {
+      this.resetForm();
+    });
+  }
+
+  updateProject(projet: Project){
+    this.showModal = true;
+    this.projetSelectionne = projet;
+    this.newProject = { ...projet};
+  }
+
+
+  // RESET FORM
+  resetForm() {
+    this.newProject = {
+    id: 0,
+    nom: '',
+    createur: '',
+    description: '',
+    date_echeance: '',
+  };
+    this.projetSelectionne = null;
+    this.showModal = false;
+  }
 }
