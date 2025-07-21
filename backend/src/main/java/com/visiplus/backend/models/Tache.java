@@ -15,8 +15,6 @@ public class Tache {
 
     private String nom;
 
-    private boolean est_termine;
-
     @ManyToOne
     @JoinColumn(name = "commanditaire_id", referencedColumnName = "id")
     private Utilisateur commanditaire;
@@ -41,20 +39,22 @@ public class Tache {
     @JoinColumn(name = "priorite_id", referencedColumnName = "id")
     private Priorite priorite;
 
+    private String etat;
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
     public Priorite getPriorite() {
         return priorite;
     }
 
     public void setPriorite(Priorite priorite) {
         this.priorite = priorite;
-    }
-
-    public boolean isEst_termine() {
-        return est_termine;
-    }
-
-    public void setEst_termine(boolean est_termine) {
-        this.est_termine = est_termine;
     }
 
     public Utilisateur getDestinataire() {
@@ -99,7 +99,7 @@ public class Tache {
 
     public String getDescription() {
         return description;
-    }
+    } 
 
     public void setDescription(String description) {
         this.description = description;

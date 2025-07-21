@@ -4,6 +4,7 @@ import com.visiplus.backend.models.Projet;
 import com.visiplus.backend.models.Tache;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ProjetRepository extends CrudRepository<Projet, Integer> {
@@ -11,5 +12,7 @@ public interface ProjetRepository extends CrudRepository<Projet, Integer> {
 
     Optional<Projet> findByNom(String nom);
 
-    Projet findById(int id);
+    void delete(Projet projet);
+
+    List<Projet> findAll();
 };

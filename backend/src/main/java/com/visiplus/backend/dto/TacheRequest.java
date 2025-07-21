@@ -1,5 +1,6 @@
 package com.visiplus.backend.dto;
 
+import com.visiplus.backend.models.Priorite;
 import com.visiplus.backend.models.Projet;
 import com.visiplus.backend.models.Utilisateur;
 
@@ -13,8 +14,9 @@ public class TacheRequest {
     private Integer commanditaire_id;
     private Date date_debut;
     private Date date_fin;
-    private String priorite;
+    private Priorite priorite;
     private String description;
+    private String etat;
 
     public String getDescription() {
         return description;
@@ -80,11 +82,34 @@ public class TacheRequest {
         this.date_fin = date_fin;
     }
 
-    public String getPriorite() {
+    public Priorite getPriorite() {
         return priorite;
     }
 
-    public void setPriorite(String priorite) {
+    public void setPriorite(Priorite priorite) {
         this.priorite = priorite;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
+    @Override
+    public String toString() {
+        return "TacheRequest{" +
+                "nom='" + nom + '\'' +
+                ", destinataire_id='" + destinataire_id + '\'' +
+                ", projet_id='" + projet_id + '\'' +
+                ", commanditaire_id='" + commanditaire_id + '\'' +
+                ", date_debut='" + date_debut + '\'' +
+                ", date_fin='" + date_fin + '\'' +
+                ", priorite='" + priorite + '\'' +
+                ", description='" + description + '\'' +
+                ", etat='" + etat + '\'' +
+                '}';
     }
 }

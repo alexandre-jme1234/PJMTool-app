@@ -13,6 +13,8 @@ public class Priorite {
 
     private String nom;
 
+    public Priorite() {}
+
     public int getId() {
         return id;
     }

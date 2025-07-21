@@ -1,42 +1,34 @@
 package com.visiplus.backend.dto;
 
-import com.visiplus.backend.models.Projet;
-
-import java.util.List;
+import java.util.Date;
 
 public class ProjetResponseDTO {
-    private Projet projet;
-    private List<UtilisateurRoleDTO> utilisateur_roles;
-    private List<UtilisateurProjetDTO> utilisateurs_projet;
+    private int id;
+    private String nom;
+    private String description;
+    private Date date_echeance;
+    private Date date_creation;
 
-
-    public ProjetResponseDTO(Projet projet, List<UtilisateurRoleDTO> utilisateur_roles, List<UtilisateurProjetDTO> utilisateurs_projet) {
-        this.projet = projet;
-        this.utilisateur_roles = utilisateur_roles;
-        this.utilisateurs_projet = utilisateurs_projet;
+    public ProjetResponseDTO(int id, String nom, String description, Date date_echeance, Date date_creation) {
+        this.id = id;
+        this.nom = nom;
+        this.description = description;
+        this.date_echeance = date_echeance;
+        this.date_creation = date_creation;
     }
 
-    public List<UtilisateurProjetDTO> getUtilisateurs_projet() {
-        return utilisateurs_projet;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public void setUtilisateurs_projet(List<UtilisateurProjetDTO> utilisateurs_projet) {
-        this.utilisateurs_projet = utilisateurs_projet;
-    }
+    public String getNom() { return nom; }
+    public void setNom(String nom) { this.nom = nom; }
 
-    public Projet getProjet() {
-        return projet;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public void setProjet(Projet projet) {
-        this.projet = projet;
-    }
+    public Date getDate_echeance() { return date_echeance; }
+    public void setDate_echeance(Date date_echeance) { this.date_echeance = date_echeance; }
 
-    public List<UtilisateurRoleDTO> getUtilisateur_roles() {
-        return utilisateur_roles;
-    }
-
-    public void setUtilisateur_roles(List<UtilisateurRoleDTO> utilisateur_roles) {
-        this.utilisateur_roles = utilisateur_roles;
-    }
+    public Date getDate_creation() { return date_creation; }
+    public void setDate_creation(Date date_creation) { this.date_creation = date_creation; }
 }

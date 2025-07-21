@@ -4,6 +4,7 @@ package com.visiplus.backend.services;
 import com.visiplus.backend.models.Projet;
 import com.visiplus.backend.models.Utilisateur;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ProjetService {
@@ -13,5 +14,9 @@ public interface ProjetService {
     Projet findByNom(String nom);
 
     Projet findById(int id);
+
+    Projet delete(Projet projet);
+
+    List<Projet> findAll();
 
 };

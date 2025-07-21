@@ -10,9 +10,8 @@ public interface PrioriteRepository extends CrudRepository<Priorite, Integer> {
 
     Optional<Priorite> findById(Integer integer);
 
-    Priorite findByNom(String nom);
+    Priorite findFirstByNom(String nom);
 
     Priorite save(Priorite priorite);
-
 
 }

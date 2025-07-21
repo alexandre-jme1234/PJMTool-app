@@ -15,13 +15,13 @@ public class PrioriteServiceImpl implements PrioriteService {
 
 
     @Override
-    public Priorite findByNom(String nom) {
-        return prioriteRepository.findByNom(nom);
+    public Priorite findByNom(String nom_priorite) {
+        return prioriteRepository.findFirstByNom(nom_priorite);
     }
 
     @Override
     public int create(Priorite priorite) {
-        Priorite existPriorite = prioriteRepository.findByNom(priorite.getNom());
+        Priorite existPriorite = prioriteRepository.findFirstByNom(priorite.getNom());
 
         if(existPriorite != null){
             return existPriorite.getId();
@@ -34,5 +34,10 @@ public class PrioriteServiceImpl implements PrioriteService {
     @Override
     public Priorite save(Priorite priorite) {
         return prioriteRepository.save(priorite);
+    }
+
+    @Override
+    public void delete(Priorite priorite) {
+        prioriteRepository.delete(priorite);
     }
 }
