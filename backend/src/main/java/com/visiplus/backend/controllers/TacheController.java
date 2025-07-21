@@ -11,6 +11,8 @@ import com.visiplus.backend.services.PrioriteService;
 import com.visiplus.backend.services.ProjetService;
 import com.visiplus.backend.services.TacheService;
 import com.visiplus.backend.services.UtilisateurService;
+
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,6 +103,12 @@ public class TacheController {
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, "Tache bien trouvé dans un projet", tache));
     };
 
+    @GetMapping("/project/{id}")
+    public ResponseEntity<?> getTachesByProjectId(@PathVariable int id) {
+        List<Tache> taches = tacheService.findByProjetId(id);
+        return ResponseEntity.ok(new ApiResponse<>(true, "Tâches du projet", taches));
+    }
+
     @PatchMapping("/update")
     public ResponseEntity<?> patchTacheById(@RequestBody TacheRequest input){
         Tache existTache = tacheService.findById(input.getId());
@@ -138,6 +146,10 @@ public class TacheController {
                 existTache.setDate_fin(input.getDate_fin());
             }
 
+            if (input.getEtat() != null) {
+                existTache.setEst_termine(input.getEtat());
+            }
+
             if(input.getPriorite() != null){
                 Priorite priorite = prioriteService.findByNom(input.getPriorite());
                 if (priorite != null) {
@@ -161,4 +173,9 @@ public class TacheController {
                     .body(new ApiResponse<>(false, "Erreur lors de la mise à jour", e.getMessage()));
         }
     };
+
+    @PutMapping("/update")
+    public ResponseEntity<?> updateTacheById(@RequestBody TacheRequest input) {
+        return patchTacheById(input);
+    }
 };

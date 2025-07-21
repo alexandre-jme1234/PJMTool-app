@@ -35,4 +35,9 @@ public class PrioriteServiceImpl implements PrioriteService {
     public Priorite save(Priorite priorite) {
         return prioriteRepository.save(priorite);
     }
+
+    @Override
+    public void delete(Priorite priorite) {
+        prioriteRepository.delete(priorite);
+    }
 }

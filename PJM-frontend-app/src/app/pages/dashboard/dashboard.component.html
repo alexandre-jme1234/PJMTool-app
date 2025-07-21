@@ -1,0 +1,182 @@
+<div class="p-6">
+  <div class="flex items-center gap-4 my-8 py-4">
+    <img src="assets/images/logo_accueil.png" alt="logo" class="w-auto h-12 rounded shadow" />
+    <h2 class="text-4xl font-bold tracking-wide">Dashboard</h2>
+  </div>
+
+  <div class="flex items-start mt-8" style="height: calc(100vh - 160px);">
+    <!-- Colonne Projets (1/3) -->
+    <div class="w-1/3 pr-4 border-r border-gray-200">
+      <div class="font-bold text-gray-700 mb-4 pl-4 flex items-center h-12 justify-between">
+        <span>Projets</span>
+        <button (click)="onAddProjectClick()"
+          class="ml-2 flex items-center justify-center w-9 h-9 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 text-2xl font-bold transition"
+          title="Ajouter un projet" aria-label="Ajouter un projet">
+          +
+        </button>
+      </div>
+      <!-- Bouton suppression projets sélectionnés -->
+      <button
+        *ngIf="selectedProjectIds.length > 0"
+        (click)="deleteSelectedProjects()"
+        class="text-red-600 hover:text-red-800 font-bold text-sm p-0 bg-transparent border-0 focus:outline-none mb-2 ml-4"
+        title="Supprimer les projets sélectionnés">
+        🗑️ Supprimer les projets sélectionnés
+      </button>
+      <ul class="space-y-2">
+        <li *ngFor="let project of projects">
+          <div class="flex items-center">
+            <input type="checkbox"
+              [checked]="selectedProjectIds.includes(project.id!)"
+              (change)="onProjectCheckboxChange(project, $event)"
+              class="mr-2 h-5 w-5 accent-blue-500 rounded" />
+            <button class="w-full p-3 rounded-lg transition-colors text-left"
+              [ngClass]="{
+                'bg-gray-50': selectedProject?.id === project.id,
+                'bg-white hover:bg-gray-50': selectedProject?.id !== project.id
+              }"
+              (click)="onSelectProject(project)">
+              <span class="flex w-full items-center justify-between">
+                <span>{{ project.nom }}</span>
+                <span
+                  class="ml-2 px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 font-bold text-sm min-w-[2.5rem] text-center">{{
+                  project.taches?.length || 0 }}</span>
+              </span>
+            </button>
+            <button (click)="goToProject(project.id!)"
+              class="underline text-xs text-blue-600 hover:text-blue-800 bg-transparent border-0 p-0 m-0"
+              title="Voir ce projet">
+              Voir ce projet
+            </button>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+
+    <!-- Colonne Tâches (2/3) -->
+    <div class="w-2/3 px-4">
+      <div class="flex items-center justify-between mb-4 pl-2">
+        <span class="font-bold text-gray-700 flex items-center gap-1">
+  Tâches
+  <button *ngIf="hasCompletedTasks"
+    (click)="deleteSelectedTasks()"
+    class="text-red-600 hover:text-red-800 font-bold text-xl p-0 bg-transparent border-0 focus:outline-none"
+    title="Supprimer toutes les tâches cochées">
+    🗑️
+  </button>
+</span>
+        <button (click)="onAddTaskClick()"
+          [disabled]="!selectedProject"
+          class="ml-2 flex items-center justify-center w-9 h-9 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 text-2xl font-bold transition disabled:opacity-50 disabled:cursor-not-allowed"
+          title="Ajouter une tâche" aria-label="Ajouter une tâche">
+          +
+        </button>
+      </div>
+      <ng-container *ngIf="selectedProject">
+        <ng-container
+          *ngIf="selectedProject && selectedProject.taches && selectedProject.taches.length > 0; else noTasks">
+          <ul class="flex flex-col gap-2 items-start w-full">
+            <li *ngFor="let task of selectedProject.taches" class="w-full">
+              <div class="flex items-center gap-3">
+                <input type="checkbox"
+                  [checked]="task?.est_termine"
+                  (change)="onTaskCheckboxChange(task, $event)"
+                  class="h-5 w-5 accent-blue-500 rounded" />
+                
+                <div class="flex-1 cursor-pointer" (click)="onTaskClick(task)">
+                  <app-task [task]="task" mode="card"></app-task>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </ng-container>
+        <ng-template #noTasks>
+          <div class="text-gray-400 italic">Aucune tâche pour ce projet.</div>
+        </ng-template>
+      </ng-container>
+      <div *ngIf="!selectedProject" class="text-center py-8 w-full">
+        Sélectionnez un projet pour voir ses tâches
+      </div>
+    </div>
+  </div>
+</div>
+<p class="text-gray-500">Aucun projet trouvé.</p>
+
+<!-- Modal Création Projet -->
+<div *ngIf="showModal"
+  class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg mx-4">
+    <h3 class="text-xl font-bold mb-4 text-gray-800">Nouveau projet</h3>
+
+    <div class="space-y-3">
+      <input type="text" placeholder="Nom" [(ngModel)]="newProject.nom"
+        class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300" />
+      <input type="text" placeholder="Créateur" [(ngModel)]="newProject.createur"
+        class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300" />
+      <input type="text" placeholder="Description" [(ngModel)]="newProject.description"
+        class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300" />
+      <input type="date" [(ngModel)]="newProject.date_echeance"
+        class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300" />
+
+      <!-- Alerte si nom ou date manquants -->
+      <div *ngIf="showProjectAlert" class="bg-red-100 text-red-700 px-4 py-2 rounded mb-2 text-sm font-semibold">
+        Un projet n'a pas été créé : il faut obligatoirement renseigner un <b>nom</b> et une <b>date de début</b>.
+      </div>
+
+      <div class="flex justify-end gap-2 mt-6">
+        <button (click)="onCancel()" class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300">
+          Annuler
+        </button>
+        <button type="submit"
+          class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          (click)="createProject()">
+          Créer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showTaskModal"
+    class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50">
+    <div *ngIf="!selectedProject" class="text-red-600 font-bold mb-4">
+      Veuillez sélectionner un projet avant de créer une tâche.
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg mx-4">
+      <h3 class="text-xl font-bold mb-4 text-gray-800">Nouvelle tâche</h3>
+      <div class="space-y-3">
+        <input type="text" placeholder="Nom" [(ngModel)]="newTask.nom"
+          class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300" />
+        <input type="number" placeholder="ID Destinataire" [ngModel]="newTask.destinataire?.id" (ngModelChange)="onDestinataireChange($event)"
+          class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300" />
+        <input type="number" placeholder="ID Commanditaire" [ngModel]="newTask.commanditaire?.id" (ngModelChange)="onCommanditaireChange($event)"
+          class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300" />
+        <input type="date" placeholder="Date début" [(ngModel)]="newTask.date_debut"
+          class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300" />
+        <input type="date" placeholder="Date fin" [(ngModel)]="newTask.date_fin"
+          class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300" />
+        <select [(ngModel)]="newTask.priorite"
+          class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300">
+          <option [ngValue]="null">Priorites</option>
+          <option *ngFor="let prio of priorites" [ngValue]="prio">{{prio.nom}}</option>
+        </select>
+        <textarea placeholder="Description" [(ngModel)]="newTask.description"
+          class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300"></textarea>
+      </div>
+      <div class="flex justify-end gap-2 mt-6">
+        <button (click)="onCancelTask()"
+          class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300">Annuler</button>
+        <button (click)="onCreateTask()"
+          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Créer</button>
+      </div>
+    </div>
+  </div>
+
+<!-- Ajout de l'overlay -->
+<app-task-overlay
+  [task]="selectedTask"
+  [isOpen]="isOverlayOpen"
+  (close)="closeTaskDetails()"
+  (taskUpdated)="onTaskUpdated($event)">
+</app-task-overlay>

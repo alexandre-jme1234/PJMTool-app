@@ -15,6 +15,7 @@ public class TacheRequest {
     private Date date_fin;
     private String priorite;
     private String description;
+    private String etat;
 
     public String getDescription() {
         return description;
@@ -86,5 +87,13 @@ public class TacheRequest {
 
     public void setPriorite(String priorite) {
         this.priorite = priorite;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
     }
 }

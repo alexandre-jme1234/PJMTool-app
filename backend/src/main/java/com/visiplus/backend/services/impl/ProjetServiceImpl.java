@@ -6,6 +6,7 @@ import com.visiplus.backend.services.ProjetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,6 +33,17 @@ public class ProjetServiceImpl implements ProjetService {
 
     @Override
     public Projet findById(int id) {
-        return projetRepository.findById(id);
+        return projetRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Projet delete(Projet projet) {
+        projetRepository.delete(projet);
+        return projet;
+    }
+
+    @Override
+    public List<Projet> findAll() {
+        return projetRepository.findAll();
     }
 }

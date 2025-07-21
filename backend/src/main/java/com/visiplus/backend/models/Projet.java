@@ -30,19 +30,7 @@ public class Projet {
     private Date date_creation;
 
 
-    public void setDate_creation(Date date_creation) {
-        this.date_creation = date_creation;
-    }
-
-    @PrePersist
-    protected void onCreate() {
-        this.date_creation = new Date();
-    }
-
-    public Date getDate_creation() {
-        return date_creation;
-    }
-
+    
     @ManyToMany(mappedBy = "projets_utilisateur")
     private Set<Utilisateur> utilisateurs_projet = new HashSet<>();
 
@@ -69,6 +57,19 @@ public class Projet {
         return projet_taches;
     }
 
+    public void setDate_creation(Date date_creation) {
+        this.date_creation = date_creation;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.date_creation = new Date();
+    }
+
+    public Date getDate_creation() {
+        return date_creation;
+    }
+    
     public void setProjet_taches(Set<Tache> projet_taches) {
         this.projet_taches = projet_taches;
     }

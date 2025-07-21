@@ -15,7 +15,7 @@ public class Tache {
 
     private String nom;
 
-    private boolean est_termine;
+    private String est_termine = "TODO";
 
     @ManyToOne
     @JoinColumn(name = "commanditaire_id", referencedColumnName = "id")
@@ -49,11 +49,11 @@ public class Tache {
         this.priorite = priorite;
     }
 
-    public boolean isEst_termine() {
+    public String isEst_termine() {
         return est_termine;
     }
 
-    public void setEst_termine(boolean est_termine) {
+    public void setEst_termine(String est_termine) {
         this.est_termine = est_termine;
     }
 
@@ -99,7 +99,7 @@ public class Tache {
 
     public String getDescription() {
         return description;
-    }
+    } 
 
     public void setDescription(String description) {
         this.description = description;

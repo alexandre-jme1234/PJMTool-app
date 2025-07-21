@@ -6,6 +6,7 @@ import com.visiplus.backend.services.TacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -64,6 +65,11 @@ public class TacheServiceImpl implements TacheService {
         }
 
         return tacheRepository.save(tache);
+    }
+
+    @Override
+    public List<Tache> findByProjetId(int id) {
+        return tacheRepository.findByProjetId(id);
     }
 
     @Override

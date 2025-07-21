@@ -91,7 +91,7 @@
             <requestState>
               <option name="body">
                 <bodyState>
-                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;jammee@gmail.com&quot;,&#10;  &quot;nom&quot;: &quot;alexanedre&quot;,&#10;  &quot;password&quot;: &quot;heleo&quot;,&#10;  &quot;etat_connexion&quot;: true&#10;}" />
+                  <option name="raw" value="{&#10;  &quot;email&quot;: &quot;jamme@gmail.com&quot;,&#10;  &quot;nom&quot;: &quot;alexandre&quot;,&#10;  &quot;password&quot;: &quot;hello&quot;,&#10;  &quot;etat_connexion&quot;: true  &#10;}" />
                   <option name="type" value="JSON" />
                 </bodyState>
               </option>
@@ -134,6 +134,12 @@
               <option name="method" value="PATCH" />
               <option name="name" value="/api/tache/update" />
               <option name="url" value="http://localhost:8080/api/tache/update" />
+            </requestState>
+            <requestState>
+              <option name="id" value="782b6922-e54b-41b1-b806-ebcee3bb6e83" />
+              <option name="method" value="GET" />
+              <option name="name" value="Draft" />
+              <option name="url" value="http://localhost:8080/api/projet/all" />
             </requestState>
           </list>
         </option>

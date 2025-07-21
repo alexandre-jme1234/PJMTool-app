@@ -5320,6 +5320,110 @@
           </option>
           <option name="workspaceId" value="drafts" />
         </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1751296084039" />
+          <option name="id" value="9c991629-e861-4cd3-b386-3ae813ad76bd" />
+          <option name="request">
+            <requestState>
+              <option name="id" value="782b6922-e54b-41b1-b806-ebcee3bb6e83" />
+              <option name="method" value="GET" />
+              <option name="name" value="Draft" />
+              <option name="url" value="http://localhost:8080/api/projet/all" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjp0cnVlLCJtZXNzYWdlIjoiTGlzdGUgZGVzIHByb2pldHMiLCJkYXRhIjpbeyJpZCI6MSwibm9tIjoiaGVsbyIsImRlc2NyaXB0aW9uIjoiaGVsbG8iLCJkYXRlX2VjaGVhbmNlIjoiMTk5OS0wMi0wMiIsImRhdGVfY3JlYXRpb24iOiIyMDI1LTA2LTMwIiwidXRpbGlzYXRldXJzX3Byb2pldCI6W10sInByb2pldF90YWNoZXMiOltdLCJ0YWNoZXMiOltdLCJjcmVhdGV1ciI6eyJpZCI6MSwibm9tIjoiYXJ0aHVyIiwicm9sZV9hcHAiOiJBRE1JTiIsImVtYWlsIjoiYXJ0aHVyQCIsInBhc3N3b3JkIjoiaGVsbG8iLCJldGF0X2Nvbm5leGlvbiI6dHJ1ZSwidGFjaGVfY29tbWFuZGl0YWlyZSI6W10sInRhY2hlc19kZXN0aW5hdGFpcmUiOltdLCJwcm9qZXRzX3V0aWxpc2F0ZXVyIjpbXSwicHJvamV0cyI6W3siaWQiOjUyLCJub20iOiJramtoamtoIiwiZGVzY3JpcHRpb24iOiJrbGpsaiIsImRhdGVfZWNoZWFuY2UiOiIxOTk2LTEwLTEyIiwiZGF0ZV9jcmVhdGlvbiI6IjIwMjUtMDYtMzAiLCJ1dGlsaXNhdGV1cnNfcHJvamV0IjpbXSwicHJvamV0X3RhY2hlcyI6W10sInRhY2hlcyI6W10sImNyZWF0ZXVyIjoxfSx7ImlkIjozLCJub20iOiJoZWxsbyIsImRlc2NyaXB0aW9uIjoidGVzdDIiLCJkYXRlX2VjaGVhbmNlIjoiMjAyNS0wNi0zMCIsImRhdGVfY3JlYXRpb24iOiIyMDI1LTA2LTMwIiwidXRpbGlzYXRldXJzX3Byb2pldCI6W10sInByb2pldF90YWNoZXMiOltdLCJ0YWNoZXMiOltdLCJjcmVhdGV1ciI6MX0seyJpZCI6Miwibm9tIjoiaGVsbG8iLCJkZXNjcmlwdGlvbiI6InRlc3QxIiwiZGF0ZV9lY2hlYW5jZSI6IjIwMjUtMDYtMjYiLCJkYXRlX2NyZWF0aW9uIjoiMjAyNS0wNi0zMCIsInV0aWxpc2F0ZXVyc19wcm9qZXQiOltdLCJwcm9qZXRfdGFjaGVzIjpbXSwidGFjaGVzIjpbXSwiY3JlYXRldXIiOjF9LDFdLCJyb2xlc19wcm9qZXQiOlt7ImlkIjoxLCJub20iOiJBRE1JTklTVFJBVEVVUiIsImFqb3V0ZXJfbWVtYnJlIjp0cnVlLCJjcmVlcl90YWNoZSI6dHJ1ZSwiYXNzaWduZV90YWNoZSI6dHJ1ZSwibWFqX3RhY2hlIjp0cnVlLCJ2dWVfdGFjaGUiOnRydWUsInZ1ZV90YWJsZWF1X2RlX2JvcmQiOnRydWUsImV0cmVfbm90aWZpZSI6dHJ1ZSwidnVlX2hpc3RvcmlxdWVfbW9kaWZpY2F0aW9ucyI6dHJ1ZSwidXRpbGlzYXRldXJfcm9sZXNfcHJvamV0IjpbMV19XX19LDIsMyw1Ml19" />
+              <option name="bodyString" value="{&#10;  &quot;success&quot;: true,&#10;  &quot;message&quot;: &quot;Liste des projets&quot;,&#10;  &quot;data&quot;: [&#10;    {&#10;      &quot;id&quot;: 1,&#10;      &quot;nom&quot;: &quot;helo&quot;,&#10;      &quot;description&quot;: &quot;hello&quot;,&#10;      &quot;date_echeance&quot;: &quot;1999-02-02&quot;,&#10;      &quot;date_creation&quot;: &quot;2025-06-30&quot;,&#10;      &quot;utilisateurs_projet&quot;: [],&#10;      &quot;projet_taches&quot;: [],&#10;      &quot;taches&quot;: [],&#10;      &quot;createur&quot;: {&#10;        &quot;id&quot;: 1,&#10;        &quot;nom&quot;: &quot;arthur&quot;,&#10;        &quot;role_app&quot;: &quot;ADMIN&quot;,&#10;        &quot;email&quot;: &quot;arthur@&quot;,&#10;        &quot;password&quot;: &quot;hello&quot;,&#10;        &quot;etat_connexion&quot;: true,&#10;        &quot;tache_commanditaire&quot;: [],&#10;        &quot;taches_destinataire&quot;: [],&#10;        &quot;projets_utilisateur&quot;: [],&#10;        &quot;projets&quot;: [&#10;          {&#10;            &quot;id&quot;: 52,&#10;            &quot;nom&quot;: &quot;kjkhjkh&quot;,&#10;            &quot;description&quot;: &quot;kljlj&quot;,&#10;            &quot;date_echeance&quot;: &quot;1996-10-12&quot;,&#10;            &quot;date_creation&quot;: &quot;2025-06-30&quot;,&#10;            &quot;utilisateurs_projet&quot;: [],&#10;            &quot;projet_taches&quot;: [],&#10;            &quot;taches&quot;: [],&#10;            &quot;createur&quot;: 1&#10;          },&#10;          {&#10;            &quot;id&quot;: 3,&#10;            &quot;nom&quot;: &quot;hello&quot;,&#10;            &quot;description&quot;: &quot;test2&quot;,&#10;            &quot;date_echeance&quot;: &quot;2025-06-30&quot;,&#10;            &quot;date_creation&quot;: &quot;2025-06-30&quot;,&#10;            &quot;utilisateurs_projet&quot;: [],&#10;            &quot;projet_taches&quot;: [],&#10;            &quot;taches&quot;: [],&#10;            &quot;createur&quot;: 1&#10;          },&#10;          {&#10;            &quot;id&quot;: 2,&#10;            &quot;nom&quot;: &quot;hello&quot;,&#10;            &quot;description&quot;: &quot;test1&quot;,&#10;            &quot;date_echeance&quot;: &quot;2025-06-26&quot;,&#10;            &quot;date_creation&quot;: &quot;2025-06-30&quot;,&#10;            &quot;utilisateurs_projet&quot;: [],&#10;            &quot;projet_taches&quot;: [],&#10;            &quot;taches&quot;: [],&#10;            &quot;createur&quot;: 1&#10;          },&#10;          1&#10;        ],&#10;        &quot;roles_projet&quot;: [&#10;          {&#10;            &quot;id&quot;: 1,&#10;            &quot;nom&quot;: &quot;ADMINISTRATEUR&quot;,&#10;            &quot;ajouter_membre&quot;: true,&#10;            &quot;creer_tache&quot;: true,&#10;            &quot;assigne_tache&quot;: true,&#10;            &quot;maj_tache&quot;: true,&#10;            &quot;vue_tache&quot;: true,&#10;            &quot;vue_tableau_de_bord&quot;: true,&#10;            &quot;etre_notifie&quot;: true,&#10;            &quot;vue_historique_modifications&quot;: true,&#10;            &quot;utilisateur_roles_projet&quot;: [&#10;              1&#10;            ]&#10;          }&#10;        ]&#10;      }&#10;    },&#10;    2,&#10;    3,&#10;    52&#10;  ]&#10;}" />
+              <option name="code" value="200" />
+              <option name="connectionEstablishingTime" value="32" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Mon, 30 Jun 2025 15:08:04 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Keep-Alive" />
+                    <option name="value" value="timeout=60" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="keep-alive" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="9c991629-e861-4cd3-b386-3ae813ad76bd" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="{&quot;success&quot;:true,&quot;message&quot;:&quot;Liste des projets&quot;,&quot;data&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;helo&quot;,&quot;description&quot;:&quot;hello&quot;,&quot;date_echeance&quot;:&quot;1999-02-02&quot;,&quot;date_creation&quot;:&quot;2025-06-30&quot;,&quot;utilisateurs_projet&quot;:[],&quot;projet_taches&quot;:[],&quot;taches&quot;:[],&quot;createur&quot;:{&quot;id&quot;:1,&quot;nom&quot;:&quot;arthur&quot;,&quot;role_app&quot;:&quot;ADMIN&quot;,&quot;email&quot;:&quot;arthur@&quot;,&quot;password&quot;:&quot;hello&quot;,&quot;etat_connexion&quot;:true,&quot;tache_commanditaire&quot;:[],&quot;taches_destinataire&quot;:[],&quot;projets_utilisateur&quot;:[],&quot;projets&quot;:[{&quot;id&quot;:52,&quot;nom&quot;:&quot;kjkhjkh&quot;,&quot;description&quot;:&quot;kljlj&quot;,&quot;date_echeance&quot;:&quot;1996-10-12&quot;,&quot;date_creation&quot;:&quot;2025-06-30&quot;,&quot;utilisateurs_projet&quot;:[],&quot;projet_taches&quot;:[],&quot;taches&quot;:[],&quot;createur&quot;:1},{&quot;id&quot;:3,&quot;nom&quot;:&quot;hello&quot;,&quot;description&quot;:&quot;test2&quot;,&quot;date_echeance&quot;:&quot;2025-06-30&quot;,&quot;date_creation&quot;:&quot;2025-06-30&quot;,&quot;utilisateurs_projet&quot;:[],&quot;projet_taches&quot;:[],&quot;taches&quot;:[],&quot;createur&quot;:1},{&quot;id&quot;:2,&quot;nom&quot;:&quot;hello&quot;,&quot;description&quot;:&quot;test1&quot;,&quot;date_echeance&quot;:&quot;2025-06-26&quot;,&quot;date_creation&quot;:&quot;2025-06-30&quot;,&quot;utilisateurs_projet&quot;:[],&quot;projet_taches&quot;:[],&quot;taches&quot;:[],&quot;createur&quot;:1},1],&quot;roles_projet&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;ADMINISTRATEUR&quot;,&quot;ajouter_membre&quot;:true,&quot;creer_tache&quot;:true,&quot;assigne_tache&quot;:true,&quot;maj_tache&quot;:true,&quot;vue_tache&quot;:true,&quot;vue_tableau_de_bord&quot;:true,&quot;etre_notifie&quot;:true,&quot;vue_historique_modifications&quot;:true,&quot;utilisateur_roles_projet&quot;:[1]}]}},2,3,52]}" />
+              <option name="size" value="1200" />
+              <option name="time" value="123" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1751296639200" />
+          <option name="id" value="f2d13e11-b7c5-4716-b364-9c83ca474b27" />
+          <option name="request">
+            <requestState>
+              <option name="id" value="782b6922-e54b-41b1-b806-ebcee3bb6e83" />
+              <option name="method" value="GET" />
+              <option name="name" value="Draft" />
+              <option name="url" value="http://localhost:8080/api/projet/all" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="eyJzdWNjZXNzIjp0cnVlLCJtZXNzYWdlIjoiTGlzdGUgZGVzIHByb2pldHMiLCJkYXRhIjpbeyJpZCI6MSwibm9tIjoiaGVsbyIsImRlc2NyaXB0aW9uIjoiaGVsbG8iLCJkYXRlX2VjaGVhbmNlIjoiMTk5OS0wMi0wMiIsImRhdGVfY3JlYXRpb24iOiIyMDI1LTA2LTMwIn0seyJpZCI6Miwibm9tIjoiaGVsbG8iLCJkZXNjcmlwdGlvbiI6InRlc3QxIiwiZGF0ZV9lY2hlYW5jZSI6IjIwMjUtMDYtMjYiLCJkYXRlX2NyZWF0aW9uIjoiMjAyNS0wNi0zMCJ9LHsiaWQiOjMsIm5vbSI6ImhlbGxvIiwiZGVzY3JpcHRpb24iOiJ0ZXN0MiIsImRhdGVfZWNoZWFuY2UiOiIyMDI1LTA2LTMwIiwiZGF0ZV9jcmVhdGlvbiI6IjIwMjUtMDYtMzAifSx7ImlkIjo1Miwibm9tIjoia2praGpraCIsImRlc2NyaXB0aW9uIjoia2xqbGoiLCJkYXRlX2VjaGVhbmNlIjoiMTk5Ni0xMC0xMiIsImRhdGVfY3JlYXRpb24iOiIyMDI1LTA2LTMwIn1dfQ==" />
+              <option name="bodyString" value="{&#10;  &quot;success&quot;: true,&#10;  &quot;message&quot;: &quot;Liste des projets&quot;,&#10;  &quot;data&quot;: [&#10;    {&#10;      &quot;id&quot;: 1,&#10;      &quot;nom&quot;: &quot;helo&quot;,&#10;      &quot;description&quot;: &quot;hello&quot;,&#10;      &quot;date_echeance&quot;: &quot;1999-02-02&quot;,&#10;      &quot;date_creation&quot;: &quot;2025-06-30&quot;&#10;    },&#10;    {&#10;      &quot;id&quot;: 2,&#10;      &quot;nom&quot;: &quot;hello&quot;,&#10;      &quot;description&quot;: &quot;test1&quot;,&#10;      &quot;date_echeance&quot;: &quot;2025-06-26&quot;,&#10;      &quot;date_creation&quot;: &quot;2025-06-30&quot;&#10;    },&#10;    {&#10;      &quot;id&quot;: 3,&#10;      &quot;nom&quot;: &quot;hello&quot;,&#10;      &quot;description&quot;: &quot;test2&quot;,&#10;      &quot;date_echeance&quot;: &quot;2025-06-30&quot;,&#10;      &quot;date_creation&quot;: &quot;2025-06-30&quot;&#10;    },&#10;    {&#10;      &quot;id&quot;: 52,&#10;      &quot;nom&quot;: &quot;kjkhjkh&quot;,&#10;      &quot;description&quot;: &quot;kljlj&quot;,&#10;      &quot;date_echeance&quot;: &quot;1996-10-12&quot;,&#10;      &quot;date_creation&quot;: &quot;2025-06-30&quot;&#10;    }&#10;  ]&#10;}" />
+              <option name="code" value="200" />
+              <option name="connectionEstablishingTime" value="4" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Transfer-Encoding" />
+                    <option name="value" value="chunked" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Mon, 30 Jun 2025 15:17:19 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Keep-Alive" />
+                    <option name="value" value="timeout=60" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Connection" />
+                    <option name="value" value="keep-alive" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="f2d13e11-b7c5-4716-b364-9c83ca474b27" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="{&quot;success&quot;:true,&quot;message&quot;:&quot;Liste des projets&quot;,&quot;data&quot;:[{&quot;id&quot;:1,&quot;nom&quot;:&quot;helo&quot;,&quot;description&quot;:&quot;hello&quot;,&quot;date_echeance&quot;:&quot;1999-02-02&quot;,&quot;date_creation&quot;:&quot;2025-06-30&quot;},{&quot;id&quot;:2,&quot;nom&quot;:&quot;hello&quot;,&quot;description&quot;:&quot;test1&quot;,&quot;date_echeance&quot;:&quot;2025-06-26&quot;,&quot;date_creation&quot;:&quot;2025-06-30&quot;},{&quot;id&quot;:3,&quot;nom&quot;:&quot;hello&quot;,&quot;description&quot;:&quot;test2&quot;,&quot;date_echeance&quot;:&quot;2025-06-30&quot;,&quot;date_creation&quot;:&quot;2025-06-30&quot;},{&quot;id&quot;:52,&quot;nom&quot;:&quot;kjkhjkh&quot;,&quot;description&quot;:&quot;kljlj&quot;,&quot;date_echeance&quot;:&quot;1996-10-12&quot;,&quot;date_creation&quot;:&quot;2025-06-30&quot;}]}" />
+              <option name="size" value="469" />
+              <option name="time" value="20" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
       </list>
     </option>
   </component>

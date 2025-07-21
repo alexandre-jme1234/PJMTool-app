@@ -1,3 +1,5 @@
+import { TaskModel } from '../task/task.model';
+
 export interface Project {
     id?: number,
     nom: string,
@@ -5,5 +7,6 @@ export interface Project {
     date_echeance: string,
     email_user?: string,
     role_projet?: string,
-    description?: string
+    description?: string,
+    taches?: TaskModel[]
 };

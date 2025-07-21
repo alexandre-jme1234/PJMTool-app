@@ -103,7 +103,13 @@ public class ProjetController {
                 .map(role -> new UtilisateurRoleDTO(utilisateurByNom.getId(), role.getId()))
                 .collect(Collectors.toList());
 
-        ProjetResponseDTO response = new ProjetResponseDTO(projet, utilisateurRoles, null);
+        ProjetResponseDTO response = new ProjetResponseDTO(
+            projet.getId(),
+            projet.getNom(),
+            projet.getDescription(),
+            projet.getDate_echeance(),
+            projet.getDate_creation()
+        );
 
       return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, "Un projet a été créé", response));
     };
@@ -158,6 +164,30 @@ public class ProjetController {
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, "Un projet a été créé", responseData));
     };
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteProject(@PathVariable int id){
+        Projet projet = projetService.findById(id);
 
+        if(projet == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(false, "Projet n'existe pas", null));
+        }
 
+        projetService.delete(projet);
+        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(true, "Projet a été supprimé", null));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllProjects(){
+        List<Projet> projects = projetService.findAll();
+        List<ProjetResponseDTO> dtos = projects.stream()
+            .map(p -> new ProjetResponseDTO(
+                p.getId(),
+                p.getNom(),
+                p.getDescription(),
+                p.getDate_echeance(),
+                p.getDate_creation()
+            ))
+            .collect(Collectors.toList());
+        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(true, "Liste des projets", dtos));
+    }
 };

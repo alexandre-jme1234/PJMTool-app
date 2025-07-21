@@ -1,6 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Project } from './project.model';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { TaskModel } from '../../services/task/task.model';
+import { HttpClient } from '@angular/common/http';
+import { UserService } from '../user/user.service';
+import { map } from 'rxjs/operators';
+
+// Interface pour le payload attendu par le backend
+export interface ProjetRequest {
+  nom: string;
+  description?: string;
+  createur: string;
+  date_echeance?: Date | string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -14,41 +26,42 @@ export class ProjectService {
 
   // Comme projects[] sont stocké dans les services, on utilise des behaviour subjet pour
   // indiquer la gestion des states.
-  private projectsSubject = new BehaviorSubject<Project[]>(this.mockProjects);
+  public projectsSubject = new BehaviorSubject<Project[]>(this.mockProjects);
   projects$ = this.projectsSubject.asObservable();
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getProjectById(id: number): Observable<Project> {
-    const project = this.mockProjects.find((p) => p.id === id);
-    return of(project!);
+  addTaskToProject(projectId: number, task: TaskModel): void {
+    const project = this.mockProjects.find(p => p.id === projectId);
+    if (project) {
+      if (!project.taches) project.taches = [];
+      project.taches.push(task);
+      this.projectsSubject.next(this.mockProjects);
+      console.log('[Service] Tâche ajoutée au projet', projectId, task);
+    }
   }
 
-  onCreateProject(newProject: Partial<Project>): Observable<Project> {
-    const createdProject: Project = {
-      ...newProject,
-      id: this.nextId++,
-    } as Project;
-
-    this.mockProjects.push(createdProject);
-
-    // Màj mon Subject
-    this.projectsSubject.next(this.mockProjects);
-    return of(createdProject);
+  getProjectById(id: number): Observable<any> {
+    return this.http.get<any>(`/api/projet/id/${id}`);
   }
 
-  onDeleteProject(project: Partial<Project>): Observable<Project[]> {
-    const projetsCurrent = this.projectsSubject.value;
-    const projectsUpdated = projetsCurrent.filter((p) => p.id !== project.id);
-    
-    this.mockProjects = projectsUpdated;
+  /**
+   * Crée un projet côté backend (POST)
+   * @param newProject Les données du projet à créer
+   */
+  onCreateProject(newProject: any): Observable<any> {
+    return this.http.post<any>('/api/projet/create', newProject);
+  }
 
-    this.projectsSubject.next(projectsUpdated);
-    return of(projectsUpdated);
+  onDeleteProject(project: Project): Observable<any> {
+    console.log('project to delete', project);
+    return this.http.delete<any>(`/api/projet/delete/${project.id}`);
   }
 
   getProjects(): Observable<Project[]> {
-    return this.projects$;
+    return this.http.get<any>('/api/projet/all').pipe(
+      map(response => response.data)
+    );
   }
 
   updateProject(project: Partial<Project>): Observable<Project[]> {
@@ -67,5 +80,47 @@ export class ProjectService {
     }
 
     return of(currentProjects);
+  }
+
+  /**
+   * Envoie un projet au backend (POST)
+   * @param request Le payload à envoyer au backend
+   */
+  postProject(request: ProjetRequest): Observable<any> {
+    return this.http.post<any>('/api/projet/create', request);
+  }
+
+  /**
+   * Exemple d'appel complet avec logs pour créer un projet avec un utilisateur récupéré par nom
+   */
+  createProjectWithUserLog(nomUtilisateur: string, projet: Omit<ProjetRequest, 'createur'>, userService: UserService) {
+    userService.getUserByNom(nomUtilisateur).subscribe({
+      next: user => {
+        if (!user || !user.nom) {
+          console.error('[Erreur] Utilisateur non trouvé ou nom manquant', user);
+          return;
+        }
+        const projetRequest: ProjetRequest = {
+          ...projet,
+          createur: user.nom
+        };
+        console.log('[Info] Payload envoyé pour création de projet:', projetRequest);
+        this.onCreateProject(projetRequest).subscribe({
+          next: (response) => {
+            if (response && response.success) {
+              console.log('[Succès] Projet créé:', response.data);
+            } else {
+              console.error('[Erreur backend]', response);
+            }
+          },
+          error: (err) => {
+            console.error('[Erreur HTTP lors de la création du projet]', err);
+          }
+        });
+      },
+      error: err => {
+        console.error('[Erreur HTTP lors de la récupération de l\'utilisateur]', err);
+      }
+    });
   }
 }
