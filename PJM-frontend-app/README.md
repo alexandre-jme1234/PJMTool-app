@@ -1,27 +1,42 @@
-# PJMFrontendApp
+# PJMTool-app
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.19.
+Le projet permet d'éditer des projets et des taches pour des utilisateurs connectés.
+Chaque utlisateur créé à des droits d'écriture et de lecture différents selon le role qui lui a été assigné à la création.
 
-## Development server
+# Installation du projet
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Le projet est encore en cours de développement et certaines erreurs seront fixées dans les jours à venir.
 
-## Code scaffolding
+Le backend est réalisé en Spring Boot en JAVA, pour le construire il suffit de lancer la commande suivante à la racine du projet :
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+docker compose up --build
 
-## Build
+Par defaut le front end est généré dans un service du docker-compose. 
+Toutefois, je vous encourage à installer angular v18 et exécuter dans le dossier ./PJM-frontend-app les commandes suivantes :
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+npm install
 
-## Running unit tests
+ng build
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+ng serve --proxy-config proxy.conf.json
 
-## Running end-to-end tests
+# Cas test
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Pour créer un projet, cliquer sur le boutton + à coté de l'intitulé projets.
 
-## Further help
+Renseigner le nom du projet suivi et l'utilisateur par defaut : arthur .
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Vous verrez alors un projet s'afficher dans la colonne des projets.
+Cliquez sur le projet pour le sélectionner et le bouton + de la colonne tache pour créer une nouvelle tache en renseignant l'id user 1 qui correspond à l'id d'user par defaut. 
+
+En cliquant sur l'intitulé "voir le projet" pret du titre du projet vous découvrirez un tableau kanban avec un drag and drop de card tache.
+
+Pour modifier la priorité d'une tache, il est necessaire de drag and drop à deux reprises une tache vers une colonne adjacente pour voir sa modification de colonne.
+
+A partir de la vue Dashboard, vous pouvez modifier, ajouter ou supprimer autant de projets que vous le souhaitez.
+
+La création d'users ainsi que leurs assignation sur des projets est encore en cours de développement.
+
+# Remerciement
+
+Je vous remercie pour le temps que vous consacrerez à l'analyse de mon code et j'espère que vous prendrez plaisir à utiliser cette solution.

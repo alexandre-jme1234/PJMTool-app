@@ -71,10 +71,10 @@ public class TacheController {
             tache.setEtat("TODO");
         }
 
-        if (input.getPriorite() != null) {
-            Priorite priorite = prioriteService.findByNom((String) input.getPriorite().getNom());
+        if (input.getPriorite_id() != null) {
+            Optional<Priorite> priorite = prioriteService.findById((Integer) input.getPriorite_id());
             if (priorite != null) {
-                tache.setPriorite(priorite);
+                tache.setPriorite(priorite.get());
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .body(new ApiResponse<>(false, "Priorité inconnue", null));
@@ -124,7 +124,7 @@ public class TacheController {
 
         
         Tache updateTache = new Tache();
-        if (existTacheOpt.isPresent()) {
+        if (existTacheOpt.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ApiResponse(false, "Tache non reconnu ou n'existe pas", null));
         }
@@ -162,26 +162,23 @@ public class TacheController {
                 existTache.setEtat(input.getEtat());
             }
 
-            if (input.getPriorite() != null) {
+            if (input.getDescription() != null) {
+                existTache.setDescription(input.getDescription());
+            }
 
-                String nomPriorite;
+            if (input.getPriorite_id() != null) {
 
-                if (input.getPriorite().getNom() instanceof String) {
-                    nomPriorite = (String) input.getPriorite().getNom();
-                } else if (input.getPriorite() != null && input.getPriorite().getNom() != null) {
-                    nomPriorite = input.getPriorite().getNom();
+                Priorite priorite;
+
+                if (input.getPriorite_id() instanceof Integer) {
+                    Integer priorite_id = input.getPriorite_id();
+                    Optional<Priorite> priorite_exist = prioriteService.findById(priorite_id);
+                    existTache.setPriorite(priorite_exist.get());
                 } else {
-                    nomPriorite = "MOYENNE";
+                    Optional<Priorite> priorite_exist = prioriteService.findById(102);
+                    existTache.setPriorite(priorite_exist.get());
                 }
 
-                Priorite priorite = prioriteService.findByNom(nomPriorite);
-
-                if (priorite == null) {
-                    priorite = new Priorite();
-                    priorite.setNom(nomPriorite != null ? nomPriorite : "MOYENNE");
-                    priorite = prioriteService.save(priorite);
-                }
-                existTache.setPriorite(priorite);
             }
 
             Tache updatedTache = tacheService.save(existTache);
@@ -208,7 +205,7 @@ public class TacheController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(false, "Tache n'existe pas", null));
         }
         
-        boolean deleted = tacheService.delete(id);
+        boolean deleted = tacheService.deleteByID(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)

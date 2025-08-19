@@ -38,14 +38,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     @Override
     public Utilisateur findById(int id) {
-
-        Optional<Utilisateur> utilisateur = utilisateurRepository.findById(id);
-
-        if(utilisateur.isPresent()){
-            return utilisateur.get();
-        }
-
-        return utilisateurRepository.findById(id).get();
+        return utilisateurRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé avec id " + id));
     }
 
     @Override
@@ -87,11 +81,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     @Override
     public Utilisateur save(Utilisateur utilisateur) {
         return utilisateurRepository.save(utilisateur);
-    }
-
-    ;
-
-
+    };
 
 
 }

@@ -79,10 +79,10 @@ public class TacheServiceImpl implements TacheService {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean deleteByID(int id) {
         Optional<Tache> tache = tacheRepository.findById(id);
         System.out.println("taches __>"+ tache);
-        if(tache.isPresent()){
+        if(tache.isPresent()) {
             tacheRepository.deleteById(id);
             return true;
         }

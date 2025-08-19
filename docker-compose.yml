@@ -17,6 +17,8 @@ services:
     build: backend
     ports:
       - 8080:8080
+    volumes:
+      - ./backend:/app  
     environment:
       SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/PJMTool-db
       SPRING_DATASOURCE_USERNAME: root
@@ -26,6 +28,19 @@ services:
       - mariadb
     networks:
       - spring-mariadb
+  # frontend:
+  #   image: node:20
+  #   working_dir: /app
+  #   volumes:
+  #     - ./PJM-frontend-app:/app
+  #     - /app/node_modules
+  #   command: sh -c "npm install && npm install -g @angular/cli && ng serve --proxy-config proxy.conf.json"
+  #   ports:
+  #     - "4200:4200"
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - spring-mariadb
 
 volumes:
   mariadb_data:

@@ -14,7 +14,7 @@ public class TacheRequest {
     private Integer commanditaire_id;
     private Date date_debut;
     private Date date_fin;
-    private Priorite priorite;
+    private Integer priorite_id;
     private String description;
     private String etat;
 
@@ -82,12 +82,12 @@ public class TacheRequest {
         this.date_fin = date_fin;
     }
 
-    public Priorite getPriorite() {
-        return priorite;
+    public Integer getPriorite_id() {
+        return priorite_id;
     }
 
-    public void setPriorite(Priorite priorite) {
-        this.priorite = priorite;
+    public void setPriorite_id(Integer priorite_id) {
+        this.priorite_id = priorite_id;
     }
 
     public String getEtat() {
@@ -107,7 +107,7 @@ public class TacheRequest {
                 ", commanditaire_id='" + commanditaire_id + '\'' +
                 ", date_debut='" + date_debut + '\'' +
                 ", date_fin='" + date_fin + '\'' +
-                ", priorite='" + priorite + '\'' +
+                ", priorite='" + priorite_id + '\'' +
                 ", description='" + description + '\'' +
                 ", etat='" + etat + '\'' +
                 '}';

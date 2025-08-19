@@ -1,9 +1,12 @@
 package com.visiplus.backend.controllers;
 
 import com.visiplus.backend.dto.LoginRequest;
+import com.visiplus.backend.dto.UtilisateurDTO;
+import com.visiplus.backend.models.Projet;
 import com.visiplus.backend.models.Role;
 import com.visiplus.backend.models.Utilisateur;
 import com.visiplus.backend.responses.ApiResponse;
+import com.visiplus.backend.services.ProjetService;
 import com.visiplus.backend.services.RoleService;
 import com.visiplus.backend.services.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RequestMapping("/api/utilisateur")
@@ -24,9 +28,13 @@ public class UtilisateurController {
     @Autowired
     RoleService roleService;
 
+    @Autowired
+    ProjetService projetService;
+
     @GetMapping("/")
-    public List<Utilisateur> findAll() {
-        return utilisateurService.findAll();
+    public List<UtilisateurDTO> findAll() {
+        List<Utilisateur> utilisateurs = utilisateurService.findAll();
+        return utilisateurs.stream().map(UtilisateurDTO::new).toList();
     }
 
     @GetMapping("/{id}")
@@ -69,6 +77,30 @@ public class UtilisateurController {
     public Utilisateur findByNom(@RequestParam String nom){
         return utilisateurService.findByNom(nom);
     }
+
+    @PostMapping("/add-user-to-project")
+    @ResponseStatus(value= HttpStatus.ACCEPTED)
+    public ResponseEntity<?> AddUtilisateurTOProject(@RequestBody Utilisateur utilisateur, @RequestParam Integer id) {
+        Optional<Projet> projet = Optional.ofNullable(projetService.findById(id));
+        Optional<Utilisateur> utilisateurOpt = Optional.ofNullable(utilisateurService.findByNom(utilisateur.getNom()));
+
+        if (utilisateur.getNom() == null || projet == null) {
+            return new ResponseEntity<>("Nom utilisateur ou Projet non trouvé", HttpStatus.BAD_REQUEST);
+        }
+
+        if (projet.isEmpty() || utilisateurOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Utilisaeur ou rojet non trouvé");
+        }
+
+        Utilisateur utilisateurPdt = utilisateurOpt.get();
+        Projet projetPdt = projet.get();
+
+        utilisateurPdt.getProjets_utilisateur().add(projetPdt);
+        utilisateurService.save(utilisateurPdt);
+
+        return new ResponseEntity<>("Projet ajouté à l'utilisateur", HttpStatus.OK);
+    }
+
 
     @PatchMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {

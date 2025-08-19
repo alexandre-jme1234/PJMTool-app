@@ -15,6 +15,11 @@ public class PrioriteServiceImpl implements PrioriteService {
 
 
     @Override
+    public Optional<Priorite> findById(Integer priorite_id) {
+        return prioriteRepository.findById(priorite_id);
+    }
+
+    @Override
     public Priorite findByNom(String nom_priorite) {
         return prioriteRepository.findFirstByNom(nom_priorite);
     }

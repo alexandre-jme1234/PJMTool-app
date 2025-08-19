@@ -4,8 +4,11 @@ import com.visiplus.backend.dao.PrioriteRepository;
 import com.visiplus.backend.dao.UtilisateurRepository;
 import com.visiplus.backend.models.Priorite;
 import com.visiplus.backend.models.Role;
+import com.visiplus.backend.models.Utilisateur;
 import com.visiplus.backend.services.PrioriteService;
 import com.visiplus.backend.services.RoleService;
+import com.visiplus.backend.services.UtilisateurService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,9 @@ public class DataInitializer {
     @Autowired
     private PrioriteService prioriteService;
 
+    @Autowired
+    private UtilisateurService userService;
+
     @Bean
     CommandLineRunner initDatabase() {
         // logger.info("Initialisation des rôles dans la base de données...");
@@ -35,6 +41,7 @@ public class DataInitializer {
             insertPriorite("HAUTE");
             insertPriorite("MOYENNE");
             insertPriorite("FAIBLE");
+            insertUser("arthur");
             insertRole("ADMINISTRATEUR", true, true, true, true, true, true, true, true);
             insertRole("MEMBRE", false, true, false, true, true, true, true, true);
             insertRole("OBSERVATEUR", false, false, false, false, true, true, true, true);
@@ -64,6 +71,18 @@ public class DataInitializer {
             Priorite priorite = new Priorite();
             priorite.setNom(nom);
             prioriteService.create(priorite);
+        }
+    }
+
+    private void insertUser(String nom){
+        if(userService.findByNom(nom) == null){
+            Utilisateur user = new Utilisateur();
+            user.setNom(nom);
+            user.setRole_app("ADMINISTRATEUR");
+            user.setEmail("arthur@gmail.com");
+            user.setPassword("arthur");
+            user.setEtat_connexion(true);
+            userService.create(user);
         }
     }
 }

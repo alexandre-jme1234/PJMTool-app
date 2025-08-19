@@ -19,5 +19,5 @@ public interface TacheService {
 
     List<Tache> findByProjetId(int id);
     
-    public boolean delete(int id);
+    public boolean deleteByID(int id);
 };

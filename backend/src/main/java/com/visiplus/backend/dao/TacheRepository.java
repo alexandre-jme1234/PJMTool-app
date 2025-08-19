@@ -15,4 +15,6 @@ public interface TacheRepository extends CrudRepository<Tache, Integer> {
     Optional<Tache> findById(int id);
 
     List<Tache> findByProjetId(int id);
+
+    void deleteById(Integer integer);
 };

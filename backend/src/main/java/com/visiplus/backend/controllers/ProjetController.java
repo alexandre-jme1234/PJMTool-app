@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class ProjetController {
 
     @Autowired
-    ProjetService projetService;
+    ProjetService  projetService;
 
     @Autowired
     UtilisateurService utilisateurService;
