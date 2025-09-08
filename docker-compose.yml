@@ -28,19 +28,19 @@ services:
       - mariadb
     networks:
       - spring-mariadb
-  # frontend:
-  #   image: node:20
-  #   working_dir: /app
-  #   volumes:
-  #     - ./PJM-frontend-app:/app
-  #     - /app/node_modules
-  #   command: sh -c "npm install && npm install -g @angular/cli && ng serve --proxy-config proxy.conf.json"
-  #   ports:
-  #     - "4200:4200"
-  #   depends_on:
-  #     - backend
-  #   networks:
-  #     - spring-mariadb
+  frontend:
+    build: ./PJM-frontend-app/
+    container_name: PJM-frontend-app
+    working_dir: /app
+    volumes:
+      - ./PJM-frontend-app:/app
+      - /app/node_modules
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+    networks:
+      - spring-mariadb
 
 volumes:
   mariadb_data:
