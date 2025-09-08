@@ -8,7 +8,7 @@ on:
 
 jobs:
   build_test:
-    runs_on:
+    runs_on: ubuntu-latest
 
     strategy:
       matrix:
