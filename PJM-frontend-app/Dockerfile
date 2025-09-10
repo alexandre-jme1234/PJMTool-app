@@ -8,6 +8,7 @@ WORKDIR /app
 COPY package.json /app
 
 RUN npm install
+RUN npm install dotenv --silent
 RUN npm install -g @angular/cli@17.0.2
 
 COPY . /app

@@ -6,6 +6,7 @@ COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 
 # Pré-télécharge les dépendances pour accélérer
+RUN chmod +x mvnw
 RUN ./mvnw dependency:go-offline
 
 # Copie du code source
