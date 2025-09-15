@@ -29,7 +29,9 @@ services:
     networks:
       - spring-mariadb
   frontend:
-    build: ./PJM-frontend-app/
+    build:
+      context: ./
+      dockerfile: PJM-frontend-app/Dockerfile
     container_name: PJM-frontend-app
     working_dir: /app
     volumes:
