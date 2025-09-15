@@ -55,6 +55,7 @@ jobs:
         npm run build
 
     - name: Upload Artifact
+      if: matrix.node-version == '20.x'
       uses: actions/upload-pages-artifact@v3
       with:
         path: PJM-frontend-app/dist/pjm-frontend-app/browser
@@ -63,8 +64,9 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: surefire-reports
+        name: surefire-reports-${{ matrix.node-version }}-${{ github.run_attempt }}
         path: backend/target/surefire-reports
+        overwrite: true
 
     - name: Docker compose down
       if: always()
