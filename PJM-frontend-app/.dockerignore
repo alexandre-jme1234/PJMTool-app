@@ -1,0 +1,32 @@
+# VCS
+#
+.git
+.gitignore
+
+# OS/IDE
+#
+.vscode
+.idea
+.DS_Store
+
+# Logs
+#
+*.log
+npm-debug.log*
+
+# Dependencies caches
+#
+node_modules
+.pnpm-store
+.yarn
+
+# Angular internals/outputs
+#
+.angular
+coverage
+/dist
+
+# Misc
+#
+.tmp
+**/tmp

@@ -1,0 +1,46 @@
+# VCS
+#
+.git
+.gitignore
+
+# OS/IDE
+#
+.vscode
+.idea
+.DS_Store
+
+# Logs
+#
+*.log
+logs
+
+# Local databases/artefacts
+#
+*.mv.db
+database.mv.db
+
+# Node (root)
+#
+node_modules
+
+# Frontend workspace
+#
+PJM-frontend-app/node_modules
+PJM-frontend-app/.angular
+PJM-frontend-app/coverage
+PJM-frontend-app/dist
+
+# Java/Maven
+#
+backend/target
+backend/.mvn/wrapper/maven-wrapper.jar
+
+# Docker
+#
+**/.dockerignore
+
+# Misc
+#
+coverage
+.tmp
+**/tmp
