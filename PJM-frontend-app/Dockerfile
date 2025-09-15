@@ -11,6 +11,18 @@ RUN npm install
 RUN npm install dotenv --silent
 RUN npm install -g @angular/cli@17.0.2
 
+# Dépendances pour Chrome Headless (tests Karma en CI)
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont
+
+ENV CHROME_BIN=/usr/bin/chromium \
+    PUPPETEER_SKIP_DOWNLOAD=true
+
 COPY . /app
 
 EXPOSE 4200
