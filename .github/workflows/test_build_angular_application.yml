@@ -44,8 +44,7 @@ jobs:
       working-directory: backend
       run: |
         chmod +x mvnw
-        ./mvnw -B -DskipTests clean package
-        ./mvnw test
+        ./mvnw -B clean verify -Dspring.profiles.active=test
 
 
     - name: Install and Build App Application
@@ -59,6 +58,13 @@ jobs:
       uses: actions/upload-pages-artifact@v3
       with:
         path: PJM-frontend-app/dist/pjm-frontend-app/browser
+
+    - name: Upload Surefire Reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: surefire-reports
+        path: backend/target/surefire-reports
 
     - name: Docker compose down
       if: always()

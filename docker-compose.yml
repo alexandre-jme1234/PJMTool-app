@@ -32,22 +32,26 @@ services:
     build:
       context: ./
       dockerfile: PJM-frontend-app/Dockerfile
+      args:
+        NODE_VERSION: 20-alpine
     container_name: PJM-frontend-app
     working_dir: /app
     volumes:
       - ./PJM-frontend-app:/app
-      - /app/node_modules
     ports:
       - "4200:4200"
     depends_on:
       - backend
     networks:
       - spring-mariadb
+    environment:
+      - NODE_ENV=development
+    command: sh -c "npm ci && npm start"
 
 volumes:
   mariadb_data:
 secrets:
   db-password:
-    file: db/password.txt
+    file: db/pasword.txt
 networks:
   spring-mariadb:
