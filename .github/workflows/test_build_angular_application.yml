@@ -37,8 +37,8 @@ jobs:
       id: pages
       uses: actions/configure-pages@v3
       
-    - name: Docker compose up (detached)
-      run: docker compose up -d --quiet-pull
+    - name: Docker compose build (no run)
+      run: docker compose build
 
     - name: Build Backend & Test 
       working-directory: backend
