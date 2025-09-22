@@ -9,8 +9,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { UserService } from '../../services/user/user.service';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { UserModel } from '../../services/user/user.model';
 
 
 export function passwordsMatchValidator(): ValidatorFn {
@@ -29,7 +35,13 @@ export function passwordsMatchValidator(): ValidatorFn {
 @Component({
   selector: 'app-signin-up',
   standalone: true,
-  imports: [],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
+  ],
   templateUrl: './signin-up.component.html',
   styleUrls: ['./signin-up.component.css']
 })
@@ -42,7 +54,16 @@ export class SigninUpComponent implements OnInit {
     private fb: NonNullableFormBuilder
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.signUpForm = this.fb.group(
+      {
+        name: this.fb.control<string>('', { validators: [Validators.required] }),
+        email: this.fb.control<string>('', { validators: [Validators.required, Validators.email] }),
+        password: this.fb.control<string>('', { validators: [Validators.required] }),
+      },
+      { validators: passwordsMatchValidator() }
+    );
+  }
 
   get email() {
     return this.signUpForm.get('email');
@@ -52,32 +73,42 @@ export class SigninUpComponent implements OnInit {
     return this.signUpForm.get('password');
   }
 
-  get confirmPassword() {
-    return this.signUpForm.get('confirmPassword');
-  }
 
   get name() {
     return this.signUpForm.get('name');
   }
 
   submit() {
-    const { name, email, password } = this.signUpForm.value as { name?: string; email?: string; password?: string };
-
-    if (!this.signUpForm.valid || !name || !password || !email) {
-      return;
-    }
-
+    if (this.signUpForm.invalid) return;
+  
+    const { email, password } = this.signUpForm.value as {
+      email?: string;
+      password?: string;
+    };
+  
+    if (!email || !password) return;
+  
     this.userService
-      .addUser({ email, password, nom: name })
-      .pipe(
-        switchMap(() => this.userService.login(email!, password!))
-      )
+      .login(email, password)
       .subscribe({
         next: () => this.router.navigate(['/']),
-        error: (err) => console.error('Erreur lors de l\'inscription/connexion:', err)
+        error: (err) => console.error("Erreur lors de la connexion :", err.error),
       });
-
   }
-
+  
+  addUserAtClick(user: { name?: string; email?: string; password?: string }) {
+    if (!user.name || !user.email || !user.password) {
+      console.error('Champs manquants');
+      return;
+    }
+  
+    this.userService
+      .addUser({ email: user.email, password: user.password, nom: user.name })
+      .pipe(switchMap(() => this.userService.login(user.email!, user.password!)))
+      .subscribe({
+        next: () => this.router.navigate(['/']),
+        error: (err) => console.error("Erreur lors de l'inscription :", err.error),
+      });
+  }
   
 }

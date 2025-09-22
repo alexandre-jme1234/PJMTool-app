@@ -1,48 +1,28 @@
-<div class="form-container mat-elevation-z5">
-    <h1>Sign Up a New User!</h1>
-    <form [formGroup]="signUpForm" (ngSubmit)="submit()">
-      <mat-form-field>
-        <input matInput placeholder="Name" formControlName="name" />
-        <mat-error *ngIf="name?.errors?.['required']">
-          Name is required
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Email address" formControlName="email" />
-        <mat-error *ngIf="email?.errors?.['required']">
-          Email address is required
-        </mat-error>
-        <mat-error *ngIf="email?.errors?.['email']">
-          Please enter a valid email address
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          type="password"
-          placeholder="Password"
-          formControlName="password"
-        />
-        <mat-error *ngIf="password?.errors?.['required']">
-          Password is required
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          type="password"
-          placeholder="Confirm Password"
-          formControlName="confirmPassword"
-        />
-        <mat-error *ngIf="confirmPassword?.errors?.['required']">
-          Confirm Password is required
-        </mat-error>
-      </mat-form-field>
-      <mat-error *ngIf="signUpForm.errors?.['passwordsDontMatch']">
-          Passwords should match
-      </mat-error>
-      <div class="center margin-top">
-        <button type="submit" mat-raised-button color="primary">Sign Up!</button>
-      </div>
+<div class="body">
+  <div class="form-container">
+    <h1>Welcome On PJMTool</h1>
+    <form class="flex-form" [formGroup]="signUpForm" (ngSubmit)="submit()">
+
+      <input placeholder="Name" formControlName="name"/>
+      <div *ngIf="name?.errors?.['required']" class="error-message">Nom is required</div>
+
+      <input type="email" placeholder="@mail" formControlName="email" />
+      <div *ngIf="email?.errors?.['required']" class="error-message">Email address is required</div>
+      <div *ngIf="email?.errors?.['email']" class="error-message">Please enter a valid email address</div>
+
+      <input type="password" placeholder="Password" formControlName="password"/>
+      <div *ngIf="password?.errors?.['required']" class="error-message">Password is required</div>
+
+      <button class="mat-button-perso" type="submit">S'identifier</button>
+      <p class="text">ou</p>
+      <button
+        class="mat-button-perso"
+        style="background-color: transparent; border: 1px solid azure; color: #fff;"
+        type="button"
+        (click)="addUserAtClick(signUpForm.value)"
+      >
+        S'Inscrire
+      </button>
     </form>
   </div>
+</div>

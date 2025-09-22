@@ -9,6 +9,7 @@ COPY package.json package-lock.json* ./
 
 RUN npm install
 RUN npm install dotenv --silent
+RUN npm install @angular/material@^18 @angular/cdk@^18 --silent
 RUN npm install -g @angular/cli@18.2.19
 
 # Dépendances pour Chrome Headless (tests Karma en CI)
