@@ -1,7 +1,14 @@
 <div class="p-6">
   <div class="flex items-center gap-4 my-8 py-4">
     <img src="assets/images/logo_accueil.png" alt="logo" class="w-auto h-12 rounded shadow" />
-    <h2 class="text-4xl font-bold tracking-wide">Dashboard</h2>
+    <div>
+      <h2 class="text-4xl font-bold tracking-wide">Dashboard</h2>
+      <h3 *ngIf="userLogged" class="font-semibold text-left mt-2">{{userLogged.nom}}</h3>
+    </div>
+
+    <div>
+      <button type="button" (click)="setLoggUser()" class="mr-2 text-blue-500 hover:text-blue-700">Se déconnecter 👋</button>button
+    </div>
   </div>
 
   <div class="flex items-start mt-8" style="height: calc(100vh - 160px);">
@@ -14,8 +21,8 @@
           title="Ajouter un projet" aria-label="Ajouter un projet">
           +
         </button>
+        <!-- Bouton suppression projets sélectionnés -->
       </div>
-      <!-- Bouton suppression projets sélectionnés -->
       <button
         *ngIf="selectedProjectIds.length > 0"
         (click)="deleteSelectedProjects()"

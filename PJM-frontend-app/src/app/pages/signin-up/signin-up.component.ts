@@ -90,8 +90,12 @@ export class SigninUpComponent implements OnInit {
   
     this.userService
       .login(email, password)
+      .pipe(tap((data) => this.userService.setUserLogged(data)))
       .subscribe({
-        next: () => this.router.navigate(['/']),
+        next: () => {
+          this.router.navigate(['/'])
+          
+        },
         error: (err) => console.error("Erreur lors de la connexion :", err.error),
       });
   }

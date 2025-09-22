@@ -14,7 +14,9 @@ import { UserModel } from '../../services/user/user.model';
 import { ProjetModel } from '../../services/projects/projet.model';
 import { PrioriteModel } from '../../services/priorite/priorite.model';
 import { HttpClient } from '@angular/common/http';
-import { forkJoin } from 'rxjs';
+import { forkJoin, map } from 'rxjs';
+import { UserService } from '../../services/user/user.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,6 +36,7 @@ export class DashboardComponent implements OnInit {
   showTaskModal = false;
   showModal = false;
   showProjectAlert = false;
+  userLogged: UserModel = null;
   // Exemples d'utilisateurs, projet et priorité fictifs pour le formulaire
   user1: UserModel = {
     id: 1,
@@ -100,7 +103,8 @@ export class DashboardComponent implements OnInit {
     private projetService: ProjectService,
     private router: Router,
     private taskService: TaskService,
-    private http: HttpClient
+    private http: HttpClient,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -113,6 +117,12 @@ export class DashboardComponent implements OnInit {
           proj.taches = [];
         }
       });
+
+      if(sessionStorage.getItem('loggedUser')) {
+        let userStored = sessionStorage.getItem('loggedUser');
+        this.userLogged = JSON.parse(userStored)
+        console.log(this.userLogged.nom)
+      }
       // Charger les tâches pour chaque projet
       const taskRequests = this.projects.map((proj) =>
         this.taskService.getTasksByProject(proj.id ?? 0)
@@ -124,7 +134,45 @@ export class DashboardComponent implements OnInit {
       });
     });
   }
+
+  // hello
   
+  setLoggUser(){
+
+    let userLogged = JSON.parse(sessionStorage.getItem('loggedUser'));
+
+    this.userService.getUserById(userLogged.id)
+  .pipe(
+    map(user => {
+      user.etat_connexion = !userLogged.etat_connexion;
+      return user;
+    })
+  )
+  .subscribe({
+    next: (data) => {
+      this.userLogged= data;
+      userLogged = data;
+      console.log('etat_connexion modifié dans subscribe:', data.etat_connexion);
+      console.log('etat_connexion de userLogged local:', userLogged.etat_connexion);
+    },
+    error: (err) => console.error('Aucun User trouvé via cet id', err.error)
+  });
+
+  
+  if(this.userLogged.etat_connexion == false) {
+    console.log(this.userLogged.etat_connexion, this.userLogged.email);
+      this.userService.logout(this.userLogged.email).subscribe({
+        next: (data) => {
+          console.log('logout effect', data)
+          return data
+        },
+        error: (err) => console.error('error logout', err.error)
+      })
+    }
+
+    return console.log('userLogged', userLogged)
+    // this.userService.getUserById()
+  }
 
   loadProjects(): void {
     this.projetService.getProjects().subscribe((data) => {

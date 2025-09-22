@@ -11,10 +11,23 @@ export class UserService {
 
   public users: UserModel[] = []
 
-  constructor(private http: HttpClient) { }
+  public loggedUser: UserModel = null;
+  
+  constructor(private http: HttpClient) {
+  }
 
   getUsers(): Observable<UserModel[]>  {
    return this.http.get<UserModel[]>('/api/utilisateur/');
+  }
+
+  setUserLogged(user: any) {
+    const userStored = sessionStorage.getItem('loggedUser');
+    
+    if(!userStored) {
+      return sessionStorage.setItem('loggedUser', JSON.stringify(user))
+    }
+
+    return sessionStorage.getItem('loggedUser');
   }
 
   // getUserById via une fetch et vérifier que la route existe dans le backend
