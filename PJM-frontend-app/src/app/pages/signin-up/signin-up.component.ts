@@ -9,7 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { UserService } from '../../services/user/user.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -100,15 +100,16 @@ export class SigninUpComponent implements OnInit {
       });
   }
   
-  addUserAtClick(user: { name?: string; email?: string; password?: string }) {
-    if (!user.name || !user.email || !user.password) {
-      console.error('Champs manquants');
+  addUserAtClick(user: { nom?: string; email?: string; password?: string }) {
+    if (!user.nom || !user.email || !user.password) {
+      console.error('Champs manquants', user);
       return;
     }
   
     this.userService
-      .addUser({ email: user.email, password: user.password, nom: user.name })
+      .addUser({ email: user.email, password: user.password, nom: user.nom })
       .pipe(switchMap(() => this.userService.login(user.email!, user.password!)))
+      .pipe(tap(() => this.userService.setUserLogged(user)))
       .subscribe({
         next: () => this.router.navigate(['/']),
         error: (err) => console.error("Erreur lors de l'inscription :", err.error),

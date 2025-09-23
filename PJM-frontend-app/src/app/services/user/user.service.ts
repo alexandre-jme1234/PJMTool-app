@@ -22,6 +22,7 @@ export class UserService {
 
   setUserLogged(user: any) {
     const userStored = sessionStorage.getItem('loggedUser');
+    console.log('setUserLogged', user)
     
     if(!userStored) {
       return sessionStorage.setItem('loggedUser', JSON.stringify(user))
@@ -55,6 +56,7 @@ export class UserService {
    * Authentification: PATCH /api/utilisateur/login
    */
   login(email: string, password: string): Observable<any> {
+    console.log('login route')
     return this.http.patch<any>('/api/utilisateur/login', { email, password });
   }
 

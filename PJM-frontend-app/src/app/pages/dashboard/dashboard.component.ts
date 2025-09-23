@@ -121,7 +121,7 @@ export class DashboardComponent implements OnInit {
       if(sessionStorage.getItem('loggedUser')) {
         let userStored = sessionStorage.getItem('loggedUser');
         this.userLogged = JSON.parse(userStored)
-        console.log(this.userLogged.nom)
+        console.log(this.userLogged, userStored)
       }
       // Charger les tâches pour chaque projet
       const taskRequests = this.projects.map((proj) =>
@@ -134,8 +134,6 @@ export class DashboardComponent implements OnInit {
       });
     });
   }
-
-  // hello
   
   setLoggUser(){
 
@@ -164,10 +162,13 @@ export class DashboardComponent implements OnInit {
       this.userService.logout(this.userLogged.email).subscribe({
         next: (data) => {
           console.log('logout effect', data)
+          this.userLogged = new UserModel;
           return data
         },
         error: (err) => console.error('error logout', err.error)
       })
+      sessionStorage.removeItem('loggedUser');
+      this.router.navigate(['login']);
     }
 
     return console.log('userLogged', userLogged)
@@ -193,7 +194,13 @@ export class DashboardComponent implements OnInit {
 
   createProject(): void {
     if (this.newProject.nom && this.newProject.date_echeance) {
+
       this.showProjectAlert = false;
+      
+      if(this.userLogged.nom !== undefined) {
+        this.newProject.createur = this.userLogged.nom;
+      }
+
       this.projetService.onCreateProject(this.newProject).subscribe({
         next: () => {
           this.loadProjects(); // Recharge la liste depuis le backend
