@@ -4,10 +4,12 @@ import com.visiplus.backend.dto.LoginRequest;
 import com.visiplus.backend.dto.UtilisateurDTO;
 import com.visiplus.backend.models.Projet;
 import com.visiplus.backend.models.Role;
+import com.visiplus.backend.models.UserRoleProjet;
 import com.visiplus.backend.models.Utilisateur;
 import com.visiplus.backend.responses.ApiResponse;
 import com.visiplus.backend.services.ProjetService;
 import com.visiplus.backend.services.RoleService;
+import com.visiplus.backend.services.UserRoleProjetService;
 import com.visiplus.backend.services.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,9 @@ public class UtilisateurController {
 
     @Autowired
     UtilisateurService utilisateurService;
+
+    @Autowired
+    UserRoleProjetService userRoleProjetService;
 
     @Autowired
     RoleService roleService;
@@ -66,10 +71,6 @@ public class UtilisateurController {
             }
         }
 
-        Set<Role> roles = new HashSet<>();
-        roles.add(defaultRole);
-        utilisateur.setRoles_projet(roles);
-
         return new ResponseEntity<>(utilisateurService.create(utilisateur), HttpStatus.OK);
     }
 
@@ -80,8 +81,8 @@ public class UtilisateurController {
 
     @PostMapping("/add-user-to-project")
     @ResponseStatus(value= HttpStatus.ACCEPTED)
-    public ResponseEntity<?> AddUtilisateurTOProject(@RequestBody Utilisateur utilisateur, @RequestParam Integer id) {
-        Optional<Projet> projet = Optional.ofNullable(projetService.findById(id));
+    public ResponseEntity<?> AddUtilisateurTOProject(@RequestBody Utilisateur utilisateur, @RequestParam String id) {
+        Optional<Projet> projet = Optional.ofNullable(projetService.findById(Integer.parseInt(id)));
         Optional<Utilisateur> utilisateurOpt = Optional.ofNullable(utilisateurService.findByNom(utilisateur.getNom()));
 
         if (utilisateur.getNom() == null || projet == null) {
@@ -94,10 +95,21 @@ public class UtilisateurController {
 
         Utilisateur utilisateurPdt = utilisateurOpt.get();
         Projet projetPdt = projet.get();
+        // Récupérer rôle "MEMBRE"
+        Role rolePdt = roleService.findByNom("MEMBRE");
+        if (rolePdt == null) {
+            return new ResponseEntity<>("Le rôle 'MEMBRE' est introuvable", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
-        utilisateurPdt.getProjets_utilisateur().add(projetPdt);
+        // Créer la liaison utilisateur-projet-rôle
+        UserRoleProjet urp = new UserRoleProjet();
+        urp.setUtilisateur(utilisateurPdt);
+        urp.setProjet(projetPdt);
+        urp.setRole(rolePdt);
+
+        // Ajout bidirectionnel
+        userRoleProjetService.save(urp);
         utilisateurService.save(utilisateurPdt);
-
         return new ResponseEntity<>("Projet ajouté à l'utilisateur", HttpStatus.OK);
     }
 
@@ -142,7 +154,7 @@ public class UtilisateurController {
             }
 
             if(Boolean.TRUE.equals(connecteUtilisateur.getEtat_connexion())){
-                Utilisateur deconnectionUtilisateur = new Utilisateur();
+                Utilisateur deconnectionUtilisateur = connecteUtilisateur;
                 deconnectionUtilisateur.setEtat_connexion(false);
                 utilisateurService.updatePartial(connecteUtilisateur.getId(), connecteUtilisateur, deconnectionUtilisateur);
                 return ResponseEntity

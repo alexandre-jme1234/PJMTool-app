@@ -35,8 +35,8 @@ public class Role {
 
     private Boolean vue_historique_modifications;
 
-    @ManyToMany(mappedBy = "roles_projet")
-    private Set<Utilisateur> utilisateur_roles_projet = new HashSet<>();
+//    @ManyToMany(mappedBy = "roles_projet")
+//    private Set<Utilisateur> utilisateur_roles_projet = new HashSet<>();
 
     public int getId() {
         return id;
@@ -118,11 +118,11 @@ public class Role {
         this.vue_historique_modifications = vue_historique_modifications;
     }
 
-    public Set<Utilisateur> getUtilisateur_roles_projet() {
-        return utilisateur_roles_projet;
-    }
-
-    public void setUtilisateur_roles_projet(Set<Utilisateur> utilisateur_roles_projet) {
-        this.utilisateur_roles_projet = utilisateur_roles_projet;
-    }
+//    public Set<Utilisateur> getUtilisateur_roles_projet() {
+//        return utilisateur_roles_projet;
+//    }
+//
+//    public void setUtilisateur_roles_projet(Set<Utilisateur> utilisateur_roles_projet) {
+//        this.utilisateur_roles_projet = utilisateur_roles_projet;
+//    }
 }

@@ -29,10 +29,8 @@ public class Projet {
     @Temporal(value = TemporalType.DATE)
     private Date date_creation;
 
-
-    
-    @ManyToMany(mappedBy = "projets_utilisateur")
-    private Set<Utilisateur> utilisateurs_projet = new HashSet<>();
+    @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<UserRoleProjet> utilisateursRoles = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -103,15 +101,14 @@ public class Projet {
     }
 
     public void setDate_echeance(Date date_echeance) {
-        this.date_echeance = date_echeance;
+        this.date_echeance = date_echeance;}
+
+    public Set<UserRoleProjet> getUtilisateursRoles() {
+        return utilisateursRoles;
     }
 
-    public Set<Utilisateur> getUtilisateurs_projet() {
-        return utilisateurs_projet;
-    }
-
-    public void setUtilisateurs_projet(Set<Utilisateur> utilisateurs_projet) {
-        this.utilisateurs_projet = utilisateurs_projet;
+    public void setUtilisateursRoles(Set<UserRoleProjet> utilisateursRoles) {
+        this.utilisateursRoles = utilisateursRoles;
     }
 
     public Set<Tache> getTaches() {
@@ -129,6 +126,4 @@ public class Projet {
     public void setCreateur(Utilisateur createur) {
         this.createur = createur;
     }
-
-
 };

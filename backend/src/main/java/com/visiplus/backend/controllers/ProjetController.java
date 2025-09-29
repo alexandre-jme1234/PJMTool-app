@@ -57,112 +57,105 @@ public class ProjetController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createProject(@RequestBody ProjetRequest projetRequest){
-        Utilisateur utilisateurByNom = utilisateurService.findByNom(projetRequest.getCreateur());
-        Projet existProjet = projetService.findByNom(projetRequest.getNom());
-        Role administrateurRole = roleService.findByNom("ADMINISTRATEUR");
+    public ResponseEntity<?> createProject(@RequestBody UtilisateurProjetRoleDTO utilisateurProjetRoleDTO ){
+        Utilisateur userProject = utilisateurService.findByNom(utilisateurProjetRoleDTO.getUtilisateur().getNom());
+        Projet projetProject = projetService.findByNom(utilisateurProjetRoleDTO.getProjetRequest().getNom());
+        Role roleUserProject = roleService.findByNom(utilisateurProjetRoleDTO.getRole().getNom());
+        Role adminRole = roleService.findByNom("ADMINISTRATEUR");
 
-        Projet projet = new Projet();
+        Projet projectDTO = new Projet();
 
-        if(utilisateurByNom == null){
+        if(userProject == null){
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(new ApiResponse<>(false, "Utilisateur n'est pas connu ou l id n'est pas le bon", null));
         }
 
-        if(utilisateurByNom.getEtat_connexion() == false){return ResponseEntity
+        if(userProject.getEtat_connexion() == false){return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new ApiResponse<>(false, "Utilisateur n'est pas identifié", null));
 
         }
 
-        if(existProjet != null){
+        if(projetProject != null){
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponse<>(false, "Le projet existe déjà", existProjet));
+                    .body(new ApiResponse<>(false, "Le projet existe déjà", projetProject));
         }
 
-        if(projetRequest.getDate_echeance() == null){
-            projet.setDate_echeance(null);
+        if(projetProject.getDate_echeance() == null){
+            projectDTO.setDate_echeance(null);
         }
 
-        // SET ADMIN ROLE
-        Set<Role> roles = new HashSet<>();
-        roles.add(administrateurRole);
+        if(roleUserProject != null) {
+            adminRole = roleUserProject;
+        }
 
-        projet.setDate_echeance(projetRequest.getDate_echeance());
-        utilisateurByNom.setRoles_projet(roles);
-        projet.setCreateur(utilisateurByNom);
-        projet.setNom(projetRequest.getNom());
-        projet.setDescription(projetRequest.getDescription());
-        projet.setDate_creation(new Date());
-        projetService.create(projet);
-
-        List<UtilisateurRoleDTO> utilisateurRoles = utilisateurByNom.getRoles_projet()
-                .stream()
-                .map(role -> new UtilisateurRoleDTO(utilisateurByNom.getId(), role.getId()))
-                .collect(Collectors.toList());
-
-        ProjetResponseDTO response = new ProjetResponseDTO(
-            projet.getId(),
-            projet.getNom(),
-            projet.getDescription(),
-            projet.getDate_echeance(),
-            projet.getDate_creation()
+        UtilisateurProjetRoleDTO utilisateurProjetRoleDTO1 = new UtilisateurProjetRoleDTO(
+                userProject,
+                adminRole,
+                projectDTO
         );
 
-      return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, "Un projet a été créé", response));
+        UtilisateurProjetRoleDTO response = new UtilisateurProjetRoleDTO(
+                utilisateurProjetRoleDTO1.getUtilisateur(),
+                utilisateurProjetRoleDTO1.getRole(),
+                utilisateurProjetRoleDTO1.getProjetRequest()
+        );
+
+
+        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, "Un projet a été créé", response));
     };
 
-    @PostMapping("/add-user")
-    public ResponseEntity<?> addUserToProject(@RequestBody ProjetRequest projetRequest){
-        Projet projet = projetService.findByNom(projetRequest.getNom());
-        Utilisateur utilisateur = utilisateurService.findByEmail(projetRequest.getEmail_user());
-
-        if(projetRequest.getNom() == null || projetRequest.getEmail_user() == null) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponse<>(false, "Veuillez renseignez un nom de projet valide et un mail invité.", null));
-        };
-
-        if(projet == null || utilisateur == null){
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponse<>(false, "Projet ou adresse introuvable", null));
-        };
-
-        String nomRole = projetRequest.getRole_projet() != null
-                ? projetRequest.getRole_projet().name()
-                : "OBSERVATEUR";
-
-        Role role = roleService.findByNom(nomRole);
-        if(role == null){
-            roleService.findByNom("OBSERVATEUR");
-        }
-
-        if (!projet.getUtilisateurs_projet().contains(utilisateur)) {
-            projet.getUtilisateurs_projet().add(utilisateur);
-            utilisateur.getProjets_utilisateur().add(projet);
-
-            // PAR DEFAUT USER EST OBSERVATEUR
-            utilisateur.getRoles_projet().add(role);
-
-            projetService.create(projet);
-            utilisateurService.create(utilisateur);
-        }
-
-        UtilisateurProjetRoleDTO responseData = new UtilisateurProjetRoleDTO(utilisateur, role);
-
-        /* List<UtilisateurProjetDTO> utilisateurProjet = utilisateur.getProjets_utilisateur()
-                .stream()
-                .map(current_projet -> new UtilisateurProjetDTO(utilisateur.getId(), projet.getId()))
-                .collect(Collectors.toList());
-
-        ProjetResponseDTO response = new ProjetResponseDTO(projet, null, utilisateurProjet);
-         */
-
-        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, "Un projet a été créé", responseData));
-    };
+//    @PostMapping("/add-user")
+//    public ResponseEntity<?> addUserToProject(@RequestBody ProjetRequest projetRequest){
+//        Projet projet = projetService.findByNom(projetRequest.getNom());
+//        Utilisateur utilisateur = utilisateurService.findByEmail(projetRequest.getEmail_user());
+//
+//        if(projetRequest.getNom() == null || projetRequest.getEmail_user() == null) {
+//            return ResponseEntity
+//                    .status(HttpStatus.BAD_REQUEST)
+//                    .body(new ApiResponse<>(false, "Veuillez renseignez un nom de projet valide et un mail invité.", null));
+//        };
+//
+//        if(projet == null || utilisateur == null){
+//            return ResponseEntity
+//                    .status(HttpStatus.BAD_REQUEST)
+//                    .body(new ApiResponse<>(false, "Projet ou adresse introuvable", null));
+//        };
+//
+//        String nomRole = projetRequest.getRole_projet() != null
+//                ? projetRequest.getRole_projet().name()
+//                : "OBSERVATEUR";
+//
+//        Role role = roleService.findByNom(nomRole);
+//        if(role == null){
+//            roleService.findByNom("OBSERVATEUR");
+//        }
+//
+//        if (!projet.getUtilisateurs_projet().contains(utilisateur)) {
+//            projet.getUtilisateurs_projet().add(utilisateur);
+//            utilisateur.getProjets_utilisateur().add(projet);
+//
+//            // PAR DEFAUT USER EST OBSERVATEUR
+//            utilisateur.getRoles_projet().add(role);
+//
+//            projetService.create(projet);
+//            utilisateurService.create(utilisateur);
+//        }
+//
+//        UtilisateurProjetRoleDTO responseData = new UtilisateurProjetRoleDTO(utilisateur, role);
+//
+//        /* List<UtilisateurProjetDTO> utilisateurProjet = utilisateur.getProjets_utilisateur()
+//                .stream()
+//                .map(current_projet -> new UtilisateurProjetDTO(utilisateur.getId(), projet.getId()))
+//                .collect(Collectors.toList());
+//
+//        ProjetResponseDTO response = new ProjetResponseDTO(projet, null, utilisateurProjet);
+//         */
+//
+//        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, "Un projet a été créé", responseData));
+//    };
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteProject(@PathVariable int id){

@@ -34,24 +34,29 @@ public class Utilisateur {
     @OneToMany(mappedBy = "destinataire")
     private Set<Tache> taches_destinataire;
 
-    @ManyToMany
-    @JoinTable(
-            name = "utilisateur_projet",
-            joinColumns = @JoinColumn(name = "utilisateur_id"),
-            inverseJoinColumns = @JoinColumn(name = "projet_id")
-    )
-    private Set<Projet> projets_utilisateur = new HashSet<>();
-
     @OneToMany(mappedBy = "createur")
     private Set<Projet> projets = new HashSet<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "utilisateur_role",
-            joinColumns = @JoinColumn(name = "utilisateur_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles_projet = new HashSet<>();
+    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<UserRoleProjet> userRolesProjet = new HashSet<>();
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "utilisateur_role_projet",
+//            joinColumns = @JoinColumn(name = "utilisateur_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id")
+//    )
+//    private Set<Role> roles_projet = new HashSet<>();
+////
+//    public Set<Role> getRoles_projet() {
+//        return roles_projet;
+//    }
+////
+//    public void setRoles_projet(Set<Role> roles_projet) {
+//        this.roles_projet = roles_projet;
+//    }
+
+
 
     public String getRole_app() {
         return role_app;
@@ -89,21 +94,12 @@ public class Utilisateur {
         this.taches_destinataire = taches_destinataire;
     }
 
-    public Set<Projet> getProjets_utilisateur() {
-        return projets_utilisateur;
+    public Set<UserRoleProjet> getUserRolesProjet() {
+        return userRolesProjet;
     }
 
-    public void setProjets_utilisateur(Set<Projet> projets_utilisateur) {
-        this.projets_utilisateur = projets_utilisateur;
-    }
-
-
-    public Set<Role> getRoles_projet() {
-        return roles_projet;
-    }
-
-    public void setRoles_projet(Set<Role> roles_projet) {
-        this.roles_projet = roles_projet;
+    public void setUserRolesProjet(Set<UserRoleProjet> userRolesProjet) {
+        this.userRolesProjet = userRolesProjet;
     }
 
     public int getId() {

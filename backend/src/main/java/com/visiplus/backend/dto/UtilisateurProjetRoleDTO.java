@@ -1,30 +1,40 @@
 package com.visiplus.backend.dto;
-
+import com.visiplus.backend.models.Projet;
 import com.visiplus.backend.models.Role;
 import com.visiplus.backend.models.Utilisateur;
 
 public class UtilisateurProjetRoleDTO {
-    private UtilisateurLightDTO utilisateur;
-    private RoleDTO role;
+    private Utilisateur utilisateur;
+    private Role role;
+    private Projet projetRequest;
 
-    public UtilisateurProjetRoleDTO(Utilisateur utilisateur, Role role) {
-        this.utilisateur = new UtilisateurLightDTO(utilisateur);
-        this.role = new RoleDTO(role);
+    public UtilisateurProjetRoleDTO(Utilisateur utilisateur, Role role, Projet projetRequest) {
+        this.utilisateur = utilisateur;
+        this.role = role;
+        this.projetRequest = projetRequest;
     }
 
-    public UtilisateurLightDTO getUtilisateur() {
+    public Utilisateur getUtilisateur() {
         return utilisateur;
     }
 
-    public void setUtilisateur(UtilisateurLightDTO utilisateur) {
+    public Projet getProjetRequest() {
+        return projetRequest;
+    }
+
+    public void setProjetRequest(Projet projetRequest) {
+        this.projetRequest = projetRequest;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
 
-    public RoleDTO getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(RoleDTO role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }

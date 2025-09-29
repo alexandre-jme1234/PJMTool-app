@@ -44,7 +44,7 @@
                 'bg-gray-50': selectedProject?.id === project.id,
                 'bg-white hover:bg-gray-50': selectedProject?.id !== project.id
               }"
-              (click)="onSelectProject(project)">
+              (click)="onSelectProject(project)" (dblclick)="goToProject(project.id!)">
               <span class="flex w-full items-center justify-between">
                 <span>{{ project.nom }}</span>
                 <span
@@ -52,15 +52,9 @@
                   project.taches?.length || 0 }}</span>
               </span>
             </button>
-            <button (click)="goToProject(project.id!)"
-              class="underline text-xs text-blue-600 hover:text-blue-800 bg-transparent border-0 p-0 m-0"
-              title="Voir ce projet">
-              Voir ce projet
-            </button>
           </div>
         </li>
       </ul>
-
     </div>
 
     <!-- Colonne Tâches (2/3) -->
