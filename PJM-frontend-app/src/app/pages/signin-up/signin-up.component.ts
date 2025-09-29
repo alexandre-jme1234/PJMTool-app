@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { UserModel } from '../../services/user/user.model';
+import { AuthService } from '../../auth/auth.service';
 
 
 export function passwordsMatchValidator(): ValidatorFn {
@@ -94,22 +95,21 @@ export class SigninUpComponent implements OnInit {
       .subscribe({
         next: () => {
           this.router.navigate(['/'])
-          
         },
         error: (err) => console.error("Erreur lors de la connexion :", err.error),
       });
   }
   
-  addUserAtClick(user: { nom?: string; email?: string; password?: string }) {
-    if (!user.nom || !user.email || !user.password) {
-      console.error('Champs manquants', user);
+  addUserAtClick(user: { name?: string; email?: string; password?: string }) {
+    if (!user.name || !user.email || !user.password) {
+      console.error('Champs manquants', typeof user);
       return;
     }
   
     this.userService
-      .addUser({ email: user.email, password: user.password, nom: user.nom })
-      .pipe(switchMap(() => this.userService.login(user.email!, user.password!)))
-      .pipe(tap(() => this.userService.setUserLogged(user)))
+      .addUser({ email: user.email, password: user.password, nom: user.name })
+      .pipe(switchMap(() => this.userService.login(user.email!, user.password!)),
+      tap((backendUser) => this.userService.setUserLogged(backendUser)))
       .subscribe({
         next: () => this.router.navigate(['/']),
         error: (err) => console.error("Erreur lors de l'inscription :", err.error),

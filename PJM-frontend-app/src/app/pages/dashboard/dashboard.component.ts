@@ -139,12 +139,14 @@ export class DashboardComponent implements OnInit {
 
     let userLogged = JSON.parse(sessionStorage.getItem('loggedUser'));
 
+    console.log('userLogged avant getById:', userLogged);
+
     this.userService.getUserById(userLogged.id)
-  .pipe(
-    map(user => {
-      user.etat_connexion = !userLogged.etat_connexion;
-      return user;
-    })
+    .pipe(
+      map(user => {
+        user.etat_connexion = !userLogged.etat_connexion;
+        return user;
+      })
   )
   .subscribe({
     next: (data) => {

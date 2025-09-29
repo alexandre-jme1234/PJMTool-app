@@ -3,6 +3,7 @@ import { UserModel } from './user.model';
 import { RoleModel } from '../role/role.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from '../../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,10 @@ export class UserService {
 
   public loggedUser: UserModel = null;
   
-  constructor(private http: HttpClient) {
-  }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
 
   getUsers(): Observable<UserModel[]>  {
    return this.http.get<UserModel[]>('/api/utilisateur/');
@@ -23,12 +26,18 @@ export class UserService {
   setUserLogged(user: any) {
     const userStored = sessionStorage.getItem('loggedUser');
     console.log('setUserLogged', user)
+    console.log('setUserLogged Stored', userStored)
     
     if(!userStored) {
+      this.authService.isLoggedIn = true;
+      user.isLoggedIn = true;
       return sessionStorage.setItem('loggedUser', JSON.stringify(user))
     }
 
-    return sessionStorage.getItem('loggedUser');
+      this.authService.isLoggedIn = true;
+      user.isLoggedIn = true;
+      sessionStorage.clear();
+      return sessionStorage.setItem('loggedUser', JSON.stringify(user));
   }
 
   // getUserById via une fetch et vérifier que la route existe dans le backend
@@ -57,6 +66,7 @@ export class UserService {
    */
   login(email: string, password: string): Observable<any> {
     console.log('login route')
+    this.authService.login().subscribe();
     return this.http.patch<any>('/api/utilisateur/login', { email, password });
   }
 
@@ -64,6 +74,8 @@ export class UserService {
    * Déconnexion: PATCH /api/utilisateur/logout
    */
   logout(email: string): Observable<any> {
+    this.authService.logout();
+    sessionStorage.removeItem('loggedUser');
     return this.http.patch<any>('/api/utilisateur/logout', { email });
   }
 
