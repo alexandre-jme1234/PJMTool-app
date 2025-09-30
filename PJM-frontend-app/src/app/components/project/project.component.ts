@@ -18,6 +18,7 @@ import { UserModel } from '../../services/user/user.model';
 import { RoleModel } from '../../services/role/role.model';
 import { ProjetModel } from '../../services/projects/projet.model';
 import { log } from 'node:console';
+import { forkJoin, map, Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-project',
@@ -37,13 +38,14 @@ export class ProjectComponent implements OnInit {
   rolesDisponibles: RoleModel[] = [];
   nouvelUtilisateurId: number | undefined = undefined;
   editUser: Partial<UserModel> = {};
-  editionRoleId: number | null = null;
   roleSelectionne: { [userId: number]: number } = {};
   allUsers: UserModel[] = [];
   isEditMode = false;
-  selectedUser: any;
+  // selectedUser: any;
   usersAjoutes: { nom: string, id: number }[] = [];
   id!: number;
+  newUserEmail: string = '';
+  newUserRole: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -58,8 +60,8 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.id = id;
-    // this.utilisateursProjet = [...new Set(this.utilisateursProjet)];
 
+    
     this.projetService.getProjectById(id).subscribe((response: any) => {
       console.log('Réponse projet backend:', response);
       const data = response.data;
@@ -69,30 +71,6 @@ export class ProjectComponent implements OnInit {
           console.log('Tâches du projet:', this.projet.taches);
           this.utilisateursProjet = this.projet.utilisateurs_projet || [];
           console.log('Utilisateurs Projet', this.utilisateursProjet)
-          
-
-          // // Ici on suppose que utilisateurs_projet est un tableau d'IDs (number[])
-          // const utilisateursIds: any[] = this.utilisateursProjet || [];
-
-          // // On veut récupérer les utilisateurs complets via getUserById
-          // const utilisateursComplets: any[] = [];
-
-          // console.log('utilisateurs', utilisateursIds)
-          // // Pour chaque ID utilisateur, on récupère l'utilisateur complet
-          // utilisateursIds.forEach(idUser => {
-          //   this.userService.getUserById(idUser).subscribe(
-          //     user => {
-          //       utilisateursComplets.push(user);
-
-          //       // Si tous les utilisateurs sont chargés, on met à jour la propriété
-          //       if (utilisateursComplets.length === utilisateursIds.length) {
-          //         // Ici tu peux décider si tu veux éviter les doublons, par ex :
-          //         this.utilisateursProjet = Array.from(new Set(utilisateursComplets));
-          //         console.log('Utilisateurs Projet chargés:', this.utilisateursProjet);
-          //       }
-          //     }
-          //   );
-          // });
 
           for(let i in this.utilisateursProjet) {
             console.log('i', i)
@@ -110,7 +88,7 @@ export class ProjectComponent implements OnInit {
               )
             }
           }
-
+          
         } else {
           this.projet = {
             ...data,
@@ -122,6 +100,7 @@ export class ProjectComponent implements OnInit {
           } as ProjetModel;
           this.utilisateursProjet = [];
         }
+
         // Charger les tâches du backend
         this.taskService.getTasksByProject(id).subscribe(tasks => {
           if (this.projet) {
@@ -137,6 +116,8 @@ export class ProjectComponent implements OnInit {
         console.warn('Aucun projet trouvé pour cet id');
       }
     });
+
+    
     this.rolesDisponibles = this.roleService.getRoles();
     
     this.userService.getUsers().subscribe({
@@ -148,6 +129,13 @@ export class ProjectComponent implements OnInit {
         console.log('Erreur de récupération des utilisateurs :', err)
       }
     });
+
+    this.getUserRoledByProject(id);
+
+    // this.projetService.usersRoleProjets$.subscribe(users => {
+    //   console.log('users projets', users)
+    //   return this.utilisateursProjet = users
+    // })
   }
 
   get tachesTodo(): TaskModel[] {
@@ -170,18 +158,26 @@ export class ProjectComponent implements OnInit {
     document.body.style.overflow = 'hidden';
   }
 
-  addUtilisateurToProject(user: any) {
-    if (!user) return;
-    this.usersAjoutes.push({ nom: user.nom ?? '', id: user.id ?? 0 });
-    
-    const { id, ...existingUser } = user;
-    console.log('existingUser', existingUser);
-    console.log('addUtilisateurToProject', user, user.nom, user.id, this.id);
-    this.userService.addUserToProject(existingUser, this.id).subscribe(
-      res => console.log(res)
-    );
+  getUtilisateurByEmail(email: string): UserModel | undefined {
+    return this.allUsers.find(user => user.email === email);
+  }
 
-    console.log('addUtilisateurToProject', user, user.nom, user.id, this.id);
+  getRoleById(roleId: number | null): RoleModel | undefined {
+    return this.rolesDisponibles.find(role => role.id === roleId);
+  }
+
+  addUserRoledToProject(email: string, role: string | null) {
+    const user = this.getUtilisateurByEmail(email);
+    if (user && role) {
+      this.userService.addUserRoledToProject(user.nom, role, this.projet.id).subscribe({
+        next: (response) => {
+          console.log('[Succès] Utilisateur ajouté au projet avec rôle:', response);
+        },
+        error: (error) => {
+          console.error('[Erreur] Impossible d\'ajouter l\'utilisateur au projet:', error);
+        }
+      });
+    }
   }
 
   closeTaskDetails() {
@@ -261,9 +257,42 @@ export class ProjectComponent implements OnInit {
     return user.roles_projet && user.roles_projet.length > 0 ? user.roles_projet[0] : undefined;
   }
 
+
+  getUserRoledByProject(projectId: number): any {
+  this.projetService.getUsersRoledByProjectId(projectId)
+    .pipe(
+      tap(response => console.log('Réponse complète backend:', response)),
+      
+      // Extraire les IDs utilisateurs liés au projet
+      map(response => {
+        const userIds = response.data.map((urp: any) => urp.utilisateur);
+        return userIds;
+      }),
+      
+      // Filtrer this.allUsers pour ne garder que ceux avec les IDs extraits
+      map(userIds => {
+        const userFiltred = this.allUsers.filter(user => userIds.includes(user.id));
+        return userFiltred;
+      }),
+
+      map(userFiltred => {
+        this.projetService.addUser(userFiltred)
+        console.log('userFiltred', userFiltred)
+        return userFiltred
+      })
+    )
+    .subscribe({
+      next: (userFiltred) => {
+        console.log('Utilisateurs filtrés selon IDs:', userFiltred);
+        this.utilisateursProjet = userFiltred;
+        this.projetService.usersRoleProjets$.subscribe(data => console.log('data Subscription', data));
+      },
+      error: (error) => console.error('Erreur lors du filtrage des utilisateurs:', error)
+    });
+}
+
   modifierRole(user: UserModel) {
     if (user.id == null) return;
-    this.editionRoleId = user.id;
     const id = user.id;
     this.roleSelectionne[id] = this.getUserRole(user)?.id ?? (this.rolesDisponibles[0]?.id ?? 0);
   }
@@ -286,11 +315,6 @@ export class ProjectComponent implements OnInit {
         this.cdr.detectChanges();
       }
     }
-    this.editionRoleId = null;
-  }
-
-  annulerEditionRole() {
-    this.editionRoleId = null;
   }
 
   supprimerUtilisateur(user: UserModel) {

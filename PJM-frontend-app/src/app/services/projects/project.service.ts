@@ -14,6 +14,12 @@ export interface ProjetRequest {
   date_echeance?: Date | string;
 }
 
+export interface User {
+  name: string,
+  role: string,
+  projet: number
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -21,6 +27,9 @@ export class ProjectService {
   private mockProjects: Project[] = [
     { id: 1, createur: 'arthur', nom: 'Projet A', description: 'Hello je suis Jeanne D arc', date_echeance: '28/12/1996' },
   ];
+
+  private usersRoleProjets = new BehaviorSubject<any[]>([]);
+  usersRoleProjets$: Observable<any[]> = this.usersRoleProjets.asObservable();
 
   private nextId = 2;
 
@@ -31,6 +40,12 @@ export class ProjectService {
 
   constructor(private http: HttpClient) {}
 
+
+  addUser(user: any) {
+    const currentUser = this.usersRoleProjets.value;
+    this.usersRoleProjets.next([...currentUser, user]);
+  }
+
   addTaskToProject(projectId: number, task: TaskModel): void {
     const project = this.mockProjects.find(p => p.id === projectId);
     if (project) {
@@ -39,6 +54,10 @@ export class ProjectService {
       this.projectsSubject.next(this.mockProjects);
       console.log('[Service] Tâche ajoutée au projet', projectId, task);
     }
+  }
+
+  getUsersRoledByProjectId(projectId: number): Observable<any> {
+    return this.http.get<any>(`/api/projet/users-roled/${projectId}`);
   }
 
   getProjectById(id: number): Observable<any> {
@@ -63,6 +82,10 @@ export class ProjectService {
       map(response => response.data)
     );
   }
+
+  setUsersRoleProjets(users: any[]) {
+  this.usersRoleProjets.next(users);
+}
 
   updateProject(project: Partial<Project>): Observable<Project[]> {
     const currentProjects = this.projectsSubject.value;

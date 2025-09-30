@@ -94,6 +94,11 @@ export class UserService {
     }
   }
 
+  addUserRoledToProject(nom: string, roleId: string | null, projectId: number): Observable<any> {
+    console.log('Adding user to project', nom, roleId, projectId);
+    return this.http.post<any>(`/api/utilisateur/add-user-to-project?id=${projectId}`, { "nom": nom, "role_app": roleId });
+  }
+
   getUserByNom(nom: string): Observable<UserModel> {
     return this.http.get<UserModel>(`/api/utilisateur/nom?nom=${encodeURIComponent(nom)}`);
   }
