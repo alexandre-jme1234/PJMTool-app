@@ -1,5 +1,6 @@
 package com.visiplus.backend.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.visiplus.backend.models.Projet;
 import com.visiplus.backend.models.Utilisateur;
 import jakarta.persistence.EnumType;
@@ -15,6 +16,7 @@ public class ProjetRequest {
 
     private String createur;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date_echeance;
 
     private String email_user;

@@ -7,6 +7,8 @@ import com.visiplus.backend.services.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserRoleProjetImpl implements UserRoleProjetService {
 
@@ -16,5 +18,10 @@ public class UserRoleProjetImpl implements UserRoleProjetService {
     @Override
     public UserRoleProjet save(UserRoleProjet userRoleProjet) {
         return userRoleProjetRepository.save(userRoleProjet);
+    }
+
+    @Override
+    public List<UserRoleProjet> findALl() {
+        return userRoleProjetRepository.findAll();
     }
 }

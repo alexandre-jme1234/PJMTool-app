@@ -96,9 +96,10 @@ public class UtilisateurController {
         Utilisateur utilisateurPdt = utilisateurOpt.get();
         Projet projetPdt = projet.get();
         // Récupérer rôle "MEMBRE"
-        Role rolePdt = roleService.findByNom("MEMBRE");
+        Role rolePdt = roleService.findByNom(utilisateur.getRole_app());
+        System.out.println("role PDT__>"+ rolePdt);
         if (rolePdt == null) {
-            return new ResponseEntity<>("Le rôle 'MEMBRE' est introuvable", HttpStatus.INTERNAL_SERVER_ERROR);
+            rolePdt.setNom("MEMBRE");
         }
 
         // Créer la liaison utilisateur-projet-rôle
@@ -110,7 +111,7 @@ public class UtilisateurController {
         // Ajout bidirectionnel
         userRoleProjetService.save(urp);
         utilisateurService.save(utilisateurPdt);
-        return new ResponseEntity<>("Projet ajouté à l'utilisateur", HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(true, "Utilisateur Roled bien ajouté au projet", urp));
     }
 
 
