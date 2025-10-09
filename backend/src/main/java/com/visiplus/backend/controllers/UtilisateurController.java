@@ -90,17 +90,30 @@ public class UtilisateurController {
         }
 
         if (projet.isEmpty() || utilisateurOpt.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Utilisaeur ou rojet non trouvé");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Utilisateur ou projet non trouvé");
         }
 
         Utilisateur utilisateurPdt = utilisateurOpt.get();
         Projet projetPdt = projet.get();
-        // Récupérer rôle "MEMBRE"
-        Role rolePdt = roleService.findByNom(utilisateur.getRole_app());
-        System.out.println("role PDT__>"+ rolePdt);
-        if (rolePdt == null) {
-            rolePdt.setNom("MEMBRE");
+        
+        // Récupérer le rôle depuis le nom fourni, ou utiliser "MEMBRE" par défaut
+        Role rolePdt = null;
+        if (utilisateur.getRole_app() != null && !utilisateur.getRole_app().isEmpty()) {
+            rolePdt = roleService.findByNom(utilisateur.getRole_app());
         }
+        
+        // Si le rôle n'est pas trouvé, utiliser "MEMBRE" par défaut
+        if (rolePdt == null) {
+            rolePdt = roleService.findByNom("MEMBRE");
+        }
+        
+        // Vérification finale : si même "MEMBRE" n'existe pas, retourner une erreur
+        if (rolePdt == null) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ApiResponse<>(false, "Le rôle MEMBRE n'existe pas dans la base de données", null));
+        }
+        
+        System.out.println("role PDT__>"+ rolePdt.getNom());
 
         // Créer la liaison utilisateur-projet-rôle
         UserRoleProjet urp = new UserRoleProjet();
