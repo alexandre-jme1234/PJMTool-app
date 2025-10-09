@@ -138,16 +138,6 @@ export class ProjectComponent implements OnInit {
     // })
   }
 
-  get tachesTodo(): TaskModel[] {
-    return this.projet?.taches?.filter(t => t.etat === 'TODO') || [];
-  }
-  get tachesInProgress(): TaskModel[] {
-    return this.projet?.taches?.filter(t => t.etat === 'IN_PROGRESS') || [];
-  }
-  get tachesDone(): TaskModel[] {
-    return this.projet?.taches?.filter(t => t.etat === 'DONE') || [];
-  }
-
   enableEdit() {
     this.isEditMode = !this.isEditMode;
   }
@@ -172,6 +162,11 @@ export class ProjectComponent implements OnInit {
       this.userService.addUserRoledToProject(user.nom, role, this.projet.id).subscribe({
         next: (response) => {
           console.log('[Succès] Utilisateur ajouté au projet avec rôle:', response);
+          // Recharger la liste des utilisateurs du projet
+          this.getUserRoledByProject(this.projet.id);
+          // Réinitialiser les champs du formulaire
+          this.newUserEmail = '';
+          this.newUserRole = '';
         },
         error: (error) => {
           console.error('[Erreur] Impossible d\'ajouter l\'utilisateur au projet:', error);
@@ -252,44 +247,54 @@ export class ProjectComponent implements OnInit {
   public trackByTaskId(index: number, task: TaskModel): number | null {
     return task.id ?? null;
   }
-
   getUserRole(user: UserModel): RoleModel | undefined {
     return user.roles_projet && user.roles_projet.length > 0 ? user.roles_projet[0] : undefined;
   }
 
-
   getUserRoledByProject(projectId: number): any {
-  this.projetService.getUsersRoledByProjectId(projectId)
-    .pipe(
-      tap(response => console.log('Réponse complète backend:', response)),
-      
-      // Extraire les IDs utilisateurs liés au projet
-      map(response => {
-        const userIds = response.data.map((urp: any) => urp.utilisateur);
-        return userIds;
-      }),
-      
-      // Filtrer this.allUsers pour ne garder que ceux avec les IDs extraits
-      map(userIds => {
-        const userFiltred = this.allUsers.filter(user => userIds.includes(user.id));
-        return userFiltred;
-      }),
+    const roleMapping: { [key: number]: string } = {
+      1: "ADMINISTRATEUR",
+      2: "MEMBRE",
+      3: "OBSERVATEUR"
+    };
 
-      map(userFiltred => {
-        this.projetService.addUser(userFiltred)
-        console.log('userFiltred', userFiltred)
-        return userFiltred
-      })
-    )
-    .subscribe({
-      next: (userFiltred) => {
-        console.log('Utilisateurs filtrés selon IDs:', userFiltred);
-        this.utilisateursProjet = userFiltred;
-        this.projetService.usersRoleProjets$.subscribe(data => console.log('data Subscription', data));
-      },
-      error: (error) => console.error('Erreur lors du filtrage des utilisateurs:', error)
-    });
-}
+    this.projetService.getUsersRoledByProjectId(projectId)
+      .pipe(
+        tap(response => console.log('Réponse complète backend:', response)),
+        
+        // Mapper les données backend vers des utilisateurs complets avec rôles
+        map(response => {
+          const userRoleData = response.data;
+          
+          // Pour chaque relation UserRoleProjet, trouver l'utilisateur correspondant
+          const usersWithRoles = userRoleData
+            .map((urp: any) => {
+              // Trouver l'utilisateur complet dans allUsers par son ID
+              const user = this.allUsers.find(u => u.id === urp.utilisateur);
+              
+              if (user) {
+                // Créer une copie de l'utilisateur avec le rôle assigné
+                return {
+                  ...user,
+                  role_app: roleMapping[urp.role] || 'MEMBRE'
+                };
+              }
+              return null;
+            })
+            .filter((user: any) => user !== null); // Retirer les null
+          
+          console.log('Utilisateurs avec rôles mappés:', usersWithRoles);
+          return usersWithRoles;
+        })
+      )
+      .subscribe({
+        next: (usersWithRoles) => {
+          this.utilisateursProjet = usersWithRoles;
+          console.log('Utilisateurs du projet affichés:', this.utilisateursProjet);
+        },
+        error: (error) => console.error('Erreur lors du filtrage des utilisateurs:', error)
+      });
+  }
 
   modifierRole(user: UserModel) {
     if (user.id == null) return;
@@ -339,4 +344,15 @@ export class ProjectComponent implements OnInit {
     if (userId === undefined) return false;
     return this.utilisateursProjet.some(u => u.id === userId);
   }
+
+  get tachesTodo(): TaskModel[] {
+    return this.projet?.taches?.filter(t => t.etat === 'TODO') || [];
+  }
+  get tachesInProgress(): TaskModel[] {
+    return this.projet?.taches?.filter(t => t.etat === 'IN_PROGRESS') || [];
+  }
+  get tachesDone(): TaskModel[] {
+    return this.projet?.taches?.filter(t => t.etat === 'DONE') || [];
+  }
+  
 }
