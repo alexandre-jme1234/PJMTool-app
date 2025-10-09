@@ -83,6 +83,8 @@ export class UserService {
     return this.http.post<any>(`/api/utilisateur//add-user-to-project?id=${id}`, user);
   }
 
+  // test
+
   removeUser(userId: number) {
     this.users = this.users.filter(u => u.id !== userId);
   }
