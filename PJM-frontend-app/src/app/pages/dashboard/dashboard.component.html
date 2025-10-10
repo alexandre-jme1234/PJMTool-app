@@ -1,16 +1,29 @@
 <div class="p-6">
-  <div class="flex items-center gap-4 my-8 py-4 justify-between">
-    <div class="flex items-center row">
+  <div class="flex items-center justify-between w-full my-8 py-4">
+    <!-- Gauche : Logo + Titre -->
+    <div class="flex items-center gap-4">
       <img src="assets/images/logo_accueil.png" alt="logo" class="w-auto h-12 rounded shadow" />
-      <div>
-        <h2 class="text-4xl font-bold tracking-wide">Dashboard</h2>
-        <h3 *ngIf="userLogged" class="font-semibold text-left mt-2">{{userLogged.nom}}</h3>
-      </div>
+      <h2 class="text-4xl font-bold tracking-wide">Dashboard</h2>
     </div>
 
-    <div>
-      <button type="button" (click)="setLoggUser()" class="mr-2 text-blue-500 hover:text-blue-700">Se déconnecter 👋</button>
+    <!-- Centre : Nom utilisateur + Rôle projet -->
+    <div *ngIf="userLogged" class="flex flex-col items-center">
+      <h3 class="font-bold text-lg">{{ userLogged.nom }}</h3>
+      <p *ngIf="currentProjectRole" class="text-sm text-gray-600 bg-blue-100 px-3 py-1 rounded-full">
+        {{ currentProjectRole }}
+      </p>
+      <p *ngIf="!currentProjectRole" class="text-xs text-gray-400">
+        Sélectionnez un projet
+      </p>
     </div>
+
+    <!-- Droite : Bouton déconnexion -->
+    <button 
+      type="button" 
+      (click)="setLoggUser()" 
+      class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+      Se déconnecter 👋
+    </button>
   </div>
 
   <div class="flex items-start mt-8" style="height: calc(100vh - 160px);">
@@ -23,8 +36,8 @@
           title="Ajouter un projet" aria-label="Ajouter un projet">
           +
         </button>
-        <!-- Bouton suppression projets sélectionnés -->
       </div>
+      <!-- Bouton suppression projets sélectionnés -->
       <button
         *ngIf="selectedProjectIds.length > 0"
         (click)="deleteSelectedProjects()"
@@ -69,12 +82,19 @@
     🗑️
   </button>
 </span>
-        <button (click)="onAddTaskClick()"
+        <button 
+          *ngIf="currentUserPermissions?.canCreateTask"
+          (click)="onAddTaskClick()"
           [disabled]="!selectedProject"
           class="ml-2 flex items-center justify-center w-9 h-9 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 text-2xl font-bold transition disabled:opacity-50 disabled:cursor-not-allowed"
           title="Ajouter une tâche" aria-label="Ajouter une tâche">
           +
         </button>
+        <span 
+          *ngIf="selectedProject && !currentUserPermissions?.canCreateTask"
+          class="text-sm text-gray-500 italic ml-2">
+          🔒 Lecture seule
+        </span>
       </div>
       <ng-container *ngIf="selectedProject">
         <ng-container
@@ -141,45 +161,12 @@
   </div>
 </div>
 
-<div *ngIf="showTaskModal"
-    class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50">
-    <div *ngIf="!selectedProject" class="text-red-600 font-bold mb-4">
-      Veuillez sélectionner un projet avant de créer une tâche.
-    </div>
-    <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg mx-4">
-      <h3 class="text-xl font-bold mb-4 text-gray-800">Nouvelle tâche</h3>
-      <div class="space-y-3">
-        <input type="text" placeholder="Nom" [(ngModel)]="newTask.nom"
-          class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300" />
-        <input type="number" placeholder="ID Destinataire" [ngModel]="newTask.destinataire?.id" (ngModelChange)="onDestinataireChange($event)"
-          class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300" />
-        <input type="number" placeholder="ID Commanditaire" [ngModel]="newTask.commanditaire?.id" (ngModelChange)="onCommanditaireChange($event)"
-          class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300" />
-        <input type="date" placeholder="Date début" [(ngModel)]="newTask.date_debut"
-          class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300" />
-        <input type="date" placeholder="Date fin" [(ngModel)]="newTask.date_fin"
-          class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300" />
-        <select [(ngModel)]="newTask.priorite"
-          class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300">
-          <option [ngValue]="null">Priorites</option>
-          <option *ngFor="let prio of priorites" [ngValue]="prio">{{prio.nom}}</option>
-        </select>
-        <textarea placeholder="Description" [(ngModel)]="newTask.description"
-          class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-300"></textarea>
-      </div>
-      <div class="flex justify-end gap-2 mt-6">
-        <button (click)="onCancelTask()"
-          class="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300">Annuler</button>
-        <button (click)="onCreateTask()"
-          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Créer</button>
-      </div>
-    </div>
-  </div>
 
 <!-- Ajout de l'overlay -->
 <app-task-overlay
   [task]="selectedTask"
   [isOpen]="isOverlayOpen"
+  [userPermissions]="currentUserPermissions"
   (close)="closeTaskDetails()"
   (taskUpdated)="onTaskUpdated($event)">
 </app-task-overlay>

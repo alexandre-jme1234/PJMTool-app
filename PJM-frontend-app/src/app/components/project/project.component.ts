@@ -9,7 +9,7 @@ import { TaskService } from '../../services/task/task.service';
 import { TaskModel } from '../../services/task/task.model';
 import { TaskComponent } from '../task/task.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { TaskOverlayComponent } from '../task-overlay/task-overlay.component';
 import { PrioriteModel } from '../../services/priorite/priorite.model';
 import { UserService } from '../../services/user/user.service';
@@ -19,6 +19,8 @@ import { RoleModel } from '../../services/role/role.model';
 import { ProjetModel } from '../../services/projects/projet.model';
 import { log } from 'node:console';
 import { forkJoin, map, Observable, tap } from 'rxjs';
+import { PermissionService, UserPermissions } from '../../services/permissions/permission.service';
+import { TaskHistoryEvent } from '../../services/task/task-history.model';
 
 @Component({
   selector: 'app-project',
@@ -31,7 +33,7 @@ export class ProjectComponent implements OnInit {
   @Input() projet: ProjetModel | null = null;
   prioriteHaute: PrioriteModel = { id: 1, nom: 'HAUTE' };
   prioriteMoyenne: PrioriteModel = { id: 2, nom: 'MOYENNE' };
-  prioriteBasse: PrioriteModel = { id: 3, nom: 'BASSE' };
+  prioriteFaible: PrioriteModel = { id: 3, nom: 'FAIBLE' };
   selectedTask: TaskModel | null = null;
   isOverlayOpen = false;
   utilisateursProjet: any[] = [];
@@ -46,6 +48,9 @@ export class ProjectComponent implements OnInit {
   id!: number;
   newUserEmail: string = '';
   newUserRole: string = '';
+  currentUserRole: string | null = null;
+  userPermissions: UserPermissions | null = null;
+  taskHistory: TaskHistoryEvent[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -54,7 +59,8 @@ export class ProjectComponent implements OnInit {
     private taskService: TaskService,
     public userService: UserService,
     private roleService: RoleService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private permissionService: PermissionService
   ) {}
 
   ngOnInit(): void {
@@ -131,13 +137,77 @@ export class ProjectComponent implements OnInit {
     });
 
     this.getUserRoledByProject(id);
+    this.loadCurrentUserPermissions(id);
+    this.loadTaskHistory();
 
     // this.projetService.usersRoleProjets$.subscribe(users => {
     //   console.log('users projets', users)
     //   return this.utilisateursProjet = users
-    // })
   }
 
+  /**
+   * Charge l'historique des tâches du projet
+   */
+  loadTaskHistory(): void {
+    if (this.projet && this.projet.taches) {
+      this.taskHistory = this.taskService.getProjectHistory(this.projet.id!, this.projet.taches);
+      console.log('📜 Historique chargé:', this.taskHistory);
+    }
+  }
+
+  /**
+   * Charge les permissions de l'utilisateur connecté pour ce projet
+   */
+  loadCurrentUserPermissions(projectId: number, retryCount: number = 0): void {
+    const loggedUserStr = sessionStorage.getItem('loggedUser');
+    if (!loggedUserStr) {
+      console.warn('Aucun utilisateur connecté');
+      this.userPermissions = this.permissionService.getPermissionsByRole('OBSERVATEUR');
+      this.currentUserRole = 'OBSERVATEUR';
+      return;
+    }
+
+    const loggedUser = JSON.parse(loggedUserStr);
+
+    this.projetService.getUsersRoledByProjectId(projectId).subscribe({
+      next: (response) => {
+        const userRoleData = response.data;
+        
+        const userRole = userRoleData.find((urp: any) => {
+          return urp.utilisateur === loggedUser.id || urp.utilisateur?.id === loggedUser.id;
+        });
+        
+        if (userRole) {
+          const roleMapping: { [key: number]: string } = {
+            1: "ADMINISTRATEUR",
+            2: "MEMBRE",
+            3: "OBSERVATEUR"
+          };
+          this.currentUserRole = roleMapping[userRole.role] || 'OBSERVATEUR';
+          this.userPermissions = this.permissionService.getPermissionsByRole(this.currentUserRole);
+          console.log('✓ Permissions chargées:', this.currentUserRole, this.userPermissions);
+        } else {
+          // Si pas de rôle trouvé et que c'est un nouveau projet, réessayer
+          if (retryCount < 3) {
+            console.log(`Rôle non trouvé, retry ${retryCount + 1}/3...`);
+            setTimeout(() => {
+              this.loadCurrentUserPermissions(projectId, retryCount + 1);
+            }, 1000);
+          } else {
+            // Après 3 tentatives, considérer comme OBSERVATEUR
+            console.warn('Aucun rôle trouvé après 3 tentatives');
+            this.currentUserRole = 'OBSERVATEUR';
+            this.userPermissions = this.permissionService.getPermissionsByRole('OBSERVATEUR');
+          }
+        }
+      },
+      error: (error) => {
+        console.error('Erreur lors du chargement des permissions:', error);
+        this.currentUserRole = 'OBSERVATEUR';
+        this.userPermissions = this.permissionService.getPermissionsByRole('OBSERVATEUR');
+      }
+    });
+  }
   enableEdit() {
     this.isEditMode = !this.isEditMode;
   }
@@ -201,8 +271,12 @@ export class ProjectComponent implements OnInit {
     if (!Array.isArray(event.previousContainer.data) || !Array.isArray(event.container.data)) return;
     type EtatState = 'TODO' | 'IN_PROGRESS' | 'DONE'
 
-    const dictEventEtat: Record<string, EtatState> = {todoList: 'TODO', inProgressList: 'IN_PROGRESS', doneList: 'DONE'};
-  
+    const dictEventEtat: Record<string, EtatState> = {
+      todoList: 'TODO',
+      inProgressList: 'IN_PROGRESS',
+      doneList: 'DONE'
+    };
+
     function getEtatByEvent(eventContainer: string): EtatState | null{
       const state = dictEventEtat[eventContainer];
       if(state != null){
@@ -217,31 +291,73 @@ export class ProjectComponent implements OnInit {
     if (!task) return;
 
     // Met à jour l'état et la priorité
+    const ancienEtat = task.etat;
+    const anciennePriorite = task.priorite?.nom;
+    const nouvelEtat = etatEvent as string;
+    const nouvellePrioriteNom = nouvellePriorite.nom;
     
-    
-    task.etat = etatEvent as string;
-    if (task.priorite?.nom !== nouvellePriorite.nom) {
-      task.priorite = nouvellePriorite;
+    task.etat = nouvelEtat;
+    task.priorite = nouvellePriorite;
+
+    // Déplace visuellement la tâche immédiatement
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     }
 
-    // // Envoie la modification au backend
+    // Logger les changements dans l'historique
+    if (ancienEtat !== nouvelEtat) {
+      this.taskService.logEtatChange(
+        task.id!,
+        task.nom!,
+        ancienEtat!,
+        nouvelEtat,
+        nouvellePrioriteNom
+      );
+    }
+    
+    if (anciennePriorite && anciennePriorite !== nouvellePrioriteNom) {
+      this.taskService.logPrioriteChange(
+        task.id!,
+        task.nom!,
+        anciennePriorite,
+        nouvellePrioriteNom
+      );
+    }
 
+    // Envoie la modification au backend
     console.log('task to update __>', task)
-    this.taskService.updateTask(task).subscribe(
-      res => res
-    );
-
-    if (this.projet && this.projet.id != null) {
-      this.taskService.getTasksByProject(this.projet.id).subscribe(tasks => {
-        this.projet!.taches = tasks;
-        console.log('res task update && get list task __>', tasks)
-      });
-    }
-
-
-    // Déplace la tâche dans le tableau cible (ordre visuel)
-    event.previousContainer.data.splice(event.previousIndex, 1);
-    event.container.data.splice(event.currentIndex, 0, task);
+    this.taskService.updateTask(task).subscribe({
+      next: (res) => {
+        console.log('✓ Tâche mise à jour avec succès');
+        // Recharger les tâches et l'historique
+        if (this.projet && this.projet.id != null) {
+          this.taskService.getTasksByProject(this.projet.id).subscribe(tasks => {
+            this.projet!.taches = tasks;
+            this.loadTaskHistory();
+          });
+        }
+      },
+      error: (err) => {
+        console.error('Erreur mise à jour tâche:', err);
+        // En cas d'erreur, remettre la tâche à sa position d'origine
+        task.etat = ancienEtat;
+        if (event.previousContainer !== event.container) {
+          transferArrayItem(
+            event.container.data,
+            event.previousContainer.data,
+            event.currentIndex,
+            event.previousIndex
+          );
+        }
+      }
+    });
   }
 
   public trackByTaskId(index: number, task: TaskModel): number | null {

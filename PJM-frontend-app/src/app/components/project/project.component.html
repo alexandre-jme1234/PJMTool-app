@@ -1,6 +1,12 @@
 <div class="p-6">
   <!-- En-tête Kanban avec logo retour et titre projet -->
   <div class="flex items-center gap-4 mb-6">
+    <button 
+      (click)="goMainPage()" 
+      class="text-3xl text-gray-600 hover:text-blue-600 transition font-bold"
+      title="Retour au Dashboard">
+      ←
+    </button>
     <img
       src="assets/images/logo_accueil.png"
       alt="logo"
@@ -38,14 +44,20 @@
         </div>
       </div>
       <div>
-
-        <form class="mt-6" (ngSubmit)="addUserRoledToProject(newUserEmail, newUserRole)">
+        <!-- Affichage conditionnel : seuls les ADMINISTRATEURS peuvent ajouter des membres -->
+        <form *ngIf="userPermissions?.canAddMember" class="mt-6" (ngSubmit)="addUserRoledToProject(newUserEmail, newUserRole)">
           <input [(ngModel)]="newUserEmail" name="email" type="email" placeholder="Ajouter par email" class="w-full border rounded px-2 py-1 text-sm bg-blue-50" required />
           <select [(ngModel)]="newUserRole" name="role" class="w-full border rounded px-2 py-1 text-sm bg-blue-50 mt-2" required>
             <option *ngFor="let role of rolesDisponibles" [value]="role.nom">{{ role.nom }}</option>
           </select>
           <button type="submit" class="mt-2 w-full bg-blue-500 text-white rounded px-2 py-1 hover:bg-blue-600 transition">Ajouter un utilisateur</button>
         </form>
+        
+        <!-- Message pour les utilisateurs sans permission -->
+        <div *ngIf="!userPermissions?.canAddMember && userPermissions" class="mt-6 p-4 bg-gray-100 rounded-lg text-center">
+          <p class="text-gray-600 text-sm">🔒 Seuls les administrateurs peuvent ajouter des membres</p>
+          <p class="text-gray-500 text-xs mt-1">Votre rôle : {{ currentUserRole }}</p>
+        </div>
         <!-- <select [(ngModel)]="selectedUser" class="border rounded px-2 py-1 text-sm bg-blue-50">
           <option *ngFor="let user of allUsers" [ngValue]="user">{{ user.nom }} heh</option>
         </select>
@@ -88,7 +100,77 @@
         </div>
         <button (click)="saveEdit()" class="text-xl px-2 py-1 mt-5 bg-blue-500 text-white rounded hover:bg-blue-600">Ajouter  un utilisateur</button>
       </form> -->
+
+      <!-- Historique des tâches -->
+      <div class="mt-6 pt-6 border-t border-blue-200">
+      <div class="font-bold text-blue-900 text-lg mb-4 flex items-center gap-2">
+        📜 Historique des tâches
+      </div>
+      
+      <div *ngIf="taskHistory.length === 0" class="text-gray-500 italic text-center py-8">
+        Aucun événement dans l'historique
+      </div>
+
+      <div *ngIf="taskHistory.length > 0" class="space-y-2 max-h-64 overflow-y-auto pr-2">
+        <div *ngFor="let event of taskHistory" 
+             class="border-l-4 pl-3 py-2 rounded-r-lg transition-all hover:bg-gray-50 text-sm"
+             [ngClass]="{
+               'border-red-500 bg-red-50': event.priorite === 'HAUTE',
+               'border-yellow-500 bg-yellow-50': event.priorite === 'MOYENNE',
+               'border-green-500 bg-green-50': event.priorite === 'FAIBLE'
+             }">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <!-- Type d'événement -->
+              <div class="flex items-center gap-1 mb-1 flex-wrap">
+                <span *ngIf="event.eventType === 'CREATION'" class="text-green-600 font-bold text-xs">✨ Création</span>
+                <span *ngIf="event.eventType === 'ETAT_CHANGE'" class="text-blue-600 font-bold text-xs">🔄 État</span>
+                <span *ngIf="event.eventType === 'PRIORITE_CHANGE'" class="text-orange-600 font-bold text-xs">⚡ Priorité</span>
+                
+                <span class="text-xs px-2 py-0.5 rounded-full font-semibold"
+                      [ngClass]="{
+                        'bg-red-200 text-red-800': event.priorite === 'HAUTE',
+                        'bg-yellow-200 text-yellow-800': event.priorite === 'MOYENNE',
+                        'bg-green-200 text-green-800': event.priorite === 'FAIBLE'
+                      }">
+                  {{ event.priorite }}
+                </span>
+              </div>
+
+              <!-- Nom de la tâche -->
+              <div class="font-semibold text-gray-800 mb-1 text-xs">
+                {{ event.taskName }}
+              </div>
+
+              <!-- Détails du changement -->
+              <div class="text-xs text-gray-600">
+                <span *ngIf="event.eventType === 'CREATION'">
+                  {{ event.newValue }}
+                </span>
+                <span *ngIf="event.eventType === 'ETAT_CHANGE'">
+                  <span class="font-medium">{{ event.oldValue }}</span>
+                  →
+                  <span class="font-medium text-blue-600">{{ event.newValue }}</span>
+                </span>
+                <span *ngIf="event.eventType === 'PRIORITE_CHANGE'">
+                  <span class="font-medium">{{ event.oldValue }}</span>
+                  →
+                  <span class="font-medium text-orange-600">{{ event.newValue }}</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Date et heure -->
+            <div class="text-xs text-gray-500 text-right ml-4">
+              <div>{{ event.timestamp | date:'dd/MM/yyyy' }}</div>
+              <div class="font-mono">{{ event.timestamp | date:'HH:mm:ss' }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
+
     <!-- Kanban -->
     <div class="flex-1">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
@@ -98,7 +180,7 @@
             <svg class="w-5 h-5 text-blue-300" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" /></svg>
             À faire
           </h3>
-          <div cdkDropList id="todoList" [cdkDropListData]="tachesTodo" [cdkDropListConnectedTo]="['inProgressList']" (cdkDropListDropped)="onTaskDrop($event, 'TODO', prioriteBasse)" class="flex-1 min-h-[100px] border border-dashed border-blue-200 rounded-lg p-3 bg-white/50">
+          <div cdkDropList id="todoList" [cdkDropListData]="tachesTodo" [cdkDropListConnectedTo]="['inProgressList']" (cdkDropListDropped)="onTaskDrop($event, 'TODO', prioriteFaible)" class="flex-1 min-h-[100px] border border-dashed border-blue-200 rounded-lg p-3 bg-white/50">
             <div *ngFor="let task of tachesTodo; let i = index; trackBy: trackByTaskId" 
                  cdkDrag 
                  class="bg-white rounded-xl shadow p-4 border flex flex-col gap-2 cursor-pointer relative mb-3 hover:shadow-lg transition-shadow"
@@ -138,7 +220,7 @@
             <svg class="w-5 h-5 text-green-300" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" /></svg>
             Terminée
           </h3>
-          <div cdkDropList id="doneList" [cdkDropListData]="tachesDone" [cdkDropListConnectedTo]="['inProgressList']" (cdkDropListDropped)="onTaskDrop($event, 'DONE', prioriteBasse)" class="flex-1 min-h-[100px] border border-dashed border-green-200 rounded-lg p-3 bg-white/50">
+          <div cdkDropList id="doneList" [cdkDropListData]="tachesDone" [cdkDropListConnectedTo]="['inProgressList']" (cdkDropListDropped)="onTaskDrop($event, 'DONE', prioriteFaible)" class="flex-1 min-h-[100px] border border-dashed border-green-200 rounded-lg p-3 bg-white/50">
             <div *ngFor="let task of tachesDone; let i = index; trackBy: trackByTaskId" 
                  cdkDrag 
                  class="bg-white rounded-xl shadow p-4 border flex flex-col gap-2 cursor-pointer relative mb-3 hover:shadow-lg transition-shadow"
@@ -160,6 +242,7 @@
 <app-task-overlay
   [task]="selectedTask"
   [isOpen]="isOverlayOpen"
+  [userPermissions]="userPermissions"
   (close)="closeTaskDetails()">
 </app-task-overlay>
 </div>

@@ -1,8 +1,9 @@
 <div class="w-full" [ngSwitch]="mode">
   <!-- Template compact "carte" pour dashboard -->
-  <div *ngSwitchCase="'card'" class="bg-white rounded-xl shadow-lg p-5 flex flex-col gap-4 w-full border border-gray-200">
-    <div class="flex items-center justify-between border-b pb-2 mb-2">
-      <div class="flex items-center gap-2">
+  <div *ngSwitchCase="'card'" class="bg-white rounded-xl shadow-lg p-5 flex flex-col gap-3 w-full border border-gray-200">
+    <!-- En-tête : Nom + État + Priorité -->
+    <div class="flex items-center justify-between border-b pb-3">
+      <div class="flex items-center gap-2 flex-1">
         <span class="text-lg font-bold text-gray-800">{{ task?.nom }}</span>
         <span *ngIf="task && task.etat" 
               [ngClass]="{
@@ -14,25 +15,54 @@
           {{ task.etat === 'TODO' ? 'À faire' : (task.etat === 'IN_PROGRESS' ? 'En cours' : (task.etat === 'DONE' ? 'Terminée' : task.etat)) }}
         </span>
       </div>
-      <div class="flex flex-col items-end min-w-[60px]">
-        <span class="text-xl align-middle leading-none">
-          <ng-container *ngIf="task?.priorite" [ngSwitch]="task?.priorite">
+      <div class="flex flex-col items-end min-w-[80px]">
+        <span class="text-xl align-middle leading-none mb-1">
+          <ng-container *ngIf="task?.priorite" [ngSwitch]="task?.priorite?.nom">
             <span *ngSwitchCase="'HAUTE'">🔴</span>
-            <span *ngSwitchCase="'MOYENNES'">🟠</span>
-            <span *ngSwitchCase="'BASSE'">🟢</span>
+            <span *ngSwitchCase="'MOYENNE'">🟠</span>
+            <span *ngSwitchCase="'FAIBLE'">🟢</span>
           </ng-container>
         </span>
+        <span class="text-xs text-gray-600 font-medium">{{ task?.priorite?.nom }}</span>
       </div>
     </div>
     
-    <div class="text-sm text-gray-600">
+    <!-- Description -->
+    <div class="text-gray-600 text-sm">
       {{ task?.description | truncate:100 }}
     </div>
 
-    <div class="flex justify-between items-center text-sm text-gray-500">
-      <div>
-        <span>Échéance: {{ task?.date_fin | date:'shortDate' }}</span>
+    <!-- Informations détaillées -->
+    <div class="grid grid-cols-2 gap-2 text-xs">
+      <!-- Commanditaire -->
+      <div class="bg-gray-50 p-2 rounded">
+        <span class="text-gray-500 font-medium">👤 Commanditaire</span>
+        <p class="text-gray-800 font-semibold mt-1">{{ task?.commanditaire?.nom || 'Non assigné' }}</p>
       </div>
+      
+      <!-- Destinataire -->
+      <div class="bg-gray-50 p-2 rounded">
+        <span class="text-gray-500 font-medium">🎯 Destinataire</span>
+        <p class="text-gray-800 font-semibold mt-1">{{ task?.destinataire?.nom || 'Non assigné' }}</p>
+      </div>
+      
+      <!-- Date début -->
+      <div class="bg-blue-50 p-2 rounded">
+        <span class="text-gray-500 font-medium">📅 Début</span>
+        <p class="text-gray-800 font-semibold mt-1">{{ task?.date_debut | date:'dd/MM/yyyy' || 'Non définie' }}</p>
+      </div>
+      
+      <!-- Date fin -->
+      <div class="bg-blue-50 p-2 rounded">
+        <span class="text-gray-500 font-medium">🏁 Échéance</span>
+        <p class="text-gray-800 font-semibold mt-1">{{ task?.date_fin | date:'dd/MM/yyyy' || 'Non définie' }}</p>
+      </div>
+    </div>
+
+    <!-- Statut terminé -->
+    <div *ngIf="task?.est_termine" class="flex items-center gap-2 text-green-600 text-sm font-medium">
+      <span>✅</span>
+      <span>Tâche terminée</span>
     </div>
   </div>
 
@@ -68,11 +98,11 @@
       <div>
         <h3 class="font-semibold text-gray-700">Priorité</h3>
         <p class="flex items-center gap-2">
-          {{ task?.priorite }}
-          <span [ngSwitch]="task?.priorite">
+          {{ task?.priorite?.nom }}
+          <span [ngSwitch]="task?.priorite?.nom">
             <span *ngSwitchCase="'HAUTE'">🔴</span>
-            <span *ngSwitchCase="'MOYENNES'">🟠</span>
-            <span *ngSwitchCase="'BASSE'">🟢</span>
+            <span *ngSwitchCase="'MOYENNE'">🟠</span>
+            <span *ngSwitchCase="'FAIBLE'">🟢</span>
           </span>
         </p>
       </div>

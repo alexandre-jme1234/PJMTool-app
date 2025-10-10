@@ -5,109 +5,66 @@
 <div class="overlay-panel" [class.visible]="isOpen">
     <div class="overlay-content">
         <div class="p-6">
-            <!-- En-tête avec titre, bouton de fermeture et bouton modifier -->
+            <!-- En-tête avec titre et bouton de fermeture -->
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold">{{ isEditMode ? 'Modifier la tâche' : task?.nom }}</h2>
-                <div>
-                  <button *ngIf="!isEditMode" (click)="enableEdit()" class="mr-2 text-blue-500 hover:text-blue-700">✏️</button>
-                  <button (click)="close.emit()" class="text-gray-500 hover:text-gray-700 transition-colors">
-                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                      </svg>
-                  </button>
-                </div>
+                <h2 class="text-2xl font-bold">
+                  {{ task?.id === 0 ? 'Nouvelle tâche' : 'Éditer la tâche' }}
+                </h2>
+                <button (click)="close.emit()" class="text-gray-500 hover:text-gray-700 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
             </div>
 
             <!-- Formulaire d'édition -->
             <form *ngIf="isEditMode && editTask" (ngSubmit)="saveEdit()" class="space-y-4">
-              <div>
-                <label class="block text-sm font-medium">Nom</label>
-                <input [(ngModel)]="editTask.nom" name="nom" class="w-full border rounded px-2 py-1" required />
+              <!-- Ligne 1 : Nom + Priorité -->
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium mb-1">📝 Nom de la tâche</label>
+                  <input [(ngModel)]="editTask.nom" name="nom" class="w-full border rounded px-3 py-2" required />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium mb-1">⚡ Priorité</label>
+                  <select [(ngModel)]="editTask.priorite" name="priorite" class="w-full border rounded px-3 py-2">
+                    <option value=1>HAUTE</option>
+                    <option value=2>MOYENNE</option>
+                    <option value=3>FAIBLE</option>
+                  </select>
+                </div>
               </div>
-              <div>
-                <label class="block text-sm font-medium">Description</label>
-                <textarea [(ngModel)]="editTask.description" name="description" class="w-full border rounded px-2 py-1"></textarea>
+
+              <!-- Ligne 2 : Dates -->
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium mb-1">📅 Date de début</label>
+                  <input type="date" [(ngModel)]="editTask.date_debut" name="date_debut" class="w-full border rounded px-3 py-2" />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium mb-1">📅 Date de fin</label>
+                  <input type="date" [(ngModel)]="editTask.date_fin" name="date_fin" class="w-full border rounded px-3 py-2" />
+                </div>
               </div>
+
+              <!-- Description -->
               <div>
-                <label class="block text-sm font-medium">Priorité</label>
-                <select [(ngModel)]="editTask.priorite" name="priorite" class="w-full border rounded px-2 py-1">
-                  <option value=1>Haute</option>
-                  <option value=2>Moyenne</option>
-                  <option value=102>Basse</option>
-                </select>
+                <label class="block text-sm font-medium mb-1">📄 Description</label>
+                <textarea [(ngModel)]="editTask.description" name="description" rows="3" class="w-full border rounded px-3 py-2"></textarea>
               </div>
-              <div>
-                <label class="block text-sm font-medium">Date de début</label>
-                <input type="date" [(ngModel)]="editTask.date_debut" name="date_debut" class="w-full border rounded px-2 py-1" />
+
+              <!-- Terminée -->
+              <div class="flex items-center gap-2">
+                <input type="checkbox" [(ngModel)]="editTask.est_termine" name="est_termine" class="h-4 w-4" />
+                <label class="text-sm font-medium">✅ Tâche terminée</label>
               </div>
-              <div>
-                <label class="block text-sm font-medium">Date de fin</label>
-                <input type="date" [(ngModel)]="editTask.date_fin" name="date_fin" class="w-full border rounded px-2 py-1" />
-              </div>
-              <div>
-                <label class="block text-sm font-medium">Terminée</label>
-                <input type="checkbox" [(ngModel)]="editTask.est_termine" name="est_termine" />
-              </div>
-              <div class="flex gap-2 justify-end">
-                <button type="button" (click)="cancelEdit()" class="px-3 py-1 bg-gray-200 rounded">Annuler</button>
-                <button type="submit" class="px-3 py-1 bg-blue-500 text-white rounded">Enregistrer</button>
+
+              <!-- Boutons -->
+              <div class="flex gap-2 justify-end pt-4">
+                <button type="button" (click)="cancelEdit()" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Annuler</button>
+                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Enregistrer</button>
               </div>
             </form>
-
-            <!-- Affichage normal si pas en édition -->
-            <div *ngIf="!isEditMode" class="space-y-6">
-                <!-- Priorité -->
-                <div class="flex items-center gap-2">
-                    <span class="rounded-full px-3 py-1 text-sm font-semibold"
-                          [ngClass]="{
-                            'bg-blue-100 text-blue-800': task?.priorite?.nom === 'HAUTE',
-                            'bg-yellow-100 text-yellow-800': task?.priorite?.nom === 'MOYENNE',
-                            'bg-green-100 text-green-800': task?.priorite?.nom === 'BASSE'
-                          }">
-                        {{ task?.priorite?.nom }}
-                    </span>
-                </div>
-
-                <!-- Description -->
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-gray-700">Description</h3>
-                    <p class="text-gray-600 bg-gray-50 p-4 rounded-lg">{{ task?.description }}</p>
-                </div>
-
-                <!-- Dates -->
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-gray-700">Dates</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <p class="text-sm text-gray-500">Date de début</p>
-                            <p class="text-gray-700 font-medium">{{ task?.date_debut }}</p>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <p class="text-sm text-gray-500">Date de fin</p>
-                            <p class="text-gray-700 font-medium">{{ task?.date_fin }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Informations supplémentaires -->
-                <div class="space-y-2">
-                    <h3 class="font-semibold text-gray-700">Détails</h3>
-                    <div class="bg-gray-50 p-4 rounded-lg space-y-2">
-                        <div class="flex justify-between">
-                            <span class="text-gray-500">ID Destinataire</span>
-                            <span class="text-gray-700 font-medium">{{ task?.destinataire?.id }}</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-500">ID Projet</span>
-                            <span class="text-gray-700 font-medium">{{ task?.projet?.id }}</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-500">ID Commanditaire</span>
-                            <span class="text-gray-700 font-medium">{{ task?.commanditaire?.id }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

@@ -17,6 +17,8 @@ import { HttpClient } from '@angular/common/http';
 import { forkJoin, map } from 'rxjs';
 import { UserService } from '../../services/user/user.service';
 import { error } from 'console';
+import { NotificationService } from '../../services/notification/notification.service';
+import { PermissionService, UserPermissions } from '../../services/permissions/permission.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -65,7 +67,7 @@ export class DashboardComponent implements OnInit {
   priorites: PrioriteModel[] = [
     { id: 1, nom: 'HAUTE' },
     { id: 2, nom: 'MOYENNE' },
-    { id: 3, nom: 'BASSE' },
+    { id: 3, nom: 'FAIBLE' },
   ];
 
   newTask: TaskModel = {
@@ -98,13 +100,17 @@ export class DashboardComponent implements OnInit {
   selectedProjectIds: number[] = [];
   tasks: TaskModel[] = [];
   tasksToDelete: TaskModel[] = [];
+  currentProjectRole: string | null = null;
+  currentUserPermissions: UserPermissions | null = null;
 
   constructor(
     private projetService: ProjectService,
     private router: Router,
     private taskService: TaskService,
     private http: HttpClient,
-    private userService: UserService
+    private userService: UserService,
+    private notificationService: NotificationService,
+    private permissionService: PermissionService
   ) {}
 
   ngOnInit(): void {
@@ -187,7 +193,39 @@ export class DashboardComponent implements OnInit {
     this.selectedProject = projet;
     if (projet.id !== undefined) {
       this.loadTasksForProject(projet.id);
+      this.loadCurrentUserRoleForProject(projet.id);
     }
+  }
+
+  loadCurrentUserRoleForProject(projectId: number): void {
+    if (!this.userLogged?.id) return;
+    
+    this.projetService.getUsersRoledByProjectId(projectId).subscribe({
+      next: (response) => {
+        const userRoleData = response.data;
+        
+        const userRole = userRoleData.find((urp: any) => {
+          return urp.utilisateur === this.userLogged.id || urp.utilisateur?.id === this.userLogged.id;
+        });
+        
+        if (userRole) {
+          const roleMapping: { [key: number]: string } = {
+            1: "ADMINISTRATEUR",
+            2: "MEMBRE",
+            3: "OBSERVATEUR"
+          };
+          this.currentProjectRole = roleMapping[userRole.role] || 'OBSERVATEUR';
+          this.currentUserPermissions = this.permissionService.getPermissionsByRole(this.currentProjectRole);
+        } else {
+          this.currentProjectRole = null;
+          this.currentUserPermissions = null;
+        }
+      },
+      error: (error) => {
+        console.error('Erreur chargement rôle:', error);
+        this.currentProjectRole = null;
+      }
+    });
   }
 
   onAddProjectClick() {
@@ -204,13 +242,47 @@ export class DashboardComponent implements OnInit {
       }
 
       this.projetService.onCreateProject(this.newProject).subscribe({
-        next: () => {
-          this.loadProjects(); // Recharge la liste depuis le backend
+        next: (response: any) => {
+          const nouveauProjetId = response.data?.id || response.id;
+          
+          // Toujours recharger les projets d'abord
+          this.loadProjects();
+          
+          // Ajouter le créateur comme ADMINISTRATEUR
+          if (nouveauProjetId && this.userLogged.nom) {
+            this.userService.addUserRoledToProject(
+              this.userLogged.nom,
+              'ADMINISTRATEUR',
+              nouveauProjetId
+            ).subscribe({
+              next: () => {
+                console.log('✓ Créateur ajouté comme ADMINISTRATEUR');
+                this.notificationService.success('Projet créé avec succès !');
+                
+                // Attendre que les projets soient chargés puis sélectionner le nouveau
+                setTimeout(() => {
+                  const newProject = this.projects.find(p => p.id === nouveauProjetId);
+                  if (newProject) {
+                    this.onSelectProject(newProject);
+                  }
+                }, 1200);
+              },
+              error: (err) => {
+                console.error('Erreur ajout ADMIN:', err);
+                this.notificationService.warning('Projet créé mais erreur d\'ajout du rôle');
+              }
+            });
+          } else {
+            // Si pas d'utilisateur loggé, juste afficher le succès
+            this.notificationService.success('Projet créé avec succès !');
+          }
+          
           this.resetNewProject();
           this.showModal = false;
         },
         error: (error) => {
           console.error('[Erreur] Projet non créé:', error);
+          this.notificationService.error('Erreur lors de la création du projet');
         },
       });
     } else {
@@ -224,11 +296,30 @@ export class DashboardComponent implements OnInit {
   }
 
   onAddTaskClick() {
-    this.showTaskModal = true;
-    this.resetTaskForm();
+    // Créer une tâche vide pour le mode création
+    this.selectedTask = {
+      id: 0,
+      nom: '',
+      description: '',
+      date_debut: null,
+      date_fin: null,
+      priorite: this.priorites.find(p => p.nom === 'FAIBLE') || this.priorites[2],
+      commanditaire: this.userLogged,
+      destinataire: null,
+      projet: this.selectedProject as any,
+      est_termine: false,
+      etat: 'TODO'
+    } as TaskModel;
+    
+    this.isOverlayOpen = true;
   }
 
   onCreateTask() {
+    // Si aucune priorité n'est sélectionnée, utiliser FAIBLE par défaut
+    if (!this.newTask.priorite || this.newTask.priorite === null) {
+      this.newTask.priorite = this.priorites.find(p => p.nom === 'FAIBLE') || this.priorites[2];
+    }
+    
     // Préparer la requête pour le backend
     const tacheRequest = {
       nom: this.newTask.nom,
@@ -249,6 +340,7 @@ export class DashboardComponent implements OnInit {
         this.loadTasksForProject(this.selectedProject.id);
       }
       this.showTaskModal = false;
+      this.notificationService.success('Tâche créée avec succès !');
     });
   }
 
@@ -258,15 +350,21 @@ export class DashboardComponent implements OnInit {
   }
 
   resetTaskForm() {
+    // Commanditaire par défaut = utilisateur connecté
+    const commanditaire = this.userLogged || this.user1;
+    
+    // Priorité par défaut = FAIBLE
+    const prioriteParDefaut = this.priorites.find(p => p.nom === 'FAIBLE') || this.priorites[2];
+    
     this.newTask = {
       id: 0,
       nom: '',
       destinataire: this.user1,
       projet: this.projet1,
-      commanditaire: this.user1,
+      commanditaire: commanditaire,
       date_debut: null,
       date_fin: null,
-      priorite: null,
+      priorite: prioriteParDefaut,
       description: '',
       est_termine: false,
       etat: 'TODO',
@@ -421,14 +519,17 @@ export class DashboardComponent implements OnInit {
   }
 
   onTaskUpdated(updatedTask: TaskModel) {
-    if (this.selectedProject && this.selectedProject.taches) {
-      const idx = this.selectedProject.taches.findIndex(
-        (t) => t.id === updatedTask.id
-      );
-      if (idx !== -1) {
-        this.selectedProject.taches[idx] = { ...updatedTask };
-      }
+    // Recharger les tâches du projet
+    if (this.selectedProject?.id) {
+      this.loadTasksForProject(this.selectedProject.id);
     }
+    
+    // Fermer l'overlay
+    this.closeTaskDetails();
+    
+    // Afficher notification
+    const message = updatedTask.id === 0 ? 'Tâche créée avec succès !' : 'Tâche modifiée avec succès !';
+    this.notificationService.success(message);
   }
 
   onProjectCheckboxChange(project: Project, event: any) {
@@ -444,13 +545,33 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteSelectedProjects() {
+    if (this.selectedProjectIds.length === 0) return;
+    
+    const count = this.selectedProjectIds.length;
+    const message = count === 1 
+      ? 'Voulez-vous vraiment supprimer ce projet ?\n\n⚠️ Cette action est irréversible.' 
+      : `Voulez-vous vraiment supprimer ces ${count} projets ?\n\n⚠️ Cette action est irréversible.`;
+    
+    if (!confirm(message)) {
+      console.log('Suppression annulée par l\'utilisateur');
+      return;
+    }
+    
     const deleteRequests = this.selectedProjectIds.map((id) =>
       this.http.delete('/api/projet/delete/' + id)
     );
 
-    forkJoin(deleteRequests).subscribe(() => {
-      this.loadProjects();
-      this.selectedProjectIds = [];
+    forkJoin(deleteRequests).subscribe({
+      next: () => {
+        this.notificationService.success(`${count} projet(s) supprimé(s) avec succès`);
+        this.loadProjects();
+        this.selectedProjectIds = [];
+        this.selectedProject = null;
+      },
+      error: (err) => {
+        this.notificationService.error('Erreur lors de la suppression des projets');
+        console.error('Erreur suppression:', err);
+      }
     });
   }
 
