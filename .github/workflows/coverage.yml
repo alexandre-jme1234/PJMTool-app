@@ -42,10 +42,12 @@ jobs:
 
       - name: Archive Frontend Coverage Report
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: frontend-coverage-report
           path: PJM-frontend-app/coverage/
           retention-days: 30
+        continue-on-error: true
 
       - name: Comment PR with Frontend Coverage
         if: github.event_name == 'pull_request'
@@ -85,28 +87,42 @@ jobs:
 
       - name: Archive Backend Coverage Report
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: backend-coverage-report
           path: backend/target/site/jacoco/
           retention-days: 30
+        continue-on-error: true
+
+      - name: Check if JaCoCo report exists
+        id: check_jacoco
+        run: |
+          if [ -f "backend/target/site/jacoco/jacoco.csv" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "⚠️ JaCoCo CSV report not found, skipping badge generation"
+          fi
 
       - name: Generate Coverage Badge
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' && steps.check_jacoco.outputs.exists == 'true'
         uses: cicirello/jacoco-badge-generator@v2
         with:
           jacoco-csv-file: backend/target/site/jacoco/jacoco.csv
           badges-directory: .github/badges
           generate-branches-badge: true
           generate-summary: true
+        continue-on-error: true
 
       - name: Commit Coverage Badge
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' && steps.check_jacoco.outputs.exists == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .github/badges/* || true
           git commit -m "Update coverage badges" || true
           git push || true
+        continue-on-error: true
 
   combined-report:
     name: Combined Coverage Report
