@@ -98,8 +98,16 @@ public class UtilisateurController {
         
         // Récupérer le rôle depuis le nom fourni, ou utiliser "MEMBRE" par défaut
         Role rolePdt = null;
-        if (utilisateur.getRole_app() != null && !utilisateur.getRole_app().isEmpty()) {
-            rolePdt = roleService.findByNom(utilisateur.getRole_app());
+        String roleRequested = utilisateur.getRole_app();
+        
+        if (roleRequested != null && !roleRequested.isEmpty()) {
+            rolePdt = roleService.findByNom(roleRequested);
+            
+            if (rolePdt == null) {
+                System.err.println("⚠️ AVERTISSEMENT: Le rôle '" + roleRequested + "' n'existe pas dans la base de données.");
+                System.err.println("   Rôles valides: ADMINISTRATEUR, MEMBRE, OBSERVATEUR");
+                System.err.println("   Fallback vers le rôle MEMBRE par défaut.");
+            }
         }
         
         // Si le rôle n'est pas trouvé, utiliser "MEMBRE" par défaut
@@ -113,7 +121,7 @@ public class UtilisateurController {
                 .body(new ApiResponse<>(false, "Le rôle MEMBRE n'existe pas dans la base de données", null));
         }
         
-        System.out.println("role PDT__>"+ rolePdt.getNom());
+        System.out.println("✓ Rôle assigné: " + rolePdt.getNom() + " (ID: " + rolePdt.getId() + ")");
 
         // Créer la liaison utilisateur-projet-rôle
         UserRoleProjet urp = new UserRoleProjet();

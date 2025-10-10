@@ -276,7 +276,7 @@ export class ProjectComponent implements OnInit {
                 // Créer une copie de l'utilisateur avec le rôle assigné
                 return {
                   ...user,
-                  role_app: roleMapping[urp.role] || 'MEMBRE'
+                  role_app: roleMapping[urp.role] || 'OBSERVATEUR'
                 };
               }
               return null;
@@ -302,48 +302,48 @@ export class ProjectComponent implements OnInit {
     this.roleSelectionne[id] = this.getUserRole(user)?.id ?? (this.rolesDisponibles[0]?.id ?? 0);
   }
 
-  validerRole(user: UserModel) {
-    if (user.id == null) return;
-    const id = user.id;
-    const nouveauRole = this.rolesDisponibles.find(r => r.id === Number(this.roleSelectionne[id]));
-    if (nouveauRole) {
-      console.log('[validerRole] Utilisateur:', user, 'Nouveau rôle validé:', nouveauRole);
-      this.userService.updateUserRole(id, nouveauRole);
-      const idx = this.utilisateursProjet.findIndex(u => u.id === id);
-      if (idx !== -1) {
-        const updatedUser = { ...user, roles_projet: [nouveauRole] };
-        this.utilisateursProjet = [
-          ...this.utilisateursProjet.slice(0, idx),
-          updatedUser,
-          ...this.utilisateursProjet.slice(idx + 1)
-        ];
-        this.cdr.detectChanges();
-      }
-    }
-  }
+  // validerRole(user: UserModel) {
+  //   if (user.id == null) return;
+  //   const id = user.id;
+  //   const nouveauRole = this.rolesDisponibles.find(r => r.id === Number(this.roleSelectionne[id]));
+  //   if (nouveauRole) {
+  //     console.log('[validerRole] Utilisateur:', user, 'Nouveau rôle validé:', nouveauRole);
+  //     this.userService.updateUserRole(id, nouveauRole);
+  //     const idx = this.utilisateursProjet.findIndex(u => u.id === id);
+  //     if (idx !== -1) {
+  //       const updatedUser = { ...user, roles_projet: [nouveauRole] };
+  //       this.utilisateursProjet = [
+  //         ...this.utilisateursProjet.slice(0, idx),
+  //         updatedUser,
+  //         ...this.utilisateursProjet.slice(idx + 1)
+  //       ];
+  //       this.cdr.detectChanges();
+  //     }
+  //   }
+  // }
 
-  supprimerUtilisateur(user: UserModel) {
-    this.utilisateursProjet = this.utilisateursProjet.filter(u => u.id !== user.id);
-    console.log('[supprimerUtilisateur] Utilisateur supprimé:', user);
-  }
+  // supprimerUtilisateur(user: UserModel) {
+  //   this.utilisateursProjet = this.utilisateursProjet.filter(u => u.id !== user.id);
+  //   console.log('[supprimerUtilisateur] Utilisateur supprimé:', user);
+  // }
 
-  ajouterUtilisateur() {
-    if (this.nouvelUtilisateurId !== undefined) {
-      const user = this.allUsers.find(u => u.id === this.nouvelUtilisateurId);
-      if (user && !this.utilisateursProjet.some(u => u.id === user.id)) {
-        const userToAdd = { ...user, roles_projet: user.roles_projet ? [...user.roles_projet] : [] };
-        this.utilisateursProjet.push(userToAdd);
-        console.log('[ajouterUtilisateur] Utilisateur ajouté:', userToAdd);
-        this.cdr.detectChanges();
-      }
-      this.nouvelUtilisateurId = undefined;
-    }
-  }
+  // ajouterUtilisateur() {
+  //   if (this.nouvelUtilisateurId !== undefined) {
+  //     const user = this.allUsers.find(u => u.id === this.nouvelUtilisateurId);
+  //     if (user && !this.utilisateursProjet.some(u => u.id === user.id)) {
+  //       const userToAdd = { ...user, roles_projet: user.roles_projet ? [...user.roles_projet] : [] };
+  //       this.utilisateursProjet.push(userToAdd);
+  //       console.log('[ajouterUtilisateur] Utilisateur ajouté:', userToAdd);
+  //       this.cdr.detectChanges();
+  //     }
+  //     this.nouvelUtilisateurId = undefined;
+  //   }
+  // }
 
-  isUserInProject(userId: number | undefined): boolean {
-    if (userId === undefined) return false;
-    return this.utilisateursProjet.some(u => u.id === userId);
-  }
+  // isUserInProject(userId: number | undefined): boolean {
+  //   if (userId === undefined) return false;
+  //   return this.utilisateursProjet.some(u => u.id === userId);
+  // }
 
   get tachesTodo(): TaskModel[] {
     return this.projet?.taches?.filter(t => t.etat === 'TODO') || [];
