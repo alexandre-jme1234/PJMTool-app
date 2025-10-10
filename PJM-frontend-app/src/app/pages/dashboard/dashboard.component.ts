@@ -16,7 +16,7 @@ import { PrioriteModel } from '../../services/priorite/priorite.model';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin, map } from 'rxjs';
 import { UserService } from '../../services/user/user.service';
-import { error } from 'console';
+// import { error } from 'console'; // Removed - not needed in browser
 import { NotificationService } from '../../services/notification/notification.service';
 import { PermissionService, UserPermissions } from '../../services/permissions/permission.service';
 

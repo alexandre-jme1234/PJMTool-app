@@ -17,7 +17,7 @@ import { RoleService } from '../../services/role/role.service';
 import { UserModel } from '../../services/user/user.model';
 import { RoleModel } from '../../services/role/role.model';
 import { ProjetModel } from '../../services/projects/projet.model';
-import { log } from 'node:console';
+// import { log } from 'node:console'; // Removed - not needed in browser
 import { forkJoin, map, Observable, tap } from 'rxjs';
 import { PermissionService, UserPermissions } from '../../services/permissions/permission.service';
 import { TaskHistoryEvent } from '../../services/task/task-history.model';
