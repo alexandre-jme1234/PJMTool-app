@@ -124,41 +124,5 @@ jobs:
           git push || true
         continue-on-error: true
 
-  combined-report:
-    name: Combined Coverage Report
-    needs: [frontend-coverage, backend-coverage]
-    runs-on: ubuntu-latest
-    if: always()
-    
-    steps:
-      - name: Download Frontend Coverage
-        uses: actions/download-artifact@v4
-        with:
-          name: frontend-coverage-report
-          path: ./coverage/frontend
-
-      - name: Download Backend Coverage
-        uses: actions/download-artifact@v4
-        with:
-          name: backend-coverage-report
-          path: ./coverage/backend
-
-      - name: Create Summary
-        run: |
-          echo "# 📊 Code Coverage Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "## Frontend Coverage" >> $GITHUB_STEP_SUMMARY
-          if [ -f "./coverage/frontend/pjm-frontend-app/lcov.info" ]; then
-            echo "✅ Frontend tests executed successfully" >> $GITHUB_STEP_SUMMARY
-            echo "📁 [View Frontend Coverage Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ Frontend coverage not available" >> $GITHUB_STEP_SUMMARY
-          fi
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "## Backend Coverage" >> $GITHUB_STEP_SUMMARY
-          if [ -f "./coverage/backend/jacoco.xml" ]; then
-            echo "✅ Backend tests executed successfully" >> $GITHUB_STEP_SUMMARY
-            echo "📁 [View Backend Coverage Report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ Backend coverage not available" >> $GITHUB_STEP_SUMMARY
-          fi
+  # Note: Combined report job removed to avoid artifact download errors
+  # Individual coverage reports are available in frontend-coverage and backend-coverage jobs
