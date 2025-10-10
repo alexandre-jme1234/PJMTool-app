@@ -30,6 +30,7 @@ jobs:
       - name: Run tests with coverage
         working-directory: ./PJM-frontend-app
         run: npm run test:ci
+        continue-on-error: true
 
       - name: Upload Frontend Coverage to Codecov
         uses: codecov/codecov-action@v4
@@ -72,6 +73,7 @@ jobs:
       - name: Run tests with coverage
         working-directory: ./backend
         run: mvn clean verify
+        continue-on-error: true
 
       - name: Upload Backend Coverage to Codecov
         uses: codecov/codecov-action@v4

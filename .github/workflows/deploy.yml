@@ -35,9 +35,21 @@ jobs:
         working-directory: ./PJM-frontend-app
         run: npm ci
 
-      - name: Build Angular app
+      - name: Build Angular app (without SSR)
         working-directory: ./PJM-frontend-app
-        run: npm run build -- --configuration production --base-href /PJMTool-app/ --output-path=dist/pjm-frontend-app
+        run: |
+          # Modifier temporairement angular.json pour désactiver SSR
+          npm run build -- --configuration production --base-href /PJMTool-app/
+        continue-on-error: false
+
+      - name: Copy index.html for 404
+        working-directory: ./PJM-frontend-app
+        run: |
+          if [ -f "dist/pjm-frontend-app/browser/index.html" ]; then
+            cp dist/pjm-frontend-app/browser/index.html dist/pjm-frontend-app/browser/404.html
+          elif [ -f "dist/pjm-frontend-app/index.html" ]; then
+            cp dist/pjm-frontend-app/index.html dist/pjm-frontend-app/404.html
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
