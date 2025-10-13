@@ -30,8 +30,8 @@ describe('ProjectService', () => {
       const mockResponse = {
         success: true,
         data: [
-          { id: 1, nom: 'Projet 1', createur: 'User1' },
-          { id: 2, nom: 'Projet 2', createur: 'User2' }
+          { id: 1, nom: 'Projet 1', createur: 'User1', date_echeance: '2025-12-31' },
+          { id: 2, nom: 'Projet 2', createur: 'User2', date_echeance: '2025-12-31' }
         ]
       };
 
@@ -83,7 +83,7 @@ describe('ProjectService', () => {
 
   describe('onDeleteProject', () => {
     it('should delete a project', () => {
-      const projectToDelete: Project = { id: 1, nom: 'To Delete', createur: 'User' };
+      const projectToDelete: any = { id: 1, nom: 'To Delete', createur: 'User' };
       const mockResponse = { success: true, message: 'Project deleted' };
 
       service.onDeleteProject(projectToDelete).subscribe(response => {
@@ -143,7 +143,7 @@ describe('ProjectService', () => {
 
   describe('addTaskToProject', () => {
     it('should add a task to a project', () => {
-      const task: TaskModel = {
+      const task: any = {
         id: 1,
         nom: 'Test Task',
         description: 'Test Description'

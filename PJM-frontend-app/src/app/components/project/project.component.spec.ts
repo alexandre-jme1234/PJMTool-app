@@ -24,7 +24,7 @@ describe('ProjectComponent', () => {
   let mockRouter: jasmine.SpyObj<Router>;
   let mockActivatedRoute: any;
 
-  const mockProject: ProjetModel = {
+  const mockProject: any = {
     id: 1,
     nom: 'Test Project',
     createur: 'TestUser',
@@ -34,7 +34,7 @@ describe('ProjectComponent', () => {
     utilisateurs_projet: []
   };
 
-  const mockTask: TaskModel = {
+  const mockTask: any = {
     id: 1,
     nom: 'Test Task',
     description: 'Test Description',
@@ -63,12 +63,12 @@ describe('ProjectComponent', () => {
       'logPrioriteChange'
     ]);
     mockUserService = jasmine.createSpyObj('UserService', [
-      'getAllUsers',
+      'getUsers',
       'getUserById',
       'addUserRoledToProject'
     ]);
-    mockRoleService = jasmine.createSpyObj('RoleService', ['getAllRoles']);
-    mockPermissionService = jasmine.createSpyObj('PermissionService', ['getUserPermissions']);
+    mockRoleService = jasmine.createSpyObj('RoleService', ['getRoles']);
+    mockPermissionService = jasmine.createSpyObj('PermissionService', []);
     mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
     mockActivatedRoute = {
@@ -84,9 +84,9 @@ describe('ProjectComponent', () => {
     mockProjectService.getUsersRoledByProjectId.and.returnValue(of({ data: [] }));
     mockTaskService.updateTask.and.returnValue(of(mockTask));
     mockTaskService.getProjectHistory.and.returnValue([]);
-    mockUserService.getAllUsers.and.returnValue(of([]));
-    mockRoleService.getAllRoles.and.returnValue(of([]));
-    mockPermissionService.getUserPermissions.and.returnValue({
+    mockUserService.getUsers.and.returnValue(of([]));
+    mockRoleService.getRoles.and.returnValue([]);
+    (mockPermissionService as any).getUserPermissions = jasmine.createSpy().and.returnValue({
       canEdit: true,
       canDelete: true,
       canAddMember: true
@@ -155,7 +155,7 @@ describe('ProjectComponent', () => {
   });
 
   it('should get user by email', () => {
-    const mockUser: UserModel = { id: 1, nom: 'Test', email: 'test@test.com' };
+    const mockUser: any = { id: 1, nom: 'Test', email: 'test@test.com' };
     component.allUsers = [mockUser];
     
     const result = component.getUtilisateurByEmail('test@test.com');
@@ -164,7 +164,7 @@ describe('ProjectComponent', () => {
   });
 
   it('should get role by id', () => {
-    const mockRole: RoleModel = { id: 1, nom: 'ADMIN' };
+    const mockRole: any = { id: 1, nom: 'ADMIN' };
     component.rolesDisponibles = [mockRole];
     
     const result = component.getRoleById(1);
@@ -210,7 +210,7 @@ describe('ProjectComponent', () => {
   });
 
   it('should add user with role to project', () => {
-    const mockUser: UserModel = { id: 1, nom: 'TestUser', email: 'test@test.com' };
+    const mockUser: any = { id: 1, nom: 'TestUser', email: 'test@test.com' };
     component.allUsers = [mockUser];
     component.projet = mockProject;
     mockUserService.addUserRoledToProject.and.returnValue(of({ success: true }));
@@ -223,7 +223,7 @@ describe('ProjectComponent', () => {
   it('should load current user permissions', () => {
     fixture.detectChanges();
     
-    expect(mockPermissionService.getUserPermissions).toHaveBeenCalled();
+    expect((mockPermissionService as any).getUserPermissions).toHaveBeenCalled();
     expect(component.userPermissions).toBeDefined();
   });
 
@@ -244,8 +244,8 @@ describe('ProjectComponent', () => {
   });
 
   it('should get user role', () => {
-    const mockRole: RoleModel = { id: 1, nom: 'ADMIN' };
-    const mockUser: UserModel = { 
+    const mockRole: any = { id: 1, nom: 'ADMIN' };
+    const mockUser: any = { 
       id: 1, 
       nom: 'Test', 
       email: 'test@test.com',
@@ -258,7 +258,7 @@ describe('ProjectComponent', () => {
   });
 
   it('should return undefined for user without role', () => {
-    const mockUser: UserModel = { 
+    const mockUser: any = { 
       id: 1, 
       nom: 'Test', 
       email: 'test@test.com',
