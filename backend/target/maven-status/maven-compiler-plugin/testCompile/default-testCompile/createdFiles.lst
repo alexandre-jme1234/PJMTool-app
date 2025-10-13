@@ -1,1 +1,4 @@
+com\visiplus\backend\controllers\TacheControllerTest.class
 com\visiplus\backend\BackendApplicationTests.class
+com\visiplus\backend\controllers\ProjetControllerTest.class
+com\visiplus\backend\controllers\UtilisateurControllerTest.class
