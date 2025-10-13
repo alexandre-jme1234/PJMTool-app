@@ -8,7 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,7 +46,8 @@ class BackendApplicationTests {
 	@Test
 	void testUtilisateurRepository() {
 		// Test de base du repository Utilisateur
-		List<Utilisateur> users = utilisateurRepository.findAll();
+		List<Utilisateur> users = StreamSupport.stream(utilisateurRepository.findAll().spliterator(), false)
+				.collect(Collectors.toList());
 		assertNotNull(users);
 		// Les utilisateurs peuvent être vides ou pré-chargés par DataInitializer
 		assertTrue(users.size() >= 0);
@@ -51,7 +56,8 @@ class BackendApplicationTests {
 	@Test
 	void testProjetRepository() {
 		// Test de base du repository Projet
-		List<Projet> projets = projetRepository.findAll();
+		List<Projet> projets = StreamSupport.stream(projetRepository.findAll().spliterator(), false)
+				.collect(Collectors.toList());
 		assertNotNull(projets);
 		assertTrue(projets.size() >= 0);
 	}
@@ -59,7 +65,8 @@ class BackendApplicationTests {
 	@Test
 	void testTacheRepository() {
 		// Test de base du repository Tache
-		List<Tache> taches = tacheRepository.findAll();
+		List<Tache> taches = StreamSupport.stream(tacheRepository.findAll().spliterator(), false)
+				.collect(Collectors.toList());
 		assertNotNull(taches);
 		assertTrue(taches.size() >= 0);
 	}
@@ -67,7 +74,8 @@ class BackendApplicationTests {
 	@Test
 	void testRoleRepository() {
 		// Test de base du repository Role
-		List<Role> roles = roleRepository.findAll();
+		List<Role> roles = StreamSupport.stream(roleRepository.findAll().spliterator(), false)
+				.collect(Collectors.toList());
 		assertNotNull(roles);
 		// Les rôles sont normalement pré-chargés
 		assertTrue(roles.size() >= 0);
@@ -76,7 +84,8 @@ class BackendApplicationTests {
 	@Test
 	void testPrioriteRepository() {
 		// Test de base du repository Priorite
-		List<Priorite> priorites = prioriteRepository.findAll();
+		List<Priorite> priorites = StreamSupport.stream(prioriteRepository.findAll().spliterator(), false)
+				.collect(Collectors.toList());
 		assertNotNull(priorites);
 		// Les priorités sont normalement pré-chargées
 		assertTrue(priorites.size() >= 0);
@@ -102,11 +111,18 @@ class BackendApplicationTests {
 	@Test
 	void testCreateAndFindProjet() {
 		// Test création et recherche d'un projet
+		// Créer d'abord un utilisateur pour le créateur
+		Utilisateur createur = new Utilisateur();
+		createur.setNom("TestCreateur_" + System.currentTimeMillis());
+		createur.setEmail("createur" + System.currentTimeMillis() + "@test.com");
+		createur.setPassword("password");
+		Utilisateur savedCreateur = utilisateurRepository.save(createur);
+
 		Projet projet = new Projet();
 		projet.setNom("TestProjet_" + System.currentTimeMillis());
-		projet.setCreateur("TestCreateur");
-		projet.setDate_echeance(LocalDate.now().plusMonths(1));
-		projet.setDate_creation(LocalDate.now());
+		projet.setCreateur(savedCreateur);
+		projet.setDate_echeance(convertToDate(LocalDate.now().plusMonths(1)));
+		projet.setDate_creation(convertToDate(LocalDate.now()));
 
 		Projet saved = projetRepository.save(projet);
 		assertNotNull(saved);
@@ -115,6 +131,7 @@ class BackendApplicationTests {
 
 		// Nettoyage
 		projetRepository.delete(saved);
+		utilisateurRepository.delete(savedCreateur);
 	}
 
 	@Test
@@ -123,8 +140,8 @@ class BackendApplicationTests {
 		Tache tache = new Tache();
 		tache.setNom("TestTache_" + System.currentTimeMillis());
 		tache.setDescription("Description de test");
-		tache.setDate_debut(LocalDate.now());
-		tache.setDate_fin(LocalDate.now().plusDays(7));
+		tache.setDate_debut(convertToDate(LocalDate.now()));
+		tache.setDate_fin(convertToDate(LocalDate.now().plusDays(7)));
 
 		Tache saved = tacheRepository.save(tache);
 		assertNotNull(saved);
@@ -152,5 +169,12 @@ class BackendApplicationTests {
 
 		// Nettoyage
 		utilisateurRepository.delete(user);
+	}
+
+	/**
+	 * Méthode utilitaire pour convertir LocalDate en Date
+	 */
+	private Date convertToDate(LocalDate localDate) {
+		return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 	}
 }
