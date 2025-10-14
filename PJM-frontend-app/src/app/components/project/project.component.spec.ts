@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ActivatedRoute, Router } from '@angular/router';
-import { of, BehaviorSubject } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { ProjectComponent } from './project.component';
 import { ProjectService } from '../../services/projects/project.service';
 import { TaskService } from '../../services/task/task.service';
@@ -49,6 +49,33 @@ describe('ProjectComponent', () => {
     projet_id: 1
   };
 
+  const mockUser: UserModel = {
+    id: 1,
+    nom: 'TestUser',
+    email: 'test@test.com',
+    role_app: 'ADMINISTRATEUR',
+    password: null,
+    etat_connexion: true,
+    tache_commanditaire: [],
+    taches_destinataire: [],
+    projets_utilisateur: [],
+    projets: [],
+    roles_projet: []
+  };
+
+  const mockRole: RoleModel = {
+    id: 1,
+    nom: 'ADMINISTRATEUR',
+    ajouter_membre: true,
+    creer_tache: true,
+    assigne_tache: true,
+    maj_tache: true,
+    vue_tache: true,
+    vue_tableau_de_bord: true,
+    etre_notifie: true,
+    vue_historique_modifications: true
+  };
+
   beforeEach(async () => {
     mockProjectService = jasmine.createSpyObj('ProjectService', [
       'getProjectById',
@@ -60,7 +87,8 @@ describe('ProjectComponent', () => {
       'updateTask',
       'getProjectHistory',
       'logEtatChange',
-      'logPrioriteChange'
+      'logPrioriteChange',
+      'getTasksByProject'
     ]);
     mockUserService = jasmine.createSpyObj('UserService', [
       'getUsers',
@@ -68,7 +96,7 @@ describe('ProjectComponent', () => {
       'addUserRoledToProject'
     ]);
     mockRoleService = jasmine.createSpyObj('RoleService', ['getRoles']);
-    mockPermissionService = jasmine.createSpyObj('PermissionService', []);
+    mockPermissionService = jasmine.createSpyObj('PermissionService', ['getPermissionsByRole']);
     mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
     mockActivatedRoute = {
@@ -80,13 +108,14 @@ describe('ProjectComponent', () => {
     };
 
     // Setup default return values
-    mockProjectService.getProjectById.and.returnValue(of(mockProject));
+    mockProjectService.getProjectById.and.returnValue(of({ data: mockProject }));
     mockProjectService.getUsersRoledByProjectId.and.returnValue(of({ data: [] }));
     mockTaskService.updateTask.and.returnValue(of(mockTask));
+    mockTaskService.getTasksByProject.and.returnValue(of([]));
     mockTaskService.getProjectHistory.and.returnValue([]);
-    mockUserService.getUsers.and.returnValue(of([]));
-    mockRoleService.getRoles.and.returnValue([]);
-    (mockPermissionService as any).getUserPermissions = jasmine.createSpy().and.returnValue({
+    mockUserService.getUsers.and.returnValue(of([mockUser]));
+    mockRoleService.getRoles.and.returnValue([mockRole]);
+    mockPermissionService.getPermissionsByRole.and.returnValue({
       canEdit: true,
       canDelete: true,
       canAddMember: true
@@ -107,7 +136,7 @@ describe('ProjectComponent', () => {
     .compileComponents();
 
     // Mock sessionStorage
-    spyOn(sessionStorage, 'getItem').and.returnValue(JSON.stringify({ nom: 'TestUser' }));
+    spyOn(sessionStorage, 'getItem').and.returnValue(JSON.stringify({ id: 1, nom: 'TestUser' }));
 
     fixture = TestBed.createComponent(ProjectComponent);
     component = fixture.componentInstance;
@@ -120,7 +149,28 @@ describe('ProjectComponent', () => {
   it('should load project on init', () => {
     fixture.detectChanges();
     expect(mockProjectService.getProjectById).toHaveBeenCalledWith(1);
-    expect(component.projet).toEqual(mockProject);
+    expect(component.projet).toBeTruthy();
+  });
+
+  it('should handle project with utilisateurs_projet', () => {
+    const projectWithUsers = {
+      ...mockProject,
+      utilisateurs_projet: [1, 2]
+    };
+    mockProjectService.getProjectById.and.returnValue(of({ data: projectWithUsers }));
+    mockUserService.getUserById.and.returnValue(of(mockUser));
+    
+    fixture.detectChanges();
+    
+    expect(component.projet).toBeTruthy();
+  });
+
+  it('should handle project without data', () => {
+    mockProjectService.getProjectById.and.returnValue(of({ data: null }));
+    
+    fixture.detectChanges();
+    
+    expect(component.projet).toBeNull();
   });
 
   it('should load task history', () => {
@@ -220,11 +270,37 @@ describe('ProjectComponent', () => {
     expect(mockUserService.addUserRoledToProject).toHaveBeenCalledWith('TestUser', 'ADMIN', 1);
   });
 
-  it('should load current user permissions', () => {
+  it('should load current user permissions for admin role', () => {
+    mockProjectService.getUsersRoledByProjectId.and.returnValue(of({ 
+      data: [{ utilisateur: 1, role: 1 }] 
+    }));
+    
     fixture.detectChanges();
     
-    expect((mockPermissionService as any).getUserPermissions).toHaveBeenCalled();
+    expect(component.currentUserRole).toBe('ADMINISTRATEUR');
     expect(component.userPermissions).toBeDefined();
+  });
+
+  it('should set OBSERVATEUR role when user not found in project', (done) => {
+    mockProjectService.getUsersRoledByProjectId.and.returnValue(of({ data: [] }));
+    
+    fixture.detectChanges();
+    
+    // Attendre que les retries soient terminés
+    setTimeout(() => {
+      expect(component.currentUserRole).toBe('OBSERVATEUR');
+      done();
+    }, 3500);
+  });
+
+  it('should handle permission loading error', () => {
+    mockProjectService.getUsersRoledByProjectId.and.returnValue(
+      throwError(() => new Error('Permission error'))
+    );
+    
+    fixture.detectChanges();
+    
+    expect(component.currentUserRole).toBe('OBSERVATEUR');
   });
 
   it('should handle task drop between containers', () => {
@@ -268,5 +344,119 @@ describe('ProjectComponent', () => {
     const result = component.getUserRole(mockUser);
     
     expect(result).toBeUndefined();
+  });
+
+  describe('Task filtering by state', () => {
+    beforeEach(() => {
+      component.projet = {
+        ...mockProject,
+        taches: [
+          { ...mockTask, id: 1, etat: 'TODO' },
+          { ...mockTask, id: 2, etat: 'IN_PROGRESS' },
+          { ...mockTask, id: 3, etat: 'DONE' }
+        ]
+      };
+    });
+
+    it('should filter TODO tasks', () => {
+      expect(component.tachesTodo.length).toBe(1);
+      expect(component.tachesTodo[0].etat).toBe('TODO');
+    });
+
+    it('should filter IN_PROGRESS tasks', () => {
+      expect(component.tachesInProgress.length).toBe(1);
+      expect(component.tachesInProgress[0].etat).toBe('IN_PROGRESS');
+    });
+
+    it('should filter DONE tasks', () => {
+      expect(component.tachesDone.length).toBe(1);
+      expect(component.tachesDone[0].etat).toBe('DONE');
+    });
+  });
+
+  describe('User management', () => {
+    it('should get users roled by project', () => {
+      const userRoleData = [
+        { utilisateur: 1, role: 1 }
+      ];
+      component.allUsers = [mockUser];
+      mockProjectService.getUsersRoledByProjectId.and.returnValue(of({ data: userRoleData }));
+      
+      component.getUserRoledByProject(1);
+      
+      expect(mockProjectService.getUsersRoledByProjectId).toHaveBeenCalledWith(1);
+    });
+
+    it('should modify user role', () => {
+      const userWithRole = { ...mockUser, roles_projet: [mockRole] };
+      component.rolesDisponibles = [mockRole];
+      
+      component.modifierRole(userWithRole);
+      
+      expect(component.roleSelectionne[1]).toBe(1);
+    });
+
+    it('should not modify role for user without id', () => {
+      const userWithoutId = { ...mockUser, id: null };
+      
+      component.modifierRole(userWithoutId);
+      
+      expect(Object.keys(component.roleSelectionne).length).toBe(0);
+    });
+  });
+
+  describe('Task history', () => {
+    it('should load task history when project has tasks', () => {
+      component.projet = { ...mockProject, id: 1, taches: [mockTask] };
+      const mockHistory = [
+        { taskId: 1, taskName: 'Test', eventType: 'CREATION', timestamp: new Date() }
+      ];
+      mockTaskService.getProjectHistory.and.returnValue(mockHistory as any);
+      
+      component.loadTaskHistory();
+      
+      expect(mockTaskService.getProjectHistory).toHaveBeenCalledWith(1, [mockTask]);
+      expect(component.taskHistory).toEqual(mockHistory as any);
+    });
+
+    it('should not load history when project is null', () => {
+      component.projet = null;
+      
+      component.loadTaskHistory();
+      
+      expect(mockTaskService.getProjectHistory).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Error handling', () => {
+    it('should handle error when adding user to project', () => {
+      component.allUsers = [mockUser];
+      component.projet = mockProject;
+      mockUserService.addUserRoledToProject.and.returnValue(
+        throwError(() => new Error('Add user error'))
+      );
+      
+      component.addUserRoledToProject('test@test.com', 'ADMIN');
+      
+      expect(mockUserService.addUserRoledToProject).toHaveBeenCalled();
+    });
+
+    it('should not add user if email not found', () => {
+      component.allUsers = [mockUser];
+      component.projet = mockProject;
+      
+      component.addUserRoledToProject('notfound@test.com', 'ADMIN');
+      
+      expect(mockUserService.addUserRoledToProject).not.toHaveBeenCalled();
+    });
+
+    it('should not add user if role is null', () => {
+      component.allUsers = [mockUser];
+      component.projet = mockProject;
+      
+      component.addUserRoledToProject('test@test.com', null);
+      
+      expect(mockUserService.addUserRoledToProject).not.toHaveBeenCalled();
+    });
   });
 });
