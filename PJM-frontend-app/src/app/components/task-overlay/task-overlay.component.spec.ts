@@ -241,13 +241,19 @@ describe('TaskOverlayComponent', () => {
     expect(component.userPermissions.canUpdateTask).toBe(true);
   });
 
-  it('should handle task update error gracefully', () => {
+  it('should handle task update error gracefully', (done) => {
     component.editTask = mockTask;
     mockTaskService.updateTask.and.returnValue(
       throwError(() => new Error('Update failed'))
     );
+    spyOn(component.taskUpdated, 'emit');
     
-    // Should not throw
-    expect(() => component.saveEdit()).not.toThrow();
+    component.saveEdit();
+    
+    // Vérifier que l'erreur n'empêche pas l'émission
+    setTimeout(() => {
+      expect(component.taskUpdated.emit).not.toHaveBeenCalled();
+      done();
+    }, 100);
   });
 });

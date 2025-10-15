@@ -33,10 +33,10 @@ services:
 
   frontend:
     build:
-      context: ./
-      dockerfile: PJM-frontend-app/Dockerfile
+      context: ./PJM-frontend-app
+      dockerfile: Dockerfile
       args:
-        NODE_VERSION: 20-alpine
+        NODE_VERSION: 22.14.0-alpine
     container_name: PJM-frontend-app
     working_dir: /app
     volumes:
