@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TacheRequest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">backend</a> &gt; <a href="index.source.html" class="el_package">com.visiplus.backend.dto</a> &gt; <span class="el_source">TacheRequest.java</span></div><h1>TacheRequest.java</h1><pre class="source lang-java linenums">package com.visiplus.backend.dto;
+
+import com.visiplus.backend.models.Priorite;
+import com.visiplus.backend.models.Projet;
+import com.visiplus.backend.models.Utilisateur;
+
+import java.util.Date;
+
+<span class="fc" id="L9">public class TacheRequest {</span>
+    private int id;
+    private String nom;
+    private Integer destinataire_id;
+    private Integer projet_id;
+    private Integer commanditaire_id;
+    private Date date_debut;
+    private Date date_fin;
+    private Integer priorite_id;
+    private String description;
+    private String etat;
+
+    public String getDescription() {
+<span class="fc" id="L22">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="fc" id="L26">        this.description = description;</span>
+<span class="fc" id="L27">    }</span>
+
+    public int getId() {
+<span class="fc" id="L30">        return id;</span>
+    }
+
+    public void setId(int id) {
+<span class="fc" id="L34">        this.id = id;</span>
+<span class="fc" id="L35">    }</span>
+
+    public String getNom() {
+<span class="fc" id="L38">        return nom;</span>
+    }
+
+    public void setNom(String nom) {
+<span class="fc" id="L42">        this.nom = nom;</span>
+<span class="fc" id="L43">    }</span>
+
+    public Integer getDestinataire_id() {
+<span class="fc" id="L46">        return destinataire_id;</span>
+    }
+
+    public void setDestinataire_id(Integer destinataire_id) {
+<span class="fc" id="L50">        this.destinataire_id = destinataire_id;</span>
+<span class="fc" id="L51">    }</span>
+
+    public Integer getProjet_id() {
+<span class="fc" id="L54">        return projet_id;</span>
+    }
+
+    public void setProjet_id(Integer projet_id) {
+<span class="fc" id="L58">        this.projet_id = projet_id;</span>
+<span class="fc" id="L59">    }</span>
+
+    public Integer getCommanditaire_id() {
+<span class="fc" id="L62">        return commanditaire_id;</span>
+    }
+
+    public void setCommanditaire_id(Integer commanditaire_id) {
+<span class="fc" id="L66">        this.commanditaire_id = commanditaire_id;</span>
+<span class="fc" id="L67">    }</span>
+
+    public Date getDate_debut() {
+<span class="fc" id="L70">        return date_debut;</span>
+    }
+
+    public void setDate_debut(Date date_debut) {
+<span class="fc" id="L74">        this.date_debut = date_debut;</span>
+<span class="fc" id="L75">    }</span>
+
+    public Date getDate_fin() {
+<span class="fc" id="L78">        return date_fin;</span>
+    }
+
+    public void setDate_fin(Date date_fin) {
+<span class="fc" id="L82">        this.date_fin = date_fin;</span>
+<span class="fc" id="L83">    }</span>
+
+    public Integer getPriorite_id() {
+<span class="fc" id="L86">        return priorite_id;</span>
+    }
+
+    public void setPriorite_id(Integer priorite_id) {
+<span class="fc" id="L90">        this.priorite_id = priorite_id;</span>
+<span class="fc" id="L91">    }</span>
+
+    public String getEtat() {
+<span class="fc" id="L94">        return etat;</span>
+    }
+
+    public void setEtat(String etat) {
+<span class="fc" id="L98">        this.etat = etat;</span>
+<span class="fc" id="L99">    }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L103">        return &quot;TacheRequest{&quot; +</span>
+                &quot;nom='&quot; + nom + '\'' +
+                &quot;, destinataire_id='&quot; + destinataire_id + '\'' +
+                &quot;, projet_id='&quot; + projet_id + '\'' +
+                &quot;, commanditaire_id='&quot; + commanditaire_id + '\'' +
+                &quot;, date_debut='&quot; + date_debut + '\'' +
+                &quot;, date_fin='&quot; + date_fin + '\'' +
+                &quot;, priorite='&quot; + priorite_id + '\'' +
+                &quot;, description='&quot; + description + '\'' +
+                &quot;, etat='&quot; + etat + '\'' +
+                '}';
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

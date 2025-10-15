@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProjetServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">backend</a> &gt; <a href="index.source.html" class="el_package">com.visiplus.backend.services.impl</a> &gt; <span class="el_source">ProjetServiceImpl.java</span></div><h1>ProjetServiceImpl.java</h1><pre class="source lang-java linenums">package com.visiplus.backend.services.impl;
+
+import com.visiplus.backend.dao.ProjetRepository;
+import com.visiplus.backend.models.Projet;
+import com.visiplus.backend.services.ProjetService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+<span class="fc" id="L13">public class ProjetServiceImpl implements ProjetService {</span>
+
+    @Autowired
+    ProjetRepository projetRepository;
+
+    @Override
+    public int create(Projet projet) {
+<span class="nc" id="L20">        return projetRepository.save(projet).getId();</span>
+    }
+
+    @Override
+    public Projet findByNom(String nom) {
+<span class="nc" id="L25">        Optional&lt;Projet&gt; projet = projetRepository.findByNom(nom);</span>
+
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        if(projet.isEmpty()){</span>
+<span class="nc" id="L28">            return null;</span>
+        }
+
+<span class="nc" id="L31">        return projet.get();</span>
+    }
+
+    @Override
+    public Projet findById(int id) {
+<span class="nc" id="L36">        return projetRepository.findById(id).orElse(null);</span>
+    }
+
+    @Override
+    public Projet delete(Projet projet) {
+<span class="nc" id="L41">        projetRepository.delete(projet);</span>
+<span class="nc" id="L42">        return projet;</span>
+    }
+
+    @Override
+    public List&lt;Projet&gt; findAll() {
+<span class="nc" id="L47">        return projetRepository.findAll();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

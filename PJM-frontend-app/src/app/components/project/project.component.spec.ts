@@ -116,9 +116,14 @@ describe('ProjectComponent', () => {
     mockUserService.getUsers.and.returnValue(of([mockUser]));
     mockRoleService.getRoles.and.returnValue([mockRole]);
     mockPermissionService.getPermissionsByRole.and.returnValue({
-      canEdit: true,
-      canDelete: true,
-      canAddMember: true
+      canAddMember: true,
+      canCreateTask: true,
+      canAssignTask: true,
+      canUpdateTask: true,
+      canViewTask: true,
+      canViewDashboard: true,
+      canBeNotified: true,
+      canViewHistory: true
     });
 
     await TestBed.configureTestingModule({

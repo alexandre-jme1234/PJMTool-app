@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TacheServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">backend</a> &gt; <a href="index.source.html" class="el_package">com.visiplus.backend.services.impl</a> &gt; <span class="el_source">TacheServiceImpl.java</span></div><h1>TacheServiceImpl.java</h1><pre class="source lang-java linenums">package com.visiplus.backend.services.impl;
+
+import com.visiplus.backend.dao.TacheRepository;
+import com.visiplus.backend.models.Tache;
+import com.visiplus.backend.services.TacheService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.lang.System.Logger;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+@Service
+<span class="fc" id="L15">public class TacheServiceImpl implements TacheService {</span>
+
+    @Autowired
+    TacheRepository tacheRepository;
+
+    @Override
+    public Tache findByNom(String nom) {
+<span class="nc" id="L22">        Optional&lt;Tache&gt; tache = tacheRepository.findByNom(nom);</span>
+
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        if(tache.isEmpty()){</span>
+<span class="nc" id="L25">            return null;</span>
+        }
+
+<span class="nc" id="L28">        return tache.get();</span>
+    }
+
+    @Override
+    public Tache create(Tache tache) {
+<span class="nc" id="L33">        return tacheRepository.save(tache);</span>
+    }
+
+    @Override
+    public Optional&lt;Tache&gt; findById(int id) {
+<span class="nc" id="L38">        return tacheRepository.findById(id);</span>
+    }
+
+    @Override
+    public Tache updatePartial(int id, Tache tache, Tache updateTache) {
+
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if(!Objects.equals(tache.getNom(), updateTache.getNom())){</span>
+<span class="nc" id="L45">            tache.setNom(updateTache.getNom());</span>
+        }
+
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        if(!Objects.equals(tache.getDescription(), updateTache.getDescription())){</span>
+<span class="nc" id="L49">            tache.setDescription(updateTache.getDescription());</span>
+        }
+
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if(!Objects.equals(tache.getDestinataire(), updateTache.getDestinataire())){</span>
+<span class="nc" id="L53">            tache.setDestinataire(updateTache.getDestinataire());</span>
+        }
+
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if(!Objects.equals(tache.getCommanditaire(), updateTache.getCommanditaire())){</span>
+<span class="nc" id="L57">            tache.setCommanditaire(updateTache.getCommanditaire());</span>
+        }
+
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if(!Objects.equals(tache.getDate_fin(), updateTache.getDate_fin())){</span>
+<span class="nc" id="L61">            tache.setDate_fin(updateTache.getDate_fin());</span>
+        }
+
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        if(!Objects.equals(tache.getDate_debut(), updateTache.getDate_debut())){</span>
+<span class="nc" id="L65">            tache.setDate_debut(updateTache.getDate_debut());</span>
+        }
+
+<span class="nc" id="L68">        return tacheRepository.save(tache);</span>
+    }
+
+    @Override
+    public List&lt;Tache&gt; findByProjetId(int id) {
+<span class="nc" id="L73">        return tacheRepository.findByProjetId(id);</span>
+    }
+
+    @Override
+    public Tache save(Tache tache) {
+<span class="nc" id="L78">        return tacheRepository.save(tache);</span>
+    }
+
+    @Override
+    public boolean deleteByID(int id) {
+<span class="nc" id="L83">        Optional&lt;Tache&gt; tache = tacheRepository.findById(id);</span>
+<span class="nc" id="L84">        System.out.println(&quot;taches __&gt;&quot;+ tache);</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        if(tache.isPresent()) {</span>
+<span class="nc" id="L86">            tacheRepository.deleteById(id);</span>
+<span class="nc" id="L87">            return true;</span>
+        }
+<span class="nc" id="L89">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

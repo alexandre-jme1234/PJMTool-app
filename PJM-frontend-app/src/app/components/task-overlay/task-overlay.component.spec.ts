@@ -16,20 +16,47 @@ describe('TaskOverlayComponent', () => {
     description: 'Test Description',
     etat: 'TODO',
     priorite: { id: 1, nom: 'HAUTE' },
-    commanditaire: { id: 1, nom: 'User1' },
-    destinataire: { id: 2, nom: 'User2' },
+    commanditaire: { 
+      id: 1, 
+      nom: 'User1',
+      role_app: 'MEMBRE',
+      email: 'user1@test.com',
+      password: null,
+      etat_connexion: false,
+      tache_commanditaire: null,
+      taches_destinataire: null,
+      projets_utilisateur: null,
+      projets: null,
+      roles_projet: null
+    },
+    destinataire: { 
+      id: 2, 
+      nom: 'User2',
+      role_app: 'MEMBRE',
+      email: 'user2@test.com',
+      password: null,
+      etat_connexion: false,
+      tache_commanditaire: null,
+      taches_destinataire: null,
+      projets_utilisateur: null,
+      projets: null,
+      roles_projet: null
+    },
     est_termine: false,
-    date_debut: '2025-01-01',
-    date_fin: '2025-01-31',
-    date_creation: '2025-01-01',
-    projet_id: 1,
-    projet: { id: 1, nom: 'Test Project' }
+    date_debut: new Date('2025-01-01'),
+    date_fin: new Date('2025-01-31'),
+    projet: null
   };
 
   const mockPermissions = {
-    canEdit: true,
-    canDelete: true,
-    canAddMember: true
+    canAddMember: true,
+    canCreateTask: true,
+    canAssignTask: true,
+    canUpdateTask: true,
+    canViewTask: true,
+    canViewDashboard: true,
+    canBeNotified: true,
+    canViewHistory: true
   };
 
   beforeEach(async () => {
@@ -210,7 +237,7 @@ describe('TaskOverlayComponent', () => {
   it('should respect user permissions', () => {
     component.userPermissions = mockPermissions;
     
-    expect(component.userPermissions.canEdit).toBe(true);
+    expect(component.userPermissions.canUpdateTask).toBe(true);
   });
 
   it('should handle task update error gracefully', () => {

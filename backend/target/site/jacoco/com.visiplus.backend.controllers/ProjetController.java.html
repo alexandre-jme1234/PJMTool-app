@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProjetController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">backend</a> &gt; <a href="index.source.html" class="el_package">com.visiplus.backend.controllers</a> &gt; <span class="el_source">ProjetController.java</span></div><h1>ProjetController.java</h1><pre class="source lang-java linenums">package com.visiplus.backend.controllers;
+
+import com.visiplus.backend.dto.*;
+import com.visiplus.backend.models.Projet;
+import com.visiplus.backend.models.UserRoleProjet;
+import com.visiplus.backend.models.Utilisateur;
+import com.visiplus.backend.models.Role;
+import com.visiplus.backend.responses.ApiResponse;
+import com.visiplus.backend.services.ProjetService;
+import com.visiplus.backend.services.RoleService;
+import com.visiplus.backend.services.UserRoleProjetService;
+import com.visiplus.backend.services.UtilisateurService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+@RequestMapping(&quot;/api/projet&quot;)
+@RestController
+<span class="fc" id="L23">public class ProjetController {</span>
+
+    @Autowired
+    ProjetService  projetService;
+
+    @Autowired
+    UtilisateurService utilisateurService;
+
+    @Autowired
+    RoleService roleService;
+
+    @Autowired
+    UserRoleProjetService userRoleProjetService;
+
+
+    @GetMapping(&quot;/nom/{nom}&quot;)
+    public ResponseEntity&lt;?&gt; getProjectByNom(@PathVariable String nom ){
+<span class="nc" id="L40">        Projet projet = projetService.findByNom(nom);</span>
+
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if(projet == null){</span>
+<span class="nc" id="L43">            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse&lt;&gt;(false, &quot;Projet n'existe pas&quot;, null));</span>
+        }
+
+<span class="nc" id="L46">        return ResponseEntity</span>
+<span class="nc" id="L47">                .status(HttpStatus.OK)</span>
+<span class="nc" id="L48">                .body(new ApiResponse&lt;&gt;(true, &quot;Projet a été trouvé&quot;, projet));</span>
+    }
+
+    @GetMapping(&quot;/id/{id}&quot;)
+    public ResponseEntity&lt;?&gt; getProjectById(@PathVariable int id ){
+<span class="fc" id="L53">        Projet projet = projetService.findById(id);</span>
+
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if(projet == null){</span>
+<span class="fc" id="L56">            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse&lt;&gt;(false, &quot;Projet n'existe pas&quot;, null));</span>
+        }
+
+<span class="fc" id="L59">        return ResponseEntity</span>
+<span class="fc" id="L60">                .status(HttpStatus.OK)</span>
+<span class="fc" id="L61">                .body(new ApiResponse&lt;&gt;(true, &quot;Projet a été trouvé&quot;, projet));</span>
+    }
+
+    @GetMapping(&quot;/users-roled/{id}&quot;)
+    public ResponseEntity&lt;?&gt; getUsersRoledByProject(@PathVariable int id) {
+<span class="nc" id="L66">        List&lt;UserRoleProjet&gt; projets = userRoleProjetService.findALl();</span>
+
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        if(projets.isEmpty()) {</span>
+<span class="nc" id="L69">            return ResponseEntity</span>
+<span class="nc" id="L70">                    .status(HttpStatus.BAD_REQUEST)</span>
+<span class="nc" id="L71">                    .body(new ApiResponse&lt;&gt;(false, &quot;Aucun Projet trouvé&quot;, null));</span>
+        }
+
+<span class="nc" id="L74">        List&lt;UserRoleProjet&gt; filteredProjets = projets.stream()</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">                .filter(p -&gt; p.getProjet().getId() == id)</span>
+<span class="nc" id="L76">                .collect(Collectors.toList());</span>
+
+
+<span class="nc" id="L79">        return ResponseEntity</span>
+<span class="nc" id="L80">                .status(HttpStatus.OK)</span>
+<span class="nc" id="L81">                .body(new ApiResponse&lt;&gt;(true, &quot;User Roled Projet Trouvé&quot;, filteredProjets));</span>
+    }
+
+    @PostMapping(&quot;/create&quot;)
+    public ResponseEntity&lt;?&gt; createProject(@RequestBody ProjetRequest projetRequest ){
+        // Récupération de l'utilisateur par son nom (createur)
+<span class="fc" id="L87">        Utilisateur userProject = utilisateurService.findByNom(projetRequest.getCreateur());</span>
+        
+        // Vérification si le projet existe déjà
+<span class="fc" id="L90">        Projet projetExistant = projetService.findByNom(projetRequest.getNom());</span>
+        
+        // Récupération du rôle (par défaut ADMINISTRATEUR)
+<span class="fc" id="L93">        Role adminRole = roleService.findByNom(&quot;ADMINISTRATEUR&quot;);</span>
+
+        // Validation : utilisateur existe
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">        if(userProject == null){</span>
+<span class="nc" id="L97">            return ResponseEntity</span>
+<span class="nc" id="L98">                    .status(HttpStatus.BAD_REQUEST)</span>
+<span class="nc" id="L99">                    .body(new ApiResponse&lt;&gt;(false, &quot;Utilisateur n'est pas connu ou le nom n'est pas le bon&quot;, null));</span>
+        }
+
+        // Validation : utilisateur connecté
+<span class="fc bfc" id="L103" title="All 2 branches covered.">        if(userProject.getEtat_connexion() == false){</span>
+<span class="fc" id="L104">            return ResponseEntity</span>
+<span class="fc" id="L105">                    .status(HttpStatus.BAD_REQUEST)</span>
+<span class="fc" id="L106">                    .body(new ApiResponse&lt;&gt;(false, &quot;Utilisateur n'est pas identifié&quot;, null));</span>
+        }
+
+        // Validation : projet n'existe pas déjà
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">        if(projetExistant != null){</span>
+<span class="nc" id="L111">            return ResponseEntity</span>
+<span class="nc" id="L112">                    .status(HttpStatus.BAD_REQUEST)</span>
+<span class="nc" id="L113">                    .body(new ApiResponse&lt;&gt;(false, &quot;Le projet existe déjà&quot;, projetExistant));</span>
+        }
+
+        // Création du nouveau projet
+<span class="fc" id="L117">        Projet nouveauProjet = new Projet();</span>
+<span class="fc" id="L118">        nouveauProjet.setNom(projetRequest.getNom());</span>
+<span class="fc" id="L119">        nouveauProjet.setDescription(projetRequest.getDescription());</span>
+<span class="fc" id="L120">        nouveauProjet.setDate_echeance(projetRequest.getDate_echeance());</span>
+<span class="fc" id="L121">        nouveauProjet.setCreateur(userProject);</span>
+        
+        // Sauvegarde du projet et récupération de l'ID
+<span class="fc" id="L124">        int projetId = projetService.create(nouveauProjet);</span>
+        
+        // Récupération du projet créé
+<span class="fc" id="L127">        Projet projetCree = projetService.findById(projetId);</span>
+
+        // Création de la relation UserRoleProjet
+<span class="fc" id="L130">        UserRoleProjet userRoleProjet = new UserRoleProjet();</span>
+<span class="fc" id="L131">        userRoleProjet.setUtilisateur(userProject);</span>
+<span class="fc" id="L132">        userRoleProjet.setProjet(projetCree);</span>
+<span class="fc" id="L133">        userRoleProjet.setRole(adminRole);</span>
+<span class="fc" id="L134">        userRoleProjetService.save(userRoleProjet);</span>
+
+        // Préparation de la réponse
+<span class="fc" id="L137">        UtilisateurProjetRoleDTO response = new UtilisateurProjetRoleDTO(</span>
+                userProject,
+                adminRole,
+                projetCree
+        );
+
+<span class="fc" id="L143">        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(true, &quot;Un projet a été créé&quot;, response));</span>
+    };
+
+    @DeleteMapping(&quot;/delete/{id}&quot;)
+    public ResponseEntity&lt;?&gt; deleteProject(@PathVariable int id){
+<span class="fc" id="L148">        Projet projet = projetService.findById(id);</span>
+
+<span class="pc bpc" id="L150" title="1 of 2 branches missed.">        if(projet == null){</span>
+<span class="nc" id="L151">            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse&lt;&gt;(false, &quot;Projet n'existe pas&quot;, null));</span>
+        }
+
+<span class="fc" id="L154">        projetService.delete(projet);</span>
+<span class="fc" id="L155">        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse&lt;&gt;(true, &quot;Projet a été supprimé&quot;, null));</span>
+    }
+
+    @GetMapping(&quot;/all&quot;)
+    public ResponseEntity&lt;?&gt; getAllProjects(){
+<span class="nc" id="L160">        List&lt;Projet&gt; projects = projetService.findAll();</span>
+<span class="nc" id="L161">        List&lt;ProjetResponseDTO&gt; dtos = projects.stream()</span>
+<span class="nc" id="L162">            .map(p -&gt; new ProjetResponseDTO(</span>
+<span class="nc" id="L163">                p.getId(),</span>
+<span class="nc" id="L164">                p.getNom(),</span>
+<span class="nc" id="L165">                p.getDescription(),</span>
+<span class="nc" id="L166">                p.getDate_echeance(),</span>
+<span class="nc" id="L167">                p.getDate_creation()</span>
+            ))
+<span class="nc" id="L169">            .collect(Collectors.toList());</span>
+<span class="nc" id="L170">        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse&lt;&gt;(true, &quot;Liste des projets&quot;, dtos));</span>
+    }
+
+
+};
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
