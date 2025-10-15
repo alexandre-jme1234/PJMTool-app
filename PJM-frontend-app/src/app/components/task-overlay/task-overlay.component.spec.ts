@@ -167,7 +167,8 @@ describe('TaskOverlayComponent', () => {
       destinataire: null,
       projet: null,
       date_debut: null,
-      date_fin: null
+      date_fin: null,
+      est_termine: false
     };
     
     component.saveEdit();
@@ -184,8 +185,8 @@ describe('TaskOverlayComponent', () => {
   it('should convert dates to timestamps when emitting taskUpdated', () => {
     component.editTask = {
       ...mockTask,
-      date_debut: '2025-01-01',
-      date_fin: '2025-01-31'
+      date_debut: '2025-01-01' as any,
+      date_fin: '2025-01-31' as any
     };
     spyOn(component.taskUpdated, 'emit');
     
