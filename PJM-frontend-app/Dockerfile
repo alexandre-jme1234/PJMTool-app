@@ -4,8 +4,8 @@ FROM node:${NODE_VERSION}
 
 WORKDIR /app
 
-# Copier uniquement package.json pour optimiser le cache Docker
-COPY package.json ./
+# Copier package.json et package-lock.json (si présent) pour optimiser le cache Docker
+COPY package*.json ./
 
 # Installer toutes les dépendances en une seule commande
 RUN npm install && \
