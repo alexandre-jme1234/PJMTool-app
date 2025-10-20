@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ProjectService, ProjetRequest } from './project.service';
 import { Project } from './project.model';
 import { TaskModel } from '../task/task.model';
+import { DOCUMENT } from '@angular/common';
 
 describe('ProjectService', () => {
   let service: ProjectService;
@@ -11,7 +12,9 @@ describe('ProjectService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [ProjectService]
+      providers: [ProjectService,
+        {provide: DOCUMENT, useValue: document}
+      ]
     });
     service = TestBed.inject(ProjectService);
     httpMock = TestBed.inject(HttpTestingController);

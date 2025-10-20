@@ -142,7 +142,6 @@ export class DashboardComponent implements OnInit {
   }
   
   setLoggUser(){
-
     let userLogged = JSON.parse(sessionStorage.getItem('loggedUser'));
 
     console.log('userLogged avant getById:', userLogged);

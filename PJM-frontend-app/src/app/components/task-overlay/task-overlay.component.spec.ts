@@ -242,6 +242,7 @@ describe('TaskOverlayComponent', () => {
   });
 
   it('should handle task update error gracefully', (done) => {
+    spyOn(console, 'error');
     component.editTask = mockTask;
     mockTaskService.updateTask.and.returnValue(
       throwError(() => new Error('Update failed'))
@@ -250,8 +251,12 @@ describe('TaskOverlayComponent', () => {
     
     component.saveEdit();
     
-    // Vérifier que l'erreur n'empêche pas l'émission
+    // Vérifier que l'erreur est gérée et n'empêche pas l'émission
     setTimeout(() => {
+      expect(console.error).toHaveBeenCalledWith(
+        'Erreur lors de la mise à jour de la tâche:',
+        jasmine.any(Error)
+      );
       expect(component.taskUpdated.emit).not.toHaveBeenCalled();
       done();
     }, 100);

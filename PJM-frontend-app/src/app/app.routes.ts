@@ -8,9 +8,9 @@ import { authGuard } from './auth/auth.guard';
 
 
 export const routes: Routes = [
-    { path: '', component: DashboardComponent, /*canActivate: [authGuard] */ },
-    { path: 'projet/:id', component: ProjectComponent, /*canActivate: [authGuard] */ },
-    { path: 'tache/:id', component: TaskComponent /*, canActivate: [authGuard] */ },
     { path: 'login', component: SigninUpComponent },
-    { path: '**', redirectTo: '/login ', pathMatch: 'full' },
+    { path: '', component: DashboardComponent, canActivate: [authGuard] },
+    { path: 'projet/:id', component: ProjectComponent, canActivate: [authGuard] },
+    { path: 'tache/:id', component: TaskComponent, canActivate: [authGuard] },
+    { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];

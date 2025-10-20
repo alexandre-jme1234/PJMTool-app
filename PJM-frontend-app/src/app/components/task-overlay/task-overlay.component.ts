@@ -4,12 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../services/task/task.service';
 import { TaskModel } from '../../services/task/task.model';
 import { PermissionService, UserPermissions } from '../../services/permissions/permission.service';
-import { FrenchDatePipe } from '../../shared/french-date.pipe';
 
 @Component({
   selector: 'app-task-overlay',
   standalone: true,
-  imports: [CommonModule, FormsModule, FrenchDatePipe],
+  imports: [CommonModule, FormsModule],
   templateUrl: './task-overlay.component.html',
   styleUrl: './task-overlay.component.css'
 })
@@ -65,19 +64,24 @@ export class TaskOverlayComponent {
         ? this.taskService.createTask(tacheRequest)
         : this.taskService.updateTask(tacheRequest);
       
-      serviceCall.subscribe(() => {
-        this.taskUpdated.emit({
-          id: this.editTask?.id,
-          commanditaire_id: this.editTask?.commanditaire?.id || 1,
-          destinataire_id: this.editTask?.destinataire?.id || 1,
-          nom: this.editTask?.nom ?? null,
-          description: this.editTask?.description ?? null,
-          priorite_id: this.editTask?.priorite,
-          projet_id: this.editTask?.projet?.id,
-          date_debut:this.editTask?.date_debut ? new Date(this.editTask.date_debut).getTime() : null,
-          date_fin: this.editTask?.date_fin ? new Date(this.editTask.date_fin).getTime() : null,
-          etat: this.editTask?.etat ?? 'TODO'
-        });
+      serviceCall.subscribe({
+        next: () => {
+          this.taskUpdated.emit({
+            id: this.editTask?.id,
+            commanditaire_id: this.editTask?.commanditaire?.id || 1,
+            destinataire_id: this.editTask?.destinataire?.id || 1,
+            nom: this.editTask?.nom ?? null,
+            description: this.editTask?.description ?? null,
+            priorite_id: this.editTask?.priorite,
+            projet_id: this.editTask?.projet?.id,
+            date_debut:this.editTask?.date_debut ? new Date(this.editTask.date_debut).getTime() : null,
+            date_fin: this.editTask?.date_fin ? new Date(this.editTask.date_fin).getTime() : null,
+            etat: this.editTask?.etat ?? 'TODO'
+          });
+        },
+        error: (error) => {
+          console.error('Erreur lors de la mise à jour de la tâche:', error);
+        }
       });
     }
   }

@@ -12,7 +12,7 @@
     "start": "ng serve --host 0.0.0.0 --proxy-config proxy.conf.json --poll 2000",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --coverage --watchAll=false",
+    "test": "ng test --coverage --watchAll=false --browsers=ChromeHeadlessNoSandbox",
     "test:ci": "ng test --no-watch --browsers=ChromeHeadlessNoSandbox --code-coverage",
     "serve:ssr:PJM-frontend-app": "node dist/pjm-frontend-app/server/server.mjs"
   },

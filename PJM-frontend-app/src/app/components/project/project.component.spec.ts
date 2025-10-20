@@ -459,6 +459,9 @@ describe('ProjectComponent', () => {
 
   describe('Error handling', () => {
     it('should handle error when adding user to project', () => {
+      // Spy sur console.error pour éviter la pollution des logs de test
+      spyOn(console, 'error');
+      
       component.allUsers = [mockUser];
       component.projet = mockProject;
       mockUserService.addUserRoledToProject.and.returnValue(
@@ -468,6 +471,10 @@ describe('ProjectComponent', () => {
       component.addUserRoledToProject('test@test.com', 'ADMIN');
       
       expect(mockUserService.addUserRoledToProject).toHaveBeenCalled();
+      expect(console.error).toHaveBeenCalledWith(
+        '[Erreur] Impossible d\'ajouter l\'utilisateur au projet:',
+        jasmine.any(Error)
+      );
     });
 
     it('should not add user if email not found', () => {
