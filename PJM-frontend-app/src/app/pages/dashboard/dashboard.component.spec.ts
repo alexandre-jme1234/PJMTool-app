@@ -60,11 +60,19 @@ describe('DashboardComponent', () => {
       delete store[key];
     });
 
-    const projectServiceSpy = jasmine.createSpyObj('ProjectService', ['getProjects']);
+    const projectServiceSpy = jasmine.createSpyObj('ProjectService', [
+      'getProjects', 
+      'onCreateProject', 
+      'getUsersRoledByProjectId',
+      'onDeleteProject'
+    ]);
     const taskServiceSpy = jasmine.createSpyObj('TaskService', ['getTasksByProject']);
     const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     projectServiceSpy.getProjects.and.returnValue(of(mockProjects));
+    projectServiceSpy.onCreateProject.and.returnValue(of({}));
+    projectServiceSpy.getUsersRoledByProjectId.and.returnValue(of({ data: [] }));
+    projectServiceSpy.onDeleteProject.and.returnValue(of({}));
     taskServiceSpy.getTasksByProject.and.returnValue(of([]));
 
     await TestBed.configureTestingModule({
@@ -90,6 +98,7 @@ describe('DashboardComponent', () => {
     // Spy sur les méthodes du vrai service
     spyOn(userService, 'getUserById').and.returnValue(of({} as any));
     spyOn(userService, 'logout').and.returnValue(of({} as any));
+    spyOn(userService, 'addUserRoledToProject').and.returnValue(of({} as any));
   });
 
   afterEach(() => {
@@ -281,4 +290,174 @@ describe('DashboardComponent', () => {
       expect(component['notificationService']).toBeDefined();
     });
   });
+
+  describe('onSelectProject', () => {
+    it('devrait sélectionner un projet', () => {
+      const projet = mockProjects[0];
+      spyOn(component, 'loadTasksForProject');
+      spyOn(component, 'loadCurrentUserRoleForProject');
+
+      component.onSelectProject(projet as any);
+
+      expect(component.selectedProject).toEqual(projet as any);
+      expect(component.loadTasksForProject).toHaveBeenCalledWith(projet.id);
+      expect(component.loadCurrentUserRoleForProject).toHaveBeenCalledWith(projet.id);
+    });
+
+    it('ne devrait pas charger les tâches si le projet n\'a pas d\'id', () => {
+      const projetSansId = { ...mockProjects[0], id: undefined };
+      spyOn(component, 'loadTasksForProject');
+
+      component.onSelectProject(projetSansId as any);
+
+      expect(component.selectedProject).toEqual(projetSansId as any);
+      expect(component.loadTasksForProject).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('onAddProjectClick', () => {
+    it('devrait ouvrir le modal de création de projet', () => {
+      component.showModal = false;
+
+      component.onAddProjectClick();
+
+      expect(component.showModal).toBe(true);
+    });
+  });
+
+  describe('createProject', () => {
+    beforeEach(() => {
+      component.userLogged = {
+        id: 1,
+        nom: 'Test User',
+        email: 'test@test.com',
+        role_app: 'MEMBRE',
+        password: null,
+        etat_connexion: true,
+        tache_commanditaire: null,
+        taches_destinataire: null,
+        projets_utilisateur: null,
+        projets: null,
+        roles_projet: null
+      };
+      component.newProject = {
+        nom: 'Nouveau Projet',
+        description: 'Description test',
+        date_echeance: '2025-12-31',
+        date_creation: new Date().toISOString(),
+        id: null,
+        utilisateurs_projet: [],
+        projet_taches: [],
+        taches: [],
+        createur: null
+      } as any;
+    });
+
+    it('devrait créer un projet avec succès', (done) => {
+      const mockResponse = { data: { id: 123 } };
+      projectService.onCreateProject.and.returnValue(of(mockResponse));
+      (userService.addUserRoledToProject as jasmine.Spy).and.returnValue(of({}));
+      spyOn(component, 'loadProjects');
+      spyOn(component, 'resetNewProject');
+
+      component.createProject();
+
+      setTimeout(() => {
+        expect(projectService.onCreateProject).toHaveBeenCalled();
+        expect(component.loadProjects).toHaveBeenCalled();
+        expect(component.showModal).toBe(false);
+        done();
+      }, 50);
+    });
+
+    it('devrait afficher une alerte si le nom est manquant', () => {
+      component.newProject.nom = null;
+      component.showProjectAlert = false;
+
+      component.createProject();
+
+      expect(component.showProjectAlert).toBe(true);
+    });
+
+    it('devrait afficher une alerte si la date d\'échéance est manquante', () => {
+      component.newProject.date_echeance = null;
+      component.showProjectAlert = false;
+
+      component.createProject();
+
+      expect(component.showProjectAlert).toBe(true);
+    });
+  });
+
+  describe('onCancel', () => {
+    it('devrait fermer le modal et réinitialiser le formulaire', () => {
+      component.showModal = true;
+      spyOn(component, 'resetForm');
+
+      component.onCancel();
+
+      expect(component.showModal).toBe(false);
+      expect(component.resetForm).toHaveBeenCalled();
+    });
+  });
+
+  describe('onAddTaskClick', () => {
+    beforeEach(() => {
+      component.userLogged = {
+        id: 1,
+        nom: 'Test User',
+        email: 'test@test.com',
+        role_app: 'MEMBRE',
+        password: null,
+        etat_connexion: true,
+        tache_commanditaire: null,
+        taches_destinataire: null,
+        projets_utilisateur: null,
+        projets: null,
+        roles_projet: null
+      };
+      component.selectedProject = mockProjects[0] as any;
+      component.priorites = [
+        { id: 1, nom: 'HAUTE' },
+        { id: 2, nom: 'MOYENNE' },
+        { id: 3, nom: 'FAIBLE' }
+      ];
+    });
+
+    it('devrait créer une tâche vide et ouvrir l\'overlay', () => {
+      component.isOverlayOpen = false;
+
+      component.onAddTaskClick();
+
+      expect(component.selectedTask).toBeDefined();
+      expect(component.selectedTask?.nom).toBe('');
+      expect(component.selectedTask?.commanditaire).toEqual(component.userLogged);
+      expect(component.isOverlayOpen).toBe(true);
+    });
+  });
+
+  describe('onCancelTask', () => {
+    it('devrait fermer le modal de tâche et réinitialiser le formulaire', () => {
+      component.showTaskModal = true;
+      spyOn(component, 'resetTaskForm');
+
+      component.onCancelTask();
+
+      expect(component.showTaskModal).toBe(false);
+      expect(component.resetTaskForm).toHaveBeenCalled();
+    });
+  });
+
+  describe('getDetailProject', () => {
+    it('devrait naviguer vers la page de détail du projet', () => {
+      const projet = mockProjects[0];
+
+      component.getDetailProject(projet as any);
+
+      expect(component.selectedProject).toEqual(projet as any);
+      expect(router.navigate).toHaveBeenCalledWith(['/projet', projet.id]);
+    });
+  });
+
 });
+
