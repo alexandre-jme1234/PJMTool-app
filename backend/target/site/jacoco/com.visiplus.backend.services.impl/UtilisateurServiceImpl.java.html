@@ -20,7 +20,7 @@ import java.util.Optional;
 
     @Override
     public List&lt;Utilisateur&gt; findAll() {
-<span class="nc" id="L23">        return (List&lt;Utilisateur&gt;) utilisateurRepository.findAll();</span>
+<span class="fc" id="L23">        return (List&lt;Utilisateur&gt;) utilisateurRepository.findAll();</span>
     }
 
     @Transactional
@@ -29,8 +29,8 @@ import java.util.Optional;
 
 <span class="fc" id="L30">        Optional&lt;Utilisateur&gt; existUser = utilisateurRepository.findByNom(utilisateur.getNom());</span>
 
-<span class="pc bpc" id="L32" title="1 of 2 branches missed.">        if(existUser.isPresent()){</span>
-<span class="nc" id="L33">            return existUser.get().getId();</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if(existUser.isPresent()){</span>
+<span class="fc" id="L33">            return existUser.get().getId();</span>
         }
 
 <span class="fc" id="L36">        return utilisateurRepository.save(utilisateur).getId();</span>
@@ -38,49 +38,49 @@ import java.util.Optional;
 
     @Override
     public Utilisateur findById(int id) {
-<span class="nc" id="L41">        return utilisateurRepository.findById(id)</span>
-<span class="nc" id="L42">                .orElseThrow(() -&gt; new RuntimeException(&quot;Utilisateur non trouvé avec id &quot; + id));</span>
+<span class="fc" id="L41">        return utilisateurRepository.findById(id)</span>
+<span class="fc" id="L42">                .orElseThrow(() -&gt; new RuntimeException(&quot;Utilisateur non trouvé avec id &quot; + id));</span>
     }
 
     @Override
     public Utilisateur findByNom(String nom) {
 <span class="fc" id="L47">        Optional&lt;Utilisateur&gt; utilisateur = utilisateurRepository.findByNom(nom);</span>
 
-<span class="pc bpc" id="L49" title="1 of 2 branches missed.">        if(utilisateur.isEmpty()){</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if(utilisateur.isEmpty()){</span>
 <span class="fc" id="L50">            return null;</span>
         }
 
-<span class="nc" id="L53">        return utilisateur.get();</span>
+<span class="fc" id="L53">        return utilisateur.get();</span>
     }
 
     @Override
     public Utilisateur findByEmail(String email) {
-<span class="nc" id="L58">        Optional&lt;Utilisateur&gt; utilisateur = utilisateurRepository.findByEmail(email);</span>
+<span class="fc" id="L58">        Optional&lt;Utilisateur&gt; utilisateur = utilisateurRepository.findByEmail(email);</span>
 
-<span class="nc bnc" id="L60" title="All 2 branches missed.">        if(utilisateur.isEmpty()){</span>
-<span class="nc" id="L61">            return null;</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        if(utilisateur.isEmpty()){</span>
+<span class="fc" id="L61">            return null;</span>
         }
 
-<span class="nc" id="L64">        return utilisateur.get();</span>
+<span class="fc" id="L64">        return utilisateur.get();</span>
     }
 
     @Override
     public Utilisateur updatePartial(int id, Utilisateur utilisateurExistant, Utilisateur newUtilisateur) {
 
-<span class="nc bnc" id="L70" title="All 4 branches missed.">        if (newUtilisateur == null || utilisateurExistant == null) {</span>
-<span class="nc" id="L71">            return null;</span>
+<span class="fc bfc" id="L70" title="All 4 branches covered.">        if (newUtilisateur == null || utilisateurExistant == null) {</span>
+<span class="fc" id="L71">            return null;</span>
         }
 
-<span class="nc bnc" id="L74" title="All 2 branches missed.">        if(!Objects.equals(utilisateurExistant.getEtat_connexion(), newUtilisateur.getEtat_connexion())) {</span>
-<span class="nc" id="L75">            utilisateurExistant.setEtat_connexion(newUtilisateur.getEtat_connexion());</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        if(!Objects.equals(utilisateurExistant.getEtat_connexion(), newUtilisateur.getEtat_connexion())) {</span>
+<span class="fc" id="L75">            utilisateurExistant.setEtat_connexion(newUtilisateur.getEtat_connexion());</span>
         }
 
-<span class="nc" id="L78">        return utilisateurRepository.save(utilisateurExistant);</span>
+<span class="fc" id="L78">        return utilisateurRepository.save(utilisateurExistant);</span>
     }
 
     @Override
     public Utilisateur save(Utilisateur utilisateur) {
-<span class="nc" id="L83">        return utilisateurRepository.save(utilisateur);</span>
+<span class="fc" id="L83">        return utilisateurRepository.save(utilisateur);</span>
     };
 
 

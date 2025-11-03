@@ -1,0 +1,10 @@
+com\visiplus\backend\controllers\TacheControllerTest.class
+com\visiplus\backend\services\impl\RoleServiceImplTest.class
+com\visiplus\backend\services\impl\UserRoleProjetImplTest.class
+com\visiplus\backend\services\impl\ProjetServiceImplTest.class
+com\visiplus\backend\services\impl\TacheServiceImplTest.class
+com\visiplus\backend\services\impl\PrioriteServiceImplTest.class
+com\visiplus\backend\BackendApplicationTests.class
+com\visiplus\backend\services\impl\UtilisateurServiceImplTest.class
+com\visiplus\backend\controllers\ProjetControllerTest.class
+com\visiplus\backend\controllers\UtilisateurControllerTest.class

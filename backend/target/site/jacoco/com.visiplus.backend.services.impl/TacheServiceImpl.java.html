@@ -19,74 +19,74 @@ import java.util.Optional;
 
     @Override
     public Tache findByNom(String nom) {
-<span class="nc" id="L22">        Optional&lt;Tache&gt; tache = tacheRepository.findByNom(nom);</span>
+<span class="fc" id="L22">        Optional&lt;Tache&gt; tache = tacheRepository.findByNom(nom);</span>
 
-<span class="nc bnc" id="L24" title="All 2 branches missed.">        if(tache.isEmpty()){</span>
-<span class="nc" id="L25">            return null;</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        if(tache.isEmpty()){</span>
+<span class="fc" id="L25">            return null;</span>
         }
 
-<span class="nc" id="L28">        return tache.get();</span>
+<span class="fc" id="L28">        return tache.get();</span>
     }
 
     @Override
     public Tache create(Tache tache) {
-<span class="nc" id="L33">        return tacheRepository.save(tache);</span>
+<span class="fc" id="L33">        return tacheRepository.save(tache);</span>
     }
 
     @Override
     public Optional&lt;Tache&gt; findById(int id) {
-<span class="nc" id="L38">        return tacheRepository.findById(id);</span>
+<span class="fc" id="L38">        return tacheRepository.findById(id);</span>
     }
 
     @Override
     public Tache updatePartial(int id, Tache tache, Tache updateTache) {
 
-<span class="nc bnc" id="L44" title="All 2 branches missed.">        if(!Objects.equals(tache.getNom(), updateTache.getNom())){</span>
-<span class="nc" id="L45">            tache.setNom(updateTache.getNom());</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if(!Objects.equals(tache.getNom(), updateTache.getNom())){</span>
+<span class="fc" id="L45">            tache.setNom(updateTache.getNom());</span>
         }
 
-<span class="nc bnc" id="L48" title="All 2 branches missed.">        if(!Objects.equals(tache.getDescription(), updateTache.getDescription())){</span>
-<span class="nc" id="L49">            tache.setDescription(updateTache.getDescription());</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if(!Objects.equals(tache.getDescription(), updateTache.getDescription())){</span>
+<span class="fc" id="L49">            tache.setDescription(updateTache.getDescription());</span>
         }
 
-<span class="nc bnc" id="L52" title="All 2 branches missed.">        if(!Objects.equals(tache.getDestinataire(), updateTache.getDestinataire())){</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        if(!Objects.equals(tache.getDestinataire(), updateTache.getDestinataire())){</span>
 <span class="nc" id="L53">            tache.setDestinataire(updateTache.getDestinataire());</span>
         }
 
-<span class="nc bnc" id="L56" title="All 2 branches missed.">        if(!Objects.equals(tache.getCommanditaire(), updateTache.getCommanditaire())){</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">        if(!Objects.equals(tache.getCommanditaire(), updateTache.getCommanditaire())){</span>
 <span class="nc" id="L57">            tache.setCommanditaire(updateTache.getCommanditaire());</span>
         }
 
-<span class="nc bnc" id="L60" title="All 2 branches missed.">        if(!Objects.equals(tache.getDate_fin(), updateTache.getDate_fin())){</span>
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">        if(!Objects.equals(tache.getDate_fin(), updateTache.getDate_fin())){</span>
 <span class="nc" id="L61">            tache.setDate_fin(updateTache.getDate_fin());</span>
         }
 
-<span class="nc bnc" id="L64" title="All 2 branches missed.">        if(!Objects.equals(tache.getDate_debut(), updateTache.getDate_debut())){</span>
-<span class="nc" id="L65">            tache.setDate_debut(updateTache.getDate_debut());</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if(!Objects.equals(tache.getDate_debut(), updateTache.getDate_debut())){</span>
+<span class="fc" id="L65">            tache.setDate_debut(updateTache.getDate_debut());</span>
         }
 
-<span class="nc" id="L68">        return tacheRepository.save(tache);</span>
+<span class="fc" id="L68">        return tacheRepository.save(tache);</span>
     }
 
     @Override
     public List&lt;Tache&gt; findByProjetId(int id) {
-<span class="nc" id="L73">        return tacheRepository.findByProjetId(id);</span>
+<span class="fc" id="L73">        return tacheRepository.findByProjetId(id);</span>
     }
 
     @Override
     public Tache save(Tache tache) {
-<span class="nc" id="L78">        return tacheRepository.save(tache);</span>
+<span class="fc" id="L78">        return tacheRepository.save(tache);</span>
     }
 
     @Override
     public boolean deleteByID(int id) {
-<span class="nc" id="L83">        Optional&lt;Tache&gt; tache = tacheRepository.findById(id);</span>
-<span class="nc" id="L84">        System.out.println(&quot;taches __&gt;&quot;+ tache);</span>
-<span class="nc bnc" id="L85" title="All 2 branches missed.">        if(tache.isPresent()) {</span>
-<span class="nc" id="L86">            tacheRepository.deleteById(id);</span>
-<span class="nc" id="L87">            return true;</span>
+<span class="fc" id="L83">        Optional&lt;Tache&gt; tache = tacheRepository.findById(id);</span>
+<span class="fc" id="L84">        System.out.println(&quot;taches __&gt;&quot;+ tache);</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        if(tache.isPresent()) {</span>
+<span class="fc" id="L86">            tacheRepository.deleteById(id);</span>
+<span class="fc" id="L87">            return true;</span>
         }
-<span class="nc" id="L89">        return false;</span>
+<span class="fc" id="L89">        return false;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

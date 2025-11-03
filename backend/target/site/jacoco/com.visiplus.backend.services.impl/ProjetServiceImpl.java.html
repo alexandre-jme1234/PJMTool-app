@@ -17,34 +17,34 @@ import java.util.Optional;
 
     @Override
     public int create(Projet projet) {
-<span class="nc" id="L20">        return projetRepository.save(projet).getId();</span>
+<span class="fc" id="L20">        return projetRepository.save(projet).getId();</span>
     }
 
     @Override
     public Projet findByNom(String nom) {
-<span class="nc" id="L25">        Optional&lt;Projet&gt; projet = projetRepository.findByNom(nom);</span>
+<span class="fc" id="L25">        Optional&lt;Projet&gt; projet = projetRepository.findByNom(nom);</span>
 
-<span class="nc bnc" id="L27" title="All 2 branches missed.">        if(projet.isEmpty()){</span>
-<span class="nc" id="L28">            return null;</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if(projet.isEmpty()){</span>
+<span class="fc" id="L28">            return null;</span>
         }
 
-<span class="nc" id="L31">        return projet.get();</span>
+<span class="fc" id="L31">        return projet.get();</span>
     }
 
     @Override
     public Projet findById(int id) {
-<span class="nc" id="L36">        return projetRepository.findById(id).orElse(null);</span>
+<span class="fc" id="L36">        return projetRepository.findById(id).orElse(null);</span>
     }
 
     @Override
     public Projet delete(Projet projet) {
-<span class="nc" id="L41">        projetRepository.delete(projet);</span>
-<span class="nc" id="L42">        return projet;</span>
+<span class="fc" id="L41">        projetRepository.delete(projet);</span>
+<span class="fc" id="L42">        return projet;</span>
     }
 
     @Override
     public List&lt;Projet&gt; findAll() {
-<span class="nc" id="L47">        return projetRepository.findAll();</span>
+<span class="fc" id="L47">        return projetRepository.findAll();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
