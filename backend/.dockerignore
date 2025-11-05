@@ -1,0 +1,36 @@
+# Fichiers de build et caches
+target/
+*.class
+*.jar
+*.war
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Logs
+*.log
+logs/
+
+# Tests
+src/test/
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+*.md
+docs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Maven wrapper (on le garde dans l'image)
+# .mvn/
+# mvnw
+# mvnw.cmd

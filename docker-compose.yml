@@ -1,35 +1,72 @@
+version: '3.8'
+
 services:
   mariadb:
-    image: mariadb:latest
-    container_name: mariadb
+    image: mariadb:11.2
+    container_name: pjmtool-mariadb
+    restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: $$$$
       MYSQL_DATABASE: PJMTool-db
       MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_PASSWORD: $$$$
+      MARIADB_AUTO_UPGRADE: 1
     ports:
       - "3306:3306"
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:
       - spring-mariadb
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    container_name: pjmtool-backend
+    restart: on-failure:3
     ports:
-      - 8080:8080
-    volumes:
-      - ./backend:/app  
+      - "8080:8080"
+    # Volume désactivé pour utiliser les fichiers du conteneur
+    # volumes:
+    #   - ./backend/src:/app/src:ro
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/PJMTool-db
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/PJMTool-db?useSSL=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-      DEBUG_PORT: 8080
+      SPRING_DATASOURCE_PASSWORD: $$$$
+      SPRING_PROFILES_ACTIVE: dev
+      JAVA_OPTS: -Xmx512m -Xms256m
     depends_on:
-      - mariadb
+      mariadb:
+        condition: service_healthy
     networks:
       - spring-mariadb
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 768M
+        reservations:
+          cpus: '0.5'
+          memory: 512M
 
   frontend:
     build:
@@ -37,27 +74,45 @@ services:
       dockerfile: Dockerfile
       args:
         NODE_VERSION: 22.14.0-alpine
-    container_name: PJM-frontend-app
+    container_name: pjmtool-frontend
+    restart: on-failure:3
     working_dir: /app
-    volumes:
-      - ./PJM-frontend-app:/app
-      - /app/node_modules
+    # Volumes désactivés pour utiliser les fichiers du conteneur
+    # volumes:
+    #   - ./PJM-frontend-app/src:/app/src:ro
+    #   - ./PJM-frontend-app/angular.json:/app/angular.json:ro
     ports:
       - "4200:4200"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     networks:
       - spring-mariadb
     environment:
-      - NODE_ENV=development
-      - NODE_OPTIONS=--max-old-space-size=2048
-    command: sh -c "npm ci || npm install && npm run start"
+      NODE_ENV: development
+      NODE_OPTIONS: --max-old-space-size=2048
+      NG_CLI_ANALYTICS: false
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4200"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
 
 volumes:
   mariadb_data:
+    driver: local
   frontend_node_modules:
-secrets:
-  db-password:
-    file: db/pasword.txt
+    driver: local
+
 networks:
   spring-mariadb:
+    driver: bridge

@@ -75,20 +75,28 @@ jobs:
     - name: Docker compose down
       if: always()
       run: docker compose down -v
-  # stage : deploy 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+
+  build-push-on-docker-hub:
     runs-on: ubuntu-latest
-
     permissions:
-      pages: write
-      id-token: write
-
-    needs: build_test
+      contents: read
+      packages: write
 
     steps:
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: docker build -t ghcr.io/loise/pjmtoolapp:latest .
+    
+      - name: Push Docker image to ghcr
+        run: docker push ghcr.io/loise/pjmtoolapp:latest
+        
+    
