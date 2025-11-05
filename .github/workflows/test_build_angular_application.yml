@@ -94,9 +94,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t ghcr.io/loise/pjmtoolapp:latest .
+        run: docker build -t ghcr.io/hanuman28/pjmtoolapp:latest .
     
       - name: Push Docker image to ghcr
-        run: docker push ghcr.io/loise/pjmtoolapp:latest
+        run: docker push ghcr.io/hanuman28/pjmtoolapp:latest
         
     
