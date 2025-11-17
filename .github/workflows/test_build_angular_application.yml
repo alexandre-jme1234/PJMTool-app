@@ -92,7 +92,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_DOCKER_LOGIN  }}
       - run : |
-          docker build ./backend --tag ghcr.io/hanuman28/pjmtool-backend:latest
-          docker push ghcr.io/hanuman28/pjmtool-backend:latest
+          docker build ./backend --tag ghcr.io/alexandre-jme1234/pjmtool-backend:latest
+          docker push ghcr.io/alexandre-jme1234/pjmtool-backend:latest
         
     
