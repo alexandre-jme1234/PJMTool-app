@@ -2,9 +2,9 @@ name: Code Coverage Reports
 
 on:
   push:
-    branches: [ main, master, develop ]
+    branches: [ main, master, develop, correction-rendu-2 ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main, master, develop, correction-rendu-2 ]
   workflow_dispatch:
 
 jobs:
