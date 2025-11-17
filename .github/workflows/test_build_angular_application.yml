@@ -10,8 +10,6 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
-
-
 jobs:
   build_test:
     runs-on: ubuntu-latest
@@ -72,9 +70,9 @@ jobs:
     #     path: backend/target/surefire-reports
     #     overwrite: true
 
-    - name: Docker compose down
-      if: always()
-      run: docker compose down -v
+    # - name: Docker compose down
+    #   if: always()
+    #   run: docker compose down -v
 
   build-push-on-docker-hub:
     runs-on: ubuntu-latest
