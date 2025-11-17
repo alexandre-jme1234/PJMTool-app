@@ -2,9 +2,9 @@ name: Test and Build Angular Application
 
 on:
   push:
-    branches: [ main,correction-rendu-2 ]
+    branches: [ main ]
   pull_request:
-    branches: [ main,correction-rendu-2 ]
+    branches: [ main ]
 
 concurrency:
   group: pages
