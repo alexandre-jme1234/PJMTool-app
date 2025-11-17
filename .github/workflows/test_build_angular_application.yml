@@ -96,7 +96,7 @@ jobs:
         run: docker build -t ghcr.io/hanuman28/pjmtool-backend:latest ./backend
     
       - name: Push Backend Docker image to ghcr
-        run: docker push ghcr.io/hanuman28/pjmtool-backend:latest
+        run: docker push ghcr.io/alexandre-jme1234/pjmtool-backend:latest
 
       - name: Build Frontend Docker image
         run: docker build -t ghcr.io/hanuman28/pjmtool-frontend:latest ./PJM-frontend-app
