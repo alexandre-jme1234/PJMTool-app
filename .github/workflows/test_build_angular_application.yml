@@ -93,7 +93,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - run : |
           docker login --username alexandre-jme1234 --password ${{ secrets.GHCR_DOCKER_LOGIN }} ghcr.io
-          docker build . --tag ghcr.io/hanuman28/pjmtool-backend:latest
+          docker build ./backend --tag ghcr.io/hanuman28/pjmtool-backend:latest
           docker push ghcr.io/hanuman28/pjmtool-backend:latest
         
     
