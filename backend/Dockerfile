@@ -24,7 +24,7 @@ RUN ./mvnw clean package -DskipTests -B
 # Stage 2: Runtime
 FROM eclipse-temurin:17-jre-focal
 
-# Labels pour la traçabilité et la documentation
+# Labels pour la traçabilité et la documentation etet 
 LABEL maintainer="alexandre-jme1234" \
       version="1.0" \
       description="Backend Spring Boot pour PJMTool" \
