@@ -94,5 +94,7 @@ jobs:
       - run : |
           docker build ./backend --tag ghcr.io/alexandre-jme1234/pjmtool-backend:latest
           docker push ghcr.io/alexandre-jme1234/pjmtool-backend:latest
+          docker build ./PJM-frontend-app --tag ghcr.io/alexandre-jme1234/pjmtool-frontend:latest
+          docker push ghcr.io/alexandre-jme1234/pjmtool-frontend:latest
         
     
