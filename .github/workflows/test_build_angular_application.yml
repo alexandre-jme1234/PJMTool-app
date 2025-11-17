@@ -91,17 +91,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build Backend Docker image
-        run: docker build -t ghcr.io/hanuman28/pjmtool-backend:latest ./backend
-    
-      - name: Push Backend Docker image to ghcr
-        run: docker push ghcr.io/alexandre-jme1234/PJMTool-app:latest
-
-      - name: Build Frontend Docker image
-        run: docker build -t ghcr.io/hanuman28/pjmtool-frontend:latest ./PJM-frontend-app
-    
-      - name: Push Frontend Docker image to ghcr
-        run: docker push ghcr.io/alexandre-jme1234/pjmtool-frontend:latest
+      - run : |
+          docker login --username alexandre-jme1234 --password ${{ secrets.GHCR_DOCKER_LOGIN }} ghcr.io
+          docker build . --tag ghcr.io/hanuman28/pjmtool-backend:latest
+          docker push ghcr.io/hanuman28/pjmtool-backend:latest
         
     
