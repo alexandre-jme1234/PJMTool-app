@@ -90,7 +90,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GHCR_DOCKER_LOGIN  }}
       - run : |
           docker login --username alexandre-jme1234 --password ${{ secrets.GHCR_DOCKER_LOGIN }} ghcr.io
           docker build ./backend --tag ghcr.io/hanuman28/pjmtool-backend:latest
