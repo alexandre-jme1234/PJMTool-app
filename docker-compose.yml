@@ -75,10 +75,11 @@ services:
     container_name: pjmtool-frontend
     restart: on-failure:3
     working_dir: /app
-    # Volumes désactivés pour utiliser les fichiers du conteneur
-    # volumes:
-    #   - ./PJM-frontend-app/src:/app/src:ro
-    #   - ./PJM-frontend-app/angular.json:/app/angular.json:ro
+    command: ng serve --host 0.0.0.0 --poll=2000
+    volumes:
+      - ./PJM-frontend-app/src:/app/src
+      - ./PJM-frontend-app/angular.json:/app/angular.json:ro
+      - ./PJM-frontend-app/tsconfig.json:/app/tsconfig.json:ro
     ports:
       - "4200:4200"
     depends_on:
@@ -104,6 +105,7 @@ services:
         reservations:
           cpus: '0.5'
           memory: 512M
+
 
 volumes:
   mariadb_data:

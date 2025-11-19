@@ -1,28 +1,36 @@
 <div class="body">
   <div class="form-container">
     <h1>Welcome On PJMTool</h1>
+    
     <form class="flex-form" [formGroup]="signUpForm" (ngSubmit)="submit()">
 
       <input placeholder="Name" formControlName="name"/>
-      <div *ngIf="name?.errors?.['required']" class="error-message">Nom is required</div>
+      <div *ngIf="(submitted || name?.touched || name?.dirty) && name?.hasError('required')" class="error-message">Nom is required</div>
 
       <input type="email" placeholder="@mail" formControlName="email" />
-      <div *ngIf="email?.errors?.['required']" class="error-message">Email address is required</div>
-      <div *ngIf="email?.errors?.['email']" class="error-message">Please enter a valid email address</div>
+      <div *ngIf="(submitted || email?.touched || email?.dirty) && email?.hasError('required')" class="error-message">Email address is required</div>
+      <div *ngIf="(submitted || email?.touched || email?.dirty) && email?.hasError('email')" class="error-message">Please enter a valid email address</div>
 
       <input type="password" placeholder="Password" formControlName="password"/>
-      <div *ngIf="password?.errors?.['required']" class="error-message">Password is required</div>
+      <div *ngIf="(submitted || password?.touched || password?.dirty) && password?.hasError('required')" class="error-message">Password is required</div>
 
-      <button class="mat-button-perso" type="submit">S'identifier</button>
-      <p class="text">ou</p>
-      <button
-        class="mat-button-perso"
-        style="background-color: transparent; border: 1px solid azure; color: #fff;"
-        type="button"
-        (click)="addUserAtClick(signUpForm.value)"
-      >
-        S'Inscrire
-      </button>
+
+      @if(loadingService.loading$ | async) {
+        <loading-spinner />
+      } @else {
+        <button class="mat-button-perso" type="submit">S'identifier</button>
+        <p class="text">ou</p>
+        <button
+          class="mat-button-perso"
+          style="background-color: transparent; border: 1px solid azure; color: #fff;"
+          type="button"
+          (click)="addUserAtClick(signUpForm.value)"
+        >
+          S'Inscrire
+        </button>
+      }
+        
     </form>
   </div>
 </div>
+

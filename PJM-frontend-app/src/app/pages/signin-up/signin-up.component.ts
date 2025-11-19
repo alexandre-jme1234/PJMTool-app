@@ -9,7 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { finalize, map, switchMap, tap } from 'rxjs/operators';
 import { UserService } from '../../services/user/user.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -18,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { UserModel } from '../../services/user/user.model';
 import { AuthService } from '../../auth/auth.service';
+import { LoadingSpinnerComponent } from "../../shared/loading-spinner/loading-spinner.component";
+import { LoadingService } from "../../services/loading/loading.service";
 
 
 export function passwordsMatchValidator(): ValidatorFn {
@@ -41,18 +43,21 @@ export function passwordsMatchValidator(): ValidatorFn {
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
-  ],
+    MatButtonModule,
+    LoadingSpinnerComponent
+],
   templateUrl: './signin-up.component.html',
   styleUrls: ['./signin-up.component.css']
 })
 export class SigninUpComponent implements OnInit {
   signUpForm!: FormGroup;
+  submitted = false;
 
   constructor(
     private router: Router,
     private userService: UserService,
-    private fb: NonNullableFormBuilder
+    private fb: NonNullableFormBuilder,
+    public loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
@@ -80,6 +85,8 @@ export class SigninUpComponent implements OnInit {
   }
 
   submit() {
+    try {
+    this.submitted = true;
     if (this.signUpForm.invalid) return;
   
     const { email, password } = this.signUpForm.value as {
@@ -88,32 +95,49 @@ export class SigninUpComponent implements OnInit {
     };
   
     if (!email || !password) return;
-  
+
+    this.loadingService.loadingOn();
+
+    console.log("loading", this.loadingService.loading$);
+
+    console.log('email, password', email, password);
+
     this.userService
       .login(email, password)
       .pipe(tap((data) => this.userService.setUserLogged(data)))
       .subscribe({
         next: () => {
+          this.loadingService.loadingOff();
           this.router.navigate(['/'])
         },
-        error: (err) => console.error("Erreur lors de la connexion :", err.error),
       });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.loadingService.loadingOff();
+    }
   }
   
   addUserAtClick(user: { name?: string; email?: string; password?: string }) {
-    if (!user.name || !user.email || !user.password) {
+    this.submitted = true;
+    if (!user.name || !user.email || !user.password   ) {
       console.error('Champs manquants', typeof user);
       return;
     }
-  
-    this.userService
+    this.loadingService.loadingOn();
+
+
+    this.userService 
       .addUser({ email: user.email, password: user.password, nom: user.name })
-      .pipe(switchMap(() => this.userService.login(user.email!, user.password!)),
-      tap((backendUser) => this.userService.setUserLogged(backendUser)))
+      .pipe(
+        switchMap(() => this.userService.login(user.email!, user.password!)),
+        tap((backendUser) => this.userService.setUserLogged(backendUser)),
+      )
       .subscribe({
-        next: () => this.router.navigate(['/']),
-        error: (err) => console.error("Erreur lors de l'inscription :", err.error),
+        next: () => {
+          this.router.navigate(['/']);
+        },
       });
   }
-  
 }
+

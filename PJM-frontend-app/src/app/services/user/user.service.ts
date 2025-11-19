@@ -20,7 +20,7 @@ export class UserService {
   ) {}
 
   getUsers(): Observable<UserModel[]>  {
-   return this.http.get<UserModel[]>('/api/utilisateur/');
+   return this.http.get<UserModel[]>('http://localhost:8080/api/utilisateur/');
   }
 
   setUserLogged(user: any) {
@@ -42,7 +42,7 @@ export class UserService {
 
   // getUserById via une fetch et vérifier que la route existe dans le backend
   getUserById(id: string): Observable<any> {
-    return this.http.get<string>(`/api/utilisateur/${id}`);
+    return this.http.get<string>(`http://localhost:8080/api/utilisateur/${id}`);
   }
 
   /**
@@ -58,16 +58,14 @@ export class UserService {
       password: (user as any).password ?? '',
       role_app: (user as any).role_app ?? 'MEMBRE'
     };
-    return this.http.post<UserModel>('/api/utilisateur/create', payload);
+    return this.http.post<UserModel>('http://localhost:8080/api/utilisateur/create', payload);
   }
 
   /**
    * Authentification: PATCH /api/utilisateur/login
    */
   login(email: string, password: string): Observable<any> {
-    console.log('login route')
-    this.authService.login().subscribe();
-    return this.http.patch<any>('/api/utilisateur/login', { email, password });
+    return this.http.patch<any>('http://localhost:8080/api/utilisateur/login', { email, password });
   }
 
   /**
@@ -76,11 +74,11 @@ export class UserService {
   logout(email: string): Observable<any> {
     this.authService.logout();
     sessionStorage.removeItem('loggedUser');
-    return this.http.patch<any>('/api/utilisateur/logout', { email });
+    return this.http.patch<any>('http://localhost:8080/api/utilisateur/logout', { email });
   }
 
   addUserToProject(user: any, id: number): Observable<any> {
-    return this.http.post<any>(`/api/utilisateur//add-user-to-project?id=${id}`, user);
+    return this.http.post<any>(`http://localhost:8080/api/utilisateur/add-user-to-project?id=${id}`, user);
   }
 
   // test
@@ -100,10 +98,10 @@ export class UserService {
 
   addUserRoledToProject(nom: string, roleId: string | null, projectId: number): Observable<any> {
     console.log('Adding user to project', nom, roleId, projectId);
-    return this.http.post<any>(`/api/utilisateur/add-user-to-project?id=${projectId}`, { "nom": nom, "role_app": roleId });
+    return this.http.post<any>(`http://localhost:8080/api/utilisateur/add-user-to-project?id=${projectId}`, { "nom": nom, "role_app": roleId });
   }
 
   getUserByNom(nom: string): Observable<UserModel> {
-    return this.http.get<UserModel>(`/api/utilisateur/nom?nom=${encodeURIComponent(nom)}`);
+    return this.http.get<UserModel>(`http://localhost:8080/api/utilisateur/nom?nom=${encodeURIComponent(nom)}`);
   }
 }

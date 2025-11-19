@@ -78,7 +78,7 @@ export class ProjectService {
   }
 
   getProjects(): Observable<Project[]> {
-    return this.http.get<any>('/api/projet/all').pipe(
+    return this.http.get<any>('http://localhost:8080/api/projet/all').pipe(
       map(response => response.data)
     );
   }

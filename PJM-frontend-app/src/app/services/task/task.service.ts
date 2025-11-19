@@ -13,7 +13,7 @@ export class TaskService {
 
   // Créer une tâche liée à un projet
   createTask(tache: any): Observable<any> {
-    return this.http.post('/api/tache/create', tache).pipe(
+    return this.http.post('http://localhost:8080/api/tache/create', tache).pipe(
       tap((response: any) => {
         // Logger la création dans l'historique
         TaskHistory.addEvent({
@@ -29,13 +29,13 @@ export class TaskService {
 
   // Récupérer les tâches d'un projet
   getTasksByProject(projetId: number): Observable<TaskModel[]> {
-    return this.http.get<any>(`/api/tache/project/${projetId}`).pipe(
+    return this.http.get<any>(`http://localhost:8080/api/tache/project/${projetId}`).pipe(
       map(response => response.data)
     );
   }
 
   async getUpdateTask(task: any){
-    return await firstValueFrom(this.http.patch('/api/tache/update', task))
+    return await firstValueFrom(this.http.patch('http://localhost:8080/api/tache/update', task))
   }
 
   // Logger un changement d'état
