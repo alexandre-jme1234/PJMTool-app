@@ -100,12 +100,15 @@ export class ProjectComponent implements OnInit {
             ...data,
             utilisateurs_projet: [],
             taches: data.taches || [],
-            createur: null,
+            createur: (data as any).createur ?? null,
             date_creation: null,
             projet_taches: []
           } as ProjetModel;
           this.utilisateursProjet = [];
+
+          this.resolveCreator(data, id);
         }
+
 
         // Charger les tâches du backend
         this.taskService.getTasksByProject(id).subscribe(tasks => {
@@ -360,6 +363,31 @@ export class ProjectComponent implements OnInit {
     });
   }
 
+  private resolveCreator(data: any, projectId: number): void {
+    const raw = data?.createur;
+    const id = (typeof raw === 'number' || typeof raw === 'string') ? raw : raw?.id;
+    if (id) {
+      this.userService.getUserById(id).subscribe(user => {
+        if (this.projet) this.projet.createur = user;
+        this.cdr.markForCheck();
+      });
+      return;
+    }
+
+    this.projetService.getUsersRoledByProjectId(projectId).subscribe(resp => {
+      const creatorRaw = (resp?.data || [])
+        .flatMap((urp: any) => urp?.utilisateur?.projets || [])
+        .find((p: any) => p?.id === projectId)?.createur;
+      const creatorId = (typeof creatorRaw === 'number' || typeof creatorRaw === 'string') ? creatorRaw : creatorRaw?.id;
+      if (creatorId) {
+        this.userService.getUserById(creatorId).subscribe(user => {
+          if (this.projet) this.projet.createur = user;
+          this.cdr.markForCheck();
+        });
+      }
+    });
+  }
+
   public trackByTaskId(index: number, task: TaskModel): number | null {
     return task.id ?? null;
   }
@@ -418,48 +446,7 @@ export class ProjectComponent implements OnInit {
     this.roleSelectionne[id] = this.getUserRole(user)?.id ?? (this.rolesDisponibles[0]?.id ?? 0);
   }
 
-  // validerRole(user: UserModel) {
-  //   if (user.id == null) return;
-  //   const id = user.id;
-  //   const nouveauRole = this.rolesDisponibles.find(r => r.id === Number(this.roleSelectionne[id]));
-  //   if (nouveauRole) {
-  //     console.log('[validerRole] Utilisateur:', user, 'Nouveau rôle validé:', nouveauRole);
-  //     this.userService.updateUserRole(id, nouveauRole);
-  //     const idx = this.utilisateursProjet.findIndex(u => u.id === id);
-  //     if (idx !== -1) {
-  //       const updatedUser = { ...user, roles_projet: [nouveauRole] };
-  //       this.utilisateursProjet = [
-  //         ...this.utilisateursProjet.slice(0, idx),
-  //         updatedUser,
-  //         ...this.utilisateursProjet.slice(idx + 1)
-  //       ];
-  //       this.cdr.detectChanges();
-  //     }
-  //   }
-  // }
 
-  // supprimerUtilisateur(user: UserModel) {
-  //   this.utilisateursProjet = this.utilisateursProjet.filter(u => u.id !== user.id);
-  //   console.log('[supprimerUtilisateur] Utilisateur supprimé:', user);
-  // }
-
-  // ajouterUtilisateur() {
-  //   if (this.nouvelUtilisateurId !== undefined) {
-  //     const user = this.allUsers.find(u => u.id === this.nouvelUtilisateurId);
-  //     if (user && !this.utilisateursProjet.some(u => u.id === user.id)) {
-  //       const userToAdd = { ...user, roles_projet: user.roles_projet ? [...user.roles_projet] : [] };
-  //       this.utilisateursProjet.push(userToAdd);
-  //       console.log('[ajouterUtilisateur] Utilisateur ajouté:', userToAdd);
-  //       this.cdr.detectChanges();
-  //     }
-  //     this.nouvelUtilisateurId = undefined;
-  //   }
-  // }
-
-  // isUserInProject(userId: number | undefined): boolean {
-  //   if (userId === undefined) return false;
-  //   return this.utilisateursProjet.some(u => u.id === userId);
-  // }
 
   get tachesTodo(): TaskModel[] {
     return this.projet?.taches?.filter(t => t.etat === 'TODO') || [];

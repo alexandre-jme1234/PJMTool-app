@@ -57,11 +57,11 @@ export class ProjectService {
   }
 
   getUsersRoledByProjectId(projectId: number): Observable<any> {
-    return this.http.get<any>(`/api/projet/users-roled/${projectId}`);
+    return this.http.get<any>(`http://localhost:8080/api/projet/users-roled/${projectId}`);
   }
 
   getProjectById(id: number): Observable<any> {
-    return this.http.get<any>(`/api/projet/id/${id}`);
+    return this.http.get<any>(`http://localhost:8080/api/projet/id/${id}`);
   }
 
   /**
@@ -69,12 +69,12 @@ export class ProjectService {
    * @param newProject Les données du projet à créer
    */
   onCreateProject(newProject: any): Observable<any> {
-    return this.http.post<any>('/api/projet/create', newProject);
+    return this.http.post<any>('http://localhost:8080/api/projet/create', newProject);
   }
 
   onDeleteProject(project: Project): Observable<any> {
     console.log('project to delete', project);
-    return this.http.delete<any>(`/api/projet/delete/${project.id}`);
+    return this.http.delete<any>(`http://localhost:8080/api/projet/delete/${project.id}`);
   }
 
   getProjects(): Observable<Project[]> {
@@ -110,7 +110,7 @@ export class ProjectService {
    * @param request Le payload à envoyer au backend
    */
   postProject(request: ProjetRequest): Observable<any> {
-    return this.http.post<any>('/api/projet/create', request);
+    return this.http.post<any>('http://localhost:8080/api/projet/create', request);
   }
 
   /**
