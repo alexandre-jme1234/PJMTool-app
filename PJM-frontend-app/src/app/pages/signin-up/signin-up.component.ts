@@ -132,11 +132,15 @@ export class SigninUpComponent implements OnInit {
       .pipe(
         switchMap(() => this.userService.login(user.email!, user.password!)),
         tap((backendUser) => this.userService.setUserLogged(backendUser)),
+        finalize(() => this.loadingService.loadingOff())
       )
       .subscribe({
         next: () => {
           this.router.navigate(['/']);
         },
+        error: (err) => {
+          console.error('Erreur lors de l\'inscription:', err);
+        }
       });
   }
 }

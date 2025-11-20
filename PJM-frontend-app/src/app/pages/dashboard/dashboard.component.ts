@@ -557,7 +557,7 @@ export class DashboardComponent implements OnInit {
     }
     
     const deleteRequests = this.selectedProjectIds.map((id) =>
-      this.http.delete('/api/projet/delete/' + id)
+      this.http.delete('http://localhost:8080/api/projet/delete/' + id)
     );
 
     forkJoin(deleteRequests).subscribe({
