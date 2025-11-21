@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Utilisateur.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">backend</a> &gt; <a href="index.source.html" class="el_package">com.visiplus.backend.models</a> &gt; <span class="el_source">Utilisateur.java</span></div><h1>Utilisateur.java</h1><pre class="source lang-java linenums">package com.visiplus.backend.models;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
+
+@Table(name = &quot;utilisateur&quot;)
+@Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = &quot;id&quot;)
+<span class="fc" id="L15">public class Utilisateur {</span>
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    private String nom;
+
+    private String role_app;
+
+    private String email;
+
+    private String password;
+
+    private boolean etat_connexion;
+
+    @OneToMany(mappedBy = &quot;commanditaire&quot;)
+    private Set&lt;Tache&gt; tache_commanditaire;
+
+    @OneToMany(mappedBy = &quot;destinataire&quot;)
+    private Set&lt;Tache&gt; taches_destinataire;
+
+<span class="fc" id="L37">    @OneToMany(mappedBy = &quot;createur&quot;)</span>
+    private Set&lt;Projet&gt; projets = new HashSet&lt;&gt;();
+
+<span class="fc" id="L40">    @OneToMany(mappedBy = &quot;utilisateur&quot;, cascade = CascadeType.ALL, orphanRemoval = true)</span>
+    private Set&lt;UserRoleProjet&gt; userRolesProjet = new HashSet&lt;&gt;();
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = &quot;utilisateur_role_projet&quot;,
+//            joinColumns = @JoinColumn(name = &quot;utilisateur_id&quot;),
+//            inverseJoinColumns = @JoinColumn(name = &quot;role_id&quot;)
+//    )
+//    private Set&lt;Role&gt; roles_projet = new HashSet&lt;&gt;();
+////
+//    public Set&lt;Role&gt; getRoles_projet() {
+//        return roles_projet;
+//    }
+////
+//    public void setRoles_projet(Set&lt;Role&gt; roles_projet) {
+//        this.roles_projet = roles_projet;
+//    }
+
+
+
+    public String getRole_app() {
+<span class="fc" id="L62">        return role_app;</span>
+    }
+
+    public void setRole_app(String role_app) {
+<span class="fc" id="L66">        this.role_app = role_app;</span>
+<span class="fc" id="L67">    }</span>
+
+    public boolean isEtat_connexion() {
+<span class="nc" id="L70">        return etat_connexion;</span>
+    }
+
+    public Set&lt;Tache&gt; getTache_commanditaire() {
+<span class="fc" id="L74">        return tache_commanditaire;</span>
+    }
+
+    public void setTache_commanditaire(Set&lt;Tache&gt; tache_commanditaire) {
+<span class="nc" id="L78">        this.tache_commanditaire = tache_commanditaire;</span>
+<span class="nc" id="L79">    }</span>
+
+    public Set&lt;Projet&gt; getProjets() {
+<span class="fc" id="L82">        return projets;</span>
+    }
+
+    public void setProjets(Set&lt;Projet&gt; projets) {
+<span class="nc" id="L86">        this.projets = projets;</span>
+<span class="nc" id="L87">    }</span>
+
+    public Set&lt;Tache&gt; getTaches_destinataire() {
+<span class="fc" id="L90">        return taches_destinataire;</span>
+    }
+
+    public void setTaches_destinataire(Set&lt;Tache&gt; taches_destinataire) {
+<span class="nc" id="L94">        this.taches_destinataire = taches_destinataire;</span>
+<span class="nc" id="L95">    }</span>
+
+    public Set&lt;UserRoleProjet&gt; getUserRolesProjet() {
+<span class="fc" id="L98">        return userRolesProjet;</span>
+    }
+
+    public void setUserRolesProjet(Set&lt;UserRoleProjet&gt; userRolesProjet) {
+<span class="nc" id="L102">        this.userRolesProjet = userRolesProjet;</span>
+<span class="nc" id="L103">    }</span>
+
+    public int getId() {
+<span class="fc" id="L106">        return id;</span>
+    }
+
+    public void setId(int id) {
+<span class="fc" id="L110">        this.id = id;</span>
+<span class="fc" id="L111">    }</span>
+
+    public String getNom() {
+<span class="fc" id="L114">        return nom;</span>
+    }
+
+    public void setNom(String nom) {
+<span class="fc" id="L118">        this.nom = nom;</span>
+<span class="fc" id="L119">    }</span>
+
+    public String getEmail() {
+<span class="fc" id="L122">        return email;</span>
+    }
+
+    public void setEmail(String email) {
+<span class="fc" id="L126">        this.email = email;</span>
+<span class="fc" id="L127">    }</span>
+
+    public String getPassword() {
+<span class="fc" id="L130">        return password;</span>
+    }
+
+    public void setPassword(String password) {
+<span class="fc" id="L134">        this.password = password;</span>
+<span class="fc" id="L135">    }</span>
+
+    public boolean getEtat_connexion() {
+<span class="fc" id="L138">        return etat_connexion;</span>
+    }
+
+    public void setEtat_connexion(boolean etat_connexion) {
+<span class="fc" id="L142">        this.etat_connexion = etat_connexion;</span>
+<span class="fc" id="L143">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

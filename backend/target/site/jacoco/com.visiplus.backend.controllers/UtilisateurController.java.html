@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UtilisateurController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">backend</a> &gt; <a href="index.source.html" class="el_package">com.visiplus.backend.controllers</a> &gt; <span class="el_source">UtilisateurController.java</span></div><h1>UtilisateurController.java</h1><pre class="source lang-java linenums">package com.visiplus.backend.controllers;
+
+import com.visiplus.backend.dto.LoginRequest;
+import com.visiplus.backend.dto.UtilisateurDTO;
+import com.visiplus.backend.models.Projet;
+import com.visiplus.backend.models.Role;
+import com.visiplus.backend.models.UserRoleProjet;
+import com.visiplus.backend.models.Utilisateur;
+import com.visiplus.backend.responses.ApiResponse;
+import com.visiplus.backend.services.ProjetService;
+import com.visiplus.backend.services.RoleService;
+import com.visiplus.backend.services.UserRoleProjetService;
+import com.visiplus.backend.services.UtilisateurService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+@RequestMapping(&quot;/api/utilisateur&quot;)
+@RestController
+<span class="fc" id="L25">public class UtilisateurController {</span>
+
+    @Autowired
+    UtilisateurService utilisateurService;
+
+    @Autowired
+    UserRoleProjetService userRoleProjetService;
+
+    @Autowired
+    RoleService roleService;
+
+    @Autowired
+    ProjetService projetService;
+
+    @GetMapping(&quot;/&quot;)
+    public List&lt;UtilisateurDTO&gt; findAll() {
+<span class="nc" id="L41">        List&lt;Utilisateur&gt; utilisateurs = utilisateurService.findAll();</span>
+<span class="nc" id="L42">        return utilisateurs.stream().map(UtilisateurDTO::new).toList();</span>
+    }
+
+    @GetMapping(&quot;/{id}&quot;)
+    public Utilisateur findById(@PathVariable(&quot;id&quot;) int id) {
+<span class="nc" id="L47">        return utilisateurService.findById(id);</span>
+    }
+
+    @PostMapping(&quot;/create&quot;)
+    @ResponseStatus(value= HttpStatus.ACCEPTED)
+    public ResponseEntity&lt;?&gt; CreateUtilisateur(@RequestBody Utilisateur utilisateur) {
+<span class="pc bpc" id="L53" title="1 of 4 branches missed.">        if (utilisateur.getNom() == null || utilisateur.getEmail() == null) {</span>
+<span class="fc" id="L54">            return new ResponseEntity&lt;&gt;(&quot;Nom et email sont obligatoires&quot;, HttpStatus.BAD_REQUEST);</span>
+        }
+
+        Role defaultRole;
+
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">        if (utilisateur.getRole_app() != null) {</span>
+<span class="nc" id="L60">            defaultRole = roleService.findByNom(utilisateur.getRole_app());</span>
+            // Pas besoin de réassigner la valeur à elle-même
+
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            if (defaultRole == null) {</span>
+<span class="nc" id="L64">                return new ResponseEntity&lt;&gt;(&quot;Le rôle spécifié n'existe pas&quot;, HttpStatus.BAD_REQUEST);</span>
+            }
+        } else {
+<span class="fc" id="L67">            defaultRole = roleService.findByNom(&quot;MEMBRE&quot;);</span>
+<span class="fc" id="L68">            utilisateur.setRole_app(&quot;MEMBRE&quot;);</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">            if (defaultRole == null) {</span>
+<span class="nc" id="L70">                return new ResponseEntity&lt;&gt;(&quot;Le rôle 'MEMBRE' est introuvable&quot;, HttpStatus.INTERNAL_SERVER_ERROR);</span>
+            }
+        }
+
+<span class="fc" id="L74">        return new ResponseEntity&lt;&gt;(utilisateurService.create(utilisateur), HttpStatus.OK);</span>
+    }
+
+    @GetMapping(&quot;/nom&quot;)
+    public Utilisateur findByNom(@RequestParam String nom){
+<span class="nc" id="L79">        return utilisateurService.findByNom(nom);</span>
+    }
+
+    @PostMapping(&quot;/add-user-to-project&quot;)
+    @ResponseStatus(value= HttpStatus.ACCEPTED)
+    public ResponseEntity&lt;?&gt; AddUtilisateurTOProject(@RequestBody Utilisateur utilisateur, @RequestParam String id) {
+<span class="fc" id="L85">        Optional&lt;Projet&gt; projet = Optional.ofNullable(projetService.findById(Integer.parseInt(id)));</span>
+<span class="fc" id="L86">        Optional&lt;Utilisateur&gt; utilisateurOpt = Optional.ofNullable(utilisateurService.findByNom(utilisateur.getNom()));</span>
+
+        // Vérification directe avec Optional (ligne 88 supprimée car redondante)
+<span class="pc bpc" id="L89" title="2 of 4 branches missed.">        if (projet.isEmpty() || utilisateurOpt.isEmpty()) {</span>
+<span class="nc" id="L90">            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(&quot;Utilisateur ou projet non trouvé&quot;);</span>
+        }
+
+<span class="fc" id="L93">        Utilisateur utilisateurPdt = utilisateurOpt.get();</span>
+<span class="fc" id="L94">        Projet projetPdt = projet.get();</span>
+        
+        // Récupérer le rôle depuis le nom fourni, ou utiliser &quot;MEMBRE&quot; par défaut
+<span class="fc" id="L97">        Role rolePdt = null;</span>
+<span class="fc" id="L98">        String roleRequested = utilisateur.getRole_app();</span>
+        
+<span class="pc bpc" id="L100" title="2 of 4 branches missed.">        if (roleRequested != null &amp;&amp; !roleRequested.isEmpty()) {</span>
+<span class="fc" id="L101">            rolePdt = roleService.findByNom(roleRequested);</span>
+            
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">            if (rolePdt == null) {</span>
+<span class="nc" id="L104">                System.err.println(&quot;⚠️ AVERTISSEMENT: Le rôle '&quot; + roleRequested + &quot;' n'existe pas dans la base de données.&quot;);</span>
+<span class="nc" id="L105">                System.err.println(&quot;   Rôles valides: ADMINISTRATEUR, MEMBRE, OBSERVATEUR&quot;);</span>
+<span class="nc" id="L106">                System.err.println(&quot;   Fallback vers le rôle MEMBRE par défaut.&quot;);</span>
+            }
+        }
+        
+        // Si le rôle n'est pas trouvé, utiliser &quot;MEMBRE&quot; par défaut
+<span class="pc bpc" id="L111" title="1 of 2 branches missed.">        if (rolePdt == null) {</span>
+<span class="nc" id="L112">            rolePdt = roleService.findByNom(&quot;MEMBRE&quot;);</span>
+        }
+        
+        // Vérification finale : si même &quot;MEMBRE&quot; n'existe pas, retourner une erreur
+<span class="pc bpc" id="L116" title="1 of 2 branches missed.">        if (rolePdt == null) {</span>
+<span class="nc" id="L117">            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)</span>
+<span class="nc" id="L118">                .body(new ApiResponse&lt;&gt;(false, &quot;Le rôle MEMBRE n'existe pas dans la base de données&quot;, null));</span>
+        }
+        
+<span class="fc" id="L121">        System.out.println(&quot;✓ Rôle assigné: &quot; + rolePdt.getNom() + &quot; (ID: &quot; + rolePdt.getId() + &quot;)&quot;);</span>
+
+        // Créer la liaison utilisateur-projet-rôle
+<span class="fc" id="L124">        UserRoleProjet urp = new UserRoleProjet();</span>
+<span class="fc" id="L125">        urp.setUtilisateur(utilisateurPdt);</span>
+<span class="fc" id="L126">        urp.setProjet(projetPdt);</span>
+<span class="fc" id="L127">        urp.setRole(rolePdt);</span>
+
+        // Ajout bidirectionnel
+<span class="fc" id="L130">        userRoleProjetService.save(urp);</span>
+<span class="fc" id="L131">        utilisateurService.save(utilisateurPdt);</span>
+<span class="fc" id="L132">        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse&lt;&gt;(true, &quot;Utilisateur Roled bien ajouté au projet&quot;, urp));</span>
+    }
+
+
+    @PatchMapping(&quot;/login&quot;)
+    public ResponseEntity&lt;?&gt; login(@RequestBody LoginRequest loginRequest) {
+<span class="fc" id="L138">        String email = loginRequest.getEmail();</span>
+<span class="fc" id="L139">        String password = loginRequest.getPassword();</span>
+        String existPassword;
+
+<span class="pc bpc" id="L142" title="2 of 4 branches missed.">        if(email == null || password == null){</span>
+<span class="nc" id="L143">            return new ResponseEntity&lt;&gt;(&quot;email &amp; password manquant&quot;, HttpStatus.BAD_REQUEST);</span>
+        }
+
+        try {
+<span class="fc" id="L147">            Utilisateur existUser = utilisateurService.findByEmail(email);</span>
+            
+            // Vérifier si l'utilisateur existe
+<span class="pc bpc" id="L150" title="1 of 2 branches missed.">            if (existUser == null) {</span>
+<span class="nc" id="L151">                return new ResponseEntity&lt;&gt;(&quot;Utilisateur non trouvé&quot;, HttpStatus.NOT_FOUND);</span>
+            }
+            
+<span class="fc" id="L154">            existPassword = existUser.getPassword();</span>
+
+<span class="fc bfc" id="L156" title="All 2 branches covered.">            if(existPassword.equals(password)){</span>
+                // Pas besoin de variable intermédiaire, on modifie directement
+<span class="fc" id="L158">                existUser.setEtat_connexion(true);</span>
+<span class="fc" id="L159">                utilisateurService.updatePartial(existUser.getId(), existUser, existUser);</span>
+<span class="fc" id="L160">                return new ResponseEntity&lt;Utilisateur&gt;(existUser, HttpStatus.OK);</span>
+            } else {
+<span class="fc" id="L162">                return new ResponseEntity&lt;&gt;(String.format(&quot;Hello %s, votre mot de passe n'est pas bon&quot;, email), HttpStatus.UNAUTHORIZED);</span>
+            }
+
+<span class="nc" id="L165">        } catch(Exception error) {</span>
+<span class="nc" id="L166">            return new ResponseEntity&lt;&gt;(error.toString(), HttpStatus.INTERNAL_SERVER_ERROR);</span>
+        }
+    }
+
+    @PatchMapping(&quot;/logout&quot;)
+    public ResponseEntity&lt;?&gt; logout(@RequestBody Utilisateur utilisateur) {
+        try {
+<span class="fc" id="L173">            Utilisateur connecteUtilisateur = utilisateurService.findByEmail(utilisateur.getEmail());</span>
+
+<span class="pc bpc" id="L175" title="1 of 2 branches missed.">            if(connecteUtilisateur == null){</span>
+<span class="nc" id="L176">                return ResponseEntity</span>
+<span class="nc" id="L177">                        .status(HttpStatus.BAD_REQUEST)</span>
+<span class="nc" id="L178">                        .body(new ApiResponse&lt;&gt;(false, &quot;Utilisateur non trouvé&quot;, null));</span>
+            }
+
+<span class="pc bpc" id="L181" title="1 of 2 branches missed.">            if(Boolean.TRUE.equals(connecteUtilisateur.getEtat_connexion())){</span>
+                // Pas besoin de variable intermédiaire, on modifie directement
+<span class="fc" id="L183">                connecteUtilisateur.setEtat_connexion(false);</span>
+<span class="fc" id="L184">                utilisateurService.updatePartial(connecteUtilisateur.getId(), connecteUtilisateur, connecteUtilisateur);</span>
+<span class="fc" id="L185">                return ResponseEntity</span>
+<span class="fc" id="L186">                        .status(HttpStatus.OK)</span>
+<span class="fc" id="L187">                        .body(new ApiResponse&lt;&gt;(true, &quot;Utilisateur bien déconnecté&quot;, connecteUtilisateur));</span>
+            }
+<span class="nc" id="L189">                return ResponseEntity</span>
+<span class="nc" id="L190">                        .status(HttpStatus.NOT_MODIFIED)</span>
+<span class="nc" id="L191">                        .body(new ApiResponse&lt;&gt;(false, &quot;Déconnexion échouée, utilisateur déjà déconnecté&quot;, connecteUtilisateur));</span>
+<span class="nc" id="L192">        } catch(Exception error) {</span>
+<span class="nc" id="L193">            return ResponseEntity</span>
+<span class="nc" id="L194">                    .status(HttpStatus.INTERNAL_SERVER_ERROR)</span>
+<span class="nc" id="L195">                    .body(new ApiResponse&lt;&gt;(false, &quot;Erreur interne&quot;, error.toString()));</span>
+        }
+    }
+};
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -8,6 +8,7 @@ import com.visiplus.backend.models.UserRoleProjet;
 import com.visiplus.backend.models.Utilisateur;
 import com.visiplus.backend.services.ProjetService;
 import com.visiplus.backend.services.RoleService;
+import com.visiplus.backend.services.TacheService;
 import com.visiplus.backend.services.UserRoleProjetService;
 import com.visiplus.backend.services.UtilisateurService;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,6 +57,9 @@ class ProjetControllerTest {
 
     @MockBean
     private UserRoleProjetService userRoleProjetService;
+
+    @MockBean
+    private TacheService tacheService;
 
     private Utilisateur utilisateurTest;
     private Projet projetTest;
@@ -181,7 +185,7 @@ class ProjetControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
-                .andExpect(jsonPath("$.message").value("Projet a été supprimé"));
+                .andExpect(jsonPath("$.message").value("Projet, ses tâches et ses relations ont été supprimés"));
 
         verify(projetService, times(1)).findById(1);
         verify(projetService, times(1)).delete(projetTest);
