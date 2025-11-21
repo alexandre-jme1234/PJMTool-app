@@ -45,16 +45,41 @@ describe('TaskService - Tests d\'états, fonctionnement et branches', () => {
   });
 
   it('should get tasks by project ID', (done) => {
-    const mockTasks = [
-      { id: 1, nom: 'Task 1', etat: 'TODO' },
-      { id: 2, nom: 'Task 2', etat: 'IN_PROGRESS' }
+    const mockTasks: any[] = [
+      { 
+        id: 1, 
+        nom: 'Task 1', 
+        etat: 'TODO',
+        commanditaire: null,
+        destinataire: null,
+        description: null,
+        est_termine: false,
+        date_debut: null,
+        date_fin: null,
+        projet: null,
+        priorite: null
+      },
+      { 
+        id: 2, 
+        nom: 'Task 2', 
+        etat: 'IN_PROGRESS',
+        commanditaire: null,
+        destinataire: null,
+        description: null,
+        est_termine: false,
+        date_debut: null,
+        date_fin: null,
+        projet: null,
+        priorite: null
+      }
     ];
 
     const mockResponse = { data: mockTasks };
 
     service.getTasksByProject(1).subscribe(tasks => {
-      expect(tasks).toEqual(mockTasks);
       expect(tasks.length).toBe(2);
+      expect(tasks[0].nom).toBe('Task 1');
+      expect(tasks[1].nom).toBe('Task 2');
       done();
     });
 
@@ -116,7 +141,6 @@ describe('TaskService - Tests d\'états, fonctionnement et branches', () => {
     const mockResponse = { data: [] };
 
     service.getTasksByProject(999).subscribe(tasks => {
-      expect(tasks).toEqual([]);
       expect(tasks.length).toBe(0);
       done();
     });

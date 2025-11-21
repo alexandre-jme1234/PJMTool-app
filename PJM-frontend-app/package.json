@@ -8,6 +8,12 @@
   "type": "commonjs",
   "main": "tailwind.config.js",
   "scripts": {
+    "test:watch": "ng test",
+    "test:once": "ng test --watch=false --browsers=ChromeHeadless",
+    "test:coverage": "ng test --watch=false --code-coverage --browsers=ChromeHeadless",
+    "test:spinner": "ng test --include='**/loading-spinner.component.spec.ts' --watch=false",
+    "test:task-service": "ng test --include='**/task.service.spec.ts' --watch=false",
+    "test:dashboard": "ng test --include='**/dashboard.component.spec.ts' --watch=false",
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --proxy-config proxy.conf.json --poll 2000",
     "build": "ng build",
