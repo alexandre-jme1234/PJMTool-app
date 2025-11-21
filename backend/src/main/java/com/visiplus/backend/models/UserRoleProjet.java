@@ -13,7 +13,8 @@ public class UserRoleProjet {
     private Utilisateur utilisateur;
 
     @ManyToOne
-    @JoinColumn(name = "projet_id")
+    @JoinColumn(name = "projet_id", nullable = false, foreignKey = @ForeignKey(name = "FK_user_role_projet_projet"))
+    @org.hibernate.annotations.OnDelete(action = org.hibernate.annotations.OnDeleteAction.CASCADE)
     private Projet projet;
 
     @ManyToOne

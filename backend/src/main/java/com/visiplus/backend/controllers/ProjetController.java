@@ -157,35 +157,19 @@ public class ProjetController {
         Projet projet = projetService.findById(id);
 
         if(projet == null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(false, "Projet n'existe pas", null));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ApiResponse<>(false, "Projet n'existe pas", null));
         }
 
         try {
-            logger.info("[DELETE] Début de la suppression du projet ID: {}", id);
-            
-            // 1. Supprimer les entrées de la table de jointure projet_tache
-            logger.info("[DELETE] Étape 1: Suppression des relations projet_tache");
-            projetService.deleteProjetTacheRelations(id);
-            logger.info("[DELETE] Étape 1: OK");
+            // // Supprimer les relations projet_tache
+            // projetService.deleteProjetTacheRelations(id);
 
-            // 2. Supprimer toutes les tâches associées au projet
-            logger.info("[DELETE] Étape 2: Suppression des tâches");
-            List<com.visiplus.backend.models.Tache> taches = tacheService.findByProjetId(id);
-            logger.info("[DELETE] Nombre de tâches à supprimer: {}", taches.size());
-            for(com.visiplus.backend.models.Tache tache : taches) {
-                tacheService.deleteByID(tache.getId());
-            }
-            logger.info("[DELETE] Étape 2: OK");
+            // // Supprimer toutes les tâches associées
+            // tacheService.findByProjetId(id).forEach(tache -> tacheService.deleteByID(tache.getId()));
 
-            // 3. Supprimer toutes les relations UserRoleProjet (requête SQL native)
-            logger.info("[DELETE] Étape 3: Suppression des relations UserRoleProjet");
-            userRoleProjetService.deleteByProjetId(id);
-            logger.info("[DELETE] Étape 3: OK");
-
-            // 4. Enfin supprimer le projet
-            logger.info("[DELETE] Étape 4: Suppression du projet");
+            // Supprimer le projet (cascade supprime automatiquement les UserRoleProjet)
             projetService.delete(projet);
-            logger.info("[DELETE] Étape 4: OK");
             
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new ApiResponse<>(true, "Projet, ses tâches et ses relations ont été supprimés", null));
