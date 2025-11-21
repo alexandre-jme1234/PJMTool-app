@@ -21,11 +21,13 @@ import { ProjetModel } from '../../services/projects/projet.model';
 import { forkJoin, map, Observable, tap } from 'rxjs';
 import { PermissionService, UserPermissions } from '../../services/permissions/permission.service';
 import { TaskHistoryEvent } from '../../services/task/task-history.model';
+import { LoadingSpinnerComponent } from "../../shared/loading-spinner/loading-spinner.component";
+import { LoadingService } from '../../services/loading/loading.service';
 
 @Component({
   selector: 'app-project',
   standalone: true,
-  imports: [CommonModule, TruncatePipe, FormsModule, TaskComponent, DragDropModule, TaskOverlayComponent],
+  imports: [CommonModule, TruncatePipe, FormsModule, TaskComponent, DragDropModule, TaskOverlayComponent, LoadingSpinnerComponent],
   templateUrl: './project.component.html',
   styleUrl: './project.component.css',
 })
@@ -60,7 +62,8 @@ export class ProjectComponent implements OnInit {
     public userService: UserService,
     private roleService: RoleService,
     private cdr: ChangeDetectorRef,
-    private permissionService: PermissionService
+    private permissionService: PermissionService,
+    public loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
@@ -402,6 +405,9 @@ export class ProjectComponent implements OnInit {
       3: "OBSERVATEUR"
     };
 
+    // Activer le loading spinner
+    this.loadingService.loadingOn();
+
     this.projetService.getUsersRoledByProjectId(projectId)
       .pipe(
         tap(response => console.log('Réponse complète backend:', response)),
@@ -413,8 +419,21 @@ export class ProjectComponent implements OnInit {
           // Pour chaque relation UserRoleProjet, trouver l'utilisateur correspondant
           const usersWithRoles = userRoleData
             .map((urp: any) => {
-              // Trouver l'utilisateur complet dans allUsers par son ID
-              const user = this.allUsers.find(u => u.id === urp.utilisateur);
+              console.log('URP brut:', urp);
+              
+              // Gérer le cas où urp.utilisateur peut être un ID ou un objet
+              const userId = typeof urp.utilisateur === 'object' ? urp.utilisateur?.id : urp.utilisateur;
+              console.log('User ID extrait:', userId);
+              
+              // Si urp.utilisateur est déjà un objet complet, l'utiliser directement
+              let user;
+              if (typeof urp.utilisateur === 'object' && urp.utilisateur !== null) {
+                user = urp.utilisateur;
+              } else {
+                // Sinon, chercher dans allUsers
+                 console.log('user', user),
+                user = this.allUsers.find(u => u.id === userId);
+              }
               
               if (user) {
                 // Créer une copie de l'utilisateur avec le rôle assigné
@@ -423,6 +442,7 @@ export class ProjectComponent implements OnInit {
                   role_app: roleMapping[urp.role] || 'OBSERVATEUR'
                 };
               }
+              console.warn('Utilisateur non trouvé pour URP:', urp);
               return null;
             })
             .filter((user: any) => user !== null); // Retirer les null
@@ -435,8 +455,14 @@ export class ProjectComponent implements OnInit {
         next: (usersWithRoles) => {
           this.utilisateursProjet = usersWithRoles;
           console.log('Utilisateurs du projet affichés:', this.utilisateursProjet);
+          // Désactiver le loading spinner après succès
+          this.loadingService.loadingOff();
         },
-        error: (error) => console.error('Erreur lors du filtrage des utilisateurs:', error)
+        error: (error) => {
+          console.error('Erreur lors du filtrage des utilisateurs:', error);
+          // Désactiver le loading spinner en cas d'erreur
+          this.loadingService.loadingOff();
+        }
       });
   }
 

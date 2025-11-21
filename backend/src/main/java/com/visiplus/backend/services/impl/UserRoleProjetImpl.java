@@ -24,4 +24,14 @@ public class UserRoleProjetImpl implements UserRoleProjetService {
     public List<UserRoleProjet> findALl() {
         return userRoleProjetRepository.findAll();
     }
+
+    @Override
+    public void delete(UserRoleProjet userRoleProjet) {
+        userRoleProjetRepository.delete(userRoleProjet);
+    }
+
+    @Override
+    public void deleteByProjetId(int projetId) {
+        userRoleProjetRepository.deleteByProjetId(projetId);
+    }
 }

@@ -13,7 +13,10 @@ import com.visiplus.backend.services.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -21,6 +24,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/projet")
 @RestController
 public class ProjetController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ProjetController.class);
 
     @Autowired
     ProjetService  projetService;
@@ -33,6 +38,9 @@ public class ProjetController {
 
     @Autowired
     UserRoleProjetService userRoleProjetService;
+
+    @Autowired
+    com.visiplus.backend.services.TacheService tacheService;
 
 
     @GetMapping("/nom/{nom}")
@@ -144,6 +152,7 @@ public class ProjetController {
     };
 
     @DeleteMapping("/delete/{id}")
+    @Transactional
     public ResponseEntity<?> deleteProject(@PathVariable int id){
         Projet projet = projetService.findById(id);
 
@@ -151,8 +160,39 @@ public class ProjetController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(false, "Projet n'existe pas", null));
         }
 
-        projetService.delete(projet);
-        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(true, "Projet a été supprimé", null));
+        try {
+            logger.info("[DELETE] Début de la suppression du projet ID: {}", id);
+            
+            // 1. Supprimer les entrées de la table de jointure projet_tache
+            logger.info("[DELETE] Étape 1: Suppression des relations projet_tache");
+            projetService.deleteProjetTacheRelations(id);
+            logger.info("[DELETE] Étape 1: OK");
+
+            // 2. Supprimer toutes les tâches associées au projet
+            logger.info("[DELETE] Étape 2: Suppression des tâches");
+            List<com.visiplus.backend.models.Tache> taches = tacheService.findByProjetId(id);
+            logger.info("[DELETE] Nombre de tâches à supprimer: {}", taches.size());
+            for(com.visiplus.backend.models.Tache tache : taches) {
+                tacheService.deleteByID(tache.getId());
+            }
+            logger.info("[DELETE] Étape 2: OK");
+
+            // 3. Supprimer toutes les relations UserRoleProjet (requête SQL native)
+            logger.info("[DELETE] Étape 3: Suppression des relations UserRoleProjet");
+            userRoleProjetService.deleteByProjetId(id);
+            logger.info("[DELETE] Étape 3: OK");
+
+            // 4. Enfin supprimer le projet
+            logger.info("[DELETE] Étape 4: Suppression du projet");
+            projetService.delete(projet);
+            logger.info("[DELETE] Étape 4: OK");
+            
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new ApiResponse<>(true, "Projet, ses tâches et ses relations ont été supprimés", null));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse<>(false, "Erreur lors de la suppression: " + e.getMessage(), null));
+        }
     }
 
     @GetMapping("/all")

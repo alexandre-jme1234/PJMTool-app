@@ -18,5 +18,7 @@ public interface ProjetService {
     Projet delete(Projet projet);
 
     List<Projet> findAll();
+    
+    void deleteProjetTacheRelations(int projetId);
 
 };

@@ -46,4 +46,9 @@ public class ProjetServiceImpl implements ProjetService {
     public List<Projet> findAll() {
         return projetRepository.findAll();
     }
+
+    @Override
+    public void deleteProjetTacheRelations(int projetId) {
+        projetRepository.deleteProjetTacheRelations(projetId);
+    }
 }

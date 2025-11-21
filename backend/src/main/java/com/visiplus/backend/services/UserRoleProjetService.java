@@ -9,4 +9,8 @@ public interface UserRoleProjetService {
     public UserRoleProjet save(UserRoleProjet userRoleProjet);
 
     public List<UserRoleProjet> findALl();
+    
+    public void delete(UserRoleProjet userRoleProjet);
+    
+    public void deleteByProjetId(int projetId);
 }

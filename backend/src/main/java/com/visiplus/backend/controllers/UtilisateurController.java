@@ -58,7 +58,7 @@ public class UtilisateurController {
 
         if (utilisateur.getRole_app() != null) {
             defaultRole = roleService.findByNom(utilisateur.getRole_app());
-            utilisateur.setRole_app(utilisateur.getRole_app());
+            // Pas besoin de réassigner la valeur à elle-même
 
             if (defaultRole == null) {
                 return new ResponseEntity<>("Le rôle spécifié n'existe pas", HttpStatus.BAD_REQUEST);
@@ -85,10 +85,7 @@ public class UtilisateurController {
         Optional<Projet> projet = Optional.ofNullable(projetService.findById(Integer.parseInt(id)));
         Optional<Utilisateur> utilisateurOpt = Optional.ofNullable(utilisateurService.findByNom(utilisateur.getNom()));
 
-        if (utilisateur.getNom() == null || projet == null) {
-            return new ResponseEntity<>("Nom utilisateur ou Projet non trouvé", HttpStatus.BAD_REQUEST);
-        }
-
+        // Vérification directe avec Optional (ligne 88 supprimée car redondante)
         if (projet.isEmpty() || utilisateurOpt.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Utilisateur ou projet non trouvé");
         }
@@ -148,15 +145,21 @@ public class UtilisateurController {
 
         try {
             Utilisateur existUser = utilisateurService.findByEmail(email);
+            
+            // Vérifier si l'utilisateur existe
+            if (existUser == null) {
+                return new ResponseEntity<>("Utilisateur non trouvé", HttpStatus.NOT_FOUND);
+            }
+            
             existPassword = existUser.getPassword();
 
             if(existPassword.equals(password)){
-                Utilisateur acceptUtilisateur = existUser;
-                acceptUtilisateur.setEtat_connexion(true);
-                utilisateurService.updatePartial(existUser.getId(), existUser, acceptUtilisateur);
-                return new ResponseEntity<Utilisateur>(acceptUtilisateur, HttpStatus.OK);
+                // Pas besoin de variable intermédiaire, on modifie directement
+                existUser.setEtat_connexion(true);
+                utilisateurService.updatePartial(existUser.getId(), existUser, existUser);
+                return new ResponseEntity<Utilisateur>(existUser, HttpStatus.OK);
             } else {
-                return new ResponseEntity<>(String.format("Hello %s, votre mot de passe n''es tpas bon", email), HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(String.format("Hello %s, votre mot de passe n'est pas bon", email), HttpStatus.UNAUTHORIZED);
             }
 
         } catch(Exception error) {
@@ -176,12 +179,12 @@ public class UtilisateurController {
             }
 
             if(Boolean.TRUE.equals(connecteUtilisateur.getEtat_connexion())){
-                Utilisateur deconnectionUtilisateur = connecteUtilisateur;
-                deconnectionUtilisateur.setEtat_connexion(false);
-                utilisateurService.updatePartial(connecteUtilisateur.getId(), connecteUtilisateur, deconnectionUtilisateur);
+                // Pas besoin de variable intermédiaire, on modifie directement
+                connecteUtilisateur.setEtat_connexion(false);
+                utilisateurService.updatePartial(connecteUtilisateur.getId(), connecteUtilisateur, connecteUtilisateur);
                 return ResponseEntity
                         .status(HttpStatus.OK)
-                        .body(new ApiResponse<>(true, "Utilisateur bien déconnecté", deconnectionUtilisateur));
+                        .body(new ApiResponse<>(true, "Utilisateur bien déconnecté", connecteUtilisateur));
             }
                 return ResponseEntity
                         .status(HttpStatus.NOT_MODIFIED)
