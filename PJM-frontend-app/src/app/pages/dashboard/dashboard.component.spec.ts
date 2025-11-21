@@ -459,5 +459,141 @@ describe('DashboardComponent', () => {
     });
   });
 
+  // ========== TESTS DE BRANCHES SUPPLÉMENTAIRES ==========
+
+  describe('onAddProjectClick', () => {
+    it('devrait ouvrir la modale de création de projet', () => {
+      component.showModal = false;
+      component.onAddProjectClick();
+      expect(component.showModal).toBe(true);
+    });
+  });
+
+  describe('onCancel', () => {
+    it('devrait fermer la modale et réinitialiser le formulaire', () => {
+      component.showModal = true;
+      component.newProject = { nom: 'Test' };
+      
+      component.onCancel();
+      
+      expect(component.showModal).toBe(false);
+    });
+  });
+
+  describe('resetForm', () => {
+    it('devrait réinitialiser newProject et fermer la modale', () => {
+      component.newProject = { nom: 'Test', description: 'Desc' };
+      component.showModal = true;
+      component.selectedProject = mockProjects[0] as any;
+      
+      component.resetForm();
+      
+      expect(component.newProject.nom).toBe('');
+      expect(component.newProject.description).toBe('');
+      expect(component.showModal).toBe(false);
+      expect(component.selectedProject).toBeNull();
+    });
+  });
+
+  describe('hasCompletedTasks', () => {
+    it('devrait retourner true si des tâches sont terminées', () => {
+      component.selectedProject = {
+        ...mockProjects[0] as any,
+        taches: [{ id: 1, est_termine: true }]
+      };
+      
+      expect(component.hasCompletedTasks).toBe(true);
+    });
+
+    it('devrait retourner false si aucune tâche n\'est terminée', () => {
+      component.selectedProject = {
+        ...mockProjects[0] as any,
+        taches: [{ id: 1, est_termine: false }]
+      };
+      
+      expect(component.hasCompletedTasks).toBe(false);
+    });
+
+    it('devrait retourner false si selectedProject est null', () => {
+      component.selectedProject = null;
+      expect(component.hasCompletedTasks).toBe(false);
+    });
+  });
+
+  describe('onTaskCheckboxChange', () => {
+    it('devrait ajouter la tâche à tasksToDelete si cochée', () => {
+      const mockTask = { id: 1, nom: 'Task 1', est_termine: false };
+      const event = { target: { checked: true } };
+      
+      component.onTaskCheckboxChange(mockTask as any, event);
+      
+      expect(mockTask.est_termine).toBe(true);
+      expect(component.tasksToDelete).toContain(mockTask as any);
+    });
+
+    it('devrait retirer la tâche de tasksToDelete si décochée', () => {
+      const mockTask = { id: 1, nom: 'Task 1', est_termine: true };
+      component.tasksToDelete = [mockTask as any];
+      const event = { target: { checked: false } };
+      
+      component.onTaskCheckboxChange(mockTask as any, event);
+      
+      expect(mockTask.est_termine).toBe(false);
+      expect(component.tasksToDelete).not.toContain(mockTask as any);
+    });
+  });
+
+  describe('onProjectCheckboxChange', () => {
+    it('devrait ajouter l\'ID du projet si coché', () => {
+      const project = mockProjects[0];
+      const event = { target: { checked: true } };
+      
+      component.onProjectCheckboxChange(project as any, event);
+      
+      expect(component.selectedProjectIds).toContain(project.id!);
+    });
+
+    it('devrait retirer l\'ID du projet si décoché', () => {
+      const project = mockProjects[0];
+      component.selectedProjectIds = [project.id!];
+      const event = { target: { checked: false } };
+      
+      component.onProjectCheckboxChange(project as any, event);
+      
+      expect(component.selectedProjectIds).not.toContain(project.id!);
+    });
+  });
+
+  describe('closeTaskDetails', () => {
+    it('devrait fermer l\'overlay et réinitialiser selectedTask', () => {
+      component.selectedTask = { id: 1, nom: 'Task' } as any;
+      component.isOverlayOpen = true;
+      
+      component.closeTaskDetails();
+      
+      expect(component.selectedTask).toBeNull();
+      expect(component.isOverlayOpen).toBe(false);
+    });
+  });
+
+  describe('goToProject', () => {
+    it('devrait naviguer vers le projet avec l\'ID spécifié', () => {
+      component.goToProject(5);
+      expect(router.navigate).toHaveBeenCalledWith(['/projet', 5]);
+    });
+  });
+
+  describe('resetTaskForm', () => {
+    it('devrait réinitialiser newTask avec les valeurs par défaut', () => {
+      component.newTask = { nom: 'Old Task' } as any;
+      
+      component.resetTaskForm();
+      
+      expect(component.newTask.nom).toBe('');
+      expect(component.newTask.etat).toBe('TODO');
+      expect(component.newTask.priorite?.nom).toBe('FAIBLE');
+    });
+  });
+
 });
 
