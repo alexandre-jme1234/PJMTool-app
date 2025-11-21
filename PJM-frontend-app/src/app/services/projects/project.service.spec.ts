@@ -43,7 +43,7 @@ describe('ProjectService', () => {
         expect(projects.length).toBe(2);
       });
 
-      const req = httpMock.expectOne('/api/projet/all');
+      const req = httpMock.expectOne('http://localhost:8080/api/projet/all');
       expect(req.request.method).toBe('GET');
       req.flush(mockResponse);
     });
@@ -57,7 +57,7 @@ describe('ProjectService', () => {
         expect(project).toEqual(mockProject);
       });
 
-      const req = httpMock.expectOne('/api/projet/id/1');
+      const req = httpMock.expectOne('http://localhost:8080/api/projet/id/1');
       expect(req.request.method).toBe('GET');
       req.flush(mockProject);
     });
@@ -77,7 +77,7 @@ describe('ProjectService', () => {
         expect(response.success).toBe(true);
       });
 
-      const req = httpMock.expectOne('/api/projet/create');
+      const req = httpMock.expectOne('http://localhost:8080/api/projet/create');
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(newProject);
       req.flush(mockResponse);
@@ -93,7 +93,7 @@ describe('ProjectService', () => {
         expect(response).toEqual(mockResponse);
       });
 
-      const req = httpMock.expectOne('/api/projet/delete/1');
+      const req = httpMock.expectOne('http://localhost:8080/api/projet/delete/1');
       expect(req.request.method).toBe('DELETE');
       req.flush(mockResponse);
     });
@@ -111,7 +111,7 @@ describe('ProjectService', () => {
         expect(users.length).toBe(2);
       });
 
-      const req = httpMock.expectOne('/api/projet/users-roled/1');
+      const req = httpMock.expectOne('http://localhost:8080/api/projet/users-roled/1');
       expect(req.request.method).toBe('GET');
       req.flush(mockUsers);
     });
@@ -142,6 +142,19 @@ describe('ProjectService', () => {
         done();
       });
     });
+
+    it('should return current projects if project id is undefined', (done) => {
+      const projectWithoutId: Partial<Project> = {
+        nom: 'No ID Project'
+      };
+
+      service.updateProject(projectWithoutId).subscribe(projects => {
+        expect(projects).toBeDefined();
+        const unchanged = projects.find(p => p.id === 1);
+        expect(unchanged?.nom).toBe('Projet A');
+        done();
+      });
+    });
   });
 
   describe('addTaskToProject', () => {
@@ -158,6 +171,45 @@ describe('ProjectService', () => {
         const project = projects.find(p => p.id === 1);
         expect(project?.taches).toBeDefined();
         expect(project?.taches?.length).toBeGreaterThan(0);
+      });
+    });
+
+    it('should not add task if project does not exist', () => {
+      const task: any = {
+        id: 1,
+        nom: 'Test Task',
+        description: 'Test Description'
+      };
+      const initialProjects = service.projectsSubject.value;
+
+      service.addTaskToProject(999, task);
+
+      service.projects$.subscribe(projects => {
+        expect(projects).toEqual(initialProjects);
+      });
+    });
+
+    it('should initialize taches array if it does not exist', () => {
+      const task: any = {
+        id: 1,
+        nom: 'Test Task',
+        description: 'Test Description'
+      };
+
+      // S'assurer que le projet n'a pas de taches
+      const projects = service.projectsSubject.value;
+      const project = projects.find(p => p.id === 1);
+      if (project) {
+        delete project.taches;
+      }
+
+      service.addTaskToProject(1, task);
+
+      service.projects$.subscribe(updatedProjects => {
+        const updatedProject = updatedProjects.find(p => p.id === 1);
+        expect(updatedProject?.taches).toBeDefined();
+        expect(Array.isArray(updatedProject?.taches)).toBe(true);
+        expect(updatedProject?.taches?.length).toBeGreaterThan(0);
       });
     });
   });
@@ -216,7 +268,7 @@ describe('ProjectService', () => {
         expect(response.data.nom).toBe('API Project');
       });
 
-      const req = httpMock.expectOne('/api/projet/create');
+      const req = httpMock.expectOne('http://localhost:8080/api/projet/create');
       expect(req.request.method).toBe('POST');
       req.flush(mockResponse);
     });
