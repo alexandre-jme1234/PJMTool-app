@@ -312,4 +312,276 @@ class TacheControllerTest {
         verify(tacheService, times(1)).findById(1);
         verify(tacheService, times(1)).deleteByID(1);
     }
+
+    // ========== Tests pour createTache - Branches manquantes ==========
+
+    @Test
+    @DisplayName("POST /api/tache/create - Échec si projet null")
+    void testCreateTache_ProjetNull() throws Exception {
+        TacheRequest request = new TacheRequest();
+        request.setNom("Nouvelle Tache");
+        request.setProjet_id(999);
+        request.setCommanditaire_id(1);
+        request.setDestinataire_id(2);
+
+        when(projetService.findById(999)).thenReturn(null);
+        when(utilisateurService.findById(1)).thenReturn(commanditaireTest);
+        when(utilisateurService.findById(2)).thenReturn(destinataireTest);
+        when(tacheService.findByNom("Nouvelle Tache")).thenReturn(null);
+
+        mockMvc.perform(post("/api/tache/create")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.success").value(false));
+
+        verify(tacheService, never()).create(any(Tache.class));
+    }
+
+    @Test
+    @DisplayName("POST /api/tache/create - Échec si commanditaire null")
+    void testCreateTache_CommanditaireNull() throws Exception {
+        TacheRequest request = new TacheRequest();
+        request.setNom("Nouvelle Tache");
+        request.setProjet_id(1);
+        request.setCommanditaire_id(999);
+        request.setDestinataire_id(2);
+
+        when(projetService.findById(1)).thenReturn(projetTest);
+        when(utilisateurService.findById(999)).thenReturn(null);
+        when(utilisateurService.findById(2)).thenReturn(destinataireTest);
+        when(tacheService.findByNom("Nouvelle Tache")).thenReturn(null);
+
+        mockMvc.perform(post("/api/tache/create")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.success").value(false));
+
+        verify(tacheService, never()).create(any(Tache.class));
+    }
+
+    @Test
+    @DisplayName("POST /api/tache/create - Échec si destinataire null")
+    void testCreateTache_DestinataireNull() throws Exception {
+        TacheRequest request = new TacheRequest();
+        request.setNom("Nouvelle Tache");
+        request.setProjet_id(1);
+        request.setCommanditaire_id(1);
+        request.setDestinataire_id(999);
+
+        when(projetService.findById(1)).thenReturn(projetTest);
+        when(utilisateurService.findById(1)).thenReturn(commanditaireTest);
+        when(utilisateurService.findById(999)).thenReturn(null);
+        when(tacheService.findByNom("Nouvelle Tache")).thenReturn(null);
+
+        mockMvc.perform(post("/api/tache/create")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.success").value(false));
+
+        verify(tacheService, never()).create(any(Tache.class));
+    }
+
+    @Test
+    @DisplayName("POST /api/tache/create - État null assigné à TODO")
+    void testCreateTache_EtatNull() throws Exception {
+        TacheRequest request = new TacheRequest();
+        request.setNom("Tache sans état");
+        request.setProjet_id(1);
+        request.setCommanditaire_id(1);
+        request.setDestinataire_id(2);
+        request.setEtat(null);
+
+        when(projetService.findById(1)).thenReturn(projetTest);
+        when(utilisateurService.findById(1)).thenReturn(commanditaireTest);
+        when(utilisateurService.findById(2)).thenReturn(destinataireTest);
+        when(tacheService.findByNom("Tache sans état")).thenReturn(null);
+        when(tacheService.create(any(Tache.class))).thenReturn(tacheTest);
+
+        mockMvc.perform(post("/api/tache/create")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true));
+
+        verify(tacheService, times(1)).create(any(Tache.class));
+    }
+
+    @Test
+    @DisplayName("POST /api/tache/create - Priorité null")
+    void testCreateTache_PrioriteNull() throws Exception {
+        TacheRequest request = new TacheRequest();
+        request.setNom("Tache sans priorité");
+        request.setProjet_id(1);
+        request.setCommanditaire_id(1);
+        request.setDestinataire_id(2);
+        request.setPriorite_id(null);
+
+        when(projetService.findById(1)).thenReturn(projetTest);
+        when(utilisateurService.findById(1)).thenReturn(commanditaireTest);
+        when(utilisateurService.findById(2)).thenReturn(destinataireTest);
+        when(tacheService.findByNom("Tache sans priorité")).thenReturn(null);
+        when(tacheService.create(any(Tache.class))).thenReturn(tacheTest);
+
+        mockMvc.perform(post("/api/tache/create")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true));
+
+        verify(tacheService, times(1)).create(any(Tache.class));
+    }
+
+    // ========== Tests pour getTache ==========
+
+    @Test
+    @DisplayName("GET /api/tache/tache - Succès")
+    void testGetTache_Success() throws Exception {
+        when(tacheService.findByNom("Tache Test")).thenReturn(tacheTest);
+
+        mockMvc.perform(get("/api/tache/tache")
+                .param("nom", "Tache Test")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.message").value("Tache bien trouvé dans un projet"));
+
+        verify(tacheService, times(1)).findByNom("Tache Test");
+    }
+
+    @Test
+    @DisplayName("GET /api/tache/tache - Tache null")
+    void testGetTache_TacheNull() throws Exception {
+        when(tacheService.findByNom("Inexistante")).thenReturn(null);
+
+        mockMvc.perform(get("/api/tache/tache")
+                .param("nom", "Inexistante")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.success").value(false));
+    }
+
+    // ========== Tests pour getTacheById ==========
+
+    @Test
+    @DisplayName("GET /api/tache/{id} - Succès")
+    void testGetTacheById_Success() throws Exception {
+        when(tacheService.findById(1)).thenReturn(Optional.of(tacheTest));
+
+        mockMvc.perform(get("/api/tache/1")
+                .param("id", "1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true));
+
+        verify(tacheService, times(1)).findById(1);
+    }
+
+    // ========== Tests pour patchTacheById - Branches manquantes ==========
+
+    @Test
+    @DisplayName("PATCH /api/tache/update - Tache inexistante")
+    void testPatchTache_NotFound() throws Exception {
+        TacheRequest request = new TacheRequest();
+        request.setId(999);
+
+        when(tacheService.findById(999)).thenReturn(Optional.empty());
+
+        mockMvc.perform(patch("/api/tache/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.success").value(false));
+
+        verify(tacheService, never()).save(any(Tache.class));
+    }
+
+    @Test
+    @DisplayName("PATCH /api/tache/update - Exception")
+    void testPatchTache_Exception() throws Exception {
+        TacheRequest request = new TacheRequest();
+        request.setId(1);
+        request.setNom("Nouveau nom");
+
+        when(tacheService.findById(1)).thenReturn(Optional.of(tacheTest));
+        when(tacheService.save(any(Tache.class))).thenThrow(new RuntimeException("Erreur DB"));
+
+        mockMvc.perform(patch("/api/tache/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isInternalServerError())
+                .andExpect(jsonPath("$.success").value(false));
+    }
+
+    @Test
+    @DisplayName("PATCH /api/tache/update - Mise à jour commanditaire")
+    void testPatchTache_UpdateCommanditaire() throws Exception {
+        TacheRequest request = new TacheRequest();
+        request.setId(1);
+        request.setCommanditaire_id(2);
+
+        when(tacheService.findById(1)).thenReturn(Optional.of(tacheTest));
+        when(utilisateurService.findById(2)).thenReturn(destinataireTest);
+        when(tacheService.save(any(Tache.class))).thenReturn(tacheTest);
+
+        mockMvc.perform(patch("/api/tache/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true));
+    }
+
+    @Test
+    @DisplayName("PATCH /api/tache/update - Mise à jour priorité (Integer)")
+    void testPatchTache_UpdatePrioriteInteger() throws Exception {
+        TacheRequest request = new TacheRequest();
+        request.setId(1);
+        request.setPriorite_id(2);
+
+        when(tacheService.findById(1)).thenReturn(Optional.of(tacheTest));
+        when(prioriteService.findById(2)).thenReturn(Optional.of(prioriteTest));
+        when(tacheService.save(any(Tache.class))).thenReturn(tacheTest);
+
+        mockMvc.perform(patch("/api/tache/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true));
+    }
+
+    // ========== Tests pour deleteTacheById ==========
+
+    @Test
+    @DisplayName("DELETE /api/tache/delete/{id} - Tache inexistante")
+    void testDeleteTache_NotFound() throws Exception {
+        when(tacheService.findById(999)).thenReturn(Optional.empty());
+
+        mockMvc.perform(delete("/api/tache/delete/999")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.success").value(false));
+
+        verify(tacheService, never()).deleteByID(anyInt());
+    }
+
+    // ========== Tests pour updateTacheById (PUT) ==========
+
+    @Test
+    @DisplayName("PUT /api/tache/update - Appelle patchTacheById")
+    void testUpdateTache_CallsPatch() throws Exception {
+        TacheRequest request = new TacheRequest();
+        request.setId(1);
+        request.setEtat("DONE");
+
+        when(tacheService.findById(1)).thenReturn(Optional.of(tacheTest));
+        when(tacheService.save(any(Tache.class))).thenReturn(tacheTest);
+
+        mockMvc.perform(put("/api/tache/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true));
+    }
 }
