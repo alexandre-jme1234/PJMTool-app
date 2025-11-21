@@ -975,9 +975,12 @@ describe('DashboardComponent', () => {
 
     it('devrait gérer les erreurs de suppression', (done) => {
       const consoleErrorSpy = spyOn(console, 'error');
-      component['taskService'].deleteTask.and.returnValue(
+      // Recréer le spy avec une configuration d'erreur
+      const deleteTaskErrorSpy = jasmine.createSpyObj('TaskService', ['deleteTask']);
+      deleteTaskErrorSpy.deleteTask.and.returnValue(
         new Observable(sub => sub.error({ status: 500 }))
       );
+      component['taskService'] = deleteTaskErrorSpy;
       component.tasksToDelete = [{ id: 1 } as any];
       
       component.deleteSelectedTasks();
