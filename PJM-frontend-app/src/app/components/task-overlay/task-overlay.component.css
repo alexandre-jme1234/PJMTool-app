@@ -87,3 +87,52 @@
         transform: translateX(0);
     }
 }
+
+/* Toast notification */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    min-width: 300px;
+    max-width: 500px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateX(calc(100% + 40px));
+    transition: transform 0.3s ease-in-out;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.toast.visible {
+    transform: translateX(0);
+}
+
+.toast.error {
+    background: #FEE2E2;
+    border-left: 4px solid #DC2626;
+    color: #991B1B;
+}
+
+.toast.success {
+    background: #D1FAE5;
+    border-left: 4px solid #10B981;
+    color: #065F46;
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.toast-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.toast-message {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+}

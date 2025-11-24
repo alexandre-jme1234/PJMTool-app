@@ -24,6 +24,11 @@ export class TaskOverlayComponent {
 
   isEditMode = false;
   editTask: TaskModel | undefined = undefined;
+  
+  // Toast properties
+  showToast = false;
+  toastMessage = '';
+  toastType: 'error' | 'success' = 'error';
 
   constructor(private taskService: TaskService) {}
 
@@ -46,6 +51,18 @@ export class TaskOverlayComponent {
 
   saveEdit() {
     if (this.editTask) {
+      // Validation: date_debut doit être inférieure à date_fin
+      if (this.editTask.date_debut && this.editTask.date_fin) {
+        const dateDebut = new Date(this.editTask.date_debut);
+        const dateFin = new Date(this.editTask.date_fin);
+        
+        if (dateDebut >= dateFin) {
+          console.error('❌ Erreur: La date de début doit être antérieure à la date de fin');
+          this.showToastMessage('La date de début doit être antérieure à la date de fin', 'error');
+          return;
+        }
+      }
+      
       console.log('editTask', this.editTask)
       this.task = { ...this.editTask };
       
@@ -96,5 +113,17 @@ export class TaskOverlayComponent {
   // Fonction de comparaison pour le select des utilisateurs
   compareUsers(user1: UserModel | null, user2: UserModel | null): boolean {
     return user1?.id === user2?.id;
+  }
+
+  // Afficher un toast
+  showToastMessage(message: string, type: 'error' | 'success' = 'error'): void {
+    this.toastMessage = message;
+    this.toastType = type;
+    this.showToast = true;
+
+    // Masquer automatiquement après 3 secondes
+    setTimeout(() => {
+      this.showToast = false;
+    }, 3000);
   }
 }
