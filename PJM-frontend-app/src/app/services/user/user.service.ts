@@ -41,8 +41,8 @@ export class UserService {
   }
 
   // getUserById via une fetch et vérifier que la route existe dans le backend
-  getUserById(id: string): Observable<any> {
-    return this.http.get<string>(`http://localhost:8080/api/utilisateur/${id}`);
+  getUserById(id: string): Observable<UserModel> {
+    return this.http.get<UserModel>(`http://localhost:8080/api/utilisateur/${id}`);
   }
 
   /**

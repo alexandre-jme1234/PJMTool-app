@@ -14,7 +14,8 @@ import { UserModel } from '../../services/user/user.model';
 import { ProjetModel } from '../../services/projects/projet.model';
 import { PrioriteModel } from '../../services/priorite/priorite.model';
 import { HttpClient } from '@angular/common/http';
-import { forkJoin, map } from 'rxjs';
+import { forkJoin, of, Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { UserService } from '../../services/user/user.service';
 // import { error } from 'console'; // Removed - not needed in browser
 import { NotificationService } from '../../services/notification/notification.service';
@@ -102,6 +103,7 @@ export class DashboardComponent implements OnInit {
   tasksToDelete: TaskModel[] = [];
   currentProjectRole: string | null = null;
   currentUserPermissions: UserPermissions | null = null;
+  utilisateursProjet: UserModel[] = [];
 
   constructor(
     private projetService: ProjectService,
@@ -191,8 +193,16 @@ export class DashboardComponent implements OnInit {
   onSelectProject(projet: Project) {
     this.selectedProject = projet;
     if (projet.id !== undefined) {
-      this.loadTasksForProject(projet.id);
-      this.loadCurrentUserRoleForProject(projet.id);
+      const projectId = projet.id;
+      
+      // Charger les permissions en parallèle
+      this.loadCurrentUserRoleForProject(projectId);
+      
+      // Charger les utilisateurs d'abord, puis les tâches
+      this.loadUsersForProject(projectId, () => {
+        // Callback exécuté quand les utilisateurs sont chargés
+        this.loadTasksForProject(projectId);
+      });
     }
   }
 
@@ -223,6 +233,83 @@ export class DashboardComponent implements OnInit {
       error: (error) => {
         console.error('Erreur chargement rôle:', error);
         this.currentProjectRole = null;
+      }
+    });
+  }
+
+  loadUsersForProject(projectId: number, onComplete?: () => void): void {
+    const roleMapping: { [key: number]: string } = {
+      1: "ADMINISTRATEUR",
+      2: "MEMBRE",
+      3: "OBSERVATEUR"
+    };
+
+    this.projetService.getUsersRoledByProjectId(projectId).subscribe({
+      next: (response) => {
+        const userRoleData = response.data;
+        console.log('Données brutes getUsersRoledByProjectId:', userRoleData);
+        
+        // Créer un tableau de requêtes pour charger les utilisateurs complets
+        const userRequests: Observable<UserModel>[] = userRoleData.map((urp: any) => {
+          // Si urp.utilisateur est déjà un objet complet avec nom
+          if (typeof urp.utilisateur === 'object' && urp.utilisateur !== null && urp.utilisateur.nom) {
+            return of({
+              ...urp.utilisateur,
+              role_app: roleMapping[urp.role] || 'OBSERVATEUR'
+            } as UserModel);
+          }
+          
+          // Sinon, charger l'utilisateur complet via son ID
+          const userId = typeof urp.utilisateur === 'object' ? urp.utilisateur.id : urp.utilisateur;
+          
+          return this.userService.getUserById(String(userId)).pipe(
+            map((user: any) => ({
+              ...user,
+              role_app: roleMapping[urp.role] || 'OBSERVATEUR'
+            } as UserModel)),
+            // En cas d'erreur, retourner un objet minimal
+            catchError(() => of({
+              id: userId,
+              nom: `Utilisateur ${userId}`,
+              role_app: roleMapping[urp.role] || 'OBSERVATEUR'
+            } as UserModel))
+          );
+        });
+        
+        // Gérer le cas où il n'y a aucun utilisateur
+        if (userRequests.length === 0) {
+          this.utilisateursProjet = [];
+          console.log('⚠ Aucun utilisateur dans le projet');
+          if (onComplete) {
+            onComplete();
+          }
+          return;
+        }
+        
+        // Attendre que tous les utilisateurs soient chargés
+        forkJoin(userRequests).subscribe({
+          next: (users: UserModel[]) => {
+            this.utilisateursProjet = users;
+            
+            // Appeler le callback si fourni
+            if (onComplete) {
+              onComplete();
+            }
+          },
+          error: (error) => {
+            console.error('Erreur lors du chargement des utilisateurs:', error);
+            this.utilisateursProjet = [];
+            
+            // Appeler le callback même en cas d'erreur
+            if (onComplete) {
+              onComplete();
+            }
+          }
+        });
+      },
+      error: (error) => {
+        console.error('Erreur getUsersRoledByProjectId:', error);
+        this.utilisateursProjet = [];
       }
     });
   }
@@ -518,9 +605,14 @@ export class DashboardComponent implements OnInit {
   }
 
   onTaskUpdated(updatedTask: TaskModel) {
-    // Recharger les tâches du projet
+    // Recharger les utilisateurs puis les tâches du projet
     if (this.selectedProject?.id) {
-      this.loadTasksForProject(this.selectedProject.id);
+      const projectId = this.selectedProject.id;
+      
+      // Recharger les utilisateurs d'abord, puis les tâches dans le callback
+      this.loadUsersForProject(projectId, () => {
+        this.loadTasksForProject(projectId);
+      });
     }
     
     // Fermer l'overlay
@@ -576,9 +668,26 @@ export class DashboardComponent implements OnInit {
 
   loadTasksForProject(projetId: number) {
     this.taskService.getTasksByProject(projetId).subscribe((tasks) => {
-      this.tasks = tasks;
+      // Enrichir les tâches avec les objets utilisateurs complets
+      const enrichedTasks = tasks.map(task => {
+        // Si commanditaire est juste un ID, le remplacer par l'objet complet
+        if (task.commanditaire && typeof task.commanditaire === 'object' && !task.commanditaire.nom) {
+          const commanditaireId = (task.commanditaire as any).id || task.commanditaire;
+          task.commanditaire = this.utilisateursProjet.find(u => u.id === commanditaireId) || task.commanditaire;
+        }
+        
+        // Si destinataire est juste un ID, le remplacer par l'objet complet
+        if (task.destinataire && typeof task.destinataire === 'object' && !task.destinataire.nom) {
+          const destinataireId = (task.destinataire as any).id || task.destinataire;
+          task.destinataire = this.utilisateursProjet.find(u => u.id === destinataireId) || task.destinataire;
+        }
+        
+        return task;
+      });
+      
+      this.tasks = enrichedTasks;
       if (this.selectedProject && this.selectedProject.id === projetId) {
-        this.selectedProject.taches = tasks;
+        this.selectedProject.taches = enrichedTasks;
       }
     });
   }

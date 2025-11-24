@@ -127,7 +127,7 @@
     </div>
   </div>
 </div>
-<p class="text-gray-500">Aucun projet trouvé.</p>
+
 
 <!-- Modal Création Projet -->
 <div *ngIf="showModal"
@@ -170,6 +170,7 @@
   [task]="selectedTask"
   [isOpen]="isOverlayOpen"
   [userPermissions]="currentUserPermissions"
+  [utilisateursProjet]="utilisateursProjet"
   (close)="closeTaskDetails()"
   (taskUpdated)="onTaskUpdated($event)">
 </app-task-overlay>

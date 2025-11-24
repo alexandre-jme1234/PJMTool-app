@@ -75,7 +75,7 @@ export class TaskService {
 
   // Mettre à jour une tâche
   updateTask(task: any): Observable<any> {
-    return this.http.patch('/api/tache/update', task);
+    return this.http.patch('http://localhost:8080/api/tache/update', task);
   }
 
   deleteTask(id: number): Observable<any>{

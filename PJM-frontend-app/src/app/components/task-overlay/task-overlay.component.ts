@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../services/task/task.service';
 import { TaskModel } from '../../services/task/task.model';
 import { PermissionService, UserPermissions } from '../../services/permissions/permission.service';
+import { UserModel } from '../../services/user/user.model';
 
 @Component({
   selector: 'app-task-overlay',
@@ -18,6 +19,7 @@ export class TaskOverlayComponent {
   @Input() userPermissions: UserPermissions | null = null;
   @Output() close = new EventEmitter<void>();
   @Output() taskUpdated = new EventEmitter<any>();
+  @Input() utilisateursProjet: UserModel[] = [];
   
 
   isEditMode = false;
@@ -30,6 +32,7 @@ export class TaskOverlayComponent {
     if (this.task && this.isOpen) {
       this.isEditMode = true;
       this.editTask = { ...this.task };
+      console.log('Task-overlay - Utilisateurs du projet reçus:', this.utilisateursProjet);
     } else {
       this.isEditMode = false;
       this.editTask = undefined;
@@ -88,5 +91,10 @@ export class TaskOverlayComponent {
 
   cancelEdit() {
     this.close.emit();
+  }
+
+  // Fonction de comparaison pour le select des utilisateurs
+  compareUsers(user1: UserModel | null, user2: UserModel | null): boolean {
+    return user1?.id === user2?.id;
   }
 }

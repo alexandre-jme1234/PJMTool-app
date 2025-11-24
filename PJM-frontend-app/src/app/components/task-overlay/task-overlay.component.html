@@ -35,6 +35,17 @@
                 </div>
               </div>
 
+              <!-- Ligne 1.5 : Destinataire -->
+              <div>
+                <label class="block text-sm font-medium mb-1">👤 Destinataire</label>
+                <select [(ngModel)]="editTask.destinataire" name="destinataire" class="w-full border rounded px-3 py-2" [compareWith]="compareUsers">
+                  <option [ngValue]="null">-- Sélectionner un utilisateur --</option>
+                  <option *ngFor="let user of utilisateursProjet" [ngValue]="user">
+                    {{ user.nom }} ({{ user.email }})
+                  </option>
+                </select>
+              </div>
+
               <!-- Ligne 2 : Dates -->
               <div class="grid grid-cols-2 gap-4">
                 <div>
