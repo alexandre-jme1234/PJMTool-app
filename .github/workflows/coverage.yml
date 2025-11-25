@@ -2,9 +2,9 @@ name: Code Coverage Reports
 
 on:
   push:
-    branches: [ main, jpp-spinner ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, jpp-spinner ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
