@@ -124,7 +124,19 @@ describe('UserService - Tests de couverture complète', () => {
   describe('getUserById()', () => {
     it('should fetch user by ID', (done) => {
       const userId = '123';
-      const mockResponse = { id: 123, nom: 'Test User', email: 'test@test.com' };
+      const mockResponse = { 
+        id: 123, 
+        nom: 'Test User', 
+        email: 'test@test.com',
+        role_app: 'MEMBRE',
+        password: null,
+        etat_connexion: false,
+        tache_commanditaire: null,
+        taches_destinataire: null,
+        projets_utilisateur: null,
+        projets: null,
+        roles_projet: null
+      };
 
       service.getUserById(userId).subscribe(response => {
         expect(response).toEqual(mockResponse);

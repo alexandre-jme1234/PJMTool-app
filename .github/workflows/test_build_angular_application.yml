@@ -72,7 +72,7 @@ jobs:
 
     - name: Docker compose down
       if: always()
-      run: docker compose down -v kljl
+      run: docker compose down -v
 
   build-push-on-docker-hub:
     runs-on: ubuntu-latest
