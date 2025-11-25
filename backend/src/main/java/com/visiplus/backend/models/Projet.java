@@ -29,7 +29,7 @@ public class Projet {
     @Temporal(value = TemporalType.DATE)
     private Date date_creation;
 
-    @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "projet", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<UserRoleProjet> utilisateursRoles = new HashSet<>();
 
     @ManyToMany

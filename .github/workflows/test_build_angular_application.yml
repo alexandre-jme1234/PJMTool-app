@@ -38,41 +38,41 @@ jobs:
       id: pages
       uses: actions/configure-pages@v4
       
-    # - name: Docker compose build (no run)
-    #   run: docker compose build
+    - name: Docker compose build (no run)
+      run: docker compose build
 
-    # - name: Build Backend & Test 
-    #   working-directory: backend
-    #   run: |
-    #     chmod +x mvnw
-    #     ./mvnw -B clean verify -Dspring.profiles.active=test
+    - name: Build Backend & Test 
+      working-directory: backend
+      run: |
+        chmod +x mvnw
+        ./mvnw -B clean verify -Dspring.profiles.active=test
 
 
-    # - name: Install and Build App Application
-    #   working-directory: PJM-frontend-app
-    #   run: |
-    #     npm ci
-    #     npm install -g @angular/cli@17.0.2 --silent
-    #     npm run build
+    - name: Install and Build App Application
+      working-directory: PJM-frontend-app
+      run: |
+        npm ci
+        npm install -g @angular/cli@17.0.2 --silent
+        npm run build
 
-    # - name: Upload Artifact
-    #   if: matrix.node-version == '20.x'
-    #   uses: actions/upload-pages-artifact@v3
-    #   with:
-    #     name: github-pages
-    #     path: PJM-frontend-app/dist/pjm-frontend-app/browser
+    - name: Upload Artifact
+      if: matrix.node-version == '20.x'
+      uses: actions/upload-pages-artifact@v3
+      with:
+        name: github-pages
+        path: PJM-frontend-app/dist/pjm-frontend-app/browser
 
-    # - name: Upload Surefire Reports
-    #   if: always()
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: surefire-reports-${{ matrix.node-version }}-${{ github.run_attempt }}
-    #     path: backend/target/surefire-reports
-    #     overwrite: true
+    - name: Upload Surefire Reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: surefire-reports-${{ matrix.node-version }}-${{ github.run_attempt }}
+        path: backend/target/surefire-reports
+        overwrite: true
 
-    # - name: Docker compose down
-    #   if: always()
-    #   run: docker compose down -v kljl
+    - name: Docker compose down
+      if: always()
+      run: docker compose down -v kljl
 
   build-push-on-docker-hub:
     runs-on: ubuntu-latest
