@@ -36,7 +36,12 @@ export class TaskOverlayComponent {
     // Toujours activer le mode édition quand on ouvre une tâche
     if (this.task && this.isOpen) {
       this.isEditMode = true;
-      this.editTask = { ...this.task };
+      this.editTask = { 
+        ...this.task,
+        date_debut: this.formatDateForInput(this.task.date_debut) as any,
+        date_fin: this.formatDateForInput(this.task.date_fin) as any
+      };
+      console.log('edit task', this.editTask);
       console.log('Task-overlay - Utilisateurs du projet reçus:', this.utilisateursProjet);
     } else {
       this.isEditMode = false;
@@ -125,5 +130,14 @@ export class TaskOverlayComponent {
     setTimeout(() => {
       this.showToast = false;
     }, 3000);
+  }
+
+  // Convertir une Date en string au format YYYY-MM-DD pour les inputs HTML
+  private formatDateForInput(date: Date | string | null): string | null {
+    if (!date) return null;
+    const d = new Date(date);
+    // Vérifier si la date est valide
+    if (isNaN(d.getTime())) return null;
+    return d.toISOString().split('T')[0]; // Format YYYY-MM-DD
   }
 }

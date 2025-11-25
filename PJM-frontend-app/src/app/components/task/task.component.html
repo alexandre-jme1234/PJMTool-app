@@ -72,6 +72,15 @@
             class="ml-2 px-2 py-0.5 rounded-full text-xs font-semibold uppercase">
         {{ task.etat === 'TODO' ? 'À faire' : (task.etat === 'IN_PROGRESS' ? 'En cours' : (task.etat === 'DONE' ? 'Terminée' : task.etat)) }}
       </span>
+      <span *ngIf="task && task.priorite" 
+            [ngClass]="{
+              'bg-red-200 text-red-800': task.priorite.id === 1,
+              'bg-orange-200 text-orange-800': task.priorite.id === 2,
+              'bg-green-200 text-green-800': task.priorite.id === 3
+            }"
+            class="px-2 py-0.5 rounded-full text-xs font-semibold uppercase">
+        ⚡ {{ task.priorite.nom }}
+      </span>
     </h2>
     <div class="space-y-4">
       <div>

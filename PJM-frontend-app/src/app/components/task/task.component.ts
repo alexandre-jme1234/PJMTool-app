@@ -33,6 +33,7 @@ export class TaskComponent {
       });
       if (this.task) {
         this.enrichUserData();
+        console.log('data', this.task)
       }
     } else if (this.task) {
     this.enrichUserData();
@@ -73,6 +74,8 @@ export class TaskComponent {
       this.task.destinataire = user;
     });
   }
+
+  console.log('taskk', this.task)
 
   // Si aucune requête nécessaire, ne rien faire
   if (Object.keys(requests).length === 0) {
