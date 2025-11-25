@@ -35,10 +35,10 @@
                 </div>
                 <div>
                   <label class="block text-sm font-medium mb-1">⚡ Priorité</label>
-                  <select [(ngModel)]="editTask.priorite" name="priorite" class="w-full border rounded px-3 py-2">
-                    <option value=1>HAUTE</option>
-                    <option value=2>MOYENNE</option>
-                    <option value=3>FAIBLE</option>
+                  <select [(ngModel)]="editTask.priorite.id" name="priorite" class="w-full border rounded px-3 py-2">
+                    <option [value]="1">HAUTE</option>
+                    <option [value]="2">MOYENNE</option>
+                    <option [value]="3">FAIBLE</option>
                   </select>
                 </div>
               </div>
