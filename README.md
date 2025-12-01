@@ -2,7 +2,8 @@
 
 ## Description
 
-PJMTool-app is a project to manage Projects and Tasks with colleages and friends.
+The PJMTool-app is intended to facilitate project and task management with colleagues and friends.
+You could define executors and managers, define different rules and priorities, and use a Kanban Vue Model.
 
 ### Technology Stack
 
