@@ -19,16 +19,20 @@ Testing : Jasmine, Karma, Mockito, MockMvc, JaCoCo
 1. Clone this repository :
 
 `
-git clone 
+git clone https://github.com/alexandre-jme1234/PJMTool-app.git
 `
 
 3. Build and install the Dockerfile frontend and backend
 
 `cd /PJMTool-app
-docker compose up -d`
+docker compose up -d
+`
 
 3. Application Go alive :
+
+`
 http://localhost:4200
+`
 
 🎉🎉 **Testing PJMTool-APP**
 
