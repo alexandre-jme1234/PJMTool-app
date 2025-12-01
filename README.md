@@ -25,7 +25,7 @@ docker compose up -d
 
 3. Application Go alive :
 http://localhost:4200
-**
-🎉🎉 Testing PJMTool-APP 🎉🎉**
+
+🎉🎉 **Testing PJMTool-APP**
 
 You can find the available SQL script to generate the data model in the repository.
