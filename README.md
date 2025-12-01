@@ -1,10 +1,10 @@
-Project: PJMTool-App
+**Project: PJMTool-App**
 
-Description
+**Description**
 
 PJMTool-app is a project to manage Projects and Tasks with colleages and friends.
 
-Technology Stack
+**Technology Stack**
 
 Backend: Java (Spring Boot).
 Data Base: MariaDB
@@ -14,7 +14,7 @@ Docker
 ci cd : GitHub Actions
 Testing : Jasmine, Karma, Mockito, MockMvc, JaCoCo
 
-Installation Project
+**Installation Project**
 
 1. Clone this repository :
 
@@ -26,6 +26,6 @@ docker compose up -d
 3. Application Go alive :
 http://localhost:4200
 
-Testing PJMTool-APP
+** 🎉🎉 Testing PJMTool-APP 🎉🎉 **
 
 You can find the available SQL script to generate the data model in the repository.
