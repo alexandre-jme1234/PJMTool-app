@@ -1,6 +1,6 @@
-****Project: PJMTool-App****
+# Project: PJMTool-App
 
-**Description**
+##Description
 
 PJMTool-app is a project to manage Projects and Tasks with colleages and friends.
 
